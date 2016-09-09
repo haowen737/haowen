@@ -4,7 +4,7 @@
     <h1>Live a life you will remember</h1>
     <div class="logo-btns">
       <div class="logo-btn"><a v-link="{path:'/photo'}">PHOTO</a></div>
-      <div class="logo-btn"><a v-link="{path:''}">CODE</a></div>
+      <div class="logo-btn"><a href="http://www.tookapill.com">CODE</a></div>
     </div>
   </div>
 </template>
@@ -70,8 +70,9 @@ export default {
   text-align: center;
 }
 .nav h1 {
-  font-size: 16px;
+  font-size: 20px;
   color: #3d3d3d;
+  font-family: cursive;
   /*font-weight: bold;*/
 }
 .nav {
@@ -100,7 +101,7 @@ export default {
   transition: background-color .5s cubic-bezier(0, -0.37, 0, 0.7);
 }
 .logo-btn a:hover {
-  background-color: #a4a4a4;
+  background-color: #000;
   color: #fff;
 }
 </style>
