@@ -1,10 +1,10 @@
 <template lang="html">
   <div class="nav">
     <canvas id="canvas" v-el:canvas width="400" height="100"></canvas>
-    <h1>Live a life you will remember</h1>
+    <h1>Live a life you will remember!</h1>
     <div class="logo-btns">
       <div class="logo-btn"><a v-link="{path:'/photo'}">PHOTO</a></div>
-      <div class="logo-btn"><a href="http://www.tookapill.com">CODE</a></div>
+      <div class="logo-btn"><a @click="gotoCode">CODE</a></div>
     </div>
   </div>
 </template>
@@ -59,6 +59,12 @@ export default {
       for (var i = 0; i < this.dotList.length; i++) {
         this.ctx.fillRect(this.dotList[i].x, this.dotList[i].y, 1, 1)
       }
+    },
+    gotoCode () {
+      this.showNav = false
+      setTimeout(() => {
+        this.$router.go({path: '/code'})
+      }, 500)
     }
   },
   components: {}
@@ -73,6 +79,7 @@ export default {
   font-size: 20px;
   color: #3d3d3d;
   font-family: cursive;
+  cursor: default;
   /*font-weight: bold;*/
 }
 .nav {
@@ -98,7 +105,7 @@ export default {
 .logo-btn a {
   display: block;
   width: 100%;
-  transition: background-color .5s cubic-bezier(0, -0.37, 0, 0.7);
+  transition: background-color .4s cubic-bezier(0, -0.37, 0, 0.7);
 }
 .logo-btn a:hover {
   background-color: #000;

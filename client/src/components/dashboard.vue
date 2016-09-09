@@ -1,5 +1,5 @@
 <template lang="html">
-  <div id="particlesJs">
+  <div id="particlesJs" v-show="showNav" transition="fade">
     <logo></logo>
   </div>
 </template>
@@ -10,6 +10,7 @@ import Logo from './logo'
 export default {
   data: function () {
     return {
+      showNav: true
     }
   },
   computed: {},
@@ -24,7 +25,7 @@ export default {
           }
         },
         'color': {
-          'value': '#000000'
+          'value': '#3d3d3d'
         },
         'shape': {
           'type': 'circle',
@@ -52,7 +53,7 @@ export default {
           }
         },
         'size': {
-          'value': 3,
+          'value': 2,
           'random': true,
           'anim': {
             'enable': false,
@@ -64,15 +65,15 @@ export default {
         'line_linked': {
           'enable': true,
           'distance': 150,
-          'color': '#000',
+          'color': '#3d3d3d',
           'opacity': 0.4,
           'width': 1
         },
         'move': {
           'enable': true,
-          'speed': 3,
+          'speed': 2,
           'direction': 'none',
-          'random': false,
+          'random': true,
           'straight': false,
           'out_mode': 'out',
           'bounce': false,
@@ -143,6 +144,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
+  overflow: hidden;
 }
 .logo {
   position: fixed;
