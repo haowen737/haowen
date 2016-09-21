@@ -1,21 +1,21 @@
 {
   "name": "haowen",
   "version": "1.0.0",
-  "description": "haowen's blog",
+  "description": "",
   "main": "index.js",
   "dependencies": {
     "koa": "^1.2.4"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/popitin/haowen.git"
   },
   "keywords": [
-    "haowen"
+    "blog"
   ],
   "author": "Haowen",
   "license": "ISC",
