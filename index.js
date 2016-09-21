@@ -1,15 +1,11 @@
 let serve = require('koa-static-server');
+let markdown = require('markdown')
 let koa = require('koa');
 
 let app = koa();
 
 // serve static
 app.use(serve({rootDir: 'client/dist'}));
-app.use(function* (next) {
-  console.log(this.request)
-})
-app.on('error', (err) => {
-  console.log(err)
-})
+
 app.listen(80);
 console.log('listening at 80');

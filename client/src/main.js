@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Dashboard from './components/dashboard'
 import Photo from './components/photo'
 import Code from './components/code'
+import Archives from './components/archives'
+import Tags from './components/tags'
 import './assets/styles/base.css'
 
 /* eslint-disable no-new */
@@ -28,6 +30,12 @@ router.map({
   },
   '/code': {
     component: Code
+  },
+  '/archives': {
+    component: Archives
+  },
+  '/tags': {
+    component: Tags
   }
 })
 

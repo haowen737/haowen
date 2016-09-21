@@ -1,14 +1,14 @@
 <template lang="html">
-  <div class="container" transition="fade">
+  <div class="container">
     <div class="header">
       <div class="header-inner">
         <div class="logo cur-default">Haowen</div>
         <div class="site-subtitle cur-default">Live a life you will remember!</div>
         <nav class="site-nav">
           <ul>
-            <li>Home</li>
-            <li>Archives</li>
-            <li>Tags</li>
+            <li><a v-link="{path:'/'}">Home</a></li>
+            <li><a v-link="{path:'/archives'}">Archives</a></li>
+            <li><a v-link="{path:'/tags'}">Tags</a></li>
           </ul>
         </nav>
       </div>
@@ -34,13 +34,13 @@ export default {
 
 <style lang="css" scoped>
 .container {
-}
-.header {
   text-align: center;
 }
+/*.header-inner {
+  text-align: center;
+}*/
 .header-inner {
   position: relative;
-  margin: 0 auto;
   padding: 100px 0 70px;
 }
 .logo {
@@ -58,10 +58,18 @@ export default {
   font-size: 13px;
   color: #999;
 }
-.site-nav {
+.site-nav li{
   margin-top: 20px;
+  padding: 5px;
 }
 .site-nav li {
   display: inline-block;
+}
+.cards {
+  width: 500px;
+  height: 300px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  margin: 10px auto;
 }
 </style>
