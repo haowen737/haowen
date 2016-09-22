@@ -1,13 +1,15 @@
 <template lang="html">
   <div class="article-layout">
-    <div class="logo cur-default">Haowen</div>
-    <hr>
-    <nav class="article-nav">
-      <div class="article-nav-item"><a v-link="{path:'/'}">Home</a></div>
-      <div class="article-nav-item"><a v-link="{path:'/code'}">Return</a></div>
-      <div class="article-nav-item"><a v-link="{path:'/'}">Haha</a></div>
-    </nav>
-    <div v-html="markdown" class="article"></div>
+    <header>
+      <div class="logo cur-default">Haowen</div>
+      <hr>
+      <nav class="article-nav">
+        <div class="article-nav-item"><a v-link="{path:'/'}">Home</a></div>
+        <div class="article-nav-item"><a v-link="{path:'/code'}">Return</a></div>
+        <div class="article-nav-item"><a v-link="{path:'/'}">Haha</a></div>
+      </nav>
+    </header>
+    <div v-html="markdown" class="markdown-body"></div>
   </div>
 </template>
 
@@ -52,11 +54,18 @@ export default {
 </script>
 
 <style lang="css">
-.article-layout {
+.article-layout header {
   text-align: center;
 }
 .logo {
   margin: 40px 0;
+}
+.markdown-body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 45px;
 }
 .article {
   width: 700px;

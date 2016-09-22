@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="cards">
-      <div class="card" v-for="card in cards" v-link="{path:'/article/' + card.keywords}">
+      <div class="card" v-for="card in cards" v-link="{path:'code/article/' + card.keywords}">
         <h1>{{ card.title }}</h1>
         <span>{{ card.date }}</span>
       </div>

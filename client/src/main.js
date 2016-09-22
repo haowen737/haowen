@@ -8,6 +8,7 @@ import Code from './components/code'
 import Archives from './components/archives'
 import Tags from './components/tags'
 import './assets/styles/base.css'
+import 'github-markdown-css/github-markdown.css'
 // new Vue({
 //   el: 'body',
 //   components: { App }
@@ -38,7 +39,7 @@ router.map({
   '/tags': {
     component: Tags
   },
-  '/article/:id': {
+  '/code/article/:id': {
     component: Article
   }
 })
