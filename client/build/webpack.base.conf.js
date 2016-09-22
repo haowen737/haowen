@@ -7,6 +7,9 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
+  externals: {
+    VLOG_DATABASE: true
+  },
   output: {
     path: config.build.assetsRoot,
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,

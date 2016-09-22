@@ -1,17 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 import Dashboard from './components/dashboard'
+import Article from './components/article'
 import Photo from './components/photo'
 import Code from './components/code'
 import Archives from './components/archives'
 import Tags from './components/tags'
 import './assets/styles/base.css'
-
-/* eslint-disable no-new */
 // new Vue({
 //   el: 'body',
 //   components: { App }
 // })
+Vue.use(VueResource)
 Vue.use(VueRouter)
 
 let app = Vue.extend({})
@@ -36,6 +37,9 @@ router.map({
   },
   '/tags': {
     component: Tags
+  },
+  '/article/:id': {
+    component: Article
   }
 })
 

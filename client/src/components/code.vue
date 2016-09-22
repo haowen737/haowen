@@ -9,26 +9,40 @@
             <li><a v-link="{path:'/'}">Home</a></li>
             <li><a v-link="{path:'/archives'}">Archives</a></li>
             <li><a v-link="{path:'/tags'}">Tags</a></li>
+            <li><a v-link="{path:'/contact'}">Contact</a></li>
           </ul>
         </nav>
       </div>
     </div>
     <div class="cards">
+      <div class="card" v-for="card in cards" v-link="{path:'/article/' + card.keywords}">
+        <h1>{{ card.title }}</h1>
+        <span>{{ card.date }}</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import database from './../../database'
 export default {
   data: function () {
     return {
+      cards: {}
     }
   },
   computed: {},
-  ready: function () {},
+  ready: function () {
+    this.getCards()
+  },
   attached: function () {},
-  methods: {},
-  components: {}
+  methods: {
+    getCards () {
+      this.cards = database.posts
+    }
+  },
+  components: {
+  }
 }
 </script>
 
@@ -43,33 +57,44 @@ export default {
   position: relative;
   padding: 100px 0 70px;
 }
-.logo {
-  display: inline-block;
-  padding: 0 40px;
-  font-size: 20px;
-  line-height: 36px;
-  font-weight: lighter;
-  font-family: cursive;
-  color: #fff;
-  background-color: #000;
-}
 .site-subtitle {
   margin-top: 10px;
   font-size: 13px;
   color: #999;
 }
 .site-nav li{
-  margin-top: 20px;
-  padding: 5px;
-}
-.site-nav li {
   display: inline-block;
+  margin-top: 20px;
+  border-bottom: 1px solid #fff;
+  transition: border-bottom 1.3s cubic-bezier(0.72, 1.62, 0.51, 1.58);;
 }
-.cards {
+.site-nav li:hover {
+  border-bottom: 1px solid #999;
+}
+.site-nav a {
+  display: block;
+  padding: 5px 30px;
+}
+.card {
+  position: relative;
+  margin: 0 auto 30px;
+  padding: 20px;
   width: 500px;
-  height: 300px;
-  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+  transition: box-shadow .5s;
   border-radius: 5px;
-  margin: 10px auto;
+  text-align: left;
+}
+.card:hover {
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+.card h1{
+  font-size: 16px;
+  line-height: 2;
+}
+.card h1>span{
+  font-size: 12px;
+  right: 5px;
+  top: 5px;
 }
 </style>
