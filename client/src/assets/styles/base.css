@@ -60,3 +60,13 @@ p {
 .fade-enter, .fade-leave {
   opacity: 0;
 }
+.fade-contact-transition {
+  transition: all .5s ease-out;
+  opacity: 1;
+}
+.fade-contact-enter {
+  opacity: 0;
+}
+.fade-contact-leave {
+  opacity: 0;
+}

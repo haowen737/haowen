@@ -5,6 +5,7 @@ import Dashboard from './components/dashboard'
 import Article from './components/article'
 import Photo from './components/photo'
 import Code from './components/code'
+import Contact from './components/contact'
 import Archives from './components/archives'
 import Tags from './components/tags'
 import './assets/styles/base.css'
@@ -41,6 +42,9 @@ router.map({
   },
   '/code/article/:id': {
     component: Article
+  },
+  '/contact': {
+    component: Contact
   }
 })
 

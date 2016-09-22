@@ -1,10 +1,11 @@
+<!-- 將“皓文”圖片重組 -->
 <template lang="html">
   <div class="nav">
     <canvas id="canvas" v-el:canvas width="400" height="100"></canvas>
     <h1>Live a life you will remember!</h1>
     <div class="logo-btns">
       <div class="logo-btn"><a v-link="{path:'/photo'}">PHOTO</a></div>
-      <div class="logo-btn"><a @click="gotoCode">CODE</a></div>
+      <div class="logo-btn"><a v-link="{path:'/code'}">CODE</a></div>
     </div>
   </div>
 </template>
