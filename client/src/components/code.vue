@@ -81,7 +81,7 @@ export default {
   padding: 20px;
   width: 500px;
   box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
-  transition: box-shadow .5s;
+  transition: box-shadow .5s ease-out;
   border-radius: 5px;
   text-align: left;
 }

@@ -3,6 +3,10 @@
     <div class="head-img-layout">
       <div class="head-img"></div>
     </div>
+    <div class="head-content">
+      <p>郑皓文</p>
+      <p>中国计量大学</p>
+    </div>
     <div class="contact">
       <div class="contact-item">
         <a href="javascript:;" @mouseover="show=1" @mouseout="show=0" @click="jumpTo(1)">
@@ -17,15 +21,16 @@
         </a>
       </div>
       <div class="contact-item">
-        <a href="mailto: mandychuck@outlook.com" @mouseover="show=3" @mouseout="show=0">
+        <!-- <a href="mailto: mandychuck@outlook.com" @mouseover="show=3" @mouseout="show=0"> -->
+        <a href="javascript:;" @mouseover="show=3" @mouseout="show=0" @click="jumpTo(3)">
           <img src="./../assets/images/mail.png" alt="" />
           <div class="contact-item-text" v-show="show===3" transition="fade-item">Mail</div>
         </a>
       </div>
       <div class="contact-item">
         <a href="javascript:;" @mouseover="show=4" @mouseout="show=0" @click="jumpTo(4)">
-          <img src="./../assets/images/lofter.png" alt="" />
-          <div class="contact-item-text" v-show="show===4" transition="fade-item">Lofter</div>
+          <img src="./../assets/images/500px.png" alt="" />
+          <div class="contact-item-text" v-show="show===4" transition="fade-item">500PX</div>
         </a>
       </div>
     </div>
@@ -40,6 +45,7 @@ export default {
     return {
       show: 0,
       modalBody: '',
+      link: '',
       showModal: false
     }
   },
@@ -53,15 +59,16 @@ export default {
     jumpTo (index) {
       let modalBodytext = '打开郑皓文的 '
       switch (index) {
-        case 1 : this.modalBody = modalBodytext + 'github' + ' 页面？'
+        case 1 : this.modalBody = modalBodytext + 'github?'
           break
-        case 2 : this.modalBody = modalBodytext + '知乎' + ' 页面？'
+        case 2 : this.modalBody = modalBodytext + '知乎?'
           break
-        case 3 : this.modalBody = modalBodytext + '3' + ' 页面？'
+        case 3 : this.modalBody = '给郑皓文写邮件？'
           break
-        case 4 : this.modalBody = modalBodytext + 'lofter' + ' 页面？'
+        case 4 : this.modalBody = modalBodytext + '500PX?'
           break
       }
+      this.link = index
       this.showModal = true
     }
   },
@@ -84,7 +91,6 @@ export default {
 }
 .contact-item img {
   width: 100%;
-  height: 100%;
 }
 .contact-item {
   flex: 1 1 auto;
@@ -95,9 +101,20 @@ export default {
   width: 100%;
   margin: 0 auto;
 }
+.head-content {
+  margin: 50px auto;
+  width: 500px;
+  text-align: center;
+  font-size: 16px;
+  /*height: 150px;
+  box-shadow: 1px 1px 7px rgba(0,0,0,0.1) inset;*/
+}
+.head-content p {
+  line-height: 1;
+}
 .head-img-layout {
   width: 100%;
-  padding: 100px 0;
+  padding: 100px 0 0 0;
 }
 .head-img {
   width: 200px;
@@ -105,6 +122,9 @@ export default {
   margin: 0 auto;
   border-radius: 100px;
   background-color: #f3f3f3;
+  background-image: url('./../assets/images/me-1.jpg');
+  background-size: cover;
+  background-position: center;
 }
 .contact-item-text {
   font-size: 15px;
