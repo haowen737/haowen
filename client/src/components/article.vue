@@ -53,7 +53,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .article-layout header {
   text-align: center;
 }

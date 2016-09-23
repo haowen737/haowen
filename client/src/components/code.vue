@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="container">
+  <div class="container" transition="fade">
     <div class="header">
       <div class="header-inner">
         <div class="logo cur-default">Haowen</div>
@@ -9,7 +9,7 @@
             <li><a v-link="{path:'/'}">Home</a></li>
             <li><a v-link="{path:'/archives'}">Archives</a></li>
             <li><a v-link="{path:'/tags'}">Tags</a></li>
-            <li><a v-link="{path:'/contact'}">Contact</a></li>
+            <li><a v-link="{path:'/contact'}">Me</a></li>
           </ul>
         </nav>
       </div>

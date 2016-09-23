@@ -4,8 +4,8 @@
       <div class="modal-head" v-show="header">{{header}}</div>
       <div class="modal-body" v-show="body">{{body}}</div>
       <div class="modal-btns">
-        <div class="modal-btn" @click="jump">{{confirmText}}</div>
-        <div class="modal-btn border-l" @click="show=false" v-show="cancel">{{cancalText}}</div>
+        <div class="modal-btn" @click="onConfirm()">{{confirmText}}</div>
+        <div class="modal-btn border-l" @click="onCancel()" v-show="cancel">{{cancalText}}</div>
       </div>
     </div>
   </div>
@@ -53,19 +53,13 @@ export default {
   ready () {},
   attached () {},
   methods: {
-    jump () {
+    onConfirm () {
       this.show = false
-      let index = this.$parent.link
-      switch (index) {
-        case 1 : window.open('https://github.com/popitin')
-          break
-        case 2 : window.open('https://www.zhihu.com/people/chuck-25')
-          break
-        case 3 : window.location.href = 'mailto: zt452268020@live.com'
-          break
-        case 4 : window.open('https://500px.com/haowen')
-          break
-      }
+      this.$emit('on-confirm')
+    },
+    onCancel () {
+      this.show = false
+      this.$emit('on-cancel')
     }
   },
   components: {}
@@ -73,9 +67,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.border-l {
-  border-left: 1px solid #e7e7e7;
-}
 .modal-btn:hover {
   background-color: #f3f3f3;
 }
@@ -114,6 +105,9 @@ export default {
 }
 .modal-fade {
   position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
   background-color: rgba(0,0,0,0.2);
   width: 100%;
   height: 100%;
@@ -136,7 +130,7 @@ export default {
 .modal-enter, .modal-leave {
   background-color: rgba(0,0,0,0);
   position: relative;
-  top: 40%;
+  top: 42%;
   /*height: 0;*/
   opacity: 0;
 }

@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  <modal :show.sync='showModal' :body="modalBody"></modal>
+  <modal :show.sync='showModal' :body="modalBody" @on-confirm="onConfirm"></modal>
 </template>
 
 <script>
@@ -55,6 +55,20 @@ export default {
   methods: {
     showText (index) {
       this.show = index
+    },
+    onConfirm () {
+      this.show = false
+      let index = this.link
+      switch (index) {
+        case 1 : window.open('https://github.com/popitin')
+          break
+        case 2 : window.open('https://www.zhihu.com/people/chuck-25')
+          break
+        case 3 : window.location.href = 'mailto: zt452268020@live.com'
+          break
+        case 4 : window.open('https://500px.com/haowen')
+          break
+      }
     },
     jumpTo (index) {
       let modalBodytext = '打开郑皓文的 '
