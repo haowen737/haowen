@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="container" transition="fade">
+  <div class="container">
     <div class="header">
       <div class="header-inner">
         <div class="logo cur-default">Haowen</div>
