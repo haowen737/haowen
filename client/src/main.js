@@ -8,6 +8,7 @@ import Code from './components/code'
 import Contact from './components/contact'
 import Archives from './components/archives'
 import Tags from './components/tags'
+import Sidebar from './directive/sidebar'
 import './assets/styles/base.css'
 import 'github-markdown-css/github-markdown.css'
 // new Vue({
@@ -17,7 +18,11 @@ import 'github-markdown-css/github-markdown.css'
 Vue.use(VueResource)
 Vue.use(VueRouter)
 
-let app = Vue.extend({})
+let app = Vue.extend({
+  components: {
+    Sidebar
+  }
+})
 
 let router = new VueRouter({
   // history: true,

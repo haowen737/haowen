@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="cards">
-      <div class="card" v-for="card in cards" v-link="{path:'code/article/' + card.keywords}">
+      <div class="card" v-for="card in cards" v-link="{path:'code/article/' + card.keywords}" transition="card">
         <h1>{{ card.title }}</h1>
         <span>{{ card.date }}</span>
       </div>
@@ -65,11 +65,11 @@ export default {
 .site-nav li{
   display: inline-block;
   margin-top: 20px;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid rgba(0,0,0,0);
   transition: border-bottom 1.3s cubic-bezier(0.72, 1.62, 0.51, 1.58);;
 }
 .site-nav li:hover {
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid #000;
 }
 .site-nav a {
   display: block;
@@ -96,5 +96,18 @@ export default {
   font-size: 12px;
   right: 5px;
   top: 5px;
+}
+.card-transition {
+  transition: all .5s;
+  margin: 30px auto 30px;
+  opacity: 1;
+}
+.card-enter {
+  opacity: 0;
+  margin: 0;
+}
+.card-leave {
+  opacity: 0;
+  margin: 0;
 }
 </style>

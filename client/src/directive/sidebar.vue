@@ -1,13 +1,24 @@
 <template lang="html">
-  <div class="photo-layout">
-    <div class="img-box">
-      <img src="./../assets/images/photo/16-09-17-0.jpg" alt="" />
+  <div class="sidebar-layout">
+    <div class="sidebar-watcher" @mouseover="showSidebar=1"></div>
+    <div class="sidebar" v-show="showSidebar===1" transition="sidebar">
+      <div class="sidebar-header">
+        目錄
+      </div>
+      <div class="sidebar-body">
+        <ul>
+          <li><a href="/">Homepage</a></li>
+        </ul>
+      </div>
     </div>
+    <div class="fade" v-show="showSidebar===1" @mouseover="showSidebar=0" transition="fade"></div>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'sidebar',
+  template: '#sidebar',
   data: function () {
     return {
       showSidebar: 0,
@@ -24,7 +35,7 @@ export default {
       this.showModal = false
       this.setCookie()
     },
-    // cookie有效期未十天，失效后進入photo頁面會有提示彈出
+    // cookie有效期未十天，失效后進入sidebar頁面會有提示彈出
     setCookie () {
       let exdate = new Date()
       let expireDays = 10
@@ -48,37 +59,45 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.sidebar-body li {
+  text-indent: 20px;
+}
+.sidebar-body {
+  font-size: 20px;
+  line-height: 2;
+  margin-top: 20px;
+}
 .sidebar-header {
   position: relative;
-  top: -20px;
-  left: -30px;
+  top: 0px;
+  left: 0px;
   font-size: 100px;
   text-shadow: 5px 3px 3px rgba(0,0,0, .3);
 }
 .sidebar-watcher {
   position: absolute;
-  z-index: 1;
-  width: 350px;
-  height: 100%;
+  z-index: 2;
+  width: 150px;
+  height: 70%;
+  top: 15%;
   left: 0;
   /*background-color: grey;*/
 }
 .sidebar {
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   width: 350px;
   height: 100%;
+  background-color: #fff;
   box-shadow: 1px 0 2px rgba(0,0,0,0.2)
 }
 .sidebar-transition {
   transition: all .5s ease;
   left: 0;
-  background-color: #f3f3f3;
   /*opacity: 1;*/
 }
 .sidebar-enter, .sidebar-leave {
   left: -1000px;
-  background-color: #f3f3f3;
   /*opacity: 0;*/
 }
 .img-box img {
@@ -89,8 +108,8 @@ export default {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 0;
+  z-index: 1;
   position: absolute;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 </style>
