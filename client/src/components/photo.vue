@@ -1,17 +1,20 @@
 <template lang="html">
   <div class="photo-layout">
     <div class="img-box">
-      <img src="./../assets/images/photo/16-09-17-0.jpg" alt="" />
+      <!-- <img src="./../assets/images/photo/16-09-17-0.jpg" alt="" /> -->
     </div>
+    <modal :show.sync="showModal" :body="helloText" @on-confirm="setCookie"></modal>
   </div>
 </template>
 
 <script>
+import Modal from './../directive/modal'
 export default {
   data: function () {
     return {
       showSidebar: 0,
-      showModal: false
+      showModal: false,
+      helloText: '初次见面，你好啊'
     }
   },
   computed: {},
@@ -20,30 +23,29 @@ export default {
   },
   attached: function () {},
   methods: {
-    onConfirm () {
-      this.showModal = false
-      this.setCookie()
-    },
-    // cookie有效期未十天，失效后進入photo頁面會有提示彈出
+    // cookie有效期未1天，失效后進入photo頁面會有提示彈出
     setCookie () {
       let exdate = new Date()
-      let expireDays = 10
+      let expireDays = 1
       exdate.setTime(exdate.getTime() + expireDays * 24 * 3600 * 1000)
-      document.cookie = 'newUser=1;expire=' + exdate.toGMTString()
-      this.getCookie()
+      document.cookie = 'newUser=0;expire=' + exdate.toGMTString()
+      // this.getCookie()
     },
     getCookie () {
-      if (document.cookie.length > 0) {
-        let user = document.cookie.indexOf('newUser=')
-        if (user !== -1) {
-          this.showModal = false
-        } else {
-          this.showModal = true
-        }
+      // if (document.cookie.length > 0) {
+      let user = document.cookie.indexOf('newUser=')
+      if (user === 0) {
+        this.showModal = false
+        this.setCookie()
+      } else {
+        this.showModal = true
       }
+      // }
     }
   },
-  components: {}
+  components: {
+    Modal
+  }
 }
 </script>
 

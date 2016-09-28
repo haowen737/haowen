@@ -2,6 +2,7 @@
   <div class="tags-layout">
     <div class="tags">
       <header>
+        <div class="tags-header">Tags</div>
         <div class="tags-header">Tags<span>{{selectedTag}}</span></div>
         <nav>
           <a class="tag-nav" v-link="{path:'/'}" v-show="showTags">Home</a>
@@ -13,7 +14,7 @@
         <a href="javascript:;" :style="'left:' + Math.random() * 700 + 'px;top:' + Math.random() * 300 + 'px'" @click="selectTag(tag)">{{tag}}</a>
       </div>
     </div>
-    <div class="articleList" v-show="!showTags" transition="card">
+    <div class="articleList" v-show="!showTags">
       <header class="articleList-header">
       </header>
       <div class="card" v-for="card in cards" v-link="{path:'code/article/' + card.keywords}" v-show="!showTags" track-by="$index" transition="card">
@@ -102,7 +103,7 @@ export default {
   padding: 50px 0;
   margin: 0 auto;
   display: inline-block;
-  transition: width .5s;
+  position: relative;
 }
 .tags-body {
   width: 700px;
@@ -148,13 +149,6 @@ export default {
   text-align: center;
 }
 /*動畫*/
-.tagsHeader-transition {
-  transition: all .3s ease-out;
-  opacity: 1;
-}
-.tagsHeader-enter, .tagsHeader-leave {
-  opacity: 0;
-}
 .card-transition {
   transition: all .5s;
   margin: 30px auto 30px;
