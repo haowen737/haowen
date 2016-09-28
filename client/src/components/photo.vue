@@ -14,7 +14,7 @@ export default {
     return {
       showSidebar: 0,
       showModal: false,
-      helloText: '初次见面，你好啊'
+      helloText: ''
     }
   },
   computed: {},
@@ -24,6 +24,7 @@ export default {
   attached: function () {},
   methods: {
     // cookie有效期未1天，失效后進入photo頁面會有提示彈出
+    // newUser = 0 表示为初次见面用户
     setCookie () {
       let exdate = new Date()
       let expireDays = 1
@@ -32,15 +33,15 @@ export default {
       // this.getCookie()
     },
     getCookie () {
-      // if (document.cookie.length > 0) {
       let user = document.cookie.indexOf('newUser=')
       if (user === 0) {
-        this.showModal = false
+        this.showModal = true
+        this.helloText = '哈！又见面了'
         this.setCookie()
       } else {
         this.showModal = true
+        this.helloText = '初次见面，你好啊'
       }
-      // }
     }
   },
   components: {
