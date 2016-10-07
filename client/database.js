@@ -14,6 +14,16 @@ let data = {
     keywords: 'avicii',
     date: '2016-9-22',
     tags: ['avicii', 'music2']
+  }, {
+    title: 'avicii3',
+    keywords: 'avicii',
+    date: '2016-9-22',
+    tags: ['avicii', 'music2']
+  }, {
+    title: 'avicii4',
+    keywords: 'avicii',
+    date: '2016-9-22',
+    tags: ['avicii', 'music2']
   }]
 }
 export default data

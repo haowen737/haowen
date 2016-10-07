@@ -1,8 +1,8 @@
 <template lang="html">
-  <div class="tags-layout">
+  <div class="tags-layout" transition="fade">
     <div class="tags">
       <header>
-        <div class="tags-header">Tags</div>
+        <!-- <div class="tags-header">Tags</div> -->
         <div class="tags-header">Tags<span>{{selectedTag}}</span></div>
         <nav>
           <a class="tag-nav" v-link="{path:'/'}" v-show="showTags">Home</a>

@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="photo-layout">
     <div class="img-box">
-      <!-- <img src="./../assets/images/photo/16-09-17-0.jpg" alt="" /> -->
+      <img src="./../assets/images/photo/16-09-17-0.jpg" alt="" />
     </div>
     <modal :show.sync="showModal" :body="helloText" @on-confirm="setCookie"></modal>
   </div>
@@ -23,17 +23,19 @@ export default {
   },
   attached: function () {},
   methods: {
-    // cookie有效期未1天，失效后進入photo頁面會有提示彈出
-    // newUser = 0 表示为初次见面用户
     setCookie () {
+      // cookie有效期未1天，失效后進入photo頁面會有提示彈出
+      // newUser = 0 表示为初次见面用户
       let exdate = new Date()
       let expireDays = 1
       exdate.setTime(exdate.getTime() + expireDays * 24 * 3600 * 1000)
-      document.cookie = 'newUser=0;expire=' + exdate.toGMTString()
-      // this.getCookie()
+      document.cookie = 'newUser=10'
+      document.cookie = 'expire=' + exdate.toGMTString()
     },
     getCookie () {
-      let user = document.cookie.indexOf('newUser=')
+      let cookies = document.cookie.split('; ')
+      let user = cookies[0].split('=')[1]
+      console.log(user)
       if (user === 0) {
         this.showModal = true
         this.helloText = '哈！又见面了'

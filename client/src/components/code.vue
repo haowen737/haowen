@@ -1,5 +1,6 @@
 <template lang="html">
-  <div class="container">
+  <div class="container" id="container">
+    <div class="top-scrollbar" :style="topScrollbarWidth"></div>
     <div class="header">
       <div class="header-inner">
         <div class="logo cur-default">Haowen</div>
@@ -20,33 +21,66 @@
         <span>{{ card.date }}</span>
       </div>
     </div>
+    <bottom-fire :show.sync="showBottomFire"></bottom-fire>
   </div>
 </template>
 
 <script>
+import bottomFire from './../directive/bottomFire'
 import database from './../../database'
 export default {
   data: function () {
     return {
-      cards: {}
+      showBottomFire: false,
+      cards: {},
+      scrollTop: 0,
+      topScrollbarWidth: {
+        'width': '0%'
+      }
     }
   },
   computed: {},
   ready: function () {
     this.getCards()
+    this.watchBottom()
   },
   attached: function () {},
   methods: {
     getCards () {
       this.cards = database.posts
+    },
+    watchBottom () {
+      this.$nextTick(function () {
+        window.onscroll = () => {
+          let offsetHeight = document.getElementById('container').offsetHeight
+          let innerHeight = window.innerHeight
+          let scrollY = window.scrollY
+          console.log(offsetHeight, innerHeight, scrollY)
+          this.topScrollbarWidth.width = (scrollY / (offsetHeight + 160 - innerHeight)) * 100 + '%'
+          console.log(this.topScrollbarWidth.width)
+          if ((innerHeight + scrollY) - offsetHeight > 100) {
+            this.showBottomFire = true
+            console.log(this)
+          } else {
+            this.showBottomFire = false
+          }
+        }
+      })
     }
   },
   components: {
+    bottomFire
   }
 }
 </script>
 
 <style lang="css" scoped>
+.top-scrollbar {
+  position: fixed;
+  top: 0;
+  background-color: #000;
+  height: 2px;
+}
 .container {
   text-align: center;
 }
@@ -74,6 +108,9 @@ export default {
 .site-nav a {
   display: block;
   padding: 5px 30px;
+}
+.cards {
+  margin-bottom: 160px;
 }
 .card {
   position: relative;
