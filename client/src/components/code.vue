@@ -119,6 +119,7 @@ export default {
   transition: box-shadow .5s ease-out;
   border-radius: 5px;
   text-align: left;
+  cursor: default;
 }
 .card:hover {
   box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
