@@ -1,4 +1,4 @@
-# Cookie的存储和读取
+# 这个博客用到的Cookie的存储和读取
 
 document.cookie 在本地8080端口下正常，但是发布到线上的打包后的版本没有成功的把cookie存进去
 
