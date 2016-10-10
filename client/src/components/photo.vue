@@ -36,7 +36,7 @@ export default {
       let cookies = document.cookie.split('; ')
       let user = cookies[0].split('=')[1]
       console.log(user)
-      if (user === 1) {
+      if (user === '1') {
         this.showModal = true
         this.helloText = '哈！又见面了'
       } else {
