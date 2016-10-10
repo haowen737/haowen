@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="photo-layout">
     <div class="img-box">
-      <img src="./../assets/images/photo/16-09-17-0.jpg" alt="" />
+      <!-- <img src="./../assets/images/photo/16-09-17-0.jpg" alt="" /> -->
     </div>
     <modal :show.sync="showModal" :body="helloText" @on-confirm="setCookie"></modal>
   </div>
@@ -29,20 +29,20 @@ export default {
       let exdate = new Date()
       let expireDays = 1
       exdate.setTime(exdate.getTime() + expireDays * 24 * 3600 * 1000)
-      document.cookie = 'newUser=10'
+      document.cookie = 'newUser=1'
       document.cookie = 'expire=' + exdate.toGMTString()
     },
     getCookie () {
       let cookies = document.cookie.split('; ')
       let user = cookies[0].split('=')[1]
       console.log(user)
-      if (user === 0) {
+      if (user === 1) {
         this.showModal = true
         this.helloText = '哈！又见面了'
-        this.setCookie()
       } else {
         this.showModal = true
         this.helloText = '初次见面，你好啊'
+        this.setCookie()
       }
     }
   },
