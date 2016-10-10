@@ -5,7 +5,7 @@ let data = {
     date: '2016-9-22',
     tags: ['hello', '要做的事情']
   }, {
-    title: 'a top scrollbar',
+    title: '一个滚动条',
     keywords: 'model-scrollbar',
     date: '2016-10-7',
     tags: ['javascript', 'css', '自己写的小玩意']
