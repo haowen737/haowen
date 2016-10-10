@@ -55,12 +55,10 @@ export default {
           let offsetHeight = document.getElementById('container').offsetHeight
           let innerHeight = window.innerHeight
           let scrollY = window.scrollY
-          console.log(offsetHeight, innerHeight, scrollY)
+          // 160为cards的margin-bottom
           this.topScrollbarWidth.width = (scrollY / (offsetHeight + 160 - innerHeight)) * 100 + '%'
-          console.log(this.topScrollbarWidth.width)
-          if ((innerHeight + scrollY) - offsetHeight > 100) {
+          if ((innerHeight + scrollY) - offsetHeight > 70) {
             this.showBottomFire = true
-            console.log(this)
           } else {
             this.showBottomFire = false
           }
@@ -77,8 +75,8 @@ export default {
 <style lang="css" scoped>
 .top-scrollbar {
   position: fixed;
-  top: 0;
   background-color: #000;
+  top: 0;
   height: 2px;
 }
 .container {
@@ -135,7 +133,7 @@ export default {
   top: 5px;
 }
 .card-transition {
-  transition: all .5s;
+  transition: all .3s;
   margin: 30px auto 30px;
   opacity: 1;
 }
