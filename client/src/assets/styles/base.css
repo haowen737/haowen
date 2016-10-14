@@ -82,9 +82,6 @@ p {
 ::-webkit-scrollbar-track  {
   width: 0;
 }
-/*::-webkit-scrollbar-button {
-  display: none;
+scrollbar-3dlight-color {
+  color: #fff;
 }
-::-webkit-scrollbar-corner {
-  background-color: red;
-}*/

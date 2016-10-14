@@ -92,7 +92,7 @@ export default {
 .tag-nav {
   flex: 1 1 auto;
   padding: 5px 60px;
-  transition: all .5s ease;
+  transition: all .3s ease;
   text-align: center;
 }
 .tags-layout header{

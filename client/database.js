@@ -18,12 +18,12 @@ let data = {
     title: 'Angular-QA-1',
     keywords: 'angular-qa-1',
     date: '2016-10-10',
-    tags: ['angular', 'Question&Answer']
+    tags: ['Angular', 'Question&Answer']
   }, {
-    title: 'avicii4',
-    keywords: 'avicii',
-    date: '2016-9-22',
-    tags: ['avicii', 'music2']
+    title: '保存一个canvas图像并重命名',
+    keywords: 'save-canvas',
+    date: '2016-11-14',
+    tags: ['canvas', 'Javascript']
   }]
 }
 export default data
