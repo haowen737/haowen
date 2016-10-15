@@ -47,7 +47,7 @@ export default {
   attached: function () {},
   methods: {
     getCards () {
-      this.cards = database.posts.reverse()
+      this.cards = database.posts
     },
     watchBottom () {
       this.$nextTick(function () {
