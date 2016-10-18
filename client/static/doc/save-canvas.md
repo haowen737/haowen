@@ -75,3 +75,7 @@ canvas图像要保存下来，一定要有个文件名后缀，文件格式，�
       event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
       saveLink.dispatchEvent(event)
     },
+
+所以我决定，再研究一下
+
+[Document.createElementNS()](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createElementNS)
