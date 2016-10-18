@@ -99,17 +99,21 @@ export default {
   margin-top: 20px;
 }
 .logo-btn {
+  text-align: center;
   width: 200px;
+  margin: 0;
   line-height: 30px;
   text-align: center;
 }
 .logo-btn a {
   display: block;
-  width: 100%;
-  transition: background-color .4s cubic-bezier(0, -0.37, 0, 0.7);
+  padding: 0;
+  /*width: 100%;*/
+  transition: all .4s cubic-bezier(0, -0.37, 0, 0.7);
 }
 .logo-btn a:hover {
-  background-color: #000;
+  margin: 0 10px;
+  background-color: #222;
   color: #fff;
 }
 </style>
