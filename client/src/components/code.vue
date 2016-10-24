@@ -1,42 +1,37 @@
 <template lang="html">
   <div class="container" id="container">
-    <div class="top-scrollbar" :style="topScrollbarWidth"></div>
-    <div class="header">
-      <div class="header-inner">
-        <div class="logo cur-default">Haowen</div>
-        <div class="site-subtitle cur-default">Live a life you will remember!</div>
-        <nav class="site-nav">
-          <ul>
-            <li><a v-link="{path:'/'}">Home</a></li>
-            <li><a v-link="{path:'/archives'}">Archives</a></li>
-            <li><a v-link="{path:'/tags'}">Tags</a></li>
-            <li><a v-link="{path:'/contact'}">Me</a></li>
-          </ul>
-        </nav>
+    <div id="pageCode">
+      <div class="header">
+        <div class="header-inner">
+          <div class="logo cur-default">Haowen</div>
+          <div class="site-subtitle cur-default">Live a life you will remember!</div>
+          <nav class="site-nav">
+            <ul>
+              <li><a v-link="{path:'/'}">首页</a></li>
+              <li><a v-link="{path:'/archives'}">时间线</a></li>
+              <li><a v-link="{path:'/tags'}">标签</a></li>
+              <li><a v-link="{path:'/contact'}">我</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card" v-for="card in cards" v-link="{path:'code/article/' + card.keywords}" @click="$root.showBottomFire=false" transition="card">
+          <h1>{{ card.title }}</h1>
+          <span>{{ card.date }}</span>
+        </div>
       </div>
     </div>
-    <div class="cards">
-      <div class="card" v-for="card in cards" v-link="{path:'code/article/' + card.keywords}" transition="card">
-        <h1>{{ card.title }}</h1>
-        <span>{{ card.date }}</span>
-      </div>
-    </div>
-    <bottom-fire :show.sync="showBottomFire"></bottom-fire>
   </div>
 </template>
 
 <script>
-import bottomFire from './../directive/bottomFire'
 import database from './../../database'
 export default {
   data: function () {
     return {
       showBottomFire: false,
-      cards: {},
-      scrollTop: 0,
-      topScrollbarWidth: {
-        'width': '0%'
-      }
+      cards: {}
     }
   },
   computed: {},
@@ -50,35 +45,28 @@ export default {
       this.cards = database.posts
     },
     watchBottom () {
+      // console.log(window.onscrol)
       this.$nextTick(function () {
         window.onscroll = () => {
-          let offsetHeight = document.getElementById('container').offsetHeight
+          let offsetHeight = document.getElementById('pageCode').offsetHeight
           let innerHeight = window.innerHeight
           let scrollY = window.scrollY
           // 160为cards的margin-bottom
-          this.topScrollbarWidth.width = (scrollY / (offsetHeight + 160 - innerHeight)) * 100 + '%'
-          if ((innerHeight + scrollY) - offsetHeight > 70) {
-            this.showBottomFire = true
+          // console.log(offsetHeight, innerHeight, scrollY)
+          if ((innerHeight + scrollY) - offsetHeight > -50) {
+            this.$root.showBottomFire = true
           } else {
-            this.showBottomFire = false
+            this.$root.showBottomFire = false
           }
         }
       })
     }
   },
-  components: {
-    bottomFire
-  }
+  components: {}
 }
 </script>
 
 <style lang="css" scoped>
-.top-scrollbar {
-  position: fixed;
-  background-color: #000;
-  top: 0;
-  height: 2px;
-}
 .container {
   text-align: center;
 }
@@ -108,7 +96,7 @@ export default {
   padding: 5px 30px;
 }
 .cards {
-  margin-bottom: 160px;
+  padding-bottom: 160px;
 }
 .card {
   position: relative;

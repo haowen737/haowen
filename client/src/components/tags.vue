@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="tags-layout" transition="fade">
-    <div class="tags">
+    <div class="tags" id="container">
       <header>
         <!-- <div class="tags-header">Tags</div> -->
         <div class="tags-header">Tags<span>{{selectedTag}}</span></div>
@@ -65,7 +65,6 @@ export default {
       for (var i = 0; i < this.posts.length; i++) {
         for (var t = 0; t < this.posts[i].tags.length; t++) {
           if (tag === this.posts[i].tags[t]) {
-            console.log(1)
             this.cards.push(this.posts[i])
           }
         }

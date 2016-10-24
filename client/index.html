@@ -4,10 +4,20 @@
     <meta charset="utf-8">
     <title>haowen</title>
   </head>
-  <body id="body">
+  <body>
     <!-- <sidebar></sidebar> -->
+    <div class="top-scrollbar" :style="topScrollbarWidth"></div>
     <router-view></router-view>
     <!-- built files will be auto injected -->
+    <bottom-fire :show.sync="showBottomFire"></bottom-fire>
   </body>
   <script src="static/lib/markdown.js"></script>
 </html>
+<style media="screen">
+.top-scrollbar {
+  position: fixed;
+  background-color: #000;
+  top: 0;
+  height: 2px;
+}
+</style>

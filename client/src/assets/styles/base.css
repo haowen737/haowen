@@ -3,7 +3,7 @@ body,textarea,input,button,select,keygen,legend{font:12px/1.14 arial,simsun;outl
 html, body {
   height: 100%;
   /*background-color: #f3f3f3;*/
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
   -moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
@@ -71,6 +71,17 @@ p {
 .fade-contact-leave {
   opacity: 0;
 }
+.motto-transition {
+  transition: all .3s ease-out;
+  line-height: 1;
+  height: 20px;
+  opacity: 1;
+}
+.motto-enter, .motto-leave {
+  line-height: 0;
+  height: 0;
+  opacity: 0;
+}
 /*滚动条*/
 ::-webkit-scrollbar {
   width: 0px;
@@ -84,4 +95,9 @@ p {
 }
 scrollbar-3dlight-color {
   color: #fff;
+}
+/*修改github-markdown-css*/
+.markdown-body {
+  font-family: "Microsoft YaHei" !important;
+  cursor: default;
 }

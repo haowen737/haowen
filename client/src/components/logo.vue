@@ -1,11 +1,22 @@
 <!-- 將“皓文”圖片重組 -->
 <template lang="html">
   <div class="nav">
-    <canvas id="canvas" v-el:canvas width="400" height="100"></canvas>
-    <h1>Live a life you will remember!</h1>
+    <!-- <canvas id="canvas"
+    v-el:canvas
+    width="400"
+    height="100"
+    @mouseover="showMotto=true"
+    @mouseout="showMotto=false"></canvas> -->
+    <canvas id="canvas"
+    v-el:canvas
+    width="400"
+    height="100"></canvas>
+    <h1
+    v-show="showMotto"
+    transition="motto">Live a life you will remember!</h1>
     <div class="logo-btns">
-      <div class="logo-btn"><a v-link="{path:'/photo'}">PHOTO</a></div>
-      <div class="logo-btn"><a v-link="{path:'/code'}">CODE</a></div>
+      <div class="logo-btn"><a v-link="{path:'/photo'}">拍照片</a></div>
+      <div class="logo-btn"><a v-link="{path:'/code'}">写代码</a></div>
     </div>
   </div>
 </template>
@@ -15,6 +26,7 @@ export default {
   data: function () {
     return {
       ctx: '',
+      showMotto: true,
       dotList: []
     }
   },
@@ -81,6 +93,7 @@ export default {
   color: #3d3d3d;
   font-family: cursive;
   cursor: default;
+  font-weight: lighter;
   /*font-weight: bold;*/
 }
 .nav {
@@ -92,7 +105,6 @@ export default {
   width: 400px;
   height: 180px;
   text-align: center;
-  /*background-color: rgba(255, 255, 255, 0.8)*/
 }
 .logo-btns {
   display: flex;
@@ -109,7 +121,7 @@ export default {
   display: block;
   padding: 0;
   /*width: 100%;*/
-  transition: all .4s cubic-bezier(0, -0.37, 0, 0.7);
+  transition: all .2s cubic-bezier(0, -0.37, 0, 0.7);
 }
 .logo-btn a:hover {
   margin: 0 10px;
