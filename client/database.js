@@ -13,7 +13,7 @@ let data = {
     title: '一个滚动条',
     keywords: 'model-scrollbar',
     date: '2016-10-7',
-    tags: ['javascript', 'css', '自己写的小玩意']
+    tags: ['Javascript', 'css', 'Demo']
   }, {
     title: '这里用到的cookie的存储与读取',
     keywords: 'set-cookie',

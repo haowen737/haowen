@@ -33,6 +33,12 @@
           <div class="contact-item-text" v-show="show===4" transition="fade-item">500PX</div>
         </a>
       </div>
+      <div class="contact-item">
+        <a href="javascript:;" @mouseover="show=5" @mouseout="show=0" @click="jumpTo(5)">
+          <img src="./../assets/images/500px.png" alt="" />
+          <div class="contact-item-text" v-show="show===5" transition="fade-item">Moods</div>
+        </a>
+      </div>
     </div>
   </div>
   <modal :show.sync='showModal' :body="modalBody" @on-confirm="onConfirm"></modal>
@@ -68,6 +74,8 @@ export default {
           break
         case 4 : window.open('https://500px.com/haowen')
           break
+        case 5 : this.$router.go('/moods/login')
+          break
       }
     },
     jumpTo (index) {
@@ -80,6 +88,8 @@ export default {
         case 3 : this.modalBody = '给郑皓文写邮件？'
           break
         case 4 : this.modalBody = modalBodytext + '500PX?'
+          break
+        case 5 : this.modalBody = modalBodytext + '情绪?'
           break
       }
       this.link = index

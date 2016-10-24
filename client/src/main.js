@@ -7,6 +7,8 @@ import Photo from './components/photo'
 import Code from './components/code'
 import Contact from './components/contact'
 import Archives from './components/archives'
+import Moods from './components/moods'
+import MoodsLogin from './components/moodsLogin'
 import Tags from './components/tags'
 import Sidebar from './directive/sidebar'
 import BottomFire from './directive/bottomFire'
@@ -79,6 +81,12 @@ router.map({
   },
   '/contact': {
     component: Contact
+  },
+  '/moods': {
+    component: Moods
+  },
+  '/moods/login': {
+    component: MoodsLogin
   }
 })
 

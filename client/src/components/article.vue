@@ -4,9 +4,9 @@
       <div class="logo cur-default">Haowen</div>
       <hr>
       <nav class="article-nav">
-        <div class="article-nav-item"><a v-link="{path:'/'}">Home</a></div>
-        <div class="article-nav-item"><a v-link="{path:'/code'}">Return</a></div>
-        <div class="article-nav-item"><a v-link="{path:'/'}">Haha</a></div>
+        <div class="article-nav-item"><a v-link="{path:'/'}">首页</a></div>
+        <div class="article-nav-item"><a v-link="{path:'/code'}">上一页</a></div>
+        <div class="article-nav-item"><a v-link="{path:'/'}">干嘛</a></div>
       </nav>
     </header>
     <div v-html="markdown" class="markdown-body"></div>

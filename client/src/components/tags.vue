@@ -5,13 +5,15 @@
         <!-- <div class="tags-header">Tags</div> -->
         <div class="tags-header">Tags<span>{{selectedTag}}</span></div>
         <nav>
-          <a class="tag-nav" v-link="{path:'/'}" v-show="showTags">Home</a>
-          <a class="tag-nav border-l" v-link="{path:'/code'}" v-show="showTags">Code</a>
+          <!-- <a class="tag-nav" v-link="{path:'/'}" v-show="showTags">Home</a> -->
+          <a class="tag-nav" v-link="{path:'/code'}" v-show="showTags">Return</a>
           <a class="tag-nav" href="javascript:;" @click="showTags=true,selectedTag=''" v-show="!showTags">Return</a>
         </nav>
       </header>
-      <div class="tags-body" v-for="tag in tags" v-show="showTags" track-by="$index">
-        <a href="javascript:;" :style="'left:' + Math.random() * 700 + 'px;top:' + Math.random() * 300 + 'px'" @click="selectTag(tag)">{{tag}}</a>
+      <div class="tags-body" v-for="tag in tags" v-show="showTags">
+        <a href="javascript:;"
+        :style="'left:' + Math.random() * 700 + 'px;top:' + Math.random() * 300 + 'px;font-size:' + (Math.random() * 30 + 9) + 'px'"
+        @click="selectTag(tag)">{{tag}}</a>
       </div>
     </div>
     <div class="articleList" v-show="!showTags">
@@ -87,11 +89,12 @@ export default {
 .tag-nav:hover {
   background-color: #000;
   color: #fff;
+  padding: 0 -20px;
 }
 .tag-nav {
   flex: 1 1 auto;
   padding: 5px 60px;
-  transition: all .3s ease;
+  transition: all .2s;
   text-align: center;
 }
 .tags-layout header{
@@ -108,13 +111,20 @@ export default {
   width: 700px;
   position: relative;
   margin: 80px auto;
-  font-size: 20px;
 }
 .tags-body a {
   position:absolute;
+  top: 0;
   display:block;
   width: auto;
   font-family: cursive;
+  font-weight: 100;
+}
+.tags-body a:hover {
+  transition: all .2s;
+  border-radius: 5px;
+  /*font-size: 30px !important;*/
+  transform: translateY(-10%) rotate(-2deg);
 }
 .tags-layout {
   width: 100%;
