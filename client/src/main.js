@@ -6,12 +6,13 @@ import Article from './components/article'
 import Photo from './components/photo'
 import Code from './components/code'
 import Contact from './components/contact'
-import Archives from './components/archives'
+import DemoHouse from './components/demoHouse'
 import Moods from './components/moods'
 import MoodsLogin from './components/moodsLogin'
 import Tags from './components/tags'
 import Sidebar from './directive/sidebar'
 import BottomFire from './directive/bottomFire'
+import Loading from './directive/loading'
 import './assets/styles/base.css'
 import 'github-markdown-css/github-markdown.css'
 // new Vue({
@@ -70,8 +71,8 @@ router.map({
   '/code': {
     component: Code
   },
-  '/archives': {
-    component: Archives
+  '/demo-house': {
+    component: DemoHouse
   },
   '/tags': {
     component: Tags
@@ -87,6 +88,9 @@ router.map({
   },
   '/moods/login': {
     component: MoodsLogin
+  },
+  '/demo/loading': {
+    component: Loading
   }
 })
 

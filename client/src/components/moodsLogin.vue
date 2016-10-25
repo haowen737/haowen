@@ -18,27 +18,40 @@
           <p>
             啊呃，进不去(⊙﹏⊙)
           </p>
-          <a href="javascript:;" @click="tryAgain">不相信</a>
+          <a href="javascript:;" @click="tryAgain">返回</a>
         </div>
+        <div class="agree-card" v-show="showAgree" transition="deny">
+          <p>
+            Welcome
+          </p>
+        </div>
+        <loading v-show="showLoading" transition="deny"></loading>
       </div>
+      <div class="bottom-bar">{{bottomText}}</div>
     </div>
   </div>
 </template>
 
 <script>
+import loading from './../directive/loading'
 export default {
   data () {
     return {
       showMask: false,
       showDeny: false,
       showForm: true,
+      showLoading: false,
+      showAgree: false,
       password: '',
       labelClass: 'label-dark',
-      headerClass: 'header-upper'
+      headerClass: 'header-upper',
+      bottomText: ''
     }
   },
   computed: {},
-  ready () {},
+  ready () {
+    this.initBottomText()
+  },
   attached () {},
   methods: {
     focusInput () {
@@ -47,11 +60,15 @@ export default {
     },
     submit () {
       this.showForm = false
-      console.log(this.password)
+      this.showLoading = true
       this.headerClass = 'header-lower'
       window.setTimeout(() => {
+        this.showLoading = false
         if (this.password === 'haowen') {
-          this.$router.go('/moods')
+          this.showAgree = true
+          window.setTimeout(() => {
+            this.$router.go('/moods')
+          }, 1000)
         } else {
           this.showDeny = true
         }
@@ -59,8 +76,45 @@ export default {
     },
     tryAgain () {
       this.showDeny = false
+      this.showDeny = false
       this.showForm = true
       this.headerClass = 'header-upper'
+    },
+    initBottomText () {
+      let index = (Math.random() * 10).toFixed(0)
+      console.log(index)
+      switch (index) {
+        case '0':
+          this.bottomText = '我在听,有话快说'
+          break
+        case '1':
+          this.bottomText = '说说你的路途见闻吧'
+          break
+        case '2':
+          this.bottomText = '你想被变成青蛙吗?'
+          break
+        case '3':
+          this.bottomText = '天那!你真高!'
+          break
+        case '4':
+          this.bottomText = '祝你好运。'
+          break
+        case '5':
+          this.bottomText = '你有什么事吗?'
+          break
+        case '6':
+          this.bottomText = '来喝杯啤酒吗?'
+          break
+        case '7':
+          this.bottomText = '你好，旅行者'
+          break
+        case '8':
+          this.bottomText = '每一天，都是一个祝福'
+          break
+        case '9':
+          this.bottomText = '哈哈哈哈...'
+          break
+      }
     }
   },
   watch: {
@@ -68,7 +122,9 @@ export default {
       console.log(val)
     }
   },
-  components: {}
+  components: {
+    loading
+  }
 }
 </script>
 
@@ -93,7 +149,7 @@ export default {
   color: #f3f3f3;
   cursor: default;
   filter: blur(1px);
-  top: 100px;
+  top: 90px;
 }
 .login-form {
   width: 400px;
@@ -120,6 +176,7 @@ input {
   outline: none;
   z-index: 10;
   position: relative;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
 }
 /*.form-group:hover::after {
   content: '';
@@ -167,7 +224,7 @@ label {
 .label-light {
   color: #fff;
 }
-.deny-card {
+.deny-card, .agree-card {
   position: absolute;
   width: 400px;
   font-size: 20px;
@@ -176,8 +233,16 @@ label {
   transform: translateX(-50%);
   /*top: 0;*/
 }
-.deny-card a {
+.deny-card a, .agree-card a{
   font-size: 15px;
+}
+.bottom-bar {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  color: #999;
+  font-size: 14px;
+  transform: translateX(-50%);
 }
 /*动画*/
 .moodsLogin-transition {

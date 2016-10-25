@@ -8,8 +8,8 @@
           <nav class="site-nav">
             <ul>
               <li><a v-link="{path:'/'}">首页</a></li>
-              <li><a v-link="{path:'/archives'}">时间线</a></li>
               <li><a v-link="{path:'/tags'}">标签</a></li>
+              <li><a v-link="{path:'/demo-house'}">玩具</a></li>
               <li><a v-link="{path:'/contact'}">我</a></li>
             </ul>
           </nav>
