@@ -124,7 +124,7 @@ export default {
   transition: all .2s;
   border-radius: 5px;
   /*font-size: 30px !important;*/
-  transform: translateY(-10%) rotate(-2deg);
+  transform: rotate(-2deg);
 }
 .tags-layout {
   width: 100%;

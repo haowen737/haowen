@@ -1,9 +1,14 @@
 <template lang="html">
   <div class="demoHouse-layout" id="container">
-    <header :class="headerLg">
-      Demo House
+    <header>
+      <img ondragstart="return false" src="./../assets/images/demo-house.png" alt="" />
     </header>
     <div class="content" v-show="showContent">
+    </div>
+    <div class="bottom-btn" @click="clickList">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
     </div>
   </div>
   <div class="loading-bg" v-show="showLoading" transition="fade">
@@ -16,8 +21,7 @@ import loading from './../directive/loading'
 export default {
   data: function () {
     return {
-      showLoading: false,
-      headerLg: {}
+      showLoading: false
     }
   },
   computed: {},
@@ -35,7 +39,9 @@ export default {
     },
     initPage () {
       this.headerLg = 'header-lg'
-      console.log(this.$log())
+    },
+    clickList () {
+      console.log(123)
     }
   },
   watch: {},
@@ -46,21 +52,32 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.demoHouse-layout header{
-  width: 100%;
-  text-align: center;
-  cursor: default;
+.line {
+  width: 20px;
+  height: 2px;
+  background-color: #000;
+  margin-bottom: 5px;
 }
-header {
+.bottom-btn {
+  position: fixed;
+  z-index: 10;
+  bottom: 120px;
+  left: 50%;
+}
+.demoHouse-layout header>img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.demoHouse-layout header {
+  width: 100%;
+  height: 100%;
   text-align: center;
-  font-weight: 100;
-  font-size: 30px;
-  line-height: 100px;
-  transition: all 1s cubic-bezier(0.49, 1.94, 0.84, 1.21);
 }
 .demoHouse-layout {
   width: 100%;
-  height: 10%;
+  height: 100%;
+  background-color: #fff;
 }
 .loading-bg {
   position: fixed;
