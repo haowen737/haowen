@@ -37,29 +37,21 @@ export default {
   computed: {},
   ready: function () {
     this.getCards()
-    this.watchBottom()
   },
   attached: function () {},
   methods: {
     getCards () {
       this.cards = database.posts
-    },
-    watchBottom () {
-      // console.log(window.onscrol)
-      this.$nextTick(function () {
-        window.onscroll = () => {
-          let offsetHeight = document.getElementById('pageCode').offsetHeight
-          let innerHeight = window.innerHeight
-          let scrollY = window.scrollY
-          // 160为cards的margin-bottom
-          // console.log(offsetHeight, innerHeight, scrollY)
-          if ((innerHeight + scrollY) - offsetHeight > -50) {
-            this.$root.showBottomFire = true
-          } else {
-            this.$root.showBottomFire = false
-          }
-        }
-      })
+    }
+  },
+  watch: {
+    '$root.scrollY': function (val) {
+      console.log(val)
+      if ((this.$root.innerHeight + this.$root.scrollY) - this.$root.offsetHeight > -50) {
+        this.$root.showBottomFire = true
+      } else {
+        this.$root.showBottomFire = false
+      }
     }
   },
   components: {}

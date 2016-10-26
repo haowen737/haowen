@@ -26,7 +26,9 @@ let app = Vue.extend({
   data: function () {
     return {
       showBottomFire: false,
-      scrollTop: 0,
+      offsetHeight: 0,
+      innerHeight: 0,
+      scrollY: 0,
       topScrollbarWidth: {
         'width': '0%'
       }
@@ -43,13 +45,12 @@ let app = Vue.extend({
       // console.log(window.onscrol)
       this.$nextTick(function () {
         window.onscroll = () => {
-          let offsetHeight = document.getElementById('container').offsetHeight
-          let innerHeight = window.innerHeight
-          let scrollY = window.scrollY
+          this.offsetHeight = document.getElementById('container').offsetHeight
+          this.innerHeight = window.innerHeight
+          this.scrollY = window.scrollY
           // 160为cards的margin-bottom
-          console.log(123)
-          this.topScrollbarWidth.width = (scrollY / (offsetHeight - innerHeight)) * 100 + '%'
-          // console.log(offsetHeight, innerHeight, scrollY)
+          this.topScrollbarWidth.width = (this.scrollY / (this.offsetHeight - this.innerHeight)) * 100 + '%'
+          // console.log(this.offsetHeight, this.innerHeight, this.scrollY)
         }
       })
     }

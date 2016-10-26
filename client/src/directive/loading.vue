@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="loading-layout">
+  <div class="loading-layout" :style="{top: top}">
     <div class="ball ball-1"></div>
     <div class="ball ball-2"></div>
     <div class="ball ball-3"></div>
@@ -11,6 +11,12 @@
 export default {
   data () {
     return {}
+  },
+  props: {
+    top: {
+      type: String,
+      default: 0
+    }
   },
   computed: {},
   ready () {},

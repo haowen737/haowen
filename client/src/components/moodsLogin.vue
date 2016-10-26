@@ -10,8 +10,10 @@
         </div> -->
         <div class="form-group" transition="moodsLogin" v-show="showForm">
           <input autocomplete="off" type="text" name="name" v-model="password" @focus="focusInput">
-          <label for="" :class="labelClass">Your name?</label>
-          <a class="submitBtn" href="Javascript:;" :class="labelClass" @click.prevent="submit" transition="fade">Next→</a>
+          <div class="input-bottom">
+            <div class="input-label" :class="labelClass">Your name?</div>
+            <div class="submitBtn" href="Javascript:;" :class="labelClass" @click.prevent="submit" transition="fade">Next</div>
+          </div>
           <div class="input-mask" v-show="showMask" @click="focusInput" transition="fade"></div>
         </div>
         <div class="deny-card" v-show="showDeny" transition="deny">
@@ -25,7 +27,7 @@
             Welcome
           </p>
         </div>
-        <loading v-show="showLoading" transition="deny"></loading>
+        <loading v-show="showLoading" transition="deny" top="60px"></loading>
       </div>
       <div class="bottom-bar">{{bottomText}}</div>
     </div>
@@ -94,7 +96,7 @@ export default {
           this.bottomText = '你想被变成青蛙吗?'
           break
         case '3':
-          this.bottomText = '天那!你真高!'
+          this.bottomText = '天哪!你真高!'
           break
         case '4':
           this.bottomText = '祝你好运。'
@@ -166,6 +168,7 @@ export default {
   font-size: 30px;
 }
 input {
+  width: 100%;
   border-top: 0;
   border-right: 0;
   border-left: 0;
@@ -177,6 +180,7 @@ input {
   z-index: 10;
   position: relative;
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  box-sizing: border-box;
 }
 /*.form-group:hover::after {
   content: '';
@@ -201,22 +205,28 @@ input {
   left: 0;
   z-index: 0;
 }
-label {
-  position: absolute;
-  left: 30px;
+.input-bottom {
   font-size: 20px;
-  z-index: 10;
   text-align: left;
+  position: relative;
+  z-index: 10;
 }
-.container {
-  padding: 50px;
+.input-label {
+  position: relative;
+  font-size: 20px;
+  display: inline-block;
+  left: 30px;
 }
 .submitBtn {
   position: absolute;
+  /*right: 30px;*/
+  font-size: 15px;
+  display: inline-block;
   right: 30px;
-  font-size: 20px;
-  z-index: 10;
-  text-align: left;
+  cursor: pointer;
+}
+.container {
+  padding: 50px;
 }
 .label-dark {
   color: #555;
