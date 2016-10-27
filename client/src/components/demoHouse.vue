@@ -5,11 +5,7 @@
     </header>
     <div class="content" v-show="showContent">
     </div>
-    <div class="bottom-btn" @click="clickList">
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
-    </div>
+    <spinning-spread @on-spread="spreadContent"></spinning-spread>
   </div>
   <div class="loading-bg" v-show="showLoading" transition="fade">
     <loading top="50%"></loading>
@@ -18,10 +14,12 @@
 
 <script>
 import loading from './../directive/loading'
+import spinningSpread from './../demo/spinningSpread'
 export default {
   data: function () {
     return {
-      showLoading: false
+      showLoading: false,
+      showContent: false
     }
   },
   computed: {},
@@ -32,7 +30,7 @@ export default {
   attached: function () {},
   methods: {
     queryDemos () {
-      this.showLoading = true
+      // this.showLoading = true
       window.setTimeout(() => {
         this.showLoading = false
       }, 2000)
@@ -40,29 +38,27 @@ export default {
     initPage () {
       this.headerLg = 'header-lg'
     },
-    clickList () {
+    spreadContent () {
       console.log(123)
+      this.showContent ? this.showContent = false : this.showContent = true
+      console.log(this.showContent)
     }
   },
   watch: {},
   components: {
-    loading
+    loading, spinningSpread
   }
 }
 </script>
 
 <style lang="css" scoped>
-.line {
-  width: 20px;
-  height: 2px;
-  background-color: #000;
-  margin-bottom: 5px;
-}
-.bottom-btn {
-  position: fixed;
-  z-index: 10;
-  bottom: 120px;
-  left: 50%;
+.content {
+  background-color: rgba(255, 255, 255, .8);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
 }
 .demoHouse-layout header>img {
   position: relative;
