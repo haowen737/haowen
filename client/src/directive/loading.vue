@@ -10,7 +10,9 @@
 <script>
 export default {
   data () {
-    return {}
+    return {
+      haowen: '1'
+    }
   },
   props: {
     top: {

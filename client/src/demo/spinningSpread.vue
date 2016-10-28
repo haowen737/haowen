@@ -45,6 +45,7 @@ export default {
   height: 2px;
   background-color: #000;
   margin: 5px 0;
+  /*filter: blur(1px);*/
 }
 .bottom-btn {
   position: fixed;
@@ -86,87 +87,105 @@ export default {
   animation: line-arrow-1 .2s linear;
   width: 15px;
   transform: rotate(-45deg) translateX(-3px);
+  background-color: #fff;
 }
 .line-arrow-2 {
   animation: line-arrow-2 .2s linear;
+  background-color: #fff;
 }
 .line-arrow-3 {
   animation: line-arrow-3 .2s linear;
   width: 15px;
   transform: rotate(45deg) translateX(-3px);
+  background-color: #fff;
 }
 @keyframes line-arrow-1 {
   0% {
     transform: rotate(0deg) translateX(0px);
+    background-color: #000;
     width: 20px;
   }
   100% {
     transform: rotate(-45deg) translateX(-3px);
+    background-color: #fff;
     width: 15px;
   }
 }
 @keyframes line-arrow-2 {
   0% {
     transform: rotate(0deg);
+    background-color: #000;
   }
   50% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(0deg);
+    background-color: #fff;
   }
 }
 @keyframes line-arrow-3 {
   0% {
     transform: rotate(0deg) translateX(0px);
+    background-color: #000;
     width: 20px;
   }
   100% {
     transform: rotate(45deg) translateX(-3px);
+    background-color: #fff;
     width: 15px;
   }
 }
 .line-normal-1 {
   animation: line-normal-1 .2s linear;
   width: 20px;
+  background-color: #000;
   transform: rotate(0deg) translateX(0px);
 }
 .line-normal-2 {
   animation: line-normal-2 .2s linear;
+  background-color: #000;
 }
 .line-normal-3 {
   animation: line-normal-3 .2s linear;
   width: 20px;
+  background-color: #000;
   transform: rotate(180deg) translateX(0px);
 }
 @keyframes line-normal-1 {
   0% {
     transform: rotate(-45deg) translateX(-3px);
     width: 20px;
+    background-color: #fff;
   }
   100% {
     transform: rotate(0deg) translateX(0px);
     width: 20px;
+    background-color: #000;
   }
 }
 @keyframes line-normal-2 {
   0% {
     transform: rotate(0deg);
+    background-color: #fff;
   }
   50% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(0deg);
+    background-color: #000;
   }
 }
 @keyframes line-normal-3 {
   0% {
     transform: rotate(45deg) translateX(-3px);
+    background-color: #fff;
     width: 20px;
   }
   100% {
     transform: rotate(180deg) translateX(0px);
+    background-color: #000;
     width: 20px;
   }
 }

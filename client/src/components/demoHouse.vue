@@ -1,9 +1,9 @@
 <template lang="html">
   <div class="demoHouse-layout" id="container">
     <header>
-      <img ondragstart="return false" src="./../assets/images/demo-house.png" alt="" />
+      <img style="display:none" ondragstart="return false" src="./../assets/images/demo-house.png" alt="" />
     </header>
-    <div class="content" v-show="showContent">
+    <div class="content" v-show="showContent" transition="content">
     </div>
     <spinning-spread @on-spread="spreadContent"></spinning-spread>
   </div>
@@ -53,7 +53,7 @@ export default {
 
 <style lang="css" scoped>
 .content {
-  background-color: rgba(255, 255, 255, .8);
+  background-color: #3e3e3e;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -81,5 +81,22 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #000;
+}
+/*过渡*/
+.content-transition {
+  transition: all .5s;
+  /*height: calc(100%);*/
+  position: absolute;
+  top: 0;
+  opacity: 1;
+  /*opacity: 1;*/
+}
+.content-enter, .content-leave {
+  background-color: rgba(0,0,0,0);
+  /*height: calc(-10%);*/
+  position: absolute;
+  top: 100px;
+  opacity: 0;
+  /*opacity: 0;*/
 }
 </style>
