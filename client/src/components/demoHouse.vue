@@ -1,9 +1,10 @@
 <template lang="html">
   <div class="demoHouse-layout" id="container">
     <header>
-      <img style="display:none" ondragstart="return false" src="./../assets/images/demo-house.png" alt="" />
+      <img ondragstart="return false" src="./../assets/images/demo-house.png" alt="" />
     </header>
     <div class="content" v-show="showContent" transition="content">
+
     </div>
     <spinning-spread @on-spread="spreadContent"></spinning-spread>
   </div>
@@ -56,6 +57,9 @@ export default {
   background-color: #3e3e3e;
   width: 100%;
   height: 100%;
+  color: #fff;
+  line-height: 2.5;
+  font-weight: lighter;
   position: absolute;
   top: 0;
   z-index: 1;

@@ -8,6 +8,7 @@ import Code from './components/code'
 import Contact from './components/contact'
 import DemoHouse from './components/demoHouse'
 import Moods from './components/moods'
+import Black from './components/black'
 import MoodsLogin from './components/moodsLogin'
 import Tags from './components/tags'
 import Sidebar from './directive/sidebar'
@@ -92,6 +93,9 @@ router.map({
   },
   '/demo/loading': {
     component: Loading
+  },
+  '/black': {
+    component: Black
   }
 })
 

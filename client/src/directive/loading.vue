@@ -38,9 +38,9 @@ export default {
 }
 .ball {
   display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
+  width: 4px;
+  height: 4px;
+  border-radius: 2px;
   background-color: #fff;
   position:absolute;
   filter: blur(1px);

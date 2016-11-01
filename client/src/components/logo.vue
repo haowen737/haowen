@@ -15,9 +15,10 @@
     v-show="showMotto"
     transition="motto">Live a life you will remember!</h1>
     <div class="logo-btns">
-      <div class="logo-btn"><a v-link="{path:'/code'}">咬笔头</a></div>
-      <div class="logo-btn"><a v-link="{path:'/demo-house'}">demo</a></div>
-      <div class="logo-btn"><a v-link="{path:'/photo'}">拍照片</a></div>
+      <div class="logo-btn"><a v-link="{path:'/code'}">Code</a></div>
+      <div class="logo-btn"><a v-link="{path:'/black'}">Blvck</a></div>
+      <div class="logo-btn"><a v-link="{path:'/demo-house'}">Demo</a></div>
+      <div class="logo-btn"><a v-link="{path:'/photo'}">Photo</a></div>
     </div>
   </div>
 </template>
