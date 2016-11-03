@@ -3,8 +3,10 @@
     <header>
       <img ondragstart="return false" src="./../assets/images/demo-house.png" alt="" />
     </header>
-    <div class="content" v-show="showContent" transition="content">
-
+    <div class="content-latout" v-show="showContent" transition="content-latout">
+      <div class="content">
+        123
+      </div>
     </div>
     <spinning-spread @on-spread="spreadContent"></spinning-spread>
   </div>
@@ -54,7 +56,10 @@ export default {
 
 <style lang="css" scoped>
 .content {
-  background-color: #3e3e3e;
+  padding: 80px;
+}
+.content-latout {
+  background-color: #000;
   width: 100%;
   height: 100%;
   color: #fff;
@@ -87,7 +92,7 @@ export default {
   background-color: #000;
 }
 /*过渡*/
-.content-transition {
+.content-latout-transition {
   transition: all .5s;
   /*height: calc(100%);*/
   position: absolute;
@@ -95,7 +100,7 @@ export default {
   opacity: 1;
   /*opacity: 1;*/
 }
-.content-enter, .content-leave {
+.content-latout-enter, .content-latout-leave {
   background-color: rgba(0,0,0,0);
   /*height: calc(-10%);*/
   position: absolute;

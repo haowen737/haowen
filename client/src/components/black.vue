@@ -5,17 +5,16 @@
     preload="auto"
     loop="loop"
     autoplay="autoplay">
-			<!-- <source src="./../assets/images/black_bg.mp4" type="video/mp4"> -->
-      <source src="http://jmd.im/vid/black_bg.mp4" type="video/mp4">
+      <source src="/static/vid/black_bg.mp4" type="video/mp4">
+      <!-- <source src="http://jmd.im/vid/black_bg.mp4" type="video/mp4"> -->
 		</video>
-    <div class="text-container">
+    <div class="text-container" v-show="!showLoading" transition="black-text">
       <p class="title">BLACK</p>
       <p class=""></p>
     </div>
     <div class="loading-bg" v-show="showLoading">
       <loading top="50%"></loading>
     </div>
-    <!-- <img src="./../assets/images/BLACK_II_desktop-1.jpg" alt="" /> -->
   </div>
 </template>
 
@@ -24,7 +23,8 @@ import loading from './../directive/loading'
 export default {
   data () {
     return {
-      showLoading: false
+      showLoading: false,
+      vidSrc: ''
     }
   },
   computed: {},
@@ -74,5 +74,12 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #000;
+}
+.black-text-transition {
+  transition: all 2s ease-out;
+  opacity: 1;
+}
+.black-text-enter, .black-text-leave {
+  opacity: 0;
 }
 </style>

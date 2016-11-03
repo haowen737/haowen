@@ -11,9 +11,13 @@ import Moods from './components/moods'
 import Black from './components/black'
 import MoodsLogin from './components/moodsLogin'
 import Tags from './components/tags'
+
+import ZoomSlider from './demo/zoomSlider'
+
 import Sidebar from './directive/sidebar'
 import BottomFire from './directive/bottomFire'
 import Loading from './directive/loading'
+
 import './assets/styles/base.css'
 import 'github-markdown-css/github-markdown.css'
 // new Vue({
@@ -96,6 +100,9 @@ router.map({
   },
   '/black': {
     component: Black
+  },
+  '/demo/zoom-slider': {
+    component: ZoomSlider
   }
 })
 
