@@ -5,7 +5,9 @@
     </header>
     <div class="content-latout" v-show="showContent" transition="content-latout">
       <div class="content">
-        123
+        <div class="inner-box">
+          <a v-link="{path:'/demo/zoom-slider'}">Zoom Slider</a>
+        </div>
       </div>
     </div>
     <spinning-spread @on-spread="spreadContent"></spinning-spread>
@@ -55,6 +57,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.inner-box a {
+  color: #fff;
+  font-size: 20px;
+}
 .content {
   padding: 80px;
 }
