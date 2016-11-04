@@ -6,7 +6,7 @@
     <div class="content-latout" v-show="showContent" transition="content-latout">
       <div class="content">
         <div class="inner-box">
-          <a v-link="{path:'/demo/zoom-slider'}">Zoom Slider</a>
+          <a v-link="{path:'/demo/zoom-slider'}">1. Zoom Slider</a>
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@ export default {
 }
 /*过渡*/
 .content-latout-transition {
-  transition: all .5s;
+  transition: all .7s ease;
   /*height: calc(100%);*/
   position: absolute;
   top: 0;
@@ -110,7 +110,7 @@ export default {
   background-color: rgba(0,0,0,0);
   /*height: calc(-10%);*/
   position: absolute;
-  top: 100px;
+  top: 60px;
   opacity: 0;
   /*opacity: 0;*/
 }
