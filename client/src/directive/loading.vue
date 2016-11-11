@@ -43,7 +43,8 @@ export default {
   border-radius: 2px;
   background-color: #fff;
   position:absolute;
-  filter: blur(1px);
+  -webkit-filter: blur(1px);
+          filter: blur(1px);
 }
 .ball-1 {
   animation: ball-1 3s infinite;
