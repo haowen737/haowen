@@ -1,8 +1,13 @@
 let data = {
   posts: [{
+    title: '从Vue1.x迁移至vue2.0',
+    keywords: 'diff-vue-v2',
+    date: '2016-11-11',
+    tags: ['vue', 'vue2.0']
+  }, {
     title: '保存一个canvas图像并重命名',
     keywords: 'save-canvas',
-    date: '2016-11-14',
+    date: '2016-10-14',
     tags: ['canvas', 'Javascript']
   }, {
     title: 'Angular-QA-1',
