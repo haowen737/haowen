@@ -2,7 +2,6 @@
   <div class="black-layout">
     <video class="vid-container"
     @canplay="showLoading=false"
-    preload="auto"
     loop="loop"
     autoplay="autoplay">
       <source src="/static/vid/black_bg.mp4" type="video/mp4">
