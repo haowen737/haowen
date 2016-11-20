@@ -11,6 +11,7 @@ import Moods from './components/moods'
 import Black from './components/black'
 import MoodsLogin from './components/moodsLogin'
 import Tags from './components/tags'
+import Flextest from './components/flextest'
 
 import ZoomSlider from './demo/zoomSlider'
 
@@ -103,6 +104,9 @@ router.map({
   },
   '/demo/zoom-slider': {
     component: ZoomSlider
+  },
+  '/demo/flextest': {
+    component: Flextest
   }
 })
 
