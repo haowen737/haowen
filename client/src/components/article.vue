@@ -10,19 +10,23 @@
       </nav>
     </header>
     <div v-html="markdown" class="markdown-body"></div>
+    <loading v-show="showLoading" top="50%"></loading>
   </div>
 </template>
 
 <script>
+import loading from './../directive/loading'
 export default {
   data () {
     return {
       article: '',
-      markdown: ''
+      markdown: '',
+      showLoading: false
     }
   },
   computed: {},
   ready () {
+    this.showLoading = true
     this.getArticle()
   },
   attached () {},
@@ -38,6 +42,7 @@ export default {
         .then((response) => {
           this.article = response.body
           this.formatMarkdown()
+          this.showLoading = false
         })
         .catch((error) => {
           console.log(error)
@@ -47,7 +52,9 @@ export default {
       this.markdown = window.markdown.toHTML(this.article)
     }
   },
-  components: {}
+  components: {
+    loading
+  }
 }
 </script>
 

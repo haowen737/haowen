@@ -44,8 +44,6 @@ export default {
   border-radius: 2px;
   background-color: #fff;
   position:absolute;
-  -webkit-filter: blur(1px);
-          filter: blur(1px);
 }
 .ball-1 {
   -webkit-animation: ball-1 3s infinite;
