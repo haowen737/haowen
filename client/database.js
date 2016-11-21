@@ -1,6 +1,6 @@
 let data = {
   posts: [{
-    title: 'mousedown\ mouseup\ click事件关系',
+    title: 'mousedown-mouseup-click事件关系',
     keywords: 'click-event',
     date: '2016-11-20',
     tags: ['eventListener', 'mouse-event']
