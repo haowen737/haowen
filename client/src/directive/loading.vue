@@ -1,9 +1,9 @@
 <template lang="html">
   <div class="loading-layout" :style="{top: top}">
-    <div class="ball ball-1"></div>
-    <div class="ball ball-2"></div>
-    <div class="ball ball-3"></div>
-    <div class="ball ball-4"></div>
+    <div class="ball ball-1" :style="{backgroundColor: bgColor}"></div>
+    <div class="ball ball-2" :style="{backgroundColor: bgColor}"></div>
+    <div class="ball ball-3" :style="{backgroundColor: bgColor}"></div>
+    <div class="ball ball-4" :style="{backgroundColor: bgColor}"></div>
   </div>
 </template>
 
@@ -18,6 +18,10 @@ export default {
     top: {
       type: String,
       default: 0
+    },
+    bgColor: {
+      type: String,
+      default: '#fff'
     }
   },
   computed: {},
@@ -42,7 +46,6 @@ export default {
   width: 4px;
   height: 4px;
   border-radius: 2px;
-  background-color: #fff;
   position:absolute;
 }
 .ball-1 {
