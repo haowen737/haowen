@@ -1,9 +1,8 @@
 <template lang="html">
   <div class="black-layout">
     <video class="vid-container"
-    preload="auto"
-    loop="loop"
-    autoplay="autoplay">
+    preload="preload"
+    loop="loop">
       <source src="/static/vid/black_bg.mp4" type="video/mp4">
       <!-- <source src="http://jmd.im/vid/black_bg.mp4" type="video/mp4"> -->
 		</video>
