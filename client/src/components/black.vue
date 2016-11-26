@@ -1,10 +1,11 @@
 <template lang="html">
   <div class="black-layout">
     <video class="vid-container"
+    src="/static/vid/black_bg.mp4"
     preload="preload"
-    loop="loop">
-      <source src="/static/vid/black_bg.mp4" type="video/mp4">
-      <!-- <source src="http://jmd.im/vid/black_bg.mp4" type="video/mp4"> -->
+    loop="loop"
+    autoplay="autoplay"
+    @onplaying="onplay">
 		</video>
     <div class="text-container" v-show="!showLoading" transition="black-text">
       <p class="title">BLACK</p>
@@ -32,11 +33,10 @@ export default {
   attached () {},
   methods: {
     initPage () {
-      this.showLoading = true
-      // let myVid = document.getElementsByTagName('video')
-      // myVid.oncanplay = function () {
-      //   console.log(12)
-      // }
+    },
+    onplay () {
+      console.log('canplay')
+      this.showLoading = false
     }
   },
   components: {
@@ -60,6 +60,7 @@ export default {
   color: #fff;
   font-weight: 100;
   font-size: 40px;
+  z-index: 10;
 }
 .text-container p {
   width: 100%;
@@ -72,6 +73,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #000;
+  z-index: -1;
 }
 .black-text-transition {
   transition: all 2s ease-out;
