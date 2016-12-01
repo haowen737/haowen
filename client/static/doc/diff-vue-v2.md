@@ -17,6 +17,7 @@ vue2.0正式版发布有一个月了，可是一直没有仔仔细细的看过�
 6. Props的```twoWay```将只能单项传递
 7. 现在在组件上使用```v-on```只会监听自定义事件（组件用 $emit 触发的事件）。如果要监听根元素的原生事件，可以使用```.native```修饰符，比如：
 
+
     <my-component v-on:click.native="doSomething"></my-component>
 
     <template lang="html">
@@ -82,6 +83,7 @@ vue2.0正式版发布有一个月了，可是一直没有仔仔细细的看过�
     </script>
     <style lang="css">
     </style>
+
 
 
 以上是一个新写的基于vue2.0的input组件，他的value值是在父组件用v-model传递的。

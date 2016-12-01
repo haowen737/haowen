@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="loading-layout" :style="{top: top}">
+  <div class="loading-layout" :style="{top: top}" v-show="show" transition="fade">
     <div class="ball ball-1" :style="{backgroundColor: bgColor}"></div>
     <div class="ball ball-2" :style="{backgroundColor: bgColor}"></div>
     <div class="ball ball-3" :style="{backgroundColor: bgColor}"></div>
@@ -15,6 +15,10 @@ export default {
     }
   },
   props: {
+    show: {
+      type: Boolean,
+      default: false
+    },
     top: {
       type: String,
       default: 0

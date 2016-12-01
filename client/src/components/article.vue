@@ -10,7 +10,7 @@
       </nav>
     </header>
     <div v-html="markdown" class="markdown-body"></div>
-    <loading v-show="showLoading" top="50%" bg-color="#000"></loading>
+    <loading :show="showLoading" top="50%" bg-color="#000"></loading>
   </div>
 </template>
 
