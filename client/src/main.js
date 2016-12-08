@@ -14,6 +14,7 @@ import Tags from './components/tags'
 import Flextest from './components/flextest'
 
 import ZoomSlider from './demo/zoomSlider'
+import Cellular from './demo/cellular'
 
 import Sidebar from './directive/sidebar'
 import BottomFire from './directive/bottomFire'
@@ -107,6 +108,9 @@ router.map({
   },
   '/demo/flextest': {
     component: Flextest
+  },
+  'demo/cellular': {
+    component: Cellular
   }
 })
 

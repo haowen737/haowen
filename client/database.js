@@ -1,5 +1,10 @@
 let data = {
   posts: [{
+    title: 'Git大小写敏感遇到的坑',
+    keywords: 'git-ignore-case',
+    date: '2016-12-08',
+    tags: ['git']
+  }, {
     title: 'React－Native实践笔记',
     keywords: 'learn-rn',
     date: '2016-12-01',
