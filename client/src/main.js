@@ -1,23 +1,25 @@
 import Vue from 'vue'
+import Utils from './utils'
+import Ocean from './ocean'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
-import Dashboard from './components/dashboard'
-import Article from './components/article'
-import Photo from './components/photo'
-import Code from './components/code'
-import Contact from './components/contact'
-import DemoHouse from './components/demoHouse'
-import Moods from './components/moods'
-import Black from './components/black'
-import MoodsLogin from './components/moodsLogin'
+
 import Tags from './components/tags'
-import Flextest from './components/flextest'
-
-import ZoomSlider from './demo/zoomSlider'
+import Code from './components/code'
+import Photo from './components/photo'
+import Black from './components/black'
+import Moods from './components/moods'
 import Cellular from './demo/cellular'
+import Article from './components/article'
+import Contact from './components/contact'
+import ZoomSlider from './demo/zoomSlider'
+import Flextest from './components/flextest'
+import Dashboard from './components/dashboard'
+import DemoHouse from './components/demoHouse'
+import MoodsLogin from './components/moodsLogin'
 
-import Sidebar from './directive/sidebar'
 import BottomFire from './directive/bottomFire'
+import Sidebar from './directive/sidebar'
 import Loading from './directive/loading'
 
 import './assets/styles/base.css'
@@ -28,6 +30,8 @@ import 'github-markdown-css/github-markdown.css'
 // })
 Vue.use(VueResource)
 Vue.use(VueRouter)
+Vue.use(Ocean)
+Vue.use(Utils)
 
 let app = Vue.extend({
   data: function () {

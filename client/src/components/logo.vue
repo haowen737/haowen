@@ -18,7 +18,7 @@
       <div class="logo-btn"><a v-link="{path:'/code'}">Code</a></div>
       <div class="logo-btn"><a v-link="{path:'/black'}">Blvck</a></div>
       <div class="logo-btn"><a v-link="{path:'/demo-house'}">Demo</a></div>
-      <div class="logo-btn"><a v-link="{path:'/photo'}">Photo</a></div>
+      <div class="logo-btn"><a v-link="{path:'/photo'}">Mirror</a></div>
     </div>
   </div>
 </template>

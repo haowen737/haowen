@@ -1,48 +1,139 @@
 <template lang="html">
   <div class="photo-layout">
-    <div class="img-box">
-      <!-- <img src="./../assets/images/photo/16-09-17-0.jpg" alt="" /> -->
+    <div class="dialog-container">
+      <div class="top-bar">It's like you're my mirror </div>
+      <div class="robort-info-bar">
+        <div class="robort-info-avatar"></div>
+        <div class="robort-info-text">
+          <div class="robort-info-text-col-1">初号机</div>
+          <div class="robort-info-text-col-2">My mirror staring back at me</div>
+        </div>
+      </div>
+      <div class="dialog-content" id="wrapper">
+        <ul>
+          <li class="dialog-block" v-for="log in logs">
+            <div class="dialog-block-time">{{log.time | formatDate 'HH:mm'}} PM</div>
+            <div class="dialog-block-text">{{log.text}}
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="bottom-bar">
+        <div class="isTyping" v-show="showIsTyping" transition="fade">
+          Ann is typing ...
+        </div>
+        <div class="input-container">
+          <input type="text" name="userInput" v-model="userInput" @keypress="submitInput">
+        </div>
+      </div>
     </div>
-    <modal :show.sync="showModal" :body="helloText" @on-confirm="setCookie"></modal>
   </div>
 </template>
 
 <script>
+import IScroll from 'iscroll'
 import Modal from './../directive/modal'
 export default {
   data: function () {
     return {
       showSidebar: 0,
-      showModal: false,
-      helloText: ''
+      greetMode: 0,
+      showIsTyping: false,
+      dialogText: '',
+      username: '',
+      userInput: '',
+      myScroll: {},
+      logs: []
     }
   },
   computed: {},
   ready: function () {
-    this.getCookie()
+    this.initScroll()
+    this.initPage()
   },
   attached: function () {},
   methods: {
-    setCookie () {
-      // cookie有效期未1天，失效后進入photo頁面會有提示彈出
-      // newUser = 0 表示为初次见面用户
-      let exdate = new Date()
-      let expireDays = 1
-      exdate.setTime(exdate.getTime() + expireDays * 24 * 3600 * 1000)
-      document.cookie = 'newUser=1'
-      document.cookie = 'expire=' + exdate.toGMTString()
+    initPage () {
+      this.username = window.localStorage.getItem('username')
+      let username = this.username
+      if (!username) {
+        this.metFirst()
+        return
+      }
+      if (username) {
+        this.metAgain()
+        this.greetMode = 1
+        return
+      }
     },
-    getCookie () {
-      let cookies = document.cookie.split('; ')
-      let user = cookies[0].split('=')[1]
-      console.log(user)
-      if (user === '1') {
-        this.showModal = true
-        this.helloText = '哈！又见面了'
-      } else {
-        this.showModal = true
-        this.helloText = '初次见面，你好啊'
-        this.setCookie()
+    initScroll () {
+      setTimeout(() => {
+        this.myScroll = new IScroll('#wrapper', {
+          snap: true,
+          mouseWheel: true
+        })
+      }, 50)
+    },
+    metFirst () {
+      let log = {time: new Date(), text: '初次见面，请多关照, 怎么称呼你呢'}
+      this.pushLog(log)
+    },
+    askName () {
+      console.log(this.logs)
+      let log = {time: new Date(), text: '那就称呼你 ' + this.logs[1].text + ' 好吗？'}
+      window.localStorage.setItem('username', this.logs[1].text)
+      this.pushLog(log)
+    },
+    metAgain () {
+      let log = {time: new Date(), text: '你好啊，' + this.username + '，我们又见面了。'}
+      this.pushLog(log)
+    },
+    submitInput (el) {
+      let username = window.localStorage.getItem('username')
+      if (el.keyCode === 13 && this.userInput && username) {
+        this.showIsTyping = true
+        let log = {}
+        log.time = new Date()
+        log.text = this.userInput
+        this.userInput = ''
+        this.pushLog(log)
+        this.checkInput()
+        return
+      }
+      if (el.keyCode === 13 && this.userInput && !username) {
+        this.showIsTyping = true
+        let log = {}
+        log.time = new Date()
+        log.text = this.userInput
+        this.userInput = ''
+        this.pushLog(log)
+        this.askName()
+      }
+    },
+    checkInput () {
+      let length = this.logs.length
+      let userSay = this.logs[length - 1].text
+      let log = {}
+      log.time = new Date()
+      log.text = this.ocean(userSay)
+      this.pushLog(log)
+    },
+    pushLog (log) {
+      this.logs.push(log)
+      setTimeout(() => {
+        this.myScroll.refresh()
+        let y = this.myScroll.maxScrollY
+        console.log(y)
+        this.myScroll.scrollTo(0, y, 500)
+      }, 150)
+    }
+  },
+  watch: {
+    'showIsTyping': function (val) {
+      if (val) {
+        setTimeout(() => {
+          this.showIsTyping = false
+        }, 2000)
       }
     }
   },
@@ -53,49 +144,125 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.sidebar-header {
-  position: relative;
+.isTyping {
+  position: absolute;
+  color: #bcbcc4;
   top: -20px;
-  left: -30px;
-  font-size: 100px;
-  text-shadow: 5px 3px 3px rgba(0,0,0, .3);
+  right: 20px;
+  font-size: 11px;
 }
-.sidebar-watcher {
+.dialog-block-time {
+  float: left;
+  font-size: 12px;
+  margin-right: 10px;
+  display: inline-block;
+}
+.dialog-block-text:before {
+  content: '';
   position: absolute;
-  z-index: 1;
-  width: 350px;
-  height: 100%;
+  padding: 10px 0;
+  top: -10px;
   left: 0;
-  /*background-color: grey;*/
+  width: 1px;
+  background-color: #dedee8;
+  height: 100%;
 }
-.sidebar {
+.dialog-block-text {
+  position: relative;
+  padding: 0 10px;
+  max-width: calc(100% - 81px);
+  word-wrap: break-word;
+  word-break: break-all;
+  display: inline-block;
+}
+.dialog-block {
+  position: relative;
+  color: #888f99;
+  font-size: 14px;
+  font-weight: 100;
+  padding: 10px;
+}
+.dialog-content {
+  /*overflow: scroll;*/
+  height: calc(100% - 125px)
+}
+.input-container input {
   position: absolute;
-  z-index: 1;
-  width: 350px;
-  height: 100%;
-  box-shadow: 1px 0 2px rgba(0,0,0,0.2)
-}
-.sidebar-transition {
-  transition: all .5s ease;
-  left: 0;
-  background-color: #f3f3f3;
-  /*opacity: 1;*/
-}
-.sidebar-enter, .sidebar-leave {
-  left: -1000px;
-  background-color: #f3f3f3;
-  /*opacity: 0;*/
-}
-.img-box img {
-  width: 100%;
-}
-.fade {
-  width: 100%;
-  height: 100%;
   top: 0;
-  left: 0;
-  z-index: 0;
+  font-size: 15px;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: 1px;
+}
+.input-container {
+  position: relative;
+  height: 100%;
+  padding: 0 5px;
+  background-color: #fff;
+}
+.bottom-bar {
+  position: relative;
+  height: 35px;
+  padding: 10px 10px;
+  background-color: #dedee8;
+}
+.robort-info-text-col-1 {
+  font-size: 15px;
+  position: relative;
+  top: 3px;
+}
+.robort-info-text-col-2 {
+  font-size: 12px;
+  color: #666;
+}
+.robort-info-text-col-1, .robort-info-text-col-2 {
+  line-height: 25px;
+  margin-left: 60px;
+}
+.robort-info-text {
+  line-height: 1;
+  box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+}
+.robort-info-avatar {
+  float: left;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: url('./../assets/images/mirror-avatar.jpg');
+  background-size: cover;
+}
+.robort-info-bar {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
+}
+.top-bar {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 20px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  font-weight: 100;
+  background-color: #ffcaca;
+}
+.dialog-container {
   position: absolute;
-  background-color: rgba(0, 0, 0, .5);
+  width: 80%;
+  height: 75%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #f3f4f8;
+  overflow: hidden;
+  box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.1);
+}
+.photo-layout {
+  width: 100%;
+  height: 100%;
 }
 </style>
