@@ -115,8 +115,10 @@ export default {
       let userSay = this.logs[length - 1].text
       let log = {}
       log.time = new Date()
-      log.text = this.ocean(userSay)
-      this.pushLog(log)
+      setTimeout(() => {
+        log.text = this.ocean(userSay)
+        this.pushLog(log)
+      }, 1000)
     },
     pushLog (log) {
       this.logs.push(log)

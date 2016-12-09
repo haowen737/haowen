@@ -6,10 +6,10 @@ function ocean (word) {
     return res
   }
   if (u.indexOf('天气') !== -1) {
-    res = '啊。。今天天气不错。。吧'
+    res = '嗯！今天天气不错，心情也超棒！'
     return res
   }
-  if (u.indexOf('唱歌') !== -1) {
+  if (u.indexOf('歌') !== -1) {
     res = '我会唱，但是我没有连音响，唱不出来'
     return res
   }
@@ -33,7 +33,7 @@ function ocean (word) {
     res = 'yo yo 切克闹ʅ（´◔౪◔）ʃ '
     return res
   }
-  if (u.indexOf('?') !== -1) {
+  if (u.indexOf('?') !== -1 || u.indexOf('?') !== -1) {
     res = '???啥'
     return res
   }
