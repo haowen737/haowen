@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="photo-layout">
+  <div class="photo-layout" transition="fade">
     <div class="dialog-container">
       <div class="top-bar">It's like you're my mirror </div>
       <div class="robort-info-bar">
@@ -11,9 +11,15 @@
       </div>
       <div class="dialog-content" id="wrapper">
         <ul>
-          <li class="dialog-block" v-for="log in logs">
+          <li class="dialog-block" v-for="log in logs" transition="fade">
             <div class="dialog-block-time">{{log.time | formatDate 'HH:mm'}} PM</div>
-            <div class="dialog-block-text">{{log.text}}
+            <div class="dialog-avatar">
+              <div class="robort-dialog-avatar" v-show="log.user===0"></div>
+              <div class="user-dialog-avatar" v-show="log.user===1">
+                <span>You</span>
+              </div>
+            </div>
+            <div class="dialog-block-text">{{{log.text}}}
             </div>
           </li>
         </ul>
@@ -75,17 +81,17 @@ export default {
       }, 50)
     },
     metFirst () {
-      let log = {time: new Date(), text: '初次见面，请多关照, 怎么称呼你呢'}
+      let log = {time: new Date(), text: '初次见面，请多关照, 怎么称呼你呢', user: 0}
       this.pushLog(log)
     },
     askName () {
       console.log(this.logs)
-      let log = {time: new Date(), text: '那就称呼你 ' + this.logs[1].text + ' 好吗？'}
+      let log = {time: new Date(), text: '那就称呼你 ' + this.logs[1].text + ' 好吗？', user: 0}
       window.localStorage.setItem('username', this.logs[1].text)
       this.pushLog(log)
     },
     metAgain () {
-      let log = {time: new Date(), text: '你好啊，' + this.username + '，我们又见面了。'}
+      let log = {time: new Date(), text: '你好啊，' + this.username + '，我们又见面了。', user: 0}
       this.pushLog(log)
     },
     submitInput (el) {
@@ -95,6 +101,7 @@ export default {
         let log = {}
         log.time = new Date()
         log.text = this.userInput
+        log.user = 1
         this.userInput = ''
         this.pushLog(log)
         this.checkInput()
@@ -105,6 +112,7 @@ export default {
         let log = {}
         log.time = new Date()
         log.text = this.userInput
+        log.user = 1
         this.userInput = ''
         this.pushLog(log)
         this.askName()
@@ -114,9 +122,10 @@ export default {
       let length = this.logs.length
       let userSay = this.logs[length - 1].text
       let log = {}
-      log.time = new Date()
       setTimeout(() => {
+        log.time = new Date()
         log.text = this.ocean(userSay)
+        log.user = 0
         this.pushLog(log)
       }, 1000)
     },
@@ -146,6 +155,29 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.dialog-avatar {
+  position: absolute;
+  top: 12px;
+  z-index: 2;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+}
+.user-dialog-avatar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff9898;
+  font-weight: 600;
+}
+.robort-dialog-avatar {
+  width: 100%;
+  height: 100%;
+  background: url('./../assets/images/mirror-avatar.jpg');
+  background-size: cover;
+}
 .isTyping {
   position: absolute;
   color: #bcbcc4;
@@ -163,15 +195,15 @@ export default {
   content: '';
   position: absolute;
   padding: 10px 0;
-  top: -10px;
-  left: 0;
+  top: -20px;
+  left: 18px;
   width: 1px;
   background-color: #dedee8;
-  height: 100%;
+  height: 200%;
 }
 .dialog-block-text {
   position: relative;
-  padding: 0 10px;
+  padding: 0 10px 0 45px;
   max-width: calc(100% - 81px);
   word-wrap: break-word;
   word-break: break-all;
@@ -182,15 +214,13 @@ export default {
   color: #888f99;
   font-size: 14px;
   font-weight: 100;
-  padding: 10px;
+  padding: 20px;
 }
 .dialog-content {
   /*overflow: scroll;*/
   height: calc(100% - 125px)
 }
 .input-container input {
-  position: absolute;
-  top: 0;
   font-size: 15px;
   width: 100%;
   height: 100%;

@@ -9,10 +9,6 @@ function ocean (word) {
     res = '嗯！今天天气不错，心情也超棒！'
     return res
   }
-  if (u.indexOf('歌') !== -1) {
-    res = '我会唱，但是我没有连音响，唱不出来'
-    return res
-  }
   if (u.indexOf('不好') !== -1) {
     res = '朕意已决(•̀ᴗ•́)و ̑̑  ，爱卿不用多说了'
     return res
@@ -35,6 +31,10 @@ function ocean (word) {
   }
   if (u.indexOf('?') !== -1 || u.indexOf('?') !== -1) {
     res = '???啥'
+    return res
+  }
+  if (u.indexOf('歌') !== -1) {
+    res = '我不唱歌，但是我喜欢听歌，我最近一直听 Justin Timberlake 的 <a href="http://122.228.24.213/m10.music.126.net/20161209204519/c435515c9899ca90b26a2885af685ad1/ymusic/83a3/c84a/ba48/693a7c7598b6ee3204be6d47a7f3d452.mp3?wshc_tag=0&wsts_tag=584aa183&wsid_tag=7d78e05e&wsiphost=ipdbm" target="_Blank">Mirrors</a>，'
     return res
   }
   return res
