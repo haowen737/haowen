@@ -87,14 +87,29 @@ export default {
     askName () {
       console.log(this.logs)
       let log = {time: new Date(), text: '那就称呼你 ' + this.logs[1].text + ' 好吗？', user: 0}
-      window.localStorage.setItem('username', this.logs[1].text)
       this.pushLog(log)
+      window.localStorage.setItem('username', this.logs[1].text)
+      // let answer = this.logs[2]
+      // this.storageName(answer)
+    },
+    storageName (log) {
+      let check = log.text.indexOf('不')
+      if (check === -1) {
+        window.localStorage.setItem('username', this.logs[1].text)
+        let log = {time: new Date(), text: '你好啊' + this.logs[1].text, user: 0}
+        this.pushLog(log)
+        return
+      }
+      if (check !== -1) {
+        return
+      }
     },
     metAgain () {
       let log = {time: new Date(), text: '你好啊，' + this.username + '，我们又见面了。', user: 0}
       this.pushLog(log)
     },
     submitInput (el) {
+      console.log(el.keyCode, this.userInput)
       let username = window.localStorage.getItem('username')
       if (el.keyCode === 13 && this.userInput && username) {
         this.showIsTyping = true
@@ -102,7 +117,9 @@ export default {
         log.time = new Date()
         log.text = this.userInput
         log.user = 1
-        this.userInput = ''
+        this.$nextTick(function () {
+          this.userInput = ''
+        })
         this.pushLog(log)
         this.checkInput()
         return
@@ -113,7 +130,9 @@ export default {
         log.time = new Date()
         log.text = this.userInput
         log.user = 1
-        this.userInput = ''
+        this.$nextTick(function () {
+          this.userInput = ''
+        })
         this.pushLog(log)
         this.askName()
       }
@@ -134,7 +153,6 @@ export default {
       setTimeout(() => {
         this.myScroll.refresh()
         let y = this.myScroll.maxScrollY
-        console.log(y)
         this.myScroll.scrollTo(0, y, 500)
       }, 150)
     }
@@ -166,9 +184,15 @@ export default {
 .user-dialog-avatar {
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   color: #ff9898;
   font-weight: 600;
 }
@@ -188,6 +212,7 @@ export default {
 .dialog-block-time {
   float: left;
   font-size: 12px;
+  width: 50px;
   margin-right: 10px;
   display: inline-block;
 }
@@ -288,7 +313,8 @@ export default {
   height: 75%;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
   background-color: #f3f4f8;
   overflow: hidden;
   box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.1);
