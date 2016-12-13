@@ -159,7 +159,7 @@ export default {
 }
 /*動畫*/
 .card-transition {
-  transition: all .5s;
+  transition: all 0.5s;
   margin: 30px auto 30px;
   opacity: 1;
 }

@@ -78,8 +78,18 @@ p {
 }
 .motto-enter, .motto-leave {
   line-height: 0;
-  height: 0;
+  top: 30px;
   opacity: 0;
+}
+.slidedown-transition {
+  transition: all .3s ease-out;
+  opacity: 1;
+  top: 0px;
+}
+.slidedown-enter, .slidedown-leave {
+  line-height: 0;
+  opacity: 0;
+  top: 30px;
 }
 /*滚动条*/
 ::-webkit-scrollbar {

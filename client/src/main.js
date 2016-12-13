@@ -18,7 +18,6 @@ import Dashboard from './components/dashboard'
 import DemoHouse from './components/demoHouse'
 import MoodsLogin from './components/moodsLogin'
 
-import BottomFire from './directive/bottomFire'
 import Sidebar from './directive/sidebar'
 import Loading from './directive/loading'
 
@@ -49,7 +48,7 @@ let app = Vue.extend({
     this.watchBottom()
   },
   components: {
-    Sidebar, BottomFire
+    Sidebar
   },
   methods: {
     watchBottom () {

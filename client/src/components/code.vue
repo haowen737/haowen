@@ -16,16 +16,18 @@
         </div>
       </div>
       <div class="cards">
-        <div class="card" v-for="card in cards" v-link="{path:'code/article/' + card.keywords}" @click="$root.showBottomFire=false" transition="card">
+        <div class="card" v-for="card in cards" v-link="{path:'code/article/' + card.keywords}" @click="showBottomFire=false" transition="card">
           <h1>{{ card.title }}</h1>
           <span>{{ card.date }}</span>
         </div>
       </div>
     </div>
+    <bottom-fire :show.sync="showBottomFire"></bottom-fire>
   </div>
 </template>
 
 <script>
+import BottomFire from './../directive/bottomFire'
 import database from './../../database'
 export default {
   data: function () {
@@ -48,13 +50,15 @@ export default {
     '$root.scrollY': function (val) {
       console.log(this.$root.innerHeight, this.$root.scrollY, this.$root.offsetHeight)
       if ((this.$root.innerHeight + this.$root.scrollY) - this.$root.offsetHeight > -50) {
-        this.$root.showBottomFire = true
+        this.showBottomFire = true
       } else {
-        this.$root.showBottomFire = false
+        this.showBottomFire = false
       }
     }
   },
-  components: {}
+  components: {
+    BottomFire
+  }
 }
 </script>
 
@@ -114,7 +118,7 @@ export default {
   top: 5px;
 }
 .card-transition {
-  transition: all .3s;
+  transition: all .5s;
   margin: 30px auto 30px;
   opacity: 1;
 }

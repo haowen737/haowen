@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="bottom-fire" v-show="show" transition="bottomFire">
-    来和郑皓文一起玩耍吧！
+    由 <a href="https://vuejs.org/" target="_Blank">Vue</a> 强力驱动 ｜ Designed By <a v-link="{path:'/contact'}" target="_blank">Haowen</a>
   </div>
 </template>
 
@@ -27,6 +27,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.bottom-fire a {
+  color: #fff;
+  font-weight: 400;
+}
 .bottom-fire {
   position: fixed;
   bottom: 0;
@@ -34,9 +38,10 @@ export default {
   width: 100%;
   z-index: 999;
   text-align: center;
-  font-size: 20px;
+  font-size: 15px;
+  font-weight: 100;
   line-height: 100px;
-  color: #fff;
+  color: #bbb;
 }
 .bottomFire-transition {
   transition: all .3s ease;

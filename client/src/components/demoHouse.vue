@@ -1,7 +1,10 @@
 <template lang="html">
   <div class="demoHouse-layout" id="container">
     <header>
-      <img ondragstart="return false" src="./../assets/images/demo-house.png" alt="" />
+      <canvas id="canvas"
+      v-el:canvas
+      width="500"
+      height="300"></canvas>
     </header>
     <div class="content-latout" v-show="showContent" transition="content-latout">
       <div class="content">
@@ -30,23 +33,39 @@ export default {
   computed: {},
   ready: function () {
     this.initPage()
-    this.queryDemos()
+    // this.queryDemos()
   },
   attached: function () {},
   methods: {
     queryDemos () {
-      // this.showLoading = true
+      this.showLoading = true
       window.setTimeout(() => {
         this.showLoading = false
       }, 2000)
     },
     initPage () {
-      this.headerLg = 'header-lg'
+      this.getPen()
+    },
+    getPen () {
+      if (this.$els.canvas.getContext) {
+        this.ctx = this.$els.canvas.getContext('2d')
+        this.getImg()
+      } else {
+        return
+      }
+    },
+    getImg () {
+      let image = new window.Image()
+      image.src = require('./../assets/images/demo-house.png')
+      image.onload = () => {
+        console.log(image.width)
+        let w = image.width
+        let h = image.height
+        this.ctx.drawImage(image, (500 - w) / 2, (300 - h) / 2)
+      }
     },
     spreadContent () {
-      console.log(123)
       this.showContent ? this.showContent = false : this.showContent = true
-      console.log(this.showContent)
     }
   },
   watch: {},

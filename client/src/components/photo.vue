@@ -4,6 +4,8 @@
       <div class="top-bar">It's like you're my mirror </div>
       <div class="robort-info-bar">
         <div class="robort-info-avatar"></div>
+        <div class="btn-group">
+        </div>
         <div class="robort-info-text">
           <div class="robort-info-text-col-1">初号机</div>
           <div class="robort-info-text-col-2">My mirror staring back at me</div>
@@ -11,7 +13,7 @@
       </div>
       <div class="dialog-content" id="wrapper">
         <ul>
-          <li class="dialog-block" v-for="log in logs" transition="fade">
+          <li class="dialog-block" v-for="log in logs" transition="slidedown">
             <div class="dialog-block-time">{{log.time | formatDate 'HH:mm'}} PM</div>
             <div class="dialog-avatar">
               <div class="robort-dialog-avatar" v-show="log.user===0"></div>
@@ -54,6 +56,7 @@ export default {
   },
   computed: {},
   ready: function () {
+    console.log(3)
     this.initScroll()
     this.initPage()
   },
@@ -157,6 +160,9 @@ export default {
       }, 150)
     }
   },
+  beforeDestory: function () {
+    console.log(123)
+  },
   watch: {
     'showIsTyping': function (val) {
       if (val) {
@@ -173,6 +179,16 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.btn-group {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: right;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+}
 .dialog-avatar {
   position: absolute;
   top: 12px;
@@ -275,7 +291,7 @@ export default {
 }
 .robort-info-text-col-1, .robort-info-text-col-2 {
   line-height: 25px;
-  margin-left: 60px;
+  margin: 0 60px;
 }
 .robort-info-text {
   line-height: 1;
