@@ -9,18 +9,19 @@
         <div class="article-nav-item"><a v-link="{path:'/'}">干嘛</a></div>
       </nav>
     </header>
-    <div v-html="markdown" class="markdown-body"></div>
+    <div v-html="content" class="markdown-body"></div>
     <loading :show="showLoading" top="50%" bg-color="#000"></loading>
   </div>
 </template>
 
 <script>
+import Markdown from 'markdown/lib/markdown.js'
 import loading from './../directive/loading'
 export default {
   data () {
     return {
       article: '',
-      markdown: '',
+      content: '',
       showLoading: false
     }
   },
@@ -49,11 +50,12 @@ export default {
         })
     },
     formatMarkdown () {
-      this.markdown = window.markdown.toHTML(this.article)
+      console.log(Markdown)
+      this.content = Markdown.toHTML(this.article)
     }
   },
   components: {
-    loading
+    loading, Markdown
   }
 }
 </script>
