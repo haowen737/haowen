@@ -1,5 +1,10 @@
 let data = {
   posts: [{
+    title: '使用pyenv进行python的版本管理',
+    keywords: 'manage-python',
+    date: '2016-12-13',
+    tags: ['python', 'Mac']
+  }, {
     title: 'Git大小写敏感遇到的坑',
     keywords: 'git-ignore-case',
     date: '2016-12-08',
