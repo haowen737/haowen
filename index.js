@@ -2,8 +2,8 @@ let serve = require('koa-static-server');
 let markdown = require('markdown')
 let koa = require('koa');
 
-let app = koa();
-
+const app = koa();
+console.log(app);
 // serve static
 app.use(serve({rootDir: 'client/dist'}));
 

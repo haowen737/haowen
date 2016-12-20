@@ -1,0 +1,52 @@
+{
+    "mysql": {
+        "client": "mysql",
+        "connection": {
+            "host": "121.40.208.200",
+            "port": 3306,
+            "user": "root",
+            "password": "123456",
+            "database": "motor_dev",
+            "charset": "UTF8_GENERAL_CI",
+            "connectTimeout": 15000,
+            "stringifyObjects": false,
+            "multipleStatements": true,
+            "supportBigNumbers": true,
+            "connectionLimit": 1
+        },
+        "debug": true
+    },
+    "mongo": {
+        "uri": "mongodb://120.26.53.55:27017/ZHLBS",
+        "options": {
+            "db": {
+                "w": 1,
+                "wtimeout": 15000,
+                "readPreference": "secondaryPreferred",
+                "numberOfRetries": "15"
+            },
+            "user": "car_dev",
+            "pass": "car_dev",
+            "mongos": true,
+            "server": {
+                "poolSize": 10,
+                "socketOptions": {
+                    "keepAlive": 1
+                }
+            }
+        }
+    },
+    "redis": {
+        "device":{
+            "host": "121.40.221.221",
+            "port": 7000,
+            "password": "scard_redis_test"
+        },
+		"push":{
+			"host": "121.40.221.221",
+			"port": 7000,
+			"password": "scard_redis_test"
+		}
+    },
+    "port": 8003
+}

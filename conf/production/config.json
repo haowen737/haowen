@@ -1,0 +1,66 @@
+{
+    "mysql": {
+        "client": "mysql",
+        "connection": {
+            "host": "rdsejfefbejfefb.mysql.rds.aliyuncs.com",
+            "port": 3306,
+            "user": "motor_pro",
+            "password": "motor_pro",
+            "database": "motor_pro",
+            "charset": "UTF8_GENERAL_CI",
+            "connectTimeout": 15000,
+            "stringifyObjects": false,
+            "multipleStatements": true,
+            "supportBigNumbers": true,
+            "connectionLimit": 1
+        },
+        "debug": false
+    },
+    "mongo": {
+        "uri": "mongodb://10.252.108.52:27017/ZHLBS",
+        "options": {
+            "db": {
+                "w": 1,
+                "wtimeout": 15000,
+                "readPreference": "secondaryPreferred",
+                "numberOfRetries": "15"
+            },
+            "user": "car_dev",
+            "pass": "car_dev",
+            "mongos": true,
+            "server": {
+                "poolSize": 10,
+                "socketOptions": {
+                    "keepAlive": 1
+                }
+            }
+        }
+    },
+    "redis": {
+		"device":{
+			"host": "10.168.73.154",
+			"port": 7000,
+			"password": "scard_redis_test"
+		},
+		"push":{
+			"sentinels": [
+				{
+					"host": "10.252.163.231",
+					"port": 26379
+				},
+				{
+					"host": "10.252.145.127",
+					"port": 26379
+				},
+				{
+					"host": "10.175.204.123",
+					"port": 26379
+				}
+			],
+			"name": "scard",
+			"password": "zhpwd",
+			"db": 0
+		}
+    },
+    "port": 8003
+}
