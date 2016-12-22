@@ -1,5 +1,10 @@
 let data = {
   posts: [{
+    title: '在Centos7中打开端口',
+    keywords: 'open-port-centos7',
+    date: '2016-12-22',
+    tags: ['centos7']
+  }, {
     title: '使用pyenv进行python的版本管理',
     keywords: 'manage-python',
     date: '2016-12-13',

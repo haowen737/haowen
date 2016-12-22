@@ -36,31 +36,5 @@
             }
         }
     },
-    "redis": {
-		"device":{
-			"host": "10.168.73.154",
-			"port": 7000,
-			"password": "scard_redis_test"
-		},
-		"push":{
-			"sentinels": [
-				{
-					"host": "10.252.163.231",
-					"port": 26379
-				},
-				{
-					"host": "10.252.145.127",
-					"port": 26379
-				},
-				{
-					"host": "10.175.204.123",
-					"port": 26379
-				}
-			],
-			"name": "scard",
-			"password": "zhpwd",
-			"db": 0
-		}
-    },
     "port": 8003
 }

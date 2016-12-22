@@ -35,7 +35,6 @@ Vue.use(Utils)
 let app = Vue.extend({
   data: function () {
     return {
-      showBottomFire: false,
       offsetHeight: 0,
       innerHeight: 0,
       scrollY: 0,
