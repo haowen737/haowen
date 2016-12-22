@@ -7,7 +7,7 @@
         <div class="btn-group">
         </div>
         <div class="robort-info-text">
-          <div class="robort-info-text-col-1">初号机</div>
+          <div class="robort-info-text-col-1">镜子</div>
           <div class="robort-info-text-col-2">My mirror staring back at me</div>
         </div>
       </div>

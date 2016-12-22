@@ -1,12 +1,20 @@
 function ocean (word) {
   let u = word.toString()
-  let res = '啊呃。。。智商有限。。。听不懂你在说什么'
+  let res = randomWord()
   if (u.indexOf('蠢') !== -1 || u.indexOf('呆') !== -1) {
     res = '呵 愚蠢的人类。。。'
     return res
   }
   if (u.indexOf('天气') !== -1) {
     res = '嗯！今天天气不错，心情也超棒！'
+    return res
+  }
+  if (u.indexOf('镜子') !== -1) {
+    res = '不是镜子，是镜子(zi)，第四声，蛤，念错了吧'
+    return res
+  }
+  if (u.indexOf('笑话') !== -1) {
+    res = '哈哈哈，好好笑，唔？你问我笑什么？不告诉你'
     return res
   }
   if (u.indexOf('不好') !== -1) {
@@ -38,6 +46,24 @@ function ocean (word) {
     return res
   }
   return res
+}
+
+function randomWord () {
+  let arr = [
+    '啊呃。。。智商有限。。。听不懂你在说什么',
+    '我在听,有话快说',
+    '说说你的路途见闻吧',
+    '你想被变成青蛙吗?',
+    '天哪!你真高!',
+    '祝你好运。',
+    '你有什么事吗?',
+    '来喝杯啤酒吗?',
+    '你好，旅行者',
+    '每一天，都是一个祝福',
+    '哈哈哈哈...'
+  ]
+  let n = parseInt(Math.random() * 10)
+  return arr[n]
 }
 
 export default {

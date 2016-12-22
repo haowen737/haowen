@@ -9,12 +9,21 @@
           嘿嘿嘿
         </div> -->
         <div class="form-group" transition="moodsLogin" v-show="showForm">
-          <input autocomplete="off" type="text" name="name" v-model="password" @focus="focusInput">
+          <input
+          autocomplete="off"
+          type="text"
+          name="name"
+          v-model="password"
+          @focus="focusInput"
+          @keypress="submitInput">
           <div class="input-bottom">
             <div class="input-label" :class="labelClass">Your name?</div>
             <div class="submitBtn" href="Javascript:;" :class="labelClass" @click.prevent="submit" transition="fade">Next</div>
           </div>
-          <div class="input-mask" v-show="showMask" @click="focusInput" transition="fade"></div>
+          <div class="input-mask"
+          v-show="showMask"
+          @click="focusInput"
+          transition="fade"></div>
         </div>
         <div class="deny-card" v-show="showDeny" transition="deny">
           <p>
@@ -59,6 +68,11 @@ export default {
     focusInput () {
       this.showMask === true ? this.showMask = false : this.showMask = true
       this.labelClass === 'label-dark' ? this.labelClass = 'label-light' : this.labelClass = 'label-dark'
+    },
+    submitInput (el) {
+      if (el.keyCode === 13) {
+        this.submit()
+      }
     },
     submit () {
       this.showForm = false
