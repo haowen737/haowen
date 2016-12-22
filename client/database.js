@@ -1,5 +1,10 @@
 let data = {
   posts: [{
+    title: 'Shadowsocks－从购买到使用',
+    keywords: 'shadowsocks-install',
+    date: '2016-12-22',
+    tags: ['shadowsocks', 'VPN']
+  }, {
     title: '在Centos7中打开端口',
     keywords: 'open-port-centos7',
     date: '2016-12-22',
