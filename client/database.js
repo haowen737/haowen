@@ -1,6 +1,6 @@
 let data = {
   posts: [{
-    title: 'Shadowsocks－从购买到使用',
+    title: '从购买服务器开始－配置Shadowsocks',
     keywords: 'shadowsocks-install',
     date: '2016-12-22',
     tags: ['shadowsocks', 'VPN']
