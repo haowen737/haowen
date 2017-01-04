@@ -9,7 +9,8 @@
     <div class="content-latout" v-show="showContent" transition="content-latout">
       <div class="content">
         <div class="inner-box">
-          <a v-link="{path:'/demo/zoom-slider'}">1. Zoom Slider</a>
+          <a v-link="{path:'/demo/zoom-slider'}">1. 一个轮播</a>
+          <a v-link="{path:'/demo/clock'}">2. 一只时钟</a>
         </div>
       </div>
     </div>
@@ -79,6 +80,7 @@ export default {
 .inner-box a {
   color: #fff;
   font-size: 20px;
+  display: block;
 }
 .content {
   padding: 80px;

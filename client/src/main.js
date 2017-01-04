@@ -3,23 +3,8 @@ import Utils from './utils'
 import Ocean from './ocean'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
-
-import Tags from './components/tags'
-import Code from './components/code'
-import Photo from './components/photo'
-import Black from './components/black'
-import Moods from './components/moods'
-import Cellular from './demo/cellular'
-import Article from './components/article'
-import Contact from './components/contact'
-import ZoomSlider from './demo/zoomSlider'
-import Flextest from './components/flextest'
-import Dashboard from './components/dashboard'
-import DemoHouse from './components/demoHouse'
-import MoodsLogin from './components/moodsLogin'
-
+import routers from './routers'
 import Sidebar from './directive/sidebar'
-import Loading from './directive/loading'
 
 import './assets/styles/base.css'
 import 'github-markdown-css/github-markdown.css'
@@ -71,49 +56,5 @@ let router = new VueRouter({
   hashbang: false
 })
 
-router.map({
-  '/': {
-    component: Dashboard
-  },
-  '/photo': {
-    component: Photo
-  },
-  '/code': {
-    component: Code
-  },
-  '/demo-house': {
-    component: DemoHouse
-  },
-  '/tags': {
-    component: Tags
-  },
-  '/code/article/:id': {
-    component: Article
-  },
-  '/contact': {
-    component: Contact
-  },
-  '/moods': {
-    component: Moods
-  },
-  '/moods/login': {
-    component: MoodsLogin
-  },
-  '/demo/loading': {
-    component: Loading
-  },
-  '/black': {
-    component: Black
-  },
-  '/demo/zoom-slider': {
-    component: ZoomSlider
-  },
-  '/demo/flextest': {
-    component: Flextest
-  },
-  'demo/cellular': {
-    component: Cellular
-  }
-})
-
+router.map(routers)
 router.start(app, 'html')

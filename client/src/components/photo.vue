@@ -263,7 +263,8 @@ export default {
 }
 .input-container input {
   font-size: 15px;
-  width: 100%;
+  position: absolute;
+  top: 0;
   height: 100%;
   outline: none;
   border: 1px;

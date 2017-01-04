@@ -2,10 +2,9 @@
   <div class="black-layout">
     <video class="vid-container"
     src="/static/vid/black_bg.mp4"
-    preload="preload"
+    preload="auto"
     loop="loop"
-    autoplay="autoplay"
-    @onplaying="onplay">
+    id="video">
 		</video>
     <div class="text-container" v-show="!showLoading" transition="black-text">
       <p class="title">BLACK</p>
@@ -23,7 +22,8 @@ export default {
   data () {
     return {
       showLoading: false,
-      vidSrc: ''
+      vidSrc: '',
+      video: {}
     }
   },
   computed: {},
@@ -33,10 +33,10 @@ export default {
   attached () {},
   methods: {
     initPage () {
-    },
-    onplay () {
-      console.log('canplay')
-      this.showLoading = false
+      this.video = document.getElementById('video')
+      setTimeout(() => {
+        this.video.play()
+      }, 2000)
     }
   },
   components: {
@@ -61,6 +61,8 @@ export default {
   font-weight: 100;
   font-size: 40px;
   z-index: 10;
+  cursor: default;
+  animation: blackText 3s;
 }
 .text-container p {
   width: 100%;
@@ -81,5 +83,18 @@ export default {
 }
 .black-text-enter, .black-text-leave {
   opacity: 0;
+}
+.black-layout {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}
+@keyframes blackText {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 </style>
