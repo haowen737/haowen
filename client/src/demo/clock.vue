@@ -38,10 +38,11 @@ export default {
       this.formatClock(hour, min, sec)
     },
     formatClock (h, m, s) {
+      console.log(h, m, s)
       h > 12 ? h = h - 12 : ''
       this.hourRotate = (30 * h) + 180
-      this.minRotate = m + 180
-      this.secRotate = s + 180
+      this.minRotate = (m * 6) + 180
+      this.secRotate = (s * 6) + 180
     },
     interval () {
       window.setInterval(() => {
