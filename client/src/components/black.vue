@@ -1,6 +1,7 @@
 <template lang="html">
   <div class="black-layout">
     <video class="vid-container"
+    :style="{top:videoTop + 'px'}"
     src="/static/vid/black_bg.mp4"
     preload="auto"
     loop="loop"
@@ -8,7 +9,17 @@
 		</video>
     <div class="text-container" v-show="!showLoading" transition="black-text">
       <p class="title">BLACK</p>
-      <p class=""></p>
+      <p class="title-second">is only as beautiful... as you make it</p>
+    </div>
+    <div class="demolist-container" @mouseover="doDemolist">
+      <div class="demolist" v-show="showDemolist" transition="demolist" @mouseout="reDemolist">
+        <a class="demolist-item-container" v-link="{path: demo.url}" v-for="demo in demolist">
+          <div class="demolist-item-img">
+
+          </div>
+          <p class="demolist-item-title">{{demo.title}}</p>
+        </a>
+      </div>
     </div>
     <div class="loading-bg" v-show="showLoading">
       <loading top="50%"></loading>
@@ -17,17 +28,22 @@
 </template>
 
 <script>
+import demolist from './../demolist.js'
 import loading from './../directive/loading'
 export default {
   data () {
     return {
+      showDemolist: false,
       showLoading: false,
       vidSrc: '',
-      video: {}
+      videoTop: 0,
+      video: {},
+      demolist: []
     }
   },
   computed: {},
   ready () {
+    this.demolist = demolist
     this.initPage()
   },
   attached () {},
@@ -37,6 +53,14 @@ export default {
       setTimeout(() => {
         this.video.play()
       }, 2000)
+    },
+    doDemolist () {
+      this.showDemolist = true
+      this.videoTop = -200
+    },
+    reDemolist () {
+      this.showDemolist = false
+      this.videoTop = 0
     }
   },
   components: {
@@ -46,9 +70,42 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.demolist-item a {
+  width: 100%;
+  height: 100%;
+  color: #fff;
+}
+.demolist-item-img {
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: #000;
+}
+.demolist-item-container {
+  display: inline-block;
+  flex: 1 1 auto;
+  text-align: center;
+  margin: 20px;
+}
+.demolist {
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+}
+.demolist-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+}
 .vid-container {
   width: 100%;
   height: 100%;
+  position: relative;
+  transition: all 1s;
 }
 .text-container {
   text-align: center;
@@ -78,7 +135,7 @@ export default {
   z-index: -1;
 }
 .black-text-transition {
-  transition: all 2s ease-out;
+  transition: all 2s;
   opacity: 1;
 }
 .black-text-enter, .black-text-leave {
@@ -89,6 +146,9 @@ export default {
   height: 100%;
   background-color: #000;
 }
+.title-second {
+  font-size: 12px;
+}
 @keyframes blackText {
   0% {
     opacity: 0;
@@ -96,5 +156,14 @@ export default {
   100% {
     opacity: 1;
   }
+}
+.demolist-transition {
+  transition: all .5s ease;
+  opacity: 1;
+  height: 200px;
+}
+.demolist-enter, .demolist-leave {
+  opacity: 0;
+  height: 0px;
 }
 </style>

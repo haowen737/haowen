@@ -28,7 +28,7 @@
       </div>
       <div class="bottom-bar">
         <div class="isTyping" v-show="showIsTyping" transition="fade">
-          Ann is typing ...
+          Mirror is typing ...
         </div>
         <div class="input-container">
           <input type="text" name="userInput" v-model="userInput" @keypress="submitInput">
