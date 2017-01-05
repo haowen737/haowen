@@ -83,6 +83,7 @@ p {
 }
 .slidedown-transition {
   transition: all .3s ease-out;
+  position: absolute;
   opacity: 1;
   top: 0px;
 }
@@ -90,6 +91,17 @@ p {
   line-height: 0;
   opacity: 0;
   top: 30px;
+}
+.slideup-transition {
+  transition: all .3s ease-out;
+  position: absolute;
+  opacity: 1;
+  top: 0px;
+}
+.slideup-enter, .slideup-leave {
+  line-height: 0;
+  opacity: 0;
+  top: -30px;
 }
 /*滚动条*/
 ::-webkit-scrollbar {

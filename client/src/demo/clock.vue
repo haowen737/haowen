@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="clock-wrap">
+  <div class="clock-wrap" transition="slideup">
     <div class="clock-surface">
       <div class="clock-center">
         <div class="hand-hour" :style="{transform: 'rotate(' + hourRotate + 'deg)'}"></div>
