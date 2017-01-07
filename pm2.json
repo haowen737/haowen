@@ -1,7 +1,7 @@
 {
     "apps": [{
         "name"              : "haowen's blog",
-        "script"            : "app.js",
+        "script"            : "./node_modules/.bin/nodemon bin/run",
         "merge_logs"        : true,
         "log_date_format"   : "YYYY-MM-DD HH:mm:ss Z",
         "log_file"          : "logs/app.log",
