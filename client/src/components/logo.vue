@@ -15,7 +15,7 @@
     v-show="showMotto"
     transition="motto">Live a life you will remember!</h1>
     <div class="logo-btns">
-      <div class="logo-btn"><a v-link="{path:'/code'}">Code</a></div>
+      <div class="logo-btn"><a v-link="{path:'/code'}">Pen</a></div>
       <div class="logo-btn"><a v-link="{path:'/black'}">Blvck</a></div>
       <div class="logo-btn"><a v-link="{path:'/moods/login'}">Moods</a></div>
       <div class="logo-btn"><a v-link="{path:'/photo'}">Mirror</a></div>

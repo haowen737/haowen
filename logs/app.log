@@ -1,0 +1,224 @@
+2017-01-07 15:34:31 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:31 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:31 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:31 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:32 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:32 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:32 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:32 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:32 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:32 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:32 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:33 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:33 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:33 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:33 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)
+2017-01-07 15:34:33 +08:00: /Users/Haowen/WebstormProjects/haowen/app.js:25
+app.use(async (ctx, next) => {
+              ^
+SyntaxError: Unexpected token (
+    at Object.exports.runInThisContext (vm.js:76:16)
+    at Module._compile (module.js:545:28)
+    at Object.Module._extensions..js (module.js:582:10)
+    at Module.load (module.js:490:32)
+    at tryModuleLoad (module.js:449:12)
+    at Function.Module._load (module.js:441:3)
+    at Function._load (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
+    at Module._compile (module.js:573:32)
+    at Object.Module._extensions..js (module.js:582:10)

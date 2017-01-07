@@ -4,6 +4,7 @@ import Photo from './components/photo'
 import Black from './components/black'
 import Moods from './components/moods'
 import Article from './components/article'
+import Comment from './components/comment'
 import Contact from './components/contact'
 import Flextest from './components/flextest'
 import Dashboard from './components/dashboard'
@@ -31,6 +32,9 @@ export default {
   },
   '/tags': {
     component: Tags
+  },
+  '/comment': {
+    component: Comment
   },
   '/code/article/:id': {
     component: Article

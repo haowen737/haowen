@@ -9,8 +9,8 @@
             <ul>
               <li><a v-link="{path:'/'}">首页</a></li>
               <li><a v-link="{path:'/tags'}">标签</a></li>
-              <li><a v-link="{path:'/demo-house'}">玩具</a></li>
               <li><a v-link="{path:'/contact'}">我</a></li>
+              <li><a v-link="{path:'/comment'}">留言</a></li>
             </ul>
           </nav>
         </div>
@@ -39,11 +39,21 @@ export default {
   computed: {},
   ready: function () {
     this.getCards()
+    this.query()
   },
   attached: function () {},
   methods: {
     getCards () {
       this.cards = database.posts
+    },
+    query () {
+      this.$http.get('/api/users/getUser')
+      .then(function (res) {
+        console.log(res)
+      })
+      .catch(function (err) {
+        console.log(err)
+      })
     }
   },
   watch: {

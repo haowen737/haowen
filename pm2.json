@@ -1,0 +1,23 @@
+{
+    "apps": [{
+        "name"              : "haowen's blog",
+        "script"            : "app.js",
+        "merge_logs"        : true,
+        "log_date_format"   : "YYYY-MM-DD HH:mm:ss Z",
+        "log_file"          : "logs/app.log",
+        "merge-logs"        : true,
+        "max_memory_restart": "800M",
+        "pid_file"          : "app.pid",
+        "env_production"    : {
+            "NODE_ENV"      : "production",
+            "DEBUG"         : "*"
+        },
+        "env_development"   : {
+            "NODE_ENV"      : "development",
+            "DEBUG"         : "*"
+        },
+        "env_release"       : {
+            "NODE_ENV"      : "release"
+        }
+    }]
+}

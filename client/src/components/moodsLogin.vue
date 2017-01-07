@@ -13,7 +13,7 @@
           autocomplete="off"
           type="text"
           name="name"
-          v-model="password"
+          v-model="where.user_name"
           @focus="focusInput"
           @keypress="submitInput">
           <div class="input-bottom">
@@ -53,7 +53,9 @@ export default {
       showForm: true,
       showLoading: false,
       showAgree: false,
-      password: '',
+      where: {
+        user_name: ''
+      },
       labelClass: 'label-dark',
       headerClass: 'header-upper',
       bottomText: ''
@@ -71,7 +73,8 @@ export default {
     },
     submitInput (el) {
       if (el.keyCode === 13) {
-        this.submit()
+        // this.submit()
+        this.post()
       }
     },
     submit () {
@@ -80,7 +83,7 @@ export default {
       this.headerClass = 'header-lower'
       window.setTimeout(() => {
         this.showLoading = false
-        if (this.password === 'haowen') {
+        if (this.where.user_name === 'haowen') {
           this.showAgree = true
           window.setTimeout(() => {
             this.$router.go('/moods')
@@ -131,10 +134,21 @@ export default {
           this.bottomText = '哈哈哈哈...'
           break
       }
+    },
+    post () {
+      console.log(23123123)
+      let param = this.where
+      this.$http.post('/api/users/registerUser', param)
+      .then(function (res) {
+        console.log(res)
+      })
+      .catch(function (err) {
+        console.log(err)
+      })
     }
   },
   watch: {
-    'password': function (val) {
+    'where.user_name': function (val) {
       console.log(val)
     }
   },
