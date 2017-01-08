@@ -1,12 +1,13 @@
 <template lang="html">
-  <!-- todo: mask点击关闭 ， try index》》 mask-->
+  <!-- todo: mask点击关闭 ， try index》》 mask在下层-->
   <div class="modal-fade" v-show="show" transition="modal-fade">
     <div class="modal" v-show="show" transition="modal">
       <div class="modal-head" v-show="header">{{{header}}}</div>
-      <div class="modal-body" v-show="body">{{{body}}}</div>
+      <div class="modal-body">
+        <input :type="inpuType" class="modal-input" name="name" v-model="value" :placeholder="placeholder">
+      </div>
       <div class="modal-btns">
         <div class="modal-btn" @click="onConfirm()">{{confirmText}}</div>
-        <div class="modal-btn border-l" @click="onCancel()" v-show="cancel">{{cancalText}}</div>
       </div>
     </div>
   </div>
@@ -14,8 +15,8 @@
 
 <script>
 export default {
-  name: 'modal',
-  template: '#modal',
+  name: 'dialog',
+  template: '#dialog',
   props: {
     show: {
       type: Boolean,
@@ -26,24 +27,22 @@ export default {
       type: String,
       default: ''
     },
-    body: {
-      type: String,
-      default: '',
-      required: true
-    },
     confirmText: {
       type: String,
       default: '好的',
       twoWay: true
     },
-    cancel: {
-      type: Boolean,
-      default: false,
+    inpuType: {
+      type: String,
+      default: 'text',
       twoWay: true
     },
-    cancelText: {
+    value: {
       type: String,
-      default: '取消',
+      twoWay: true
+    },
+    placeholder: {
+      type: String,
       twoWay: true
     }
   },
@@ -57,10 +56,6 @@ export default {
     onConfirm () {
       this.show = false
       this.$emit('on-confirm')
-    },
-    onCancel () {
-      this.show = false
-      this.$emit('on-cancel')
     }
   },
   components: {}
@@ -134,5 +129,12 @@ export default {
   top: 42%;
   /*height: 0;*/
   opacity: 0;
+}
+.modal-input {
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  outline: none;
+  font-size:17px;
+  padding:10px 10px 0 0px;
 }
 </style>
