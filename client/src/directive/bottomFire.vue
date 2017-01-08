@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="bottom-fire" v-show="show" transition="bottomFire">
-    由 <a href="https://vuejs.org/" target="_Blank">Vue</a> 强力驱动 ｜ Designed By <a v-link="{path:'/contact'}" target="_blank">Haowen</a>
+    withyoufriends 由 <a href="https://vuejs.org/" target="_Blank">Vue</a>｜ <a href="http://koajs.com/" target="_Blank">Koa</a> 强力驱动
   </div>
 </template>
 
