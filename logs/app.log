@@ -222,3 +222,27 @@ SyntaxError: Unexpected token (
     at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:52:21)
     at Module._compile (module.js:573:32)
     at Object.Module._extensions..js (module.js:582:10)
+2017-01-09 10:38:17 +08:00: 11========= Router {
+  opts: {},
+  methods: [ 'HEAD', 'OPTIONS', 'GET', 'PUT', 'PATCH', 'POST', 'DELETE' ],
+  params: {},
+  stack: 
+   [ Layer {
+       opts: [Object],
+       name: null,
+       methods: [Object],
+       paramNames: [],
+       stack: [Object],
+       path: '/getComments',
+       regexp: /^\/getComments(?:\/(?=$))?$/i },
+     Layer {
+       opts: [Object],
+       name: null,
+       methods: [Object],
+       paramNames: [],
+       stack: [Object],
+       path: '/addComment',
+       regexp: /^\/addComment(?:\/(?=$))?$/i } ] }
+2017-01-09 10:38:18 +08:00: Mon, 09 Jan 2017 02:38:18 GMT koa deprecated Support for generators will been removed in v3. See the documentation for examples of how to convert old middleware https://github.com/koajs/koa/tree/v2.x#old-signature-middleware-v1x at app.js:25:5
+2017-01-09 10:38:18 +08:00: Mon, 09 Jan 2017 02:38:18 GMT koa deprecated Support for generators will been removed in v3. See the documentation for examples of how to convert old middleware https://github.com/koajs/koa/tree/v2.x#old-signature-middleware-v1x at app.js:31:5
+2017-01-09 10:38:18 +08:00: server started at development, listening at 3001
