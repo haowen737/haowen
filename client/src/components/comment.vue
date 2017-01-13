@@ -5,14 +5,14 @@
     </div>
     <a class="send-container" href="javascript:;" @click="prePost">写好了</a>
     <div class="" v-for="comment in comments">
-      {{comment.content}} author by {{comment.name}} in {{comment.date | formatDate 'YYYY-MM-DD'}}
+      {{comment.content}} author by {{comment.name}} in {{comment.date | formatDate('YYYY-MM-DD')}}
     </div>
-    <dialog :show.sync='showDialog' @on-confirm="onConfirm" confirm-text="好啦" :value.sync="where.name" placeholder="留个名字吧"></dialog>
+    <messanger :show.sync='showDialog' @on-confirm="onConfirm" confirm-text="好啦" :value.sync="where.name" placeholder="留个名字吧"></messanger>
   </div>
 </template>
 
 <script>
-import dialog from './../directive/dialog'
+import messanger from './../directive/messanger'
 export default {
   data () {
     return {
@@ -24,7 +24,7 @@ export default {
       }
     }
   },
-  ready () {
+  mounted () {
     this.query()
   },
   methods: {
@@ -62,7 +62,7 @@ export default {
     post () {}
   },
   components: {
-    dialog
+    messanger
   }
 }
 </script>

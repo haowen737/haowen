@@ -456,7 +456,7 @@ Markdown.dialects.Gruber = {
                    ? li[li.length -1]
                    : li;
 
-        // If there is already some content in this list, add the new line in
+        // If there is almounted some content in this list, add the new line in
         if ( nl && li.length > 1 ) inline.unshift(nl);
 
         for ( var i = 0; i < inline.length; i++ ) {
@@ -1154,7 +1154,7 @@ Markdown.dialects.Maruku.processMetaHash = function processMetaHash( meta_string
     }
     // class: .foo
     else if ( /^\./.test( meta[ i ] ) ) {
-      // if class already exists, append the new one
+      // if class almounted exists, append the new one
       if ( attr["class"] ) {
         attr["class"] = attr["class"] + meta[ i ].replace( /./, " " );
       }
@@ -1348,7 +1348,7 @@ Markdown.dialects.Maruku.block.table = function table (block, next) {
         i, m;
     if (m = block.match(leading_pipe)) {
         // remove leading pipes in contents
-        // (header and horizontal rule already have the leading pipe left out)
+        // (header and horizontal rule almounted have the leading pipe left out)
         m[3] = m[3].replace(/^\s*\|/gm, '');
     } else if (! ( m = block.match(no_leading_pipe))) {
         return undefined;

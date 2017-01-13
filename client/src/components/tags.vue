@@ -1,30 +1,33 @@
 <template lang="html">
-  <div class="tags-layout" transition="fade">
-    <div class="tags" id="container">
-      <header>
-        <!-- <div class="tags-header">Tags</div> -->
-        <div class="tags-header">Tags<span>{{selectedTag}}</span></div>
-        <nav>
-          <!-- <a class="tag-nav" v-link="{path:'/'}" v-show="showTags">Home</a> -->
-          <a class="tag-nav" v-link="{path:'/code'}" v-show="showTags">Return</a>
-          <a class="tag-nav" href="javascript:;" @click="showTags=true,selectedTag=''" v-show="!showTags">Return</a>
-        </nav>
-      </header>
-      <div class="tags-body" v-for="tag in tags" v-show="showTags">
-        <a href="javascript:;"
-        :style="'left:' + Math.random() * 700 + 'px;top:' + Math.random() * 300 + 'px;font-size:' + (Math.random() * 30 + 9) + 'px'"
-        @click="selectTag(tag)">{{tag}}</a>
+  <transition name="fade">
+    <div class="tags-layout">
+      <div class="tags" id="container">
+        <header>
+          <!-- <div class="tags-header">Tags</div> -->
+          <div class="tags-header">Tags<span>{{selectedTag}}</span></div>
+          <nav>
+            <router-link class="tag-nav" :to="{path:'/code'}" v-show="showTags">Return</router-link>
+            <a class="tag-nav" href="javascript:;" @click="showTags=true,selectedTag=''" v-show="!showTags">Return</a>
+          </nav>
+        </header>
+        <div class="tags-body" v-for="tag in tags" v-show="showTags">
+          <a href="javascript:;"
+          :style="'left:' + Math.random() * 700 + 'px;top:' + Math.random() * 300 + 'px;font-size:' + (Math.random() * 30 + 9) + 'px'"
+          @click="selectTag(tag)">{{tag}}</a>
+        </div>
+      </div>
+      <div class="articleList" v-show="!showTags">
+        <header class="articleList-header">
+        </header>
+        <transition name="card">
+          <div class="card" v-for="card in cards" v-link="{path:'code/article/' + card.keywords}" v-show="!showTags" track-by="index">
+            <h1>{{ card.title }}</h1>
+            <span>{{ card.date }}</span>
+          </div>
+        </transition>
       </div>
     </div>
-    <div class="articleList" v-show="!showTags">
-      <header class="articleList-header">
-      </header>
-      <div class="card" v-for="card in cards" v-link="{path:'code/article/' + card.keywords}" v-show="!showTags" track-by="$index" transition="card">
-        <h1>{{ card.title }}</h1>
-        <span>{{ card.date }}</span>
-      </div>
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -42,10 +45,9 @@ export default {
     }
   },
   computed: {},
-  ready () {
+  mounted () {
     this.getTags()
   },
-  attached () {},
   methods: {
     getTags () {
       this.posts = database.posts
@@ -158,7 +160,7 @@ export default {
   text-align: center;
 }
 /*動畫*/
-.card-transition {
+.card-enter-active, .card-leave-active {
   transition: all 0.5s;
   margin: 30px auto 30px;
   opacity: 1;
@@ -167,7 +169,7 @@ export default {
   opacity: 0;
   margin: 0;
 }
-.card-leave {
+.card-leave-active {
   opacity: 0;
   margin: 0;
 }

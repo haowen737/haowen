@@ -1,10 +1,12 @@
 <template lang="html">
-  <div class="loading-layout" :style="{top: top}" v-show="show" transition="fade">
-    <div class="ball ball-1" :style="{backgroundColor: bgColor}"></div>
-    <div class="ball ball-2" :style="{backgroundColor: bgColor}"></div>
-    <div class="ball ball-3" :style="{backgroundColor: bgColor}"></div>
-    <div class="ball ball-4" :style="{backgroundColor: bgColor}"></div>
-  </div>
+  <transition name="fade">
+    <div class="loading-layout" :style="{top: top}" v-show="show">
+      <div class="ball ball-1" :style="{backgroundColor: bgColor}"></div>
+      <div class="ball ball-2" :style="{backgroundColor: bgColor}"></div>
+      <div class="ball ball-3" :style="{backgroundColor: bgColor}"></div>
+      <div class="ball ball-4" :style="{backgroundColor: bgColor}"></div>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -29,8 +31,7 @@ export default {
     }
   },
   computed: {},
-  ready () {},
-  attached () {},
+  mounted () {},
   methods: {},
   components: {}
 }

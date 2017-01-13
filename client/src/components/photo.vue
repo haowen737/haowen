@@ -1,48 +1,54 @@
 <template lang="html">
-  <div class="photo-layout" transition="fade">
-    <div class="dialog-container">
-      <div class="top-bar">It's like you're my mirror </div>
-      <div class="robort-info-bar">
-        <div class="robort-info-avatar"></div>
-        <div class="btn-group">
+  <transition name="fade">
+    <div class="photo-layout">
+      <div class="dialog-container">
+        <div class="top-bar">It's like you're my mirror </div>
+        <div class="robort-info-bar">
+          <div class="robort-info-avatar"></div>
+          <div class="btn-group">
+          </div>
+          <div class="robort-info-text">
+            <div class="robort-info-text-col-1">镜子</div>
+            <div class="robort-info-text-col-2">My mirror staring back at me</div>
+          </div>
         </div>
-        <div class="robort-info-text">
-          <div class="robort-info-text-col-1">镜子</div>
-          <div class="robort-info-text-col-2">My mirror staring back at me</div>
+        <div class="dialog-content" id="wrapper">
+          <ul>
+            <transition-group name="slidedown">
+              <li class="dialog-block" v-for="log in logs" :key="log">
+                <div class="dialog-block-time">{{log.time | formatDate('HH:mm')}} PM</div>
+                <div class="dialog-avatar">
+                  <div class="robort-dialog-avatar" v-show="log.user===0"></div>
+                  <div class="user-dialog-avatar" v-show="log.user===1">
+                    <span>You</span>
+                  </div>
+                </div>
+                <div class="dialog-block-text" v-html="log.text">
+                </div>
+              </li>
+            </transition-group>
+          </ul>
         </div>
-      </div>
-      <div class="dialog-content" id="wrapper">
-        <ul>
-          <li class="dialog-block" v-for="log in logs" transition="slidedown">
-            <div class="dialog-block-time">{{log.time | formatDate 'HH:mm'}} PM</div>
-            <div class="dialog-avatar">
-              <div class="robort-dialog-avatar" v-show="log.user===0"></div>
-              <div class="user-dialog-avatar" v-show="log.user===1">
-                <span>You</span>
-              </div>
+        <div class="bottom-bar">
+          <transition name="fade">
+            <div class="isTyping" v-show="showIsTyping">
+              Mirror is typing ...
             </div>
-            <div class="dialog-block-text">{{{log.text}}}
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="bottom-bar">
-        <div class="isTyping" v-show="showIsTyping" transition="fade">
-          Mirror is typing ...
-        </div>
-        <div class="input-container">
-          <input type="text" name="userInput" v-model="userInput" @keypress="submitInput">
+          </transition>
+          <div class="input-container">
+            <input type="text" name="userInput" v-model="userInput" @keypress="submitInput">
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
 import IScroll from 'iscroll'
 import Modal from './../directive/modal'
 export default {
-  data: function () {
+  data  () {
     return {
       showSidebar: 0,
       greetMode: 0,
@@ -55,12 +61,11 @@ export default {
     }
   },
   computed: {},
-  ready: function () {
+  mounted  () {
     console.log(3)
     this.initScroll()
     this.initPage()
   },
-  attached: function () {},
   methods: {
     initPage () {
       this.username = window.localStorage.getItem('username')
@@ -262,9 +267,11 @@ export default {
   height: calc(100% - 125px)
 }
 .input-container input {
+  width: 100%;
   font-size: 15px;
   position: absolute;
   top: 0;
+  left: 0;
   height: 100%;
   outline: none;
   border: 1px;

@@ -17,8 +17,7 @@ export default {
     }
   },
   computed: {},
-  ready () {},
-  attached () {},
+  mounted () {},
   methods: {
     clickList () {
       if (this.btnTransition !== 'btn-upper-arrow') {

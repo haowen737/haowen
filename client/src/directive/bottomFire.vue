@@ -1,7 +1,9 @@
 <template lang="html">
-  <div class="bottom-fire" v-show="show" transition="bottomFire">
-    withyoufriends 由 <a href="https://vuejs.org/" target="_Blank">Vue</a>｜ <a href="http://koajs.com/" target="_Blank">Koa</a> 强力驱动
-  </div>
+  <transition name="bottomFire">
+    <div class="bottom-fire" v-show="show">
+      withyoufriends 由 <a href="https://vuejs.org/" target="_Blank">Vue</a>｜ <a href="http://koajs.com/" target="_Blank">Koa</a> 强力驱动
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -19,8 +21,7 @@ export default {
     }
   },
   computed: {},
-  ready () {},
-  attached () {},
+  mounted () {},
   methods: {},
   components: {}
 }
@@ -34,6 +35,7 @@ export default {
 .bottom-fire {
   position: fixed;
   bottom: 0;
+  height: 100px;
   background-color: #000;
   width: 100%;
   z-index: 999;
@@ -43,12 +45,12 @@ export default {
   line-height: 100px;
   color: #bbb;
 }
-.bottomFire-transition {
+.bottomFire-enter-active, .bottomFire-leave-active {
   transition: all .3s ease;
   height: 100px;
   /*opacity: 1;*/
 }
-.bottomFire-enter, .bottomFire-leave {
+.bottomFire-enter, .bottomFire-leave-active {
   /*opacity: 0;*/
   height: 0;
 }

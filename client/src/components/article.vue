@@ -4,9 +4,9 @@
       <div class="logo cur-default">Haowen</div>
       <hr>
       <nav class="article-nav">
-        <div class="article-nav-item"><a v-link="{path:'/'}">首页</a></div>
-        <div class="article-nav-item"><a v-link="{path:'/code'}">上一页</a></div>
-        <div class="article-nav-item"><a v-link="{path:'/'}">干嘛</a></div>
+        <div class="article-nav-item"><router-link :to="{path:'/'}">首页</router-link></a></div>
+        <div class="article-nav-item"><router-link :to="{path:'/code'}">上一页</router-link></a></div>
+        <div class="article-nav-item"><router-link :to="{path:'/'}">干嘛</router-link></a></div>
       </nav>
     </header>
     <div v-html="content" class="markdown-body"></div>
@@ -26,11 +26,10 @@ export default {
     }
   },
   computed: {},
-  ready () {
+  mounted () {
     this.showLoading = true
     this.getArticle()
   },
-  attached () {},
   methods: {
     getArticle () {
       let title = this.$route.params.id

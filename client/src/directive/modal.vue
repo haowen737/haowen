@@ -1,15 +1,19 @@
 <template lang="html">
   <!-- todo: mask点击关闭 ， try index》》 mask-->
-  <div class="modal-fade" v-show="show" transition="modal-fade">
-    <div class="modal" v-show="show" transition="modal">
-      <div class="modal-head" v-show="header">{{{header}}}</div>
-      <div class="modal-body" v-show="body">{{{body}}}</div>
-      <div class="modal-btns">
-        <div class="modal-btn" @click="onConfirm()">{{confirmText}}</div>
-        <div class="modal-btn border-l" @click="onCancel()" v-show="cancel">{{cancalText}}</div>
-      </div>
+  <transition name="modal-fade">
+    <div class="modal-fade" v-show="show">
+      <transition name="modal">
+        <div class="modal" v-show="show">
+          <div class="modal-head" v-show="header" v-html="header"></div>
+          <div class="modal-body" v-show="body" v-html="body"></div>
+          <div class="modal-btns">
+            <div class="modal-btn" @click="onConfirm()">{{confirmText}}</div>
+            <div class="modal-btn border-l" @click="onCancel()" v-show="cancel">{{cancalText}}</div>
+          </div>
+        </div>
+      </transition>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -51,8 +55,7 @@ export default {
     return {}
   },
   computed: {},
-  ready () {},
-  attached () {},
+  mounted () {},
   methods: {
     onConfirm () {
       this.show = false
@@ -113,22 +116,22 @@ export default {
   width: 100%;
   height: 100%;
 }
-.modal-fade-transition {
+.modal-fade-enter-active, .modal-fade-leave-active {
   transition: all .3s;
   opacity: 1;
 }
-.modal-fade-enter, .modal-fade-leave {
+.modal-fade-enter, .modal-fade-leave-active {
   background-color: rgba(0,0,0,0);
   opacity: 0;
 }
-.modal-transition {
+.modal-enter-active, .modal-leave-active {
   transition: all .3s;
   position: relative;
   top: 45%;
   /*height: auto;*/
   opacity: 1;
 }
-.modal-enter, .modal-leave {
+.modal-enter, .modal-leave-active {
   background-color: rgba(0,0,0,0);
   position: relative;
   top: 42%;

@@ -2,22 +2,26 @@
   <div class="demoHouse-layout" id="container">
     <header>
       <canvas id="canvas"
-      v-el:canvas
+      ref="canvas"
       width="500"
       height="300"></canvas>
     </header>
-    <div class="content-latout" v-show="showContent" transition="content-latout">
-      <div class="content">
-        <div class="inner-box">
-          <a v-link="{path:'/demo/zoom-slider'}">1. 一个轮播</a>
-          <a v-link="{path:'/demo/clock'}">2. 一只时钟</a>
+    <transition name="content-latout">
+      <div class="content-latout" v-show="showContent">
+        <div class="content">
+          <div class="inner-box">
+            <router-link :to="{path:'/demo/zoom-slider'}">1. 一个轮播</router-link>
+            <router-link :to="{path:'/demo/clock'}">2. 一只时钟</router-link>
+          </div>
         </div>
       </div>
-    </div>
+    </transition>
     <spinning-spread @on-spread="spreadContent"></spinning-spread>
-  </div>
-  <div class="loading-bg" v-show="showLoading" transition="fade">
-    <loading top="50%"></loading>
+    <transition name="fade">
+      <div class="loading-bg" v-show="showLoading">
+        <loading top="50%"></loading>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -25,18 +29,17 @@
 import loading from './../directive/loading'
 import spinningSpread from './../demo/spinningSpread'
 export default {
-  data: function () {
+  data  () {
     return {
       showLoading: false,
       showContent: false
     }
   },
   computed: {},
-  ready: function () {
+  mounted  () {
     this.initPage()
     // this.queryDemos()
   },
-  attached: function () {},
   methods: {
     queryDemos () {
       this.showLoading = true
@@ -48,8 +51,8 @@ export default {
       this.getPen()
     },
     getPen () {
-      if (this.$els.canvas.getContext) {
-        this.ctx = this.$els.canvas.getContext('2d')
+      if (this.$refs.canvas.getContext) {
+        this.ctx = this.$refs.canvas.getContext('2d')
         this.getImg()
       } else {
         return
@@ -119,7 +122,7 @@ export default {
   background-color: #000;
 }
 /*过渡*/
-.content-latout-transition {
+.content-latout-enter-active, .content-latout-leave-active {
   transition: all .7s ease;
   /*height: calc(100%);*/
   position: absolute;
@@ -127,7 +130,7 @@ export default {
   opacity: 1;
   /*opacity: 1;*/
 }
-.content-latout-enter, .content-latout-leave {
+.content-latout-enter, .content-latout-leave-active {
   background-color: rgba(0,0,0,0);
   /*height: calc(-10%);*/
   position: absolute;

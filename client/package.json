@@ -18,9 +18,14 @@
     "iscroll": "^5.2.0",
     "markdown": "^0.5.0",
     "particles.js": "^2.0.0",
-    "vue": "^1.0.21",
+    "vue": "^2.0.1",
     "vue-resource": "^1.0.2",
-    "vue-router": "^0.7.13"
+    "vue-router": "^2.0.0"
+  },
+  "resolve": {
+    "alias": {
+      "vue$": "vue/dist/vue.common.js"
+    }
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -72,7 +77,7 @@
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
-    "vue-loader": "^8.3.0",
+    "vue-loader": "^9.0.0",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",

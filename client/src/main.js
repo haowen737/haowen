@@ -4,21 +4,21 @@ import Ocean from './ocean'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import routers from './routers'
-import Sidebar from './directive/sidebar'
 
 import './assets/styles/base.css'
 import 'github-markdown-css/github-markdown.css'
-// new Vue({
-//   el: 'body',
-//   components: { App }
-// })
+
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.use(Ocean)
 Vue.use(Utils)
+console.log(Vue)
+const router = new VueRouter({
+  routes: routers
+})
 
-let app = Vue.extend({
-  data: function () {
+new Vue({
+  data  () {
     return {
       offsetHeight: 0,
       innerHeight: 0,
@@ -28,11 +28,8 @@ let app = Vue.extend({
       }
     }
   },
-  ready: function () {
+  mounted () {
     this.watchBottom()
-  },
-  components: {
-    Sidebar
   },
   methods: {
     watchBottom () {
@@ -48,13 +45,7 @@ let app = Vue.extend({
         }
       })
     }
-  }
-})
-
-let router = new VueRouter({
-  // history: true,
-  hashbang: false
-})
-
-router.map(routers)
-router.start(app, 'html')
+  },
+  router: router,
+  render: h => h('router-view')
+}).$mount('#app')

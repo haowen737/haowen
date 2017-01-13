@@ -53,52 +53,52 @@ p {
   cursor: default;
 }
 /***动画***/
-.fade-transition {
+.fade-enter-active, .fade-leave-active {
   transition: all .3s ease-out;
   opacity: 1;
 }
-.fade-enter, .fade-leave {
+.fade-enter, .fade-leave-active {
   opacity: 0;
 }
-.fade-contact-transition {
+.fade-contact-enter-active, .fade-contact-leave-active {
   transition: all .3s ease-out;
   opacity: 1;
 }
 .fade-contact-enter {
   opacity: 0;
 }
-.fade-contact-leave {
+.fade-contact-leave-active {
   opacity: 0;
 }
-.motto-transition {
+.motto-enter-active, .motto-leave-active {
   transition: all .3s ease-out;
   line-height: 1;
   height: 20px;
   opacity: 1;
 }
-.motto-enter, .motto-leave {
+.motto-enter, .motto-leave-active {
   line-height: 0;
   top: 30px;
   opacity: 0;
 }
-.slidedown-transition {
+.slidedown-enter-active, .slidedown-leave-active {
   transition: all .3s ease-out;
   position: absolute;
   opacity: 1;
   top: 0px;
 }
-.slidedown-enter, .slidedown-leave {
+.slidedown-enter, .slidedown-leave-active {
   line-height: 0;
   opacity: 0;
   top: 30px;
 }
-.slideup-transition {
+.slideup-enter-active, .slideup-leave-active {
   transition: all .3s ease-out;
   position: absolute;
   opacity: 1;
   top: 0px;
 }
-.slideup-enter, .slideup-leave {
+.slideup-enter, .slideup-leave-active {
   line-height: 0;
   opacity: 0;
   top: -30px;

@@ -7,19 +7,21 @@
           <div class="site-subtitle cur-default">Live a life you will remember!</div>
           <nav class="site-nav">
             <ul>
-              <li><a v-link="{path:'/'}">首页</a></li>
-              <li><a v-link="{path:'/tags'}">标签</a></li>
-              <li><a v-link="{path:'/contact'}">我</a></li>
-              <li><a v-link="{path:'/comment'}">留言</a></li>
+              <li><router-link :to="{path:'/'}">首页</router-link></li>
+              <li><router-link :to="{path:'/tags'}">标签</router-link></li>
+              <li><router-link :to="{path:'/contact'}">我</router-link></li>
+              <li><router-link :to="{path:'/comment'}">留言</router-link></li>
             </ul>
           </nav>
         </div>
       </div>
       <div class="cards">
-        <div class="card" v-for="card in cards" v-link="{path:'code/article/' + card.keywords}" @click="showBottomFire=false" transition="card">
-          <h1>{{ card.title }}</h1>
-          <span>{{ card.date }}</span>
-        </div>
+        <transition-group name="card">
+          <router-link class="card" v-for="card in cards" :to="{path:'code/article/' + card.keywords}" @click="showBottomFire=false" :key="card">
+            <h1>{{ card.title }}</h1>
+            <span>{{ card.date }}</span>
+          </router-link>
+        </transition-group>
       </div>
     </div>
     <bottom-fire :show.sync="showBottomFire"></bottom-fire>
@@ -30,18 +32,17 @@
 import BottomFire from './../directive/bottomFire'
 import database from './../../database'
 export default {
-  data: function () {
+  data  () {
     return {
       showBottomFire: false,
       cards: {}
     }
   },
   computed: {},
-  ready: function () {
+  mounted  () {
     this.getCards()
     this.query()
   },
-  attached: function () {},
   methods: {
     getCards () {
       this.cards = database.posts
@@ -105,8 +106,9 @@ export default {
   padding-bottom: 160px;
 }
 .card {
+  display: block;
   position: relative;
-  margin: 0 auto 30px;
+  margin: 30px auto 30px;
   padding: 20px;
   width: 500px;
   box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
@@ -127,16 +129,12 @@ export default {
   right: 5px;
   top: 5px;
 }
-.card-transition {
+.card-enter-active, .card-leave-active {
   transition: all .5s;
   margin: 30px auto 30px;
   opacity: 1;
 }
-.card-enter {
-  opacity: 0;
-  margin: 0;
-}
-.card-leave {
+.card-enter, .card-leave-active {
   opacity: 0;
   margin: 0;
 }

@@ -1,6 +1,9 @@
 <template lang="html">
-  <div class="moods-layout" transition="fade-contact">
-    <modal :show.sync='showModal' :body="modalBody" @on-confirm="onConfirm"></modal>
+  <transition name="fade-content">
+    <div class="moods-layout">
+      <modal :show.sync='showModal' :body="modalBody" @on-confirm="onConfirm"></modal>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -13,10 +16,9 @@ export default {
     }
   },
   computed: {},
-  ready () {
+  mounted () {
     this.showModal = true
   },
-  attached () {},
   methods: {
     onConfirm () {
       console.log('this is ok')

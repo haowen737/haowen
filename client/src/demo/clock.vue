@@ -1,13 +1,15 @@
 <template lang="html">
-  <div class="clock-wrap" transition="slideup">
-    <div class="clock-surface">
-      <div class="clock-center">
-        <div class="hand-hour" :style="{transform: 'rotate(' + hourRotate + 'deg)'}"></div>
-        <div class="hand-min" :style="{transform: 'rotate(' + minRotate + 'deg)'}"></div>
-        <div class="hand-sec" :style="{transform: 'rotate(' + secRotate + 'deg)'}"></div>
+  <transition name="slideup"
+    <div class="clock-wrap">
+      <div class="clock-surface">
+        <div class="clock-center">
+          <div class="hand-hour" :style="{transform: 'rotate(' + hourRotate + 'deg)'}"></div>
+          <div class="hand-min" :style="{transform: 'rotate(' + minRotate + 'deg)'}"></div>
+          <div class="hand-sec" :style="{transform: 'rotate(' + secRotate + 'deg)'}"></div>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -19,7 +21,7 @@ export default {
       secRotate: ''
     }
   },
-  ready () {
+  mounted () {
     this.initClock()
   },
   methods: {

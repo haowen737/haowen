@@ -8,35 +8,44 @@
         <!-- <div class="">
           嘿嘿嘿
         </div> -->
-        <div class="form-group" transition="moodsLogin" v-show="showForm">
-          <input
-          autocomplete="off"
-          type="text"
-          name="name"
-          v-model="where.user_name"
-          @focus="focusInput"
-          @keypress="submitInput">
-          <div class="input-bottom">
-            <div class="input-label" :class="labelClass">Your name?</div>
-            <div class="submitBtn" href="Javascript:;" :class="labelClass" @click.prevent="submit" transition="fade">Next</div>
+        <transition name="moodsLogin">
+          <div class="form-group" v-show="showForm">
+            <input
+            autocomplete="off"
+            type="text"
+            name="name"
+            v-model="where.user_name"
+            @focus="focusInput"
+            @keypress="submitInput">
+            <div class="input-bottom">
+              <div class="input-label" :class="labelClass">Your name?</div>
+              <transition name="fade">
+                <div class="submitBtn" href="Javascript:;" :class="labelClass" @click.prevent="submit">Next</div>
+              </transition>
+            </div>
+            <transition name="fade">
+              <div class="input-mask" v-show="showMask" @click="focusInput"></div>
+            </transition>
           </div>
-          <div class="input-mask"
-          v-show="showMask"
-          @click="focusInput"
-          transition="fade"></div>
-        </div>
-        <div class="deny-card" v-show="showDeny" transition="deny">
-          <p>
-            啊呃，进不去(⊙﹏⊙)
-          </p>
-          <a href="javascript:;" @click="tryAgain">返回</a>
-        </div>
-        <div class="agree-card" v-show="showAgree" transition="deny">
-          <p>
-            Welcome
-          </p>
-        </div>
-        <loading v-show="showLoading" transition="deny" top="60px"></loading>
+        </transition>
+        <transition name="deny">
+          <div class="deny-card" v-show="showDeny">
+            <p>
+              啊呃，进不去(⊙﹏⊙)
+            </p>
+            <a href="javascript:;" @click="tryAgain">返回</a>
+          </div>
+        </transition>
+        <transition name="deny">
+          <div class="agree-card" v-show="showAgree">
+            <p>
+              Welcome
+            </p>
+          </div>
+        </transition>
+        <transition name="deny">
+          <loading v-show="showLoading" top="60px"></loading>
+        </transition>
       </div>
       <div class="bottom-bar">{{bottomText}}</div>
     </div>
@@ -62,10 +71,9 @@ export default {
     }
   },
   computed: {},
-  ready () {
+  mounted () {
     this.initBottomText()
   },
-  attached () {},
   methods: {
     focusInput () {
       this.showMask === true ? this.showMask = false : this.showMask = true
@@ -86,7 +94,7 @@ export default {
         if (this.where.user_name === 'haowen') {
           this.showAgree = true
           window.setTimeout(() => {
-            this.$router.go('/moods')
+            this.$router.push('/moods')
           }, 1000)
         } else {
           this.showDeny = true
@@ -283,21 +291,21 @@ input {
   transform: translateX(-50%);
 }
 /*动画*/
-.moodsLogin-transition {
+.moodsLogin-enter-active, .moodsLogin-leave-active {
   transition: all .3s;
   top: 0;
   opacity: 1;
 }
-.moodsLogin-enter, .moodsLogin-leave {
+.moodsLogin-enter, .moodsLogin-leave-active {
   top: -40px;
   opacity: 0;
 }
-.deny-transition {
+.deny-enter-active, .deny-leave-active {
   transition: all .5s;
   top: 50px;
   opacity: 1;
 }
-.deny-enter, .deny-leave {
+.deny-enter, .deny-leave-active {
   top: 100px;
   opacity: 0;
 }

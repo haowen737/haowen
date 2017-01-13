@@ -17,53 +17,54 @@ import ZoomSlider from './demo/zoomSlider'
 
 import Loading from './directive/loading'
 
-export default {
-  '/': {
+export default [
+  {
+    path: '/',
     component: Dashboard
-  },
-  '/photo': {
+  }, {
+    path: '/photo',
     component: Photo
-  },
-  '/code': {
+  }, {
+    path: '/code',
     component: Code
-  },
-  '/demo-house': {
+  }, {
+    path: '/demo-house',
     component: DemoHouse
-  },
-  '/tags': {
+  }, {
+    path: '/tags',
     component: Tags
-  },
-  '/comment': {
+  }, {
+    path: '/comment',
     component: Comment
-  },
-  '/code/article/:id': {
+  }, {
+    path: '/code/article/:id',
     component: Article
-  },
-  '/contact': {
+  }, {
+    path: '/contact',
     component: Contact
-  },
-  '/moods': {
+  }, {
+    path: '/moods',
     component: Moods
-  },
-  '/moods/login': {
+  }, {
+    path: '/moods/login',
     component: MoodsLogin
-  },
-  '/demo/loading': {
+  }, {
+    path: '/demo/loading',
     component: Loading
-  },
-  '/black': {
+  }, {
+    path: '/black',
     component: Black
-  },
-  '/demo/zoom-slider': {
+  }, {
+    path: '/demo/zoom-slider',
     component: ZoomSlider
-  },
-  '/demo/flextest': {
+  }, {
+    path: '/demo/flextest',
     component: Flextest
-  },
-  'demo/cellular': {
+  }, {
+    path: 'demo/cellular',
     component: Cellular
-  },
-  'demo/clock': {
+  }, {
+    path: 'demo/clock',
     component: Clock
   }
-}
+]

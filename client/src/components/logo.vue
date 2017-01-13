@@ -2,30 +2,30 @@
 <template lang="html">
   <div class="nav">
     <!-- <canvas id="canvas"
-    v-el:canvas
+    ref="canvas"
     width="400"
     height="100"
     @mouseover="showMotto=true"
     @mouseout="showMotto=false"></canvas> -->
     <canvas id="canvas"
-    v-el:canvas
+    ref="canvas"
     width="400"
     height="100"></canvas>
-    <h1
-    v-show="showMotto"
-    transition="motto">Live a life you will remember!</h1>
+    <transition name="motto">
+      <h1 v-show="showMotto">Live a life you will remember!</h1>
+    </transition>
     <div class="logo-btns">
-      <div class="logo-btn"><a v-link="{path:'/code'}">Pen</a></div>
-      <div class="logo-btn"><a v-link="{path:'/black'}">Blvck</a></div>
-      <div class="logo-btn"><a v-link="{path:'/moods/login'}">Moods</a></div>
-      <div class="logo-btn"><a v-link="{path:'/photo'}">Mirror</a></div>
+      <div class="logo-btn"><router-link :to="{path:'/code'}">Pen</router-link></div>
+      <div class="logo-btn"><router-link :to="{path:'/black'}">Blvck</router-link></div>
+      <div class="logo-btn"><router-link :to="{path:'/moods/login'}">Moods</router-link></div>
+      <div class="logo-btn"><router-link :to="{path:'/photo'}">Mirror</router-link></div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data: function () {
+  data  () {
     return {
       ctx: '',
       showMotto: true,
@@ -33,14 +33,13 @@ export default {
     }
   },
   computed: {},
-  ready () {
+  mounted () {
     this.getPen()
   },
-  attached () {},
   methods: {
     getPen () {
-      if (this.$els.canvas.getContext) {
-        this.ctx = this.$els.canvas.getContext('2d')
+      if (this.$refs.canvas.getContext) {
+        this.ctx = this.$refs.canvas.getContext('2d')
       }
       this.getImg()
     },
@@ -78,7 +77,7 @@ export default {
     gotoCode () {
       this.showNav = false
       setTimeout(() => {
-        this.$router.go({path: '/code'})
+        this.$router.push({path: '/code'})
       }, 500)
     }
   },

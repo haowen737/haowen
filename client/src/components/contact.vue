@@ -1,47 +1,58 @@
 <template lang="html">
-  <div class="contact-layout" transition="fade-contact">
-    <div class="head-img-layout">
-      <div class="head-img"></div>
+  <transition name="fade-contact">
+    <div class="contact-layout">
+      <div class="head-img-layout">
+        <div class="head-img"></div>
+      </div>
+      <div class="head-content">
+        <p>郑皓文</p>
+        <p>中国计量大学</p>
+      </div>
+      <div class="content-list">
+        <div class="contact-item">
+          <a href="javascript:;">
+            <img src="./../assets/images/github.png" alt="" />
+            <transition name="fade-item">
+              <div class="contact-item-text" v-show="show===1">Github</div>
+            </transition>
+          </a>
+        </div>
+        <div class="contact-item">
+          <a href="javascript:;">
+            <img src="./../assets/images/zhihu.png" alt="" />
+            <transition name="fade-item">
+              <div class="contact-item-text" v-show="show===2">Zhihu</div>
+            </transition>
+          </a>
+        </div>
+        <div class="contact-item">
+          <!-- <a href="mailto: mandychuck@outlook.com" @mouseover="show=3" @mouseout="show=0"> -->
+          <a href="javascript:;">
+            <img src="./../assets/images/mail.png" alt="" />
+            <transition name="fade-item">
+              <div class="contact-item-text" v-show="show===3">Mail</div>
+            </transition>
+          </a>
+        </div>
+        <div class="contact-item">
+          <a href="javascript:;">
+            <img src="./../assets/images/500px.png" alt="" />
+            <transition name="fade-item">
+              <div class="contact-item-text" v-show="show===4">500PX</div>
+            </transition>
+          </a>
+        </div>
+        <!-- <div class="contact-item">
+          <a href="javascript:;" @mouseover="show=5" @mouseout="show=0" @click="jumpTo(5)">
+            <img src="./../assets/images/500px.png" alt="" />
+            <transition name="fade-item">
+            <div class="contact-item-text" v-show="show===5">Moods</div>
+          </a>
+        </div> -->
+      </div>
+      <modal :show.sync='showModal' :body="modalBody" @on-confirm="onConfirm"></modal>
     </div>
-    <div class="head-content">
-      <p>郑皓文</p>
-      <p>中国计量大学</p>
-    </div>
-    <div class="contact">
-      <div class="contact-item">
-        <a href="javascript:;" @mouseover="show=1" @mouseout="show=0" @click="jumpTo(1)">
-          <img src="./../assets/images/github.png" alt="" />
-          <div class="contact-item-text" v-show="show===1" transition="fade-item">Github</div>
-        </a>
-      </div>
-      <div class="contact-item">
-        <a href="javascript:;" @mouseover="show=2" @mouseout="show=0" @click="jumpTo(2)">
-          <img src="./../assets/images/zhihu.png" alt="" />
-          <div class="contact-item-text" v-show="show===2" transition="fade-item">Zhihu</div>
-        </a>
-      </div>
-      <div class="contact-item">
-        <!-- <a href="mailto: mandychuck@outlook.com" @mouseover="show=3" @mouseout="show=0"> -->
-        <a href="javascript:;" @mouseover="show=3" @mouseout="show=0" @click="jumpTo(3)">
-          <img src="./../assets/images/mail.png" alt="" />
-          <div class="contact-item-text" v-show="show===3" transition="fade-item">Mail</div>
-        </a>
-      </div>
-      <div class="contact-item">
-        <a href="javascript:;" @mouseover="show=4" @mouseout="show=0" @click="jumpTo(4)">
-          <img src="./../assets/images/500px.png" alt="" />
-          <div class="contact-item-text" v-show="show===4" transition="fade-item">500PX</div>
-        </a>
-      </div>
-      <!-- <div class="contact-item">
-        <a href="javascript:;" @mouseover="show=5" @mouseout="show=0" @click="jumpTo(5)">
-          <img src="./../assets/images/500px.png" alt="" />
-          <div class="contact-item-text" v-show="show===5" transition="fade-item">Moods</div>
-        </a>
-      </div> -->
-    </div>
-  </div>
-  <modal :show.sync='showModal' :body="modalBody" @on-confirm="onConfirm"></modal>
+  </transition>
 </template>
 
 <script>
@@ -56,8 +67,7 @@ export default {
     }
   },
   computed: {},
-  ready () {},
-  attached () {},
+  mounted () {},
   methods: {
     showText (index) {
       this.show = index
@@ -74,7 +84,7 @@ export default {
           break
         case 4 : window.open('https://500px.com/haowen')
           break
-        case 5 : this.$router.go('/moods/login')
+        case 5 : this.$router.push('/moods/login')
           break
       }
     },
@@ -116,6 +126,9 @@ export default {
 .contact-item img {
   width: 100%;
 }
+.content-list {
+  display: flex;
+}
 .contact-item {
   flex: 1 1 auto;
   text-align: center;
@@ -156,11 +169,11 @@ export default {
   font-weight: 400;
 }
 /*動畫*/
-.fade-item-transition {
+.fade-item-enter-active, .fade-item-leave-active {
   transition: all .5s ease-out;
   opacity: 1;
 }
-.fade-item-enter, .fade-item-leave {
+.fade-item-enter, .fade-item-leave-active {
   opacity: 0;
 }
 </style>

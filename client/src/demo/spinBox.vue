@@ -11,8 +11,7 @@ export default {
     return {}
   },
   computed: {},
-  ready () {},
-  attached () {},
+  mounted () {},
   methods: {},
   components: {}
 }

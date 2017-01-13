@@ -1,20 +1,22 @@
 <template lang="html">
-  <div id="particlesJs" v-show="showNav" transition="fade">
-    <logo></logo>
-  </div>
+  <transition name="fade">
+    <div id="particlesJs" v-show="showNav">
+      <logo></logo>
+    </div>
+  </transition>
 </template>
 
 <script>
 import Particle from 'particles.js'
 import Logo from './logo'
 export default {
-  data: function () {
+  data  () {
     return {
       showNav: true
     }
   },
   computed: {},
-  ready: function () {
+  mounted  () {
     window.particlesJS('particlesJs', {
       'particles': {
         'number': {
@@ -126,7 +128,6 @@ export default {
       'retina_detect': true
     })
   },
-  attached: function () {},
   methods: {},
   components: {
     Particle, Logo

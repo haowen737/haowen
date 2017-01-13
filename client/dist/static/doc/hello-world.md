@@ -45,6 +45,9 @@ Live a life you will remember!
 ***
 里程碑－－大事记
 ***
+-->> update 2017-01-13 <<--
+* 升级vue2.0
+***
 -->> update 2017-01-07 <<--
 * 数据库添加comments表和users表
 * 新增了几个api

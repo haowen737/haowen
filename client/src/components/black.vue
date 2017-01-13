@@ -7,19 +7,23 @@
     loop="loop"
     id="video">
 		</video>
-    <div class="text-container" v-show="!showLoading" transition="black-text">
-      <p class="title">BLACK</p>
-      <p class="title-second">is only as beautiful... as you make it</p>
-    </div>
-    <div class="demolist-container" @mouseover="doDemolist">
-      <div class="demolist" v-show="showDemolist" transition="demolist" @mouseout="reDemolist">
-        <a class="demolist-item-container" v-link="{path: demo.url}" v-for="demo in demolist">
-          <div class="demolist-item-img">
-
-          </div>
-          <p class="demolist-item-title">{{demo.title}}</p>
-        </a>
+    <transition name="black-text">
+      <div class="text-container" v-show="!showLoading">
+        <p class="title">BLACK</p>
+        <p class="title-second">is only as beautiful... as you make it</p>
       </div>
+    </transition>
+    <div class="demolist-container" @mouseover="doDemolist">
+      <transition name="demolist">
+        <div class="demolist" v-show="showDemolist" @mouseout="reDemolist">
+          <router-link class="demolist-item-container" :to="{path: demo.url}" v-for="demo in demolist">
+            <div class="demolist-item-img">
+
+            </div>
+            <p class="demolist-item-title">{{demo.title}}</p>
+          </router-link>
+        </div>
+      </transition>
     </div>
     <div class="loading-bg" v-show="showLoading">
       <loading top="50%"></loading>
@@ -42,11 +46,10 @@ export default {
     }
   },
   computed: {},
-  ready () {
+  mounted () {
     this.demolist = demolist
     this.initPage()
   },
-  attached () {},
   methods: {
     initPage () {
       this.video = document.getElementById('video')
@@ -134,11 +137,11 @@ export default {
   background-color: #000;
   z-index: -1;
 }
-.black-text-transition {
+.black-text-enter-active, .black-text-leave-active {
   transition: all 2s;
   opacity: 1;
 }
-.black-text-enter, .black-text-leave {
+.black-text-enter, .black-text-leave-active {
   opacity: 0;
 }
 .black-layout {
@@ -157,12 +160,12 @@ export default {
     opacity: 1;
   }
 }
-.demolist-transition {
+.demolist-enter-active, .demolist-leave-active {
   transition: all .5s ease;
   opacity: 1;
   height: 200px;
 }
-.demolist-enter, .demolist-leave {
+.demolist-enter, .demolist-leave-active {
   opacity: 0;
   height: 0px;
 }
