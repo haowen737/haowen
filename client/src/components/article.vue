@@ -16,7 +16,7 @@
 
 <script>
 import Markdown from 'markdown/lib/markdown.js'
-import loading from './../directive/loading'
+import loading from './../packages/loading'
 export default {
   data () {
     return {

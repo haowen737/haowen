@@ -4,20 +4,32 @@
       <textarea rows="7" cols="20" v-model="where.content"></textarea>
     </div>
     <a class="send-container" href="javascript:;" @click="prePost">写好了</a>
-    <div class="" v-for="comment in comments">
-      {{comment.content}} author by {{comment.name}} in {{comment.date | formatDate('YYYY-MM-DD')}}
+    <div class="comments-container">
+      <transition-group name="commentCard">
+        <div class="comment" v-for="comment in comments" :key="comment">
+          <div class="comment-inner">
+            <p class="comment-content">{{comment.content}}</p>
+            <p class="comment-author">by {{comment.name}} &nbsp;&nbsp;&nbsp;&nbsp;{{comment.date | formatDate('YYYY-MM-DD')}}</p>
+          </div>
+        </div>
+      </transition-group>
     </div>
-    <messanger :show.sync='showDialog' @on-confirm="onConfirm" confirm-text="好啦" :value.sync="where.name" placeholder="留个名字吧"></messanger>
+    <messangerr
+    :display="showMessanger"
+    :value.sync="where.name"
+    @on-confirm="onConfirm"
+    confirm-text="好啦"
+    placeholder="留个名字吧"></messangerr>
   </div>
 </template>
 
 <script>
-import messanger from './../directive/messanger'
+import messangerr from './../packages/messangerr'
 export default {
   data () {
     return {
       comments: [],
-      showDialog: false,
+      showMessanger: false,
       where: {
         content: '',
         name: ''
@@ -29,11 +41,12 @@ export default {
   },
   methods: {
     prePost () {
-      this.showDialog = true
+      this.showMessanger = true
     },
     onConfirm () {
       let where = this.where
-      console.log(where, where.name)
+      this.showMessanger = false
+
       // if (!where.name) {
       //   where.name = 'NEMO'
       // }
@@ -52,8 +65,8 @@ export default {
     query () {
       this.$http.get('/api/comment/getComments')
       .then(function (res) {
-        console.log(res)
         this.comments = res.data.data.reverse()
+        console.log(this.comments)
       })
       .catch(function (err) {
         console.log(err)
@@ -62,12 +75,36 @@ export default {
     post () {}
   },
   components: {
-    messanger
+    messangerr
   }
 }
 </script>
 
 <style lang="css" scoped>
+.comment-inner {
+  padding: 20px;
+}
+.comment-author {
+  text-align: right;
+  font-size: 13px;
+  color: #999;
+}
+.comment-content {
+  font-size: 18px;
+}
+.comment p {
+  line-height: 1;
+}
+.comment {
+  margin: 30px;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+.comments-container {
+  border-top: 1px solid #999;
+  margin: 100px;
+}
 .name-input {
   border: 1px solid rgba(0,0,0,0.2);
   outline: none;
@@ -131,5 +168,14 @@ export default {
   background-color: rgba(0,0,0,0.1);
   width: 100%;
   height: 100%;
+}
+.commentCard-enter-active, .commentCard-leave-active {
+  transition: all .5s;
+  transform: translateY(0);
+  opacity: 1;
+}
+.commentCard-enter, .commentCard-leave-active {
+  transform: translateY(-30%);
+  opacity: 0;
 }
 </style>

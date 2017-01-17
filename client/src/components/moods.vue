@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Modal from './../directive/modal'
+import Modal from './../packages/modal'
 export default {
   data () {
     return {

@@ -1,12 +1,16 @@
 <template lang="html">
-  <!-- todo: mask点击关闭 ， try index》》 mask在下层-->
   <transition name="modal-fade">
-    <div class="modal-fade" v-show="show">
+    <div class="modal-fade" v-show="show" @click="show=false">
       <transition name="modal">
         <div class="modal" v-show="show">
           <div class="modal-head" v-show="header" v-html="header"></div>
           <div class="modal-body">
-            <input :type="inpuType" class="modal-input" name="name" :placeholder="placeholder">
+            <input
+            class="modal-input"
+            :type="type"
+            :value="value"
+            :placeholder="placeholder"
+            @input="handleInput">
           </div>
           <div class="modal-btns">
             <div class="modal-btn" @click="onConfirm()">{{confirmText}}</div>
@@ -19,45 +23,44 @@
 
 <script>
 export default {
-  name: 'messanger',
-  props: {
-    show: {
-      type: Boolean,
-      default: false,
-      twoWay: true
-    },
-    header: {
-      type: String,
-      default: ''
-    },
-    confirmText: {
-      type: String,
-      default: '好的',
-      twoWay: true
-    },
-    inpuType: {
-      type: String,
-      default: 'text',
-      twoWay: true
-    },
-    value: {
-      type: String,
-      twoWay: true
-    },
-    placeholder: {
-      type: String,
-      twoWay: true
+  name: 'messangerr',
+
+  componentName: 'messangerr',
+
+  data () {
+    return {
+      value: ''
     }
   },
-  data () {
-    return {}
+
+  props: {
+    header: String,
+    placeholder: String,
+    confirmText: {
+      type: String,
+      default: '好的'
+    },
+    type: {
+      type: String,
+      default: 'text'
+    }
   },
+
   computed: {},
   mounted () {},
   methods: {
+    handleInput (ev) {
+      this.setValue(ev.target.value)
+    },
+    setValue (value) {
+      this.value = value
+    },
     onConfirm () {
       this.show = false
-      this.$emit('on-confirm')
+      this.$emit('on-confirm', this.value)
+    },
+    handler () {
+      this.$emit('handler')
     }
   },
   components: {}
@@ -121,14 +124,14 @@ export default {
 .modal-enter-active, .modal-leave-active {
   transition: all .3s;
   position: relative;
-  top: 45%;
+  top: 40%;
   /*height: auto;*/
   opacity: 1;
 }
 .modal-enter, .modal-leave-active {
   background-color: rgba(0,0,0,0);
   position: relative;
-  top: 42%;
+  top: 38%;
   /*height: 0;*/
   opacity: 0;
 }

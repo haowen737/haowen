@@ -8,11 +8,15 @@ import routers from './routers'
 import './assets/styles/base.css'
 import 'github-markdown-css/github-markdown.css'
 
+// import Confirm from './packages/confirm'
+
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.use(Ocean)
 Vue.use(Utils)
-console.log(Vue)
+
+// Vue.use(Confirm)
+
 const router = new VueRouter({
   routes: routers
 })
@@ -29,12 +33,11 @@ new Vue({
     }
   },
   mounted () {
-    this.watchBottom()
   },
   methods: {
-    watchBottom () {
+    scrollWatcher () {
       // console.log(window.onscrol)
-      this.$nextTick(function () {
+      this.$nextTick(() => {
         window.onscroll = () => {
           this.offsetHeight = document.getElementById('container').offsetHeight
           this.innerHeight = window.innerHeight
@@ -44,6 +47,11 @@ new Vue({
           // console.log(this.offsetHeight, this.innerHeight, this.scrollY)
         }
       })
+    },
+    removeScrollWatcher () {
+      window.onscroll = () => {
+        return
+      }
     }
   },
   router: router,

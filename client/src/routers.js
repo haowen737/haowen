@@ -15,7 +15,7 @@ import Clock from './demo/clock'
 import Cellular from './demo/cellular'
 import ZoomSlider from './demo/zoomSlider'
 
-import Loading from './directive/loading'
+import Loading from './packages/loading'
 
 export default [
   {

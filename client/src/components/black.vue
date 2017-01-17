@@ -33,7 +33,7 @@
 
 <script>
 import demolist from './../demolist.js'
-import loading from './../directive/loading'
+import loading from './../packages/loading'
 export default {
   data () {
     return {

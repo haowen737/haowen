@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import BottomFire from './../directive/bottomFire'
+import BottomFire from './../packages/bottomFire'
 import database from './../../database'
 export default {
   data  () {
@@ -42,6 +42,7 @@ export default {
   mounted  () {
     this.getCards()
     this.query()
+    this.$root.scrollWatcher()
   },
   methods: {
     getCards () {
@@ -57,9 +58,12 @@ export default {
       })
     }
   },
+  beforeDestroy () {
+    this.$root.removeScrollWatcher()
+  },
   watch: {
     '$root.scrollY': function (val) {
-      console.log(this.$root.innerHeight, this.$root.scrollY, this.$root.offsetHeight)
+      // console.log(this.$root.innerHeight, this.$root.scrollY, this.$root.offsetHeight)
       if ((this.$root.innerHeight + this.$root.scrollY) - this.$root.offsetHeight > -50) {
         this.showBottomFire = true
       } else {

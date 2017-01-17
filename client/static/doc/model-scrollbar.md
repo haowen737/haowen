@@ -35,7 +35,7 @@ firefox和ie目前在看资料，好像不能设置的像chrome那么自由。�
 
 后来
 
-    watchBottom () {
+    scrollWatcher () {
       this.$nextTick(function () {
         window.onscroll = () => {
           let offsetHeight = document.getElementById('container').offsetHeight

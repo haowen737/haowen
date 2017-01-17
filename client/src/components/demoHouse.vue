@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import loading from './../directive/loading'
+import loading from './../packages/loading'
 import spinningSpread from './../demo/spinningSpread'
 export default {
   data  () {
