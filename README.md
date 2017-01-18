@@ -42,30 +42,30 @@ Live a life you will remember!
 里程碑－－大事记
 ***
 -->> update 2017-01-13 <<--
-* 升级vue2.0
+｀升级vue2.0
 ***
 
 -->> update 2017-01-07 <<--
-* 数据库添加comments表和users表
-* 新增了几个api
-* 添加留言功能
+｀数据库添加comments表和users表
+｀新增了几个api
+｀添加留言功能
 ***
 
 -->> update 2016-12-17 <<--
-* 添加<Mirror>
+｀添加<Mirror>
 ***
 
 -->> update 2016-10-27 <<--
-* 添加展开折叠一个小组件(太太太好看了)
-* 添加demohouse页
+｀添加展开折叠一个小组件(太太太好看了)
+｀添加demohouse页
 ***
 
 -->> update 2016-11-03 <<--
-* 添加<blvck>
+｀添加<blvck>
 ***
 
 -->> update 2016-10-24 <<--
-* 添加<情绪>
+｀添加<情绪>
 ***
 
 -->> update 2016-9-26 <<--
