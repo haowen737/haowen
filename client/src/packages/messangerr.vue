@@ -32,10 +32,10 @@ export default {
   componentName: 'messangerr',
 
   props: {
-    header: String,
-    placeholder: String,
     messangerrBody: String,
+    placeholder: String,
     display: Boolean,
+    header: String,
     input: Boolean,
     confirmText: {
       type: String,

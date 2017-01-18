@@ -5,9 +5,6 @@
         情 绪
       </header>
       <div class="login-form">
-        <!-- <div class="">
-          嘿嘿嘿
-        </div> -->
         <transition name="moodsLogin">
           <div class="form-group" v-show="showForm">
             <input
@@ -47,12 +44,13 @@
           <loading v-show="showLoading" top="60px"></loading>
         </transition>
       </div>
-      <div class="bottom-bar">{{bottomText}}</div>
+      <bottom-text></bottom-text>
     </div>
   </div>
 </template>
 
 <script>
+import bottomText from './../packages/bottomText'
 import loading from './../packages/loading'
 export default {
   data () {
@@ -72,7 +70,6 @@ export default {
   },
   computed: {},
   mounted () {
-    this.initBottomText()
   },
   methods: {
     focusInput () {
@@ -107,42 +104,6 @@ export default {
       this.showForm = true
       this.headerClass = 'header-upper'
     },
-    initBottomText () {
-      let index = (Math.random() * 10).toFixed(0)
-      console.log(index)
-      switch (index) {
-        case '0':
-          this.bottomText = '我在听,有话快说'
-          break
-        case '1':
-          this.bottomText = '说说你的路途见闻吧'
-          break
-        case '2':
-          this.bottomText = '你想被变成青蛙吗?'
-          break
-        case '3':
-          this.bottomText = '天哪!你真高!'
-          break
-        case '4':
-          this.bottomText = '祝你好运。'
-          break
-        case '5':
-          this.bottomText = '你有什么事吗?'
-          break
-        case '6':
-          this.bottomText = '来喝杯啤酒吗?'
-          break
-        case '7':
-          this.bottomText = '你好，旅行者'
-          break
-        case '8':
-          this.bottomText = '每一天，都是一个祝福'
-          break
-        case '9':
-          this.bottomText = '哈哈哈哈...'
-          break
-      }
-    },
     post () {
       console.log(23123123)
       let param = this.where
@@ -161,7 +122,7 @@ export default {
     }
   },
   components: {
-    loading
+    loading, bottomText
   }
 }
 </script>
@@ -281,14 +242,6 @@ input {
 }
 .deny-card a, .agree-card a{
   font-size: 15px;
-}
-.bottom-bar {
-  position: absolute;
-  bottom: 5px;
-  left: 50%;
-  color: #999;
-  font-size: 14px;
-  transform: translateX(-50%);
 }
 /*动画*/
 .moodsLogin-enter-active, .moodsLogin-leave-active {

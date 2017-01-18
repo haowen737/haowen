@@ -5,6 +5,7 @@ var ApiError = require('../error/ApiError');
 var response_formatter = (ctx) => {
     //如果有返回数据，将返回数据添加到data中
     if (ctx.body) {
+        console.log(ctx.body);
         ctx.body = {
             message: 'success',
             data: ctx.body
