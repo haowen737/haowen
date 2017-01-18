@@ -1,8 +1,8 @@
 import Tags from './components/tags'
 import Code from './components/code'
-import Mirror from './components/mirror'
 import Black from './components/black'
 import Moods from './components/moods'
+import Mirror from './components/mirror'
 import Article from './components/article'
 import Comment from './components/comment'
 import Contact from './components/contact'
@@ -11,9 +11,9 @@ import Dashboard from './components/dashboard'
 import DemoHouse from './components/demoHouse'
 import MoodsLogin from './components/moodsLogin'
 
-import Clock from './demo/clock'
-import Cellular from './demo/cellular'
 import ZoomSlider from './demo/zoomSlider'
+import Cellular from './demo/cellular'
+import Clock from './demo/clock'
 
 import Loading from './packages/loading'
 
