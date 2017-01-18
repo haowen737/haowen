@@ -1,6 +1,10 @@
 ```
-Hello Word！
+Hello！
 ```
+详细信息可以参考以下资料：
+
+[withyoufriends](http://www.withyoufriends.com)
+
 这是郑皓文的博客
 
 withyoufriends中用到了强大而又酷炫的
