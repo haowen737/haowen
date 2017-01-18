@@ -10,7 +10,7 @@
       </div>
       <div class="content-list">
         <div class="contact-item">
-          <a href="javascript:;">
+          <a href="javascript:;" @mouseover="show=1" @mouseout="show=0" @click="jumpTo(1)">
             <img src="./../assets/images/github.png" alt="" />
             <transition name="fade-item">
               <div class="contact-item-text" v-show="show===1">Github</div>
@@ -18,7 +18,7 @@
           </a>
         </div>
         <div class="contact-item">
-          <a href="javascript:;">
+          <a href="javascript:;" @mouseover="show=2" @mouseout="show=0" @click="jumpTo(2)">
             <img src="./../assets/images/zhihu.png" alt="" />
             <transition name="fade-item">
               <div class="contact-item-text" v-show="show===2">Zhihu</div>
@@ -27,7 +27,7 @@
         </div>
         <div class="contact-item">
           <!-- <a href="mailto: mandychuck@outlook.com" @mouseover="show=3" @mouseout="show=0"> -->
-          <a href="javascript:;">
+          <a href="javascript:;" @mouseover="show=3" @mouseout="show=0" @click="jumpTo(3)">
             <img src="./../assets/images/mail.png" alt="" />
             <transition name="fade-item">
               <div class="contact-item-text" v-show="show===3">Mail</div>
@@ -35,7 +35,7 @@
           </a>
         </div>
         <div class="contact-item">
-          <a href="javascript:;">
+          <a href="javascript:;" @mouseover="show=4" @mouseout="show=0" @click="jumpTo(4)">
             <img src="./../assets/images/500px.png" alt="" />
             <transition name="fade-item">
               <div class="contact-item-text" v-show="show===4">500PX</div>
@@ -43,27 +43,31 @@
           </a>
         </div>
         <!-- <div class="contact-item">
-          <a href="javascript:;" @mouseover="show=5" @mouseout="show=0" @click="jumpTo(5)">
+          <a href="javascript:;" @mouseover="show=5" @mouseout="show=0" @click="jumpTo(5)" @mouseover="show=5" @mouseout="show=0" @click="jumpTo(5)">
             <img src="./../assets/images/500px.png" alt="" />
             <transition name="fade-item">
             <div class="contact-item-text" v-show="show===5">Moods</div>
           </a>
         </div> -->
       </div>
-      <modal :show.sync='showModal' :body="modalBody" @on-confirm="onConfirm"></modal>
+      <messangerr
+      :display='showMessanger'
+      :messangerrBody="messangerrBody"
+      @on-confirm="onConfirm"
+      @clickMask="onClickMask"></messangerr>
     </div>
   </transition>
 </template>
 
 <script>
-import Modal from './../packages/modal'
+import messangerr from './../packages/messangerr'
 export default {
   data () {
     return {
       show: 0,
-      modalBody: '',
+      messangerrBody: '',
       link: '',
-      showModal: false
+      showMessanger: false
     }
   },
   computed: {},
@@ -89,25 +93,29 @@ export default {
       }
     },
     jumpTo (index) {
-      let modalBodytext = '打开郑皓文的 '
+      let messangerrBodytext = '打开郑皓文的 '
       switch (index) {
-        case 1 : this.modalBody = modalBodytext + 'github?'
+        case 1 : this.messangerrBody = messangerrBodytext + 'github?'
           break
-        case 2 : this.modalBody = modalBodytext + '知乎?'
+        case 2 : this.messangerrBody = messangerrBodytext + '知乎?'
           break
-        case 3 : this.modalBody = '给郑皓文写邮件？'
+        case 3 : this.messangerrBody = '给郑皓文写邮件？'
           break
-        case 4 : this.modalBody = modalBodytext + '500PX?'
+        case 4 : this.messangerrBody = messangerrBodytext + '500PX?'
           break
-        case 5 : this.modalBody = modalBodytext + '情绪?'
+        case 5 : this.messangerrBody = messangerrBodytext + '情绪?'
           break
       }
       this.link = index
-      this.showModal = true
+      this.showMessanger = true
+    },
+    onClickMask () {
+      this.showMessanger = false
+      this.messangerrBody = ''
     }
   },
   components: {
-    Modal
+    messangerr
   }
 }
 </script>

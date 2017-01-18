@@ -1,6 +1,6 @@
 import Tags from './components/tags'
 import Code from './components/code'
-import Photo from './components/photo'
+import Mirror from './components/mirror'
 import Black from './components/black'
 import Moods from './components/moods'
 import Article from './components/article'
@@ -22,8 +22,8 @@ export default [
     path: '/',
     component: Dashboard
   }, {
-    path: '/photo',
-    component: Photo
+    path: '/mirror',
+    component: Mirror
   }, {
     path: '/code',
     component: Code

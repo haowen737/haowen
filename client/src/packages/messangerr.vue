@@ -1,17 +1,19 @@
 <template lang="html">
   <div class="modal-container" v-show="show">
     <transition name="madal-mask">
-      <div class="madal-mask" v-show="show">
+      <div class="madal-mask" v-show="show" @click="mask">
         <transition name="modal">
           <div class="modal" v-show="show">
             <div class="modal-head" v-show="header" v-html="header"></div>
             <div class="modal-body">
               <input
               class="modal-input"
+              v-show="input"
               :type="type"
               :value="value"
               :placeholder="placeholder"
               @input="handleInput">
+              <p v-show="!input">{{messangerrBody}}</p>
             </div>
             <div class="modal-btns">
               <div class="modal-btn" @click="onConfirm()">{{confirmText}}</div>
@@ -32,7 +34,9 @@ export default {
   props: {
     header: String,
     placeholder: String,
+    messangerrBody: String,
     display: Boolean,
+    input: Boolean,
     confirmText: {
       type: String,
       default: '好的'
@@ -56,6 +60,9 @@ export default {
     },
     handler () {
       this.$emit('handler')
+    },
+    mask () {
+      this.$emit('clickMask')
     }
   },
 

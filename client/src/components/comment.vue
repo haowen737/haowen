@@ -15,6 +15,7 @@
       </transition-group>
     </div>
     <messangerr
+    :input="true"
     :display="showMessanger"
     :value.sync="where.name"
     @on-confirm="onConfirm"
