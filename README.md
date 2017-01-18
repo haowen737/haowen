@@ -5,7 +5,7 @@ Hello Word！
 
 withyoufriends中用到了强大而又酷炫的
 
-* vue1.0
+* vue2
 * vue-resource
 * webpack
 * markdown.js
