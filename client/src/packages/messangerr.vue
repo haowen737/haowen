@@ -1,8 +1,9 @@
 <template lang="html">
-    <!-- <transition name="modal"> -->
-      <div class="modal-container" v-show="show">
+  <div class="modal-container" v-show="show">
+    <transition name="madal-mask">
+      <div class="madal-mask" v-show="show">
         <transition name="modal">
-          <div class="modal">
+          <div class="modal" v-show="show">
             <div class="modal-head" v-show="header" v-html="header"></div>
             <div class="modal-body">
               <input
@@ -18,7 +19,8 @@
           </div>
         </transition>
       </div>
-    <!-- </transition> -->
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -73,6 +75,14 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.modal-container {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 .modal-btn:hover {
   background-color: #f3f3f3;
 }
@@ -110,33 +120,29 @@ export default {
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   z-index: 11;
 }
-.modal-container:after {
-  content: '';
-  position: fixed;
-  z-index: 10;
+.madal-mask {
+  position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0,0,0,0.2);
   width: 100%;
   height: 100%;
+  background-color: rgba(0,0,0,0.2);
 }
-.modal-fade-enter-active, .modal-fade-leave-active {
+.madal-mask-enter-active, .madal-mask-leave-active {
   transition: all .3s;
+  background-color: rgba(0,0,0,0.2);
   opacity: 1;
 }
-.modal-fade-enter, .modal-fade-leave-active {
+.madal-mask-enter, .madal-mask-leave-active {
   background-color: rgba(0,0,0,0);
   opacity: 0;
 }
 .modal-enter-active, .modal-leave-active {
-  transition: all .3s;
-  position: relative;
+  transition: all .3s ease;
   top: 40%;
   opacity: 1;
 }
 .modal-enter, .modal-leave-active {
-  background-color: rgba(0,0,0,0);
-  position: relative;
   top: 38%;
   opacity: 0;
 }
@@ -145,6 +151,7 @@ export default {
   border-bottom: 1px solid rgba(0,0,0,0.2);
   outline: none;
   font-size:17px;
-  padding:10px 10px 0 0px;
+  padding:10px 10px 5px 0px;
+  margin-bottom: 5px;
 }
 </style>

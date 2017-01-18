@@ -1,14 +1,14 @@
 const Koa = require('koa');
 const app = new Koa();
-const router = require('koa-router')();
-const views = require('koa-views');
-const co = require('co');
-const convert = require('koa-convert');
-const json = require('koa-json');
-const onerror = require('koa-onerror');
+
 const bodyparser = require('koa-bodyparser')();
+const router = require('koa-router')();
+const convert = require('koa-convert');
+const onerror = require('koa-onerror');
 const logger = require('koa-logger');
 const config = require('./config');
+const views = require('koa-views');
+const json = require('koa-json');
 
 // const mysql = require('mysql');
 // const wrapper = require('co-mysql');

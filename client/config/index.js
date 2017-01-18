@@ -18,7 +18,7 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: 8080,
+    port: 8088,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {},
@@ -30,7 +30,7 @@ module.exports = {
     cssSourceMap: false,
     proxyTable: {
       '/api': {
-        target: 'http://localhost:3001/',
+        target: 'http://localhost:3333/',
         changeOrigin: true,
         pathRewrite: {
 

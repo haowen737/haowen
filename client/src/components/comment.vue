@@ -41,15 +41,17 @@ export default {
   },
   methods: {
     prePost () {
+      if (!this.where.content) {
+        return
+      }
       this.showMessanger = true
     },
     onConfirm () {
       let where = this.where
       this.showMessanger = false
-
-      // if (!where.name) {
-      //   where.name = 'NEMO'
-      // }
+      if (!where.name) {
+        where.name = '吃瓜群众'
+      }
       this.sendComment(where)
     },
     sendComment (where) {
