@@ -12,9 +12,10 @@ withyoufriends中用到了强大而又酷炫的
 * vue2
 * vue-resource
 * webpack
-* markdown.js
 * github-markdown.css
 * koa2
+* markdown.js
+* knex.js
 * mysql
 
 所有markdown筆記都在status的doc文件夾下

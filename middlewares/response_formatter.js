@@ -5,7 +5,6 @@ var ApiError = require('../error/ApiError');
 var response_formatter = (ctx) => {
     //如果有返回数据，将返回数据添加到data中
     if (ctx.body) {
-        console.log(ctx.body);
         ctx.body = {
             message: 'success',
             data: ctx.body
@@ -28,6 +27,7 @@ var url_filter = (pattern) => {
                     message: error.message
                 }
             }
+            console.log(error);
             //继续抛，让外层中间件处理日志
             // throw error;
         }
