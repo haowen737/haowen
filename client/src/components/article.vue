@@ -2,14 +2,29 @@
   <div class="article-layout" id="container">
     <header>
       <div class="logo cur-default">Haowen</div>
-      <hr>
       <nav class="article-nav">
-        <div class="article-nav-item"><router-link :to="{path:'/'}">首页</router-link></a></div>
-        <div class="article-nav-item"><router-link :to="{path:'/code'}">上一页</router-link></a></div>
+        <div class="article-nav-item"><a @click="back">上一页</a></a></div>
+        <div class="article-nav-item"><router-link :to="{path:'/'}">评论</router-link></a></div>
         <div class="article-nav-item"><router-link :to="{path:'/'}">干嘛</router-link></a></div>
       </nav>
+      <hr>
     </header>
     <div v-html="content" class="markdown-body"></div>
+    <div class="bottom-bar">
+      <a href="javascript:;" @click="likeThisArticle">喜欢</a>
+      <div class="bottom-bar-comment-header">
+        文章评论
+      </div>
+      <div class="login-container">
+        <a href="javascript:;" class="login-btn">登录</a>后参与讨论
+      </div>
+      <div class="input-container">
+        <textarea rows="7" cols="20" v-model="where.content"></textarea>
+      </div>
+      <div class="bottom-bar-comme-body">
+
+      </div>
+    </div>
     <loading :show="showLoading" top="50%" bg-color="#000"></loading>
   </div>
 </template>
@@ -22,7 +37,11 @@ export default {
     return {
       article: '',
       content: '',
-      showLoading: false
+      showLoading: false,
+      where: {
+        content: '',
+        articleId: ''
+      }
     }
   },
   computed: {},
@@ -32,7 +51,8 @@ export default {
   },
   methods: {
     getArticle () {
-      let title = this.$route.params.id
+      let title = parseInt(this.$route.params.id)
+      this.where.articleId = title
       this.query(title)
     },
     query (title) {
@@ -48,9 +68,23 @@ export default {
           console.log(error)
         })
     },
+    likeThisArticle () {
+      let param = {}
+      param.id = this.where.articleId
+      this.$http.post('/api/article/like', param)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
     formatMarkdown () {
       console.log(Markdown)
       this.content = Markdown.toHTML(this.article)
+    },
+    back () {
+      this.$router.go(-1)
     }
   },
   components: {
@@ -60,6 +94,50 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.login-btn {
+  color: #003c21;
+  padding-right: 5px;
+}
+.login-container {
+  margin: 10px 0;
+}
+.input-container {
+  width: 100%;
+  text-align: center;
+}
+.input-container textarea {
+  width: 100%;
+  margin: 10px 0 10px 0;
+  font-size: 17px;
+  padding: 10px;
+  outline: none;
+  border: none;
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+.bottom-bar-comment-header:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  display: inline-block;
+  width: 5px;
+  background-color: #000;
+  margin-right: 10px;
+}
+.bottom-bar-comment-header {
+  position: relative;
+  padding-left: 10px;
+  font-size: 20px;
+}
+.bottom-bar {
+  margin: 0 auto 100px;
+  min-width: 200px;
+  max-width: 900px;
+  padding: 0 45px;
+}
 .article-layout header {
   text-align: center;
 }

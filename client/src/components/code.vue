@@ -17,43 +17,54 @@
       </div>
       <div class="cards">
         <transition-group name="card">
-          <router-link class="card" v-for="card in cards" :to="{path:'code/article/' + card.keywords}" @click="showBottomFire=false" :key="card">
+          <router-link class="card" v-for="card in cards" :to="{path:'code/article/' + card.file_id}" @click="showBottomFire=false" :key="card">
             <h1>{{ card.title }}</h1>
-            <span>{{ card.date }}</span>
+            <p class="card-summary">{{card.summary}}</p>
+            <p class="card-date">{{ card.created_at | formatDate('YYYY-MM-DD HH:mm')}}
+              <span>喜欢{{card.likes}}</span>
+              <span>阅读{{card.view_count}}</span>
+            </p>
           </router-link>
         </transition-group>
       </div>
     </div>
     <bottom-fire :show.sync="showBottomFire"></bottom-fire>
+    <loading :show="showLoading" top="50%" bg-color="#000"></loading>
   </div>
 </template>
 
 <script>
 import BottomFire from './../packages/bottomFire'
-import database from './../../database'
+// import database from './../../database'
 export default {
   data  () {
     return {
       showBottomFire: false,
-      cards: {}
+      showLoading: false,
+      cards: []
     }
   },
   computed: {},
   mounted  () {
-    this.getCards()
+    // this.getCards()
     this.query()
     this.$root.scrollWatcher()
   },
   methods: {
-    getCards () {
-      this.cards = database.posts
-    },
+    // getCards () {
+    //   this.cards = database.posts
+    // },
     query () {
-      this.$http.get('/api/users/getUser')
+      this.showLoading = true
+      this.$http.get('/api/article/getArticles')
       .then(function (res) {
-        console.log(res)
+        res = res.data
+        console.log(res.data.data)
+        this.cards = res.data
+        this.showLoading = false
       })
       .catch(function (err) {
+        this.showLoading = false
         console.log(err)
       })
     }
@@ -113,7 +124,7 @@ export default {
   display: block;
   position: relative;
   margin: 30px auto 30px;
-  padding: 20px;
+  padding: 10px 20px 4px;
   width: 500px;
   box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
   transition: box-shadow .5s ease-out;
@@ -132,6 +143,23 @@ export default {
   font-size: 12px;
   right: 5px;
   top: 5px;
+}
+.card span {
+  float: right;
+  margin-left: 10px;
+  color: #aaa;
+  font-size: 11px;
+  line-height: 16px;
+}
+.card-summary {
+  font-size: 14px;
+  color: #666;
+  font-weight: 200;
+}
+.card-date {
+  font-size: 14px;
+}
+.card p {
 }
 .card-enter-active, .card-leave-active {
   transition: all .5s;
