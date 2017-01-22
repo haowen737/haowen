@@ -8,26 +8,43 @@ exports.getUser = async (ctx, next) => {
     }
 }
 
-//用户注册
+//用户注册&登录
 exports.registerUser = async (ctx, next) => {
     let userName = ctx.request.body.user_name
+    let password = ctx.request.body.user_password
     if (!userName) {
       throw new ApiError({code: 10002, message: '请输入用户名'});
+      return
     }
-    console.log('username=======', userName);
-    let cur_user = await ctx.knex('users').where('name', userName)
-    console.log('cur_user=========', cur_user);
-    if (cur_user.length) {
-      ctx.body = {
-        code: 10001,
-        message: '用户名获取成功'
+    if (userName && !password) {
+      let cur_user = await ctx.knex.select('*').from('users').where('user_name', userName)
+      cur_user = cur_user[0]
+      if (cur_user) {
+        ctx.body = cur_user
+        return
       }
-    } else {
-      await ctx.knex('users').insert({name: userName, phone: '12312312312'})
-      ctx.body = {
-        code: 10000,
-        message: '新用户，已插入成功'
+      if (!cur_user) {
+        ctx.body = {
+          code: 40001,
+          msg: '用户未注册'
+        }
+        return
       }
     }
-    console.log('registerUser', ctx.request.body);
+    if (userName && password) {
+      console.log('***********yyyyyyyyyyyyy');
+    }
+    // let cur_user = await ctx.knex('users').where('name', userName)
+    // if (cur_user.length) {
+    //   ctx.body = {
+    //     code: 10001,
+    //     message: '用户名获取成功'
+    //   }
+    // } else {
+    //   await ctx.knex('users').insert({name: userName, phone: '12312312312'})
+    //   ctx.body = {
+    //     code: 10000,
+    //     message: '新用户，已插入成功'
+    //   }
+    // }
 }

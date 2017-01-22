@@ -11,12 +11,25 @@
     </header>
     <div v-html="content" class="markdown-body"></div>
     <div class="bottom-bar">
-      <a href="javascript:;" @click="likeThisArticle">喜欢</a>
-      <div class="bottom-bar-comment-header">
-        文章评论
+      <div class="bottom-bar-tags">
+        <div class="bottom-bar-tags-icon">
+          <img src="./../assets/images/i-tag.png" alt="">
+        </div>
+        <div class="bottom-bar-tag-list">
+          <a class="bottom-bar-tag" href="javascript:;" v-for="tag in article.tags">{{tag}}</a>
+        </div>
+        <div class="bottom-bar-likes">
+          <div class="bottom-bar-likes-img">
+            <img src="./../assets/images/i-light.png" alt="">
+          </div>
+          <a href="javascript:;" @click="likeThisArticle">{{article.likes}}人喜欢</a>
+        </div>
       </div>
-      <div class="login-container">
-        <a href="javascript:;" class="login-btn">登录</a>后参与讨论
+      <div class="bottom-bar-comment-header">
+        <div class="login-container">
+          <a href="javascript:;" class="login-btn" @click="join">Join</a>withyoufriends
+        </div>
+        文章评论
       </div>
       <div class="input-container">
         <textarea rows="7" cols="20" v-model="where.content"></textarea>
@@ -35,7 +48,7 @@ import loading from './../packages/loading'
 export default {
   data () {
     return {
-      article: '',
+      article: {},
       content: '',
       showLoading: false,
       where: {
@@ -47,26 +60,38 @@ export default {
   computed: {},
   mounted () {
     this.showLoading = true
-    this.getArticle()
+    this.initPage()
   },
   methods: {
-    getArticle () {
+    initPage () {
       let title = parseInt(this.$route.params.id)
       this.where.articleId = title
       this.query(title)
+      this.getArticle(title)
     },
     query (title) {
       this
         .$http
         .get('/static/doc/' + title + '.md')
         .then((response) => {
-          this.article = response.body
-          this.formatMarkdown()
+          let content = response.body
+          this.formatMarkdown(content)
           this.showLoading = false
         })
         .catch((error) => {
           console.log(error)
         })
+    },
+    getArticle (title) {
+      this.$http.get('/api/article/getArticle/' + title)
+      .then((res) => {
+        res = res.data
+        this.article = res.data
+        this.formatTags(this.article.tags)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     },
     likeThisArticle () {
       let param = {}
@@ -74,26 +99,80 @@ export default {
       this.$http.post('/api/article/like', param)
       .then((res) => {
         console.log(res)
+        this.getArticle(this.where.articleId)
       })
       .catch((err) => {
         console.log(err)
       })
     },
-    formatMarkdown () {
-      console.log(Markdown)
-      this.content = Markdown.toHTML(this.article)
+    join () {
+      this.$router.push('/moods/login')
+    },
+    formatMarkdown (content) {
+      this.content = Markdown.toHTML(content)
+    },
+    formatTags (tags) {
+      tags = tags.split(',')
+      this.article.tags = tags
     },
     back () {
       this.$router.go(-1)
     }
   },
   components: {
-    loading, Markdown
+    Markdown,
+    loading
   }
 }
 </script>
 
 <style lang="css" scoped>
+.bottom-bar-likes-img img {
+  width: 100%;
+}
+.bottom-bar-likes-img {
+  position: relative;
+  top: -5px;
+  display: inline-block;
+  line-height: 0;
+  width: 30px;
+}
+.bottom-bar-likes a {
+  position: relative;
+  top: -10px;
+}
+.bottom-bar-likes {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.bottom-bar-tag {
+  display: inline-block;
+  padding: 3px 20px;
+  background-color: #f2f2f2;
+  font-size: 10px;
+  color: #585858;
+  margin: 0 10px ;
+}
+.bottom-bar-tag-list {
+  margin-left: 30px;
+}
+.bottom-bar-tags-icon img {
+  width: 100%;
+  line-height: 0;
+}
+.bottom-bar-tags-icon {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  line-height: 0;
+  display: inline-block;
+  width: 30px;
+}
+.bottom-bar-tags {
+  position: relative;
+  margin: 10px 0 30px;
+}
 .login-btn {
   color: #003c21;
   padding-right: 5px;

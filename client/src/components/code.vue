@@ -152,6 +152,7 @@ export default {
   line-height: 16px;
 }
 .card-summary {
+  margin-top: 0px;
   font-size: 14px;
   color: #666;
   font-weight: 200;

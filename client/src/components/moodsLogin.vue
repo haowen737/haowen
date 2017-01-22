@@ -5,42 +5,46 @@
         情 绪
       </header>
       <div class="login-form">
-        <transition name="moodsLogin">
-          <div class="form-group" v-show="showForm">
+        <div class="form-group">
+          <transition name="moodsLogin">
             <input
             autocomplete="off"
             type="text"
             name="name"
             v-model="where.user_name"
+            @blur="blurInput"
             @focus="focusInput"
-            @keypress="submitInput">
-            <div class="input-bottom">
+            @keypress="submitInput"
+            v-show="showForm"
+            placeholder="你的名字">
+            <!-- <div class="input-bottom">
               <div class="input-label" :class="labelClass">Your name?</div>
-              <transition name="fade">
+              <transition name="moods-fade">
                 <div class="submitBtn" href="Javascript:;" :class="labelClass" @click.prevent="submit">Next</div>
               </transition>
-            </div>
-            <transition name="fade">
-              <div class="input-mask" v-show="showMask" @click="focusInput"></div>
-            </transition>
-          </div>
+            </div> -->
+          </transition>
+        </div>
+        <transition name="moods-fade">
+          <div class="input-mask" v-show="showMask" @click="blurInput"></div>
         </transition>
-        <transition name="deny">
-          <div class="deny-card" v-show="showDeny">
+        <transition name="password">
+          <div class="password-container" v-show="showDeny">
+            <p v-show="!newAccount">
+              输入&nbsp;{{where.user_name}}&nbsp;的密码
+            </p>
+            <p v-show="newAccount">用户&nbsp;{{where.user_name}}&nbsp;不存在<br>输入新密码以创建一个新用户</p>
             <p>
-              啊呃，进不去(⊙﹏⊙)
+              <input
+              type="text"
+              v-model="where.user_password"
+              @keypress="submitInput"
+              placeholder="输入密码">
             </p>
             <a href="javascript:;" @click="tryAgain">返回</a>
           </div>
         </transition>
-        <transition name="deny">
-          <div class="agree-card" v-show="showAgree">
-            <p>
-              Welcome
-            </p>
-          </div>
-        </transition>
-        <transition name="deny">
+        <transition name="loading">
           <loading v-show="showLoading" top="60px"></loading>
         </transition>
       </div>
@@ -60,8 +64,10 @@ export default {
       showForm: true,
       showLoading: false,
       showAgree: false,
+      newAccount: false,
       where: {
-        user_name: ''
+        user_name: '',
+        user_password: ''
       },
       labelClass: 'label-dark',
       headerClass: 'header-upper',
@@ -72,14 +78,18 @@ export default {
   mounted () {
   },
   methods: {
+    blurInput () {
+      this.showMask = false
+      this.labelClass = 'label-dark'
+    },
     focusInput () {
-      this.showMask === true ? this.showMask = false : this.showMask = true
-      this.labelClass === 'label-dark' ? this.labelClass = 'label-light' : this.labelClass = 'label-dark'
+      this.showMask = true
+      this.labelClass = 'label-light'
     },
     submitInput (el) {
       if (el.keyCode === 13) {
         // this.submit()
-        this.post()
+        this.beforePost()
       }
     },
     submit () {
@@ -102,23 +112,38 @@ export default {
       this.showDeny = false
       this.showDeny = false
       this.showForm = true
+      this.where.user_password = ''
       this.headerClass = 'header-upper'
     },
-    post () {
-      console.log(23123123)
+    beforePost () {
+      if (!this.where.user_name) {
+        window.alert('请输入名字')
+        return
+      }
+      this.showForm = false
+      this.showLoading = true
+      this.headerClass = 'header-lower'
+      this.registe()
+    },
+    registe () {
       let param = this.where
       this.$http.post('/api/users/registerUser', param)
-      .then(function (res) {
-        console.log(res)
+      .then((res) => {
+        res = res.data.data
+        this.showLoading = false
+        this.showDeny = true
+        if (res.code === 40001) {
+          this.newAccount = true
+        }
       })
-      .catch(function (err) {
+      .catch((err) => {
         console.log(err)
       })
     }
   },
   watch: {
-    'where.user_name': function (val) {
-      console.log(val)
+    'showForm': function (val) {
+      this.showMask = val
     }
   },
   components: {
@@ -148,23 +173,23 @@ export default {
   color: #f3f3f3;
   cursor: default;
   filter: blur(1px);
-  top: 90px;
+  top: 50px;
 }
 .login-form {
   width: 400px;
   margin: 40px auto;
   height: 300px;
   text-align: center;
-  padding: 20px;
   position: relative;
   /*box-shadow: 1px 1px 3px rgba(0,0,0,.2);*/
 }
 .form-group {
-  position: relative;
+  position: absolute;
+  width: 100%;
   padding-top: 20px;
   font-size: 30px;
 }
-input {
+.form-group input {
   width: 100%;
   border-top: 0;
   border-right: 0;
@@ -173,11 +198,17 @@ input {
   padding: 15px;
   border-radius: 30px;
   font-size: 30px;
+  font-weight: 100;
   outline: none;
+  color: #444;
   z-index: 10;
   position: relative;
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
   box-sizing: border-box;
+}
+.form-group input::-webkit-input-placeholder{
+  font-size: 30px;
+  font-weight: 100;
 }
 /*.form-group:hover::after {
   content: '';
@@ -231,35 +262,69 @@ input {
 .label-light {
   color: #fff;
 }
-.deny-card, .agree-card {
+.password-container input {
+  width: 100%;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 0;
+  padding: 15px;
+  border-radius: 30px;
+  font-size: 30px;
+  font-weight: 100;
+  outline: none;
+  color: #444;
+  z-index: 10;
+  position: relative;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+.password-container {
   position: absolute;
   width: 400px;
   font-size: 20px;
+  top: 0;
   left: 50%;
   color: #888888;
   transform: translateX(-50%);
   /*top: 0;*/
 }
-.deny-card a, .agree-card a{
+.password-container a {
   font-size: 15px;
 }
 /*动画*/
 .moodsLogin-enter-active, .moodsLogin-leave-active {
   transition: all .3s;
-  top: 0;
+  position: absolute;
+  transform: translateY(0);
   opacity: 1;
 }
 .moodsLogin-enter, .moodsLogin-leave-active {
-  top: -40px;
+  transform: translateY(-40px);
   opacity: 0;
 }
-.deny-enter-active, .deny-leave-active {
-  transition: all .5s;
-  top: 50px;
+.moods-fade-enter-active, .moods-fade-leave-active {
+  transition: all .3s;
   opacity: 1;
 }
-.deny-enter, .deny-leave-active {
-  top: 100px;
+.moods-fade-enter, .moods-fade-leave-active {
+  opacity: 0;
+}
+.loading-enter-active, .loading-leave-active {
+  transition: all .5s;
+  opacity: 1;
+}
+.loading-enter, .loading-leave-active {
+  opacity: 0;
+}
+.password-enter-active, .password-leave-active {
+  transition: all .5s;
+  position: absolute;
+  top: 0;
+  opacity: 1;
+}
+.password-enter, .password-leave-active {
+  top: 45%;
   opacity: 0;
 }
 </style>
