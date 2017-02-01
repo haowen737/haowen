@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import loading from './../packages/loading'
 import BottomFire from './../packages/bottomFire'
 // import database from './../../database'
 export default {
@@ -83,7 +84,8 @@ export default {
     }
   },
   components: {
-    BottomFire
+    BottomFire,
+    loading
   }
 }
 </script>

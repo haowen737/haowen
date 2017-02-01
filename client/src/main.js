@@ -27,6 +27,7 @@ new Vue({
       offsetHeight: 0,
       innerHeight: 0,
       scrollY: 0,
+      userName: '',
       topScrollbarWidth: {
         'width': '0%'
       }
@@ -35,6 +36,10 @@ new Vue({
   mounted () {
   },
   methods: {
+    getUser () {
+      let user = window.sessionStorage.getItem('withyoufriendsuseraccount')
+      console.log(user)
+    },
     scrollWatcher () {
       // console.log(window.onscrol)
       this.$nextTick(() => {

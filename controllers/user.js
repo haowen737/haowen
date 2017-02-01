@@ -32,19 +32,54 @@ exports.registerUser = async (ctx, next) => {
       }
     }
     if (userName && password) {
-      console.log('***********yyyyyyyyyyyyy');
+      await ctx.knex('users').insert({
+        user_name: userName,
+        user_password: password
+      })
+      ctx.body = {
+        code: 10002,
+        msg: '用户创建成功'
+      }
     }
-    // let cur_user = await ctx.knex('users').where('name', userName)
-    // if (cur_user.length) {
-    //   ctx.body = {
-    //     code: 10001,
-    //     message: '用户名获取成功'
-    //   }
-    // } else {
-    //   await ctx.knex('users').insert({name: userName, phone: '12312312312'})
-    //   ctx.body = {
-    //     code: 10000,
-    //     message: '新用户，已插入成功'
-    //   }
-    // }
+}
+
+exports.login = async (ctx, next) => {
+  let userName = ctx.request.body.user_name
+  let password = ctx.request.body.user_password
+  let cur_user = await ctx.knex.select('*').from('users').where('user_name', userName)
+  cur_user = cur_user[0]
+  if (userName && !password) {
+    console.log('userName && !password')
+    if (cur_user) {
+      ctx.body = {
+        code: 10001,
+        msg: '用户存在，输入密码'
+      }
+      return
+    }
+    if (!cur_user) {
+      ctx.body = {
+        code: 40001,
+        msg: '用户未注册'
+      }
+      return
+    }
+  }
+  if (userName && password) {
+    console.log(cur_user.userName, '===', userName, '===', cur_user.password, '===', password);
+    if (cur_user.user_name === userName && cur_user.user_password === password) {
+      ctx.body = {
+        code: 10000,
+        msg: '登陆成功',
+        account: cur_user
+      }
+      return
+    } else {
+      ctx.body = {
+        code: 40002,
+        msg: '密码错误'
+      }
+      return
+    }
+  }
 }

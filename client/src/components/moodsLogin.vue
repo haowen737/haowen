@@ -2,7 +2,7 @@
   <div class="moodsLogin-layout">
     <div class="container">
       <header class="header" :class="headerClass">
-        情 绪
+        With You
       </header>
       <div class="login-form">
         <div class="form-group">
@@ -30,15 +30,15 @@
         </transition>
         <transition name="password">
           <div class="password-container" v-show="showDeny">
-            <p v-show="!newAccount">
+            <p v-show="!showCreateAccount">
               输入&nbsp;{{where.user_name}}&nbsp;的密码
             </p>
-            <p v-show="newAccount">用户&nbsp;{{where.user_name}}&nbsp;不存在<br>输入新密码以创建一个新用户</p>
+            <p v-show="showCreateAccount">用户&nbsp;{{where.user_name}}&nbsp;不存在<br>输入一个密码以创建一个新用户</p>
             <p>
               <input
               type="text"
               v-model="where.user_password"
-              @keypress="submitInput"
+              @keypress="createAccount"
               placeholder="输入密码">
             </p>
             <a href="javascript:;" @click="tryAgain">返回</a>
@@ -64,7 +64,7 @@ export default {
       showForm: true,
       showLoading: false,
       showAgree: false,
-      newAccount: false,
+      showCreateAccount: false,
       where: {
         user_name: '',
         user_password: ''
@@ -92,29 +92,6 @@ export default {
         this.beforePost()
       }
     },
-    submit () {
-      this.showForm = false
-      this.showLoading = true
-      this.headerClass = 'header-lower'
-      window.setTimeout(() => {
-        this.showLoading = false
-        if (this.where.user_name === 'haowen') {
-          this.showAgree = true
-          window.setTimeout(() => {
-            this.$router.push('/moods')
-          }, 1000)
-        } else {
-          this.showDeny = true
-        }
-      }, 1500)
-    },
-    tryAgain () {
-      this.showDeny = false
-      this.showDeny = false
-      this.showForm = true
-      this.where.user_password = ''
-      this.headerClass = 'header-upper'
-    },
     beforePost () {
       if (!this.where.user_name) {
         window.alert('请输入名字')
@@ -123,22 +100,70 @@ export default {
       this.showForm = false
       this.showLoading = true
       this.headerClass = 'header-lower'
-      this.registe()
+      this.login()
     },
-    registe () {
+    createAccount (el) {
+      if (el.keyCode === 13 && this.showCreateAccount) {
+        this.register()
+        return
+      }
+      if (el.keyCode === 13 && !this.showCreateAccount) {
+        this.login()
+        return
+      }
+    },
+    register () {
       let param = this.where
       this.$http.post('/api/users/registerUser', param)
+      .then((res) => {
+        res = res.data
+        if (res.data.code === 10002) {
+          window.alert('创建成功，登陆一下吧')
+          this.tryAgain()
+        }
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
+    login () {
+      let param = this.where
+      this.$http.post('/api/users/login', param)
       .then((res) => {
         res = res.data.data
         this.showLoading = false
         this.showDeny = true
         if (res.code === 40001) {
-          this.newAccount = true
+          this.showCreateAccount = true
+          return
+        }
+        if (res.code === 40002) {
+          window.alert('密码错误')
+          this.tryAgain()
+        }
+        if (res.code === 10001) {
+          this.showCreateAccount = false
+          return
+        }
+        if (res.code === 10000) {
+          window.alert('登录成功')
+          this.tryAgain()
+          let account = JSON.stringify(res.account)
+          window.sessionStorage.setItem('withyoufriendsuseraccount', account)
+          return
         }
       })
       .catch((err) => {
         console.log(err)
       })
+    },
+    tryAgain () {
+      this.showDeny = false
+      this.showDeny = false
+      this.showForm = true
+      this.where.user_password = ''
+      this.headerClass = 'header-upper'
     }
   },
   watch: {
