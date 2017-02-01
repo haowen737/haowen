@@ -10,7 +10,7 @@
       <hr>
     </header>
     <div v-html="content" class="markdown-body"></div>
-    <div class="bottom-bar">
+    <div class="bottom-bar" v-show="!showLoading">
       <div class="bottom-bar-tags">
         <div class="bottom-bar-tags-icon">
           <img src="./../assets/images/i-tag.png" alt="">
