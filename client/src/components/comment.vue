@@ -5,7 +5,7 @@
     </div>
     <a class="send-container" href="javascript:;" @click="onConfirm">写好了</a>
     <div class="comments-container">
-      <div class="comments-welcome">Welcome{{where.userName}}</div>
+      <div class="comments-welcome">Friend {{where.userName}}</div>
       <transition-group name="commentCard">
         <div class="comment" v-for="comment in comments" :key="comment">
           <div class="comment-inner">
@@ -14,17 +14,17 @@
             </p>
             <p class="comment-content">{{comment.content}}</p>
             <p class="comment-foot">
-              <a href="javasrcipt:;" @click="getReply(comment)">回复</a>
+              <a href="javascript:;" @click="getReply(comment)">回复</a>
             </p>
           </div>
-          <transition name="replydown">
+          <!-- <transition name="replydown"> -->
             <div class="reply-container" v-show="showReply==comment.id">
               <div class="reply-input">
                 <input placeholder="回复(按下回车键发送)" v-model="reply.content"></input>
                 <a href="javascript:;" @click="sendReply">发送</a>
               </div>
               <div class="reply-list-container">
-                <transition-group name="replydown">
+                <!-- <transition-group name="replydown"> -->
                   <div class="reply-list" v-for="reply in replyList" v-show="replyList.length" :key="reply">
                     <a class="reply-item-name">{{reply.user_name}}</a>
                     <span class="reply-parent-name" v-show="reply.parent_name">
@@ -34,10 +34,10 @@
                     <span class="reply-item-content">: {{reply.content}}</span>
                     <a class="reply-item-reply" @click="boforeSendReply(reply)">回复</a>
                   </div>
-                </transition-group>
+                <!-- </transition-group> -->
               </div>
             </div>
-          </transition>
+          <!-- </transition> -->
         </div>
       </transition-group>
     </div>
@@ -78,7 +78,18 @@ export default {
   },
   methods: {
     initPage () {
-      this.where.userName = '测试用户'
+      setTimeout(() => {
+        this.checkLogin()
+      }, 1000)
+    },
+    checkLogin () {
+      this.where.userName = this.$root.userName
+      if (!this.where.userName) {
+        window.alert('未登录')
+        this.$router.push({path: '/moods/login', query: {
+          redirect: '/comment'
+        }})
+      }
     },
     prePost () {
       if (!this.where.content) {

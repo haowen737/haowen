@@ -34,11 +34,16 @@ new Vue({
     }
   },
   mounted () {
+    this.getUser()
   },
   methods: {
     getUser () {
-      let user = window.sessionStorage.getItem('withyoufriendsuseraccount')
-      console.log(user)
+      let user = window.localStorage.getItem('withyoufriendsuseraccount')
+      if (user) {
+        user = JSON.parse(user)
+        this.userName = user.user_name
+      }
+      console.log('用户＝', user)
     },
     scrollWatcher () {
       // console.log(window.onscrol)

@@ -150,7 +150,9 @@ export default {
           window.alert('登录成功')
           this.tryAgain()
           let account = JSON.stringify(res.account)
-          window.sessionStorage.setItem('withyoufriendsuseraccount', account)
+          window.localStorage.setItem('withyoufriendsuseraccount', account)
+          this.$root.userName = this.where.user_name
+          this.reDirect()
           return
         }
       })
@@ -164,6 +166,13 @@ export default {
       this.showForm = true
       this.where.user_password = ''
       this.headerClass = 'header-upper'
+    },
+    reDirect () {
+      let query = this.$route.query
+      console.log(query)
+      if (query.redirect) {
+        this.$router.replace({path: query.redirect})
+      }
     }
   },
   watch: {

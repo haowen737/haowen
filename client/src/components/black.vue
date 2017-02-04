@@ -8,14 +8,17 @@
     id="video">
 		</video>
     <transition name="black-text">
-      <div class="text-container" v-show="!showLoading">
+      <div class="text-container"
+      v-show="!showLoading"
+      :style="{top:blackTextTop + '%'}">
         <p class="title">BLACK</p>
         <p class="title-second">is only as beautiful... as you make it</p>
+        <p class="title-second" @click="judgeDemolist">查看</p>
       </div>
     </transition>
-    <div class="demolist-container" @mouseover="doDemolist">
+    <div class="demolist-container">
       <transition name="demolist">
-        <div class="demolist" v-show="showDemolist" @mouseout="reDemolist">
+        <div class="demolist" v-show="showDemolist">
           <router-link class="demolist-item-container" :to="{path: demo.url}" v-for="demo in demolist">
             <div class="demolist-item-img">
 
@@ -34,6 +37,7 @@
 <script>
 import demolist from './../demolist.js'
 import loading from './../packages/loading'
+import './../assets/styles/font-awesome.css'
 export default {
   data () {
     return {
@@ -41,6 +45,7 @@ export default {
       showLoading: false,
       vidSrc: '',
       videoTop: 0,
+      blackTextTop: 50,
       video: {},
       demolist: []
     }
@@ -57,13 +62,20 @@ export default {
         this.video.play()
       }, 2000)
     },
-    doDemolist () {
+    judgeDemolist () {
+      this.showDemolist ? this.closeDemoList() : this.openDemoList()
+    },
+    openDemoList () {
+      console.log('doopen')
       this.showDemolist = true
       this.videoTop = -200
+      this.blackTextTop = 40
     },
-    reDemolist () {
+    closeDemoList () {
+      console.log('doclose')
       this.showDemolist = false
       this.videoTop = 0
+      this.blackTextTop = 50
     }
   },
   components: {
@@ -123,6 +135,7 @@ export default {
   z-index: 10;
   cursor: default;
   animation: blackText 3s;
+  transition: top 1s;
 }
 .text-container p {
   width: 100%;

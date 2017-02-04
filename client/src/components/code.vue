@@ -21,7 +21,7 @@
             <h1>{{ card.title }}</h1>
             <p class="card-summary">{{card.summary}}</p>
             <p class="card-date">{{ card.created_at | formatDate('YYYY-MM-DD HH:mm')}}
-              <span>喜欢{{card.likes}}</span>
+              <span>感谢{{card.likes}}</span>
               <span>阅读{{card.view_count}}</span>
             </p>
           </router-link>
