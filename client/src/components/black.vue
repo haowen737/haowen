@@ -37,7 +37,7 @@
 <script>
 import demolist from './../demolist.js'
 import loading from './../packages/loading'
-import './../assets/styles/font-awesome.css'
+// import './../assets/styles/font-awesome.css'
 export default {
   data () {
     return {
