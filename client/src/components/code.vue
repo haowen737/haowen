@@ -30,10 +30,12 @@
     </div>
     <bottom-fire :show.sync="showBottomFire"></bottom-fire>
     <loading :show="showLoading" top="50%" bg-color="#000"></loading>
+    <login-entrance></login-entrance>
   </div>
 </template>
 
 <script>
+import LoginEntrance from './loginEntrance'
 import loading from './../packages/loading'
 import BottomFire from './../packages/bottomFire'
 // import database from './../../database'
@@ -84,6 +86,7 @@ export default {
     }
   },
   components: {
+    LoginEntrance,
     BottomFire,
     loading
   }

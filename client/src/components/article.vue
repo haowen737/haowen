@@ -22,7 +22,7 @@
           <div class="bottom-bar-likes-img">
             <img src="./../assets/images/i-light.png" alt="">
           </div>
-          <a href="javascript:;" @click="likeThisArticle">{{article.likes}}人感谢</a>
+          <a href="javascript:;" @click="likeThisArticle">{{article.likes}}次感谢</a>
         </div>
       </div>
       <div class="bottom-bar-comment-header">

@@ -1,56 +1,58 @@
 <template lang="html">
-  <div class="moodsLogin-layout">
-    <div class="container">
-      <header class="header" :class="headerClass">
-        With You
-      </header>
-      <div class="login-form">
-        <div class="form-group">
-          <transition name="moodsLogin">
-            <input
-            autocomplete="off"
-            type="text"
-            name="name"
-            v-model="where.user_name"
-            @blur="blurInput"
-            @focus="focusInput"
-            @keypress="submitInput"
-            v-show="showForm"
-            placeholder="你的名字">
-            <!-- <div class="input-bottom">
-              <div class="input-label" :class="labelClass">Your name?</div>
-              <transition name="moods-fade">
-                <div class="submitBtn" href="Javascript:;" :class="labelClass" @click.prevent="submit">Next</div>
-              </transition>
-            </div> -->
+  <transition name="fade">
+    <div class="moodsLogin-layout">
+      <div class="container">
+        <header class="header" :class="headerClass">
+          With You
+        </header>
+        <div class="login-form">
+          <div class="form-group">
+            <transition name="moodsLogin">
+              <input
+              autocomplete="off"
+              type="text"
+              name="name"
+              v-model="where.user_name"
+              @blur="blurInput"
+              @focus="focusInput"
+              @keypress="submitInput"
+              v-show="showForm"
+              placeholder="你的名字">
+              <!-- <div class="input-bottom">
+                <div class="input-label" :class="labelClass">Your name?</div>
+                <transition name="moods-fade">
+                  <div class="submitBtn" href="Javascript:;" :class="labelClass" @click.prevent="submit">Next</div>
+                </transition>
+              </div> -->
+            </transition>
+          </div>
+          <transition name="moods-fade">
+            <div class="input-mask" v-show="showMask" @click="blurInput"></div>
+          </transition>
+          <transition name="password">
+            <div class="password-container" v-show="showDeny">
+              <p v-show="!showCreateAccount">
+                输入&nbsp;{{where.user_name}}&nbsp;的密码
+              </p>
+              <p v-show="showCreateAccount">用户&nbsp;{{where.user_name}}&nbsp;不存在<br>输入一个密码以创建一个新用户</p>
+              <p>
+                <input
+                type="text"
+                v-model="where.user_password"
+                @keypress="createAccount"
+                placeholder="输入密码">
+              </p>
+              <a href="javascript:;" @click="tryAgain">返回</a>
+            </div>
+          </transition>
+          <transition name="loading">
+            <loading v-show="showLoading" top="60px"></loading>
           </transition>
         </div>
-        <transition name="moods-fade">
-          <div class="input-mask" v-show="showMask" @click="blurInput"></div>
-        </transition>
-        <transition name="password">
-          <div class="password-container" v-show="showDeny">
-            <p v-show="!showCreateAccount">
-              输入&nbsp;{{where.user_name}}&nbsp;的密码
-            </p>
-            <p v-show="showCreateAccount">用户&nbsp;{{where.user_name}}&nbsp;不存在<br>输入一个密码以创建一个新用户</p>
-            <p>
-              <input
-              type="text"
-              v-model="where.user_password"
-              @keypress="createAccount"
-              placeholder="输入密码">
-            </p>
-            <a href="javascript:;" @click="tryAgain">返回</a>
-          </div>
-        </transition>
-        <transition name="loading">
-          <loading v-show="showLoading" top="60px"></loading>
-        </transition>
+        <bottom-text></bottom-text>
       </div>
-      <bottom-text></bottom-text>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -151,7 +153,7 @@ export default {
           this.tryAgain()
           let account = JSON.stringify(res.account)
           window.localStorage.setItem('withyoufriendsuseraccount', account)
-          this.$root.userName = this.where.user_name
+          this.$root.user.user_name = this.where.user_name
           this.reDirect()
           return
         }

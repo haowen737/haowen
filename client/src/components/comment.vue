@@ -83,7 +83,7 @@ export default {
       }, 1000)
     },
     checkLogin () {
-      this.where.userName = this.$root.userName
+      this.where.userName = this.$root.user.user_name
       if (!this.where.userName) {
         window.alert('未登录')
         this.$router.push({path: '/moods/login', query: {

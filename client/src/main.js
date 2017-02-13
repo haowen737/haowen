@@ -27,23 +27,21 @@ new Vue({
       offsetHeight: 0,
       innerHeight: 0,
       scrollY: 0,
-      userName: '',
+      user: {},
       topScrollbarWidth: {
         'width': '0%'
       }
     }
   },
-  mounted () {
+  beforeMount () {
     this.getUser()
   },
   methods: {
     getUser () {
-      let user = window.localStorage.getItem('withyoufriendsuseraccount')
+      let user = JSON.parse(window.localStorage.getItem('withyoufriendsuseraccount'))
       if (user) {
-        user = JSON.parse(user)
-        this.userName = user.user_name
+        this.user = Object.assign({}, user)
       }
-      console.log('用户＝', user)
     },
     scrollWatcher () {
       // console.log(window.onscrol)

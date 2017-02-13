@@ -108,6 +108,7 @@ export default {
   display: flex;
   bottom: 0;
   width: 100%;
+  height: 200px;
   background-color: #fff;
 }
 .demolist-container {
@@ -174,12 +175,12 @@ export default {
   }
 }
 .demolist-enter-active, .demolist-leave-active {
-  transition: all .5s ease;
-  opacity: 1;
+  transition: all .3s ease;
+  /*opacity: 1;*/
   height: 200px;
 }
 .demolist-enter, .demolist-leave-active {
-  opacity: 0;
+  /*opacity: 0;*/
   height: 0px;
 }
 </style>

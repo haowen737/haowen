@@ -7,8 +7,8 @@
           <div class="modal-head" v-show="header" v-html="header"></div>
           <div class="modal-body" v-show="body" v-html="body"></div>
           <div class="modal-btns">
+            <div class="modal-btn border-l" @click="onCancel()" v-show="cancel">{{cancelText}}</div>
             <div class="modal-btn" @click="onConfirm()">{{confirmText}}</div>
-            <div class="modal-btn border-l" @click="onCancel()" v-show="cancel">{{cancalText}}</div>
           </div>
         </div>
       </transition>
@@ -98,7 +98,7 @@ export default {
   border-bottom: 1px solid #e7e7e7;
 }
 .modal {
-  position: absolute;
+  position: fixed;
   top: 40%;
   left: 50%;
   transform: translateX(-200px);
@@ -108,7 +108,7 @@ export default {
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 .modal-fade {
-  position: absolute;
+  position: fixed;
   z-index: 100;
   top: 0;
   left: 0;

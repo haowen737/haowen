@@ -2,9 +2,16 @@ const ApiError = require('../error/ApiError');
 // const ApiErrorNames = require('../error/ApiErrorNames');
 //获取用户
 exports.getUser = async (ctx, next) => {
+    let id = ctx.params.id
+    if (!id) {
+      throw new ApiError({code: 10001, message: '用户id不正确'});
+      return
+    }
+    let user = await ctx.knex.select('*').from('users').where('id', id)
+    user = user[0]
     ctx.body = {
-        username: '阿，希爸',
-        age: 30
+      code: 10000,
+      user
     }
 }
 

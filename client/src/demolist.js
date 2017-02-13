@@ -1,7 +1,10 @@
 export default [{
-  title: '一个轮播图',
+  title: '轮播图',
   url: '/demo/zoom-slider'
 }, {
-  title: '一只时钟',
+  title: '时钟',
   url: '/demo/clock'
+}, {
+  title: '音乐播放器',
+  url: '/demo/music-player'
 }]

@@ -2,11 +2,13 @@
   <transition name="fade">
     <div id="particlesJs" v-show="showNav">
       <logo></logo>
+      <login-entrance></login-entrance>
     </div>
   </transition>
 </template>
 
 <script>
+import LoginEntrance from './loginEntrance'
 import Particle from 'particles.js'
 import Logo from './logo'
 export default {
@@ -130,7 +132,7 @@ export default {
   },
   methods: {},
   components: {
-    Particle, Logo
+    Particle, Logo, LoginEntrance
   }
 }
 </script>
