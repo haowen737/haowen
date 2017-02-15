@@ -122,3 +122,20 @@ scrollbar-3dlight-color {
   font-family: "Microsoft YaHei" !important;
   cursor: default;
 }
+/*haowen css sheets*/
+.haowen-input {
+  border: none;
+  border-bottom: 1px solid #999;
+  outline: none;
+  font-size: 17px;
+  font-weight: 300;
+}
+.haowen-textarea {
+  border: 1px solid #999;
+  border-radius: 3px;
+  outline: none;
+  font-size: 17px;
+  font-weight: 300;
+  padding: 5px;
+  min-width: 300px;
+}

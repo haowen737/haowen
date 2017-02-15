@@ -15,7 +15,7 @@ exports.getUser = async (ctx, next) => {
     }
 }
 
-//用户注册&登录
+//用户注册
 exports.registerUser = async (ctx, next) => {
     let userName = ctx.request.body.user_name
     let password = ctx.request.body.user_password
@@ -41,7 +41,8 @@ exports.registerUser = async (ctx, next) => {
     if (userName && password) {
       await ctx.knex('users').insert({
         user_name: userName,
-        user_password: password
+        user_password: password,
+        created_at: new Date()
       })
       ctx.body = {
         code: 10002,
@@ -50,6 +51,7 @@ exports.registerUser = async (ctx, next) => {
     }
 }
 
+//用户登录
 exports.login = async (ctx, next) => {
   let userName = ctx.request.body.user_name
   let password = ctx.request.body.user_password
@@ -88,5 +90,30 @@ exports.login = async (ctx, next) => {
       }
       return
     }
+  }
+}
+
+//用户资料更新
+exports.update = async (ctx, next) => {
+  let id = ctx.request.body.id
+  let nickname = ctx.request.body.nick_name
+  let phone = ctx.request.body.phone
+  let motto = ctx.request.body.motto
+  let gender = ctx.request.body.gender
+  let avatar = ctx.request.body.avatar
+  await ctx.knex('users')
+    .where('id', id)
+    .update({
+      nick_name: nickname || null,
+      phone: phone || null,
+      gender: gender || null,
+      avatar: avatar || null,
+      motto: motto || null,
+      updated_at: new Date()
+    })
+    console.log(nickname, phone, motto, gender, avatar)
+  ctx.body = {
+    code: 10000,
+    msg: '插入成功'
   }
 }

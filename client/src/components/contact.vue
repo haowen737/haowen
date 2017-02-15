@@ -8,47 +8,18 @@
         <p>郑皓文</p>
         <p>中国计量大学</p>
       </div>
-      <div class="content-list">
-        <div class="contact-item">
-          <a href="javascript:;" @mouseover="show=1" @mouseout="show=0" @click="jumpTo(1)">
-            <img src="./../assets/images/github.png" alt="" />
+      <div class="progressBar-container">
+        <progress-bar :progressClass="progressClass" :progressList="progressList"></progress-bar>
+      </div>
+      <div class="content-list" v-show="!showContentList">
+        <div class="contact-item" v-for="(item, index) in contactList">
+          <a href="javascript:;" @mouseover="show=index" @mouseout="show=-1" @click="jumpTo(1)">
+            <img :src="item.icon" alt="" />
             <transition name="fade-item">
-              <div class="contact-item-text" v-show="show===1">Github</div>
+              <div class="contact-item-text" v-show="show===index">{{item.label}}</div>
             </transition>
           </a>
         </div>
-        <div class="contact-item">
-          <a href="javascript:;" @mouseover="show=2" @mouseout="show=0" @click="jumpTo(2)">
-            <img src="./../assets/images/zhihu.png" alt="" />
-            <transition name="fade-item">
-              <div class="contact-item-text" v-show="show===2">Zhihu</div>
-            </transition>
-          </a>
-        </div>
-        <div class="contact-item">
-          <!-- <a href="mailto: mandychuck@outlook.com" @mouseover="show=3" @mouseout="show=0"> -->
-          <a href="javascript:;" @mouseover="show=3" @mouseout="show=0" @click="jumpTo(3)">
-            <img src="./../assets/images/mail.png" alt="" />
-            <transition name="fade-item">
-              <div class="contact-item-text" v-show="show===3">Mail</div>
-            </transition>
-          </a>
-        </div>
-        <div class="contact-item">
-          <a href="javascript:;" @mouseover="show=4" @mouseout="show=0" @click="jumpTo(4)">
-            <img src="./../assets/images/500px.png" alt="" />
-            <transition name="fade-item">
-              <div class="contact-item-text" v-show="show===4">500PX</div>
-            </transition>
-          </a>
-        </div>
-        <!-- <div class="contact-item">
-          <a href="javascript:;" @mouseover="show=5" @mouseout="show=0" @click="jumpTo(5)" @mouseover="show=5" @mouseout="show=0" @click="jumpTo(5)">
-            <img src="./../assets/images/500px.png" alt="" />
-            <transition name="fade-item">
-            <div class="contact-item-text" v-show="show===5">Moods</div>
-          </a>
-        </div> -->
       </div>
       <messangerr
       :display='showMessanger'
@@ -60,11 +31,15 @@
 </template>
 
 <script>
+import progressBar from './../packages/progressBar'
 import messangerr from './../packages/messangerr'
 export default {
   data () {
     return {
-      show: 0,
+      progressClass: ProgressClass,
+      progressList: ProgressList,
+      contactList: ContactList,
+      show: -1,
       messangerrBody: '',
       link: '',
       showMessanger: false
@@ -79,33 +54,10 @@ export default {
     onConfirm () {
       this.show = false
       let index = this.link
-      switch (index) {
-        case 1 : window.open('https://github.com/popitin')
-          break
-        case 2 : window.open('https://www.zhihu.com/people/chuck-25')
-          break
-        case 3 : window.location.href = 'mailto: zt452268020@live.com'
-          break
-        case 4 : window.open('https://500px.com/haowen')
-          break
-        case 5 : this.$router.push('/moods/login')
-          break
-      }
+      MessangerBox[index].action()
     },
     jumpTo (index) {
-      let messangerrBodytext = '打开郑皓文的 '
-      switch (index) {
-        case 1 : this.messangerrBody = messangerrBodytext + 'github?'
-          break
-        case 2 : this.messangerrBody = messangerrBodytext + '知乎?'
-          break
-        case 3 : this.messangerrBody = '给郑皓文写邮件？'
-          break
-        case 4 : this.messangerrBody = messangerrBodytext + '500PX?'
-          break
-        case 5 : this.messangerrBody = messangerrBodytext + '情绪?'
-          break
-      }
+      this.messangerrBody = MessangerBox[index].content
       this.link = index
       this.showMessanger = true
     },
@@ -115,12 +67,65 @@ export default {
     }
   },
   components: {
-    messangerr
+    messangerr,
+    progressBar
   }
 }
+const ProgressClass = {
+  container: {
+    width: '500px'
+  }
+}
+const ProgressList = [{
+  label: 'HTML',
+  value: '80'
+}, {
+  label: 'CSS',
+  value: '70'
+}, {
+  label: 'Javascript',
+  value: '60'
+}]
+const ContactList = [{
+  label: 'Github',
+  icon: require('./../assets/images/github.png')
+}, {
+  label: 'Zhihu',
+  icon: require('./../assets/images/zhihu.png')
+}, {
+  label: 'Mail',
+  icon: require('./../assets/images/mail.png')
+}, {
+  label: '500PX',
+  icon: require('./../assets/images/500px.png')
+}]
+const MessangerBox = [{
+  content: '打开郑皓文的github?',
+  action: () => {
+    window.open('https://github.com/popitin')
+  }
+}, {
+  content: '打开郑皓文的知乎?',
+  action: () => {
+    window.open('https://www.zhihu.com/people/chuck-25')
+  }
+}, {
+  content: '给郑皓文写邮件?',
+  action: () => {
+    window.location.href = 'mailto: zt452268020@live.com'
+  }
+}, {
+  content: '打开郑皓文的500PX?',
+  action: () => {
+    window.open('https://500px.com/haowen')
+  }
+}]
 </script>
 
 <style lang="css" scoped>
+.progressBar-container {
+  margin: 50px auto;
+}
 .contact {
   display: flex;
   width: 700px;
@@ -167,7 +172,7 @@ export default {
   margin: 0 auto;
   border-radius: 100px;
   background-color: #f3f3f3;
-  background-image: url('./../assets/images/me-1.jpg');
+  /*background-image: url('./../assets/images/me-1.jpg');*/
   background-size: cover;
   background-position: center;
 }
