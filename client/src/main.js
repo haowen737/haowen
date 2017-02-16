@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Utils from './utils'
-import Ocean from './ocean'
+// import Ocean from './ocean'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import routers from './routers'
@@ -12,7 +12,7 @@ import 'github-markdown-css/github-markdown.css'
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
-Vue.use(Ocean)
+// Vue.use(Ocean)
 Vue.use(Utils)
 
 // Vue.use(Confirm)
@@ -43,7 +43,7 @@ new Vue({
         this.user = Object.assign({}, user)
       }
     },
-    scrollWatcher () {
+    activeScrollWatcher () {
       // console.log(window.onscrol)
       this.$nextTick(() => {
         window.onscroll = () => {

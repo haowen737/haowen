@@ -31,12 +31,13 @@
         </div>
         <div class="bottom-bar">
           <transition name="fade">
-            <div class="isTyping" v-show="showIsTyping">
-              Mirror is typing ...
+            <div class="isTyping" v-show="show.isTyping">
+              对方正在输入中 ...
             </div>
           </transition>
           <div class="input-container">
             <input type="text" name="userInput" v-model="userInput" @keypress="submitInput">
+            <a href="javascript:;" @click="send">发送</a>
           </div>
         </div>
       </div>
@@ -45,40 +46,44 @@
 </template>
 
 <script>
+import Ocean from './../ocean'
 import IScroll from 'iscroll'
 import Modal from './../packages/modal'
 export default {
   data  () {
     return {
-      showSidebar: 0,
-      greetMode: 0,
-      showIsTyping: false,
+      show: {
+        isTyping: false
+      },
       dialogText: '',
-      username: '',
+      userName: '',
       userInput: '',
+      user: {},
       myScroll: {},
       logs: []
     }
   },
   computed: {},
   mounted  () {
-    console.log(3)
-    this.initScroll()
     this.initPage()
   },
   methods: {
     initPage () {
-      this.username = window.localStorage.getItem('username')
-      let username = this.username
-      if (!username) {
-        this.metFirst()
-        return
+      let user
+      try {
+        user = JSON.parse(window.localStorage.getItem('withyoufriendsuseraccount'))
+        this.userName = user.nick_name ? user.nick_name : user.user_name
+      } catch (e) {
+        window.alert('请先登录')
+        this.$router.push({
+          path: '/moods/login',
+          query: {
+            redirect: '/mirror'
+          }
+        })
       }
-      if (username) {
-        this.metAgain()
-        this.greetMode = 1
-        return
-      }
+      this.greet()
+      this.initScroll()
     },
     initScroll () {
       setTimeout(() => {
@@ -88,62 +93,26 @@ export default {
         })
       }, 50)
     },
-    metFirst () {
-      let log = {time: new Date(), text: '初次见面，请多关照, 怎么称呼你呢', user: 0}
+    greet () {
+      let log = this.newDialog('你好啊，' + this.userName + '，我们又见面了。', 0)
       this.pushLog(log)
     },
-    askName () {
-      console.log(this.logs)
-      let log = {time: new Date(), text: '那就称呼你 ' + this.logs[1].text + ' 好吗？', user: 0}
-      this.pushLog(log)
-      window.localStorage.setItem('username', this.logs[1].text)
-      // let answer = this.logs[2]
-      // this.storageName(answer)
-    },
-    storageName (log) {
-      let check = log.text.indexOf('不')
-      if (check === -1) {
-        window.localStorage.setItem('username', this.logs[1].text)
-        let log = {time: new Date(), text: '你好啊' + this.logs[1].text, user: 0}
-        this.pushLog(log)
-        return
-      }
-      if (check !== -1) {
-        return
-      }
-    },
-    metAgain () {
-      let log = {time: new Date(), text: '你好啊，' + this.username + '，我们又见面了。', user: 0}
-      this.pushLog(log)
-    },
-    submitInput (el) {
-      console.log(el.keyCode, this.userInput)
-      let username = window.localStorage.getItem('username')
-      if (el.keyCode === 13 && this.userInput && username) {
-        this.showIsTyping = true
+    send () {
+      if (this.userInput && this.userName) {
+        this.show.isTyping = true
         let log = {}
         log.time = new Date()
         log.text = this.userInput
         log.user = 1
-        this.$nextTick(function () {
+        this.$nextTick(() => {
           this.userInput = ''
         })
         this.pushLog(log)
         this.checkInput()
-        return
       }
-      if (el.keyCode === 13 && this.userInput && !username) {
-        this.showIsTyping = true
-        let log = {}
-        log.time = new Date()
-        log.text = this.userInput
-        log.user = 1
-        this.$nextTick(function () {
-          this.userInput = ''
-        })
-        this.pushLog(log)
-        this.askName()
-      }
+    },
+    submitInput (el) {
+      el.keyCode === 13 && this.send()
     },
     checkInput () {
       let length = this.logs.length
@@ -151,7 +120,7 @@ export default {
       let log = {}
       setTimeout(() => {
         log.time = new Date()
-        log.text = this.ocean(userSay)
+        log.text = Ocean.AI(userSay)
         log.user = 0
         this.pushLog(log)
       }, 1000)
@@ -163,16 +132,23 @@ export default {
         let y = this.myScroll.maxScrollY
         this.myScroll.scrollTo(0, y, 500)
       }, 150)
+    },
+    newDialog (text, rule) {
+      let dialogue = {}
+      dialogue.time = new Date()
+      dialogue.text = text
+      dialogue.user = rule
+      return dialogue
     }
   },
   beforeDestory: function () {
     console.log(123)
   },
   watch: {
-    'showIsTyping': function (val) {
+    'show.isTyping': function (val) {
       if (val) {
         setTimeout(() => {
-          this.showIsTyping = false
+          this.show.isTyping = false
         }, 2000)
       }
     }
@@ -231,10 +207,11 @@ export default {
   font-size: 11px;
 }
 .dialog-block-time {
+  position: relative;
+  top: -6px;
   float: left;
   font-size: 12px;
-  width: 50px;
-  margin-right: 10px;
+  width: 38px;
   display: inline-block;
 }
 .dialog-block-text:before {
@@ -242,15 +219,17 @@ export default {
   position: absolute;
   padding: 10px 0;
   top: -20px;
-  left: 18px;
+  left: -28px;
   width: 1px;
   background-color: #dedee8;
   height: 200%;
 }
 .dialog-block-text {
+  /*position: relative;
+  padding: 0 10px 0 45px;*/
   position: relative;
-  padding: 0 10px 0 45px;
-  max-width: calc(100% - 81px);
+  margin-left: 45px;
+  width: calc(100% - 121px);
   word-wrap: break-word;
   word-break: break-all;
   display: inline-block;
@@ -266,15 +245,29 @@ export default {
   /*overflow: scroll;*/
   height: calc(100% - 125px)
 }
+.input-container a {
+  position: absolute;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  line-height: 35px;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0;
+  background-color: #ffcaca;
+  color: #fff;
+}
 .input-container input {
-  width: 100%;
   font-size: 15px;
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
   height: 100%;
+  box-sizing: border-box;
   outline: none;
   border: 1px;
+  padding: 0 70px 0 10px;
 }
 .input-container {
   position: relative;

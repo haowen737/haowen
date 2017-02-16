@@ -1,0 +1,45 @@
+.Animated_slidedown {
+   animation: slide_down 1s;
+ }
+ @keyframes slide_down {
+  0% {
+    position: relative;
+    opacity: 0;
+    top: -100px;
+  }
+  100% {
+    position: relative;
+    opacity: 1;
+    top: 0;
+  }
+}
+.Animated_slideleft {
+  animation: slide_left 1s;
+}
+@keyframes slide_left {
+  0% {
+    position: relative;
+    opacity: 0;
+    left: -100px;
+  }
+  100% {
+    position: relative;
+    opacity: 1;
+    left: 0;
+  }
+}
+.Animated_slideright {
+  animation: slide_right 1s;
+}
+@keyframes slide_right {
+  0% {
+    position: relative;
+    opacity: 0;
+    right: -100px;
+  }
+  100% {
+    position: relative;
+    opacity: 1;
+    right: 0;
+  }
+}

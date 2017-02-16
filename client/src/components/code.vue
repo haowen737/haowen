@@ -51,7 +51,7 @@ export default {
   mounted  () {
     // this.getCards()
     this.query()
-    this.$root.scrollWatcher()
+    this.$root.activeScrollWatcher()
   },
   methods: {
     // getCards () {

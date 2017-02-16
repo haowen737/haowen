@@ -52,6 +52,12 @@ p {
 .cur-default {
   cursor: default;
 }
+.bold {
+  font-weight: bold;
+}
+.fs_17 {
+  font-size: 17px;
+}
 /***动画***/
 .fade-enter-active, .fade-leave-active {
   transition: all .3s ease-out;

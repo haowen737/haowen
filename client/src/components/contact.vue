@@ -1,12 +1,12 @@
 <template lang="html">
   <transition name="fade-contact">
     <div class="contact-layout">
-      <div class="head-img-layout">
+      <div class="head-img-layout Animated_slidedown">
         <div class="head-img"></div>
       </div>
       <div class="head-content">
-        <p>郑皓文</p>
-        <p>中国计量大学</p>
+        <p class="Animated_slideleft bold fs_17">郑皓文</p>
+        <p class="Animated_slideright">中国计量大学</p>
       </div>
       <div class="progressBar-container">
         <progress-bar :progressClass="progressClass" :progressList="progressList"></progress-bar>
@@ -123,6 +123,7 @@ const MessangerBox = [{
 </script>
 
 <style lang="css" scoped>
+@import url("./../assets/styles/animation.css");
 .progressBar-container {
   margin: 50px auto;
 }
