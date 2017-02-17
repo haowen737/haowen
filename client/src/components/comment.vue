@@ -382,4 +382,9 @@ export default {
   max-height: 0;
   opacity: 0;
 }
+@media screen and (max-width: 500px) {
+  .comments-container {
+    padding: 0 0 30px 0!important;
+  }
+}
 </style>

@@ -173,7 +173,7 @@ const MessangerBox = [{
   margin: 0 auto;
   border-radius: 100px;
   background-color: #f3f3f3;
-  /*background-image: url('./../assets/images/me-1.jpg');*/
+  background-image: url('./../assets/images/me-1.jpg');
   background-size: cover;
   background-position: center;
 }
