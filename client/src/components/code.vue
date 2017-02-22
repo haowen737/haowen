@@ -38,7 +38,6 @@
 import LoginEntrance from './loginEntrance'
 import loading from './../packages/loading'
 import BottomFire from './../packages/bottomFire'
-// import database from './../../database'
 export default {
   data  () {
     return {
@@ -49,20 +48,19 @@ export default {
   },
   computed: {},
   mounted  () {
-    // this.getCards()
+    this.testCo()
     this.query()
     this.$root.activeScrollWatcher()
   },
   methods: {
-    // getCards () {
-    //   this.cards = database.posts
-    // },
+    testCo () {
+      this.$warning()
+    },
     query () {
       this.showLoading = true
       this.$http.get('/api/article/getArticles')
       .then(function (res) {
-        res = res.data
-        console.log(res.data.data)
+        console.log(res)
         this.cards = res.data
         this.showLoading = false
       })
@@ -77,7 +75,6 @@ export default {
   },
   watch: {
     '$root.scrollY': function (val) {
-      // console.log(this.$root.innerHeight, this.$root.scrollY, this.$root.offsetHeight)
       if ((this.$root.innerHeight + this.$root.scrollY) - this.$root.offsetHeight > -50) {
         this.showBottomFire = true
       } else {

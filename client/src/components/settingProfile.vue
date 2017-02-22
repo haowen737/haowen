@@ -85,10 +85,10 @@ export default {
     query (id) {
       this.$http.get('/api/users/get/' + id)
       .then((res) => {
-        this.where.nick_name = res.data.data.user.nick_name
-        this.where.phone = res.data.data.user.phone
-        this.where.motto = res.data.data.user.motto
-        this.where.created_at = res.data.data.user.created_at
+        this.where.nick_name = res.data.user.nick_name
+        this.where.phone = res.data.user.phone
+        this.where.motto = res.data.user.motto
+        this.where.created_at = res.data.user.created_at
         this.activeTab = 1
         console.log(this.user)
       })

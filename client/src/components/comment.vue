@@ -118,7 +118,7 @@ export default {
     query () {
       this.$http.get('/api/comment/getComments')
       .then((res) => {
-        this.comments = res.data.data.reverse()
+        this.comments = res.data.reverse()
         console.log(this.comments)
       })
       .catch((err) => {
@@ -166,7 +166,6 @@ export default {
       this.reply.parentId = id
       this.$http.get('/api/comment/getReply/' + id)
       .then((res) => {
-        res = res.data
         this.replyList = res.data
         this.showReply = id
         console.log(this.replyList)

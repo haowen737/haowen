@@ -6,10 +6,7 @@ var response_formatter = (ctx) => {
   console.log(ctx.body);
     //如果有返回数据，将返回数据添加到data中
     if (ctx.body) {
-        ctx.body = {
-            message: 'success',
-            data: ctx.body
-        }
+        ctx.body = ctx.body
     }
 }
 

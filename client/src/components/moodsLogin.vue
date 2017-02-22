@@ -118,8 +118,7 @@ export default {
       let param = this.where
       this.$http.post('/api/users/registerUser', param)
       .then((res) => {
-        res = res.data
-        if (res.data.code === 10002) {
+        if (res.code === 10002) {
           window.alert('创建成功，登陆一下吧')
           this.tryAgain()
         }
@@ -133,7 +132,7 @@ export default {
       let param = this.where
       this.$http.post('/api/users/login', param)
       .then((res) => {
-        res = res.data.data
+        res = res.data
         this.showLoading = false
         this.showDeny = true
         if (res.code === 40001) {

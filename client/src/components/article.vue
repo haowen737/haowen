@@ -85,7 +85,7 @@ export default {
     getArticle (title) {
       this.$http.get('/api/article/getArticle/' + title)
       .then((res) => {
-        res = res.data
+        console.log(res)
         this.article = res.data
         this.formatTags(this.article.tags)
       })
