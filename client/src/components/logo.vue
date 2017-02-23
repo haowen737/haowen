@@ -15,7 +15,7 @@
       <h1 v-show="showMotto">Live a life you will remember!</h1>
     </transition>
     <div class="logo-btns">
-      <div class="logo-btn"><router-link :to="{path:'/code'}">Pen</router-link></div>
+      <div class="logo-btn"><router-link :to="{path:'/code/article'}">Pen</router-link></div>
       <div class="logo-btn"><router-link :to="{path:'/black'}">Blvck</router-link></div>
       <div class="logo-btn"><router-link :to="{path:'/mirror'}">Mirror</router-link></div>
       <div class="logo-btn"><router-link :to="{path:'/contact'}">Me</router-link></div>

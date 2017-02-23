@@ -3,7 +3,6 @@ import MoodsLogin from './components/moodsLogin'
 import Dashboard from './components/dashboard'
 import DemoHouse from './components/demoHouse'
 import Flextest from './components/flextest'
-import Article from './components/article'
 import Comment from './components/comment'
 import Contact from './components/contact'
 import Mailbox from './components/mailbox'
@@ -12,6 +11,8 @@ import Black from './components/black'
 import Moods from './components/moods'
 import Tags from './components/tags'
 import Code from './components/code'
+import CodeArticleList from './components/codeArticleList'
+import CodeArticle from './components/codeArticle'
 
 import Clock from './demo/clock'
 import Cellular from './demo/cellular'
@@ -20,28 +21,39 @@ import MusicPlayer from './demo/musicPlayer'
 
 import Loading from './packages/loading'
 
+import DashboardTopbar from './components/dashboardTopbar'
+
 export default [
   {
     path: '/',
-    component: Dashboard
+    components: {
+      default: Dashboard,
+      topbar: DashboardTopbar
+    }
   }, {
     path: '/mirror',
     component: Mirror
   }, {
     path: '/code',
-    component: Code
+    component: Code,
+    children: [
+      {
+        path: '/code/article',
+        component: CodeArticleList
+      }, {
+        path: '/tags',
+        component: Tags
+      }, {
+        path: '/code/article/:id',
+        component: CodeArticle
+      }
+    ]
   }, {
     path: '/demo-house',
     component: DemoHouse
   }, {
-    path: '/tags',
-    component: Tags
-  }, {
     path: '/comment',
     component: Comment
-  }, {
-    path: '/code/article/:id',
-    component: Article
   }, {
     path: '/contact',
     component: Contact

@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="article-layout" id="container">
-    <header>
+    <!-- <header>
       <div class="logo cur-default">Haowen</div>
       <nav class="article-nav">
         <div class="article-nav-item"><a @click="back">上一页</a></a></div>
@@ -8,7 +8,7 @@
         <div class="article-nav-item"><router-link :to="{path:'/'}">干嘛</router-link></a></div>
       </nav>
       <hr>
-    </header>
+    </header> -->
     <div v-html="content" class="markdown-body"></div>
     <div class="bottom-bar" v-show="!showLoading">
       <div class="bottom-bar-tags">
@@ -27,16 +27,20 @@
       </div>
       <div class="bottom-bar-comment-header">
         <div class="login-container">
-          <a href="javascript:;" class="login-btn" @click="join">Join</a>withyoufriends
+          <a href="javascript:;" class="login-btn" @click="join" v-show="!user.user_name">Join</a>
+          <a href="javascript:;" @click="profile" v-show="user.user_name">{{user.user_name}} @</a>
+          <span>withyoufriends</span>
         </div>
         文章评论
       </div>
       <div class="input-container">
-        <textarea rows="7" cols="20" v-model="where.content"></textarea>
+        <textarea rows="7" cols="20" v-model="where.content" :disabled="!user.user_name" placeholder=""></textarea>
+        <div class="button-wrap">
+          <a href="javascript:;">发送</a>
+        </div>
       </div>
-      <div class="bottom-bar-comme-body">
 
-      </div>
+      <div class="bottom-bar-comme-body"></div>
     </div>
     <loading :show="showLoading" top="50%" bg-color="#000"></loading>
   </div>
@@ -51,6 +55,7 @@ export default {
       article: {},
       content: '',
       showLoading: false,
+      user: {},
       where: {
         content: '',
         articleId: ''
@@ -68,6 +73,10 @@ export default {
       this.where.articleId = title
       this.query(title)
       this.getArticle(title)
+      this.getUser()
+    },
+    getUser () {
+      this.user = this.$root.user
     },
     query (title) {
       this
@@ -85,7 +94,6 @@ export default {
     getArticle (title) {
       this.$http.get('/api/article/getArticle/' + title)
       .then((res) => {
-        console.log(res)
         this.article = res.data
         this.formatTags(this.article.tags)
       })
@@ -98,7 +106,6 @@ export default {
       param.id = this.where.articleId
       this.$http.post('/api/article/like', param)
       .then((res) => {
-        console.log(res)
         this.getArticle(this.where.articleId)
       })
       .catch((err) => {
@@ -107,6 +114,9 @@ export default {
     },
     join () {
       this.$router.push('/moods/login')
+    },
+    profile () {
+      this.$router.push('/setting/profile')
     },
     formatMarkdown (content) {
       this.content = Markdown.toHTML(content)

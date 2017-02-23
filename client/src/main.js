@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Utils from './utils'
-// import Ocean from './ocean'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import routers from './routers'
@@ -10,15 +9,10 @@ import 'github-markdown-css/github-markdown.css'
 
 import Warning from './packages/warning'
 
-// import Confirm from './packages/confirm'
-
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.use(Warning)
-// Vue.use(Ocean)
 Vue.use(Utils)
-
-// Vue.use(Confirm)
 
 const router = new VueRouter({
   routes: routers
@@ -37,14 +31,9 @@ new Vue({
     }
   },
   beforeMount () {
-    // this.checkUserAgent()
     this.getUser()
   },
   methods: {
-    checkUserAgent () {
-      let userAgent = window.navigator.userAgent
-      userAgent.indexOf('iPhone') === -1 ? '' : this.$router.replace('/mobile')
-    },
     getUser () {
       let user = JSON.parse(window.localStorage.getItem('withyoufriendsuseraccount'))
       if (user) {
@@ -52,13 +41,11 @@ new Vue({
       }
     },
     activeScrollWatcher () {
-      // console.log(window.onscrol)
       this.$nextTick(() => {
         window.onscroll = () => {
           this.offsetHeight = document.getElementById('container').offsetHeight
           this.innerHeight = window.innerHeight
           this.scrollY = window.scrollY
-          // 160为cards的margin-bottom
           this.topScrollbarWidth.width = (this.scrollY / (this.offsetHeight - this.innerHeight)) * 100 + '%'
           // console.log(this.offsetHeight, this.innerHeight, this.scrollY)
         }
