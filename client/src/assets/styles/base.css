@@ -145,3 +145,7 @@ scrollbar-3dlight-color {
   padding: 5px;
   min-width: 300px;
 }
+.unavaliable-content {
+  text-align: center;
+  line-height: 10;
+}

@@ -36,7 +36,7 @@ export default {
   position: fixed;
   bottom: 0;
   height: 100px;
-  background-color: #000;
+  background-color: #2b2b2b;
   width: 100%;
   z-index: 999;
   text-align: center;

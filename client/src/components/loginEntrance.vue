@@ -96,7 +96,7 @@ export default {
   padding: 10px;
 }
 .login-entrance-container {
-  position: fixed;
+  position: absolute;
   right: 0;
   top: 0;
 }

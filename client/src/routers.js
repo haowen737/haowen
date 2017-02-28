@@ -1,6 +1,6 @@
 import SettingProfile from './components/settingProfile'
 import MoodsLogin from './components/moodsLogin'
-import Dashboard from './components/dashboard'
+import Playground from './components/playground'
 import DemoHouse from './components/demoHouse'
 import Flextest from './components/flextest'
 import Comment from './components/comment'
@@ -11,6 +11,8 @@ import Black from './components/black'
 import Moods from './components/moods'
 import Tags from './components/tags'
 import Code from './components/code'
+import Theatre from './components/theatre'
+import Topic from './components/topic'
 import CodeArticleList from './components/codeArticleList'
 import CodeArticle from './components/codeArticle'
 
@@ -21,39 +23,40 @@ import MusicPlayer from './demo/musicPlayer'
 
 import Loading from './packages/loading'
 
-import DashboardTopbar from './components/dashboardTopbar'
-
 export default [
   {
-    path: '/',
-    components: {
-      default: Dashboard,
-      topbar: DashboardTopbar
-    }
+    path: '/playground',
+    component: Playground
   }, {
     path: '/mirror',
     component: Mirror
   }, {
-    path: '/code',
+    path: '/',
     component: Code,
     children: [
       {
-        path: '/code/article',
+        path: '/',
         component: CodeArticleList
       }, {
         path: '/tags',
         component: Tags
       }, {
-        path: '/code/article/:id',
+        path: '/article/:id',
         component: CodeArticle
+      }, {
+        path: '/comment',
+        component: Comment
+      }, {
+        path: '/theatre',
+        component: Theatre
+      }, {
+        path: '/topic',
+        component: Topic
       }
     ]
   }, {
     path: '/demo-house',
     component: DemoHouse
-  }, {
-    path: '/comment',
-    component: Comment
   }, {
     path: '/contact',
     component: Contact

@@ -2,14 +2,17 @@
   <div class="topbar">
     <div class="topbar-logo">
       <router-link :to="{path:'/'}" class="topbar-logo-name"><img src="./../assets/images/haowen.png" alt=""></router-link>
-      <div class="topbar-logo-login">登入</div>
+      <div class="topbar-logo-login">
+        <span v-show="!user.user_name">登入</span>
+        <span v-show="user.user_name">{{user.user_name}}</span>
+      </div>
     </div>
     <div class="topbar-nav">
       <nav>
-        <router-link :to="{path:'/code/article'}">首页</router-link>
+        <router-link :to="{path:'/'}">首页</router-link>
         <router-link :to="{path:'/tags'}">标签</router-link>
-        <router-link :to="{path:'/comment'}">专题</router-link>
-        <router-link :to="{path:'/comment'}">视频</router-link>
+        <router-link :to="{path:'/topic'}">专题</router-link>
+        <router-link :to="{path:'/theatre'}">专题</router-link>
         <router-link :to="{path:'/comment'}">留言</router-link>
         <router-link :to="{path:'/contact'}">关于我</router-link>
       </nav>
@@ -18,7 +21,27 @@
 </template>
 
 <script>
+import LoginEntrance from './loginEntrance'
 export default {
+  data () {
+    return {
+      user: {
+        user_name: ''
+      }
+    }
+  },
+  mounted () {
+    this.checkLogin()
+  },
+  methods: {
+    checkLogin () {
+      let userName = this.$root.user.user_name
+      this.user.user_name = userName || ''
+    }
+  },
+  components: {
+    LoginEntrance
+  }
 }
 </script>
 

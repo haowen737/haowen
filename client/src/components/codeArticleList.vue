@@ -1,30 +1,18 @@
 <template lang="html">
   <div class="container" id="container">
     <div id="pageCode">
-      <!-- <div class="header">
-        <div class="header-inner">
-          <div class="logo cur-default">Haowen</div>
-          <div class="site-subtitle cur-default">Live a life you will remember!</div>
-          <nav class="site-nav">
-            <ul>
-              <li><router-link :to="{path:'/'}">首页</router-link></li>
-              <li><router-link :to="{path:'/tags'}">标签</router-link></li>
-              <li><router-link :to="{path:'/contact'}">我</router-link></li>
-              <li><router-link :to="{path:'/comment'}">留言</router-link></li>
-            </ul>
-          </nav>
-        </div>
-      </div> -->
-      <!-- <dashboard-topbar></dashboard-topbar> -->
       <div class="cards">
         <transition-group name="card">
           <div class="card" v-for="card in cards" @click="showBottomFire=false" :key="card">
-            <div class="card-img-container" v-if="card.image" :style="{backgroundImage:'url(' + card.image + ')'}"></div>
+            <div class="card-img-container"
+            v-if="card.thumbnail"
+            :style="{backgroundImage:'url(' + card.thumbnail + '?imageView2/0/w/1000)'}"></div>
             <router-link :to="{path:'article/' + card.file_id}">{{ card.title }}</router-link>
             <p class="card-summary">{{card.summary}}</p>
-            <p class="card-date">{{ card.created_at | formatDate('YYYY-MM-DD HH:mm')}}
-              <span>感谢{{card.likes}}</span>
-              <span>阅读{{card.view_count}}</span>
+            <p>
+              <span class="card-date">{{card.author}} in {{ card.created_at | formatDate('YYYY/MM/DD HH:mm')}}</span>
+              <span class="card-bottom-right">感谢{{card.likes}}</span>
+              <span class="card-bottom-right">阅读{{card.view_count}}</span>
             </p>
           </div>
         </transition-group>
@@ -136,8 +124,8 @@ export default {
 .card {
   display: block;
   position: relative;
-  margin: 30px auto 30px;
-  padding: 10px 20px 4px;
+  margin: 30px auto;
+  padding: 0 20px;
   width: 500px;
   /*box-shadow: 1px 1px 2px rgba(0,0,0,0.2);*/
   /*transition: box-shadow .5s ease-out;*/
@@ -148,21 +136,22 @@ export default {
 .card a{
   font-size: 16px;
   line-height: 3;
-  border-bottom-color: #c9c9c9;
+  border-bottom-color: rgba(0,0,0,0);
   border-bottom-style: solid;
   border-bottom-width: 0;
   transition: all .5s;
 }
 .card a:hover{
   border-bottom-width: 1px;
+  border-bottom-color: #c9c9c9;
 }
-.card span {
+.card-bottom-right {
   float: right;
   margin-left: 10px;
   color: #c5c5c5;
   font-size: 11px;
   font-weight: lighter;
-  line-height: 16px;
+  margin-top: 5px;
 }
 .card-summary {
   margin-top: 0px;
@@ -173,6 +162,7 @@ export default {
 .card-date {
   font-size: 14px;
   font-weight: 300;
+  font-style: italic;
   color: #333;
 }
 .card p {

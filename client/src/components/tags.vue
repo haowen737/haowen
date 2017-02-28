@@ -3,11 +3,8 @@
     <div class="tags-layout">
       <div class="tags" id="container">
         <header>
-          <!-- <div class="tags-header">Tags</div> -->
-          <div class="tags-header">Tags<span>{{selectedTag}}</span></div>
           <nav>
-            <router-link class="tag-nav" :to="{path:'/code'}" v-show="showTags">Return</router-link>
-            <a class="tag-nav" href="javascript:;" @click="showTags=true,selectedTag=''" v-show="!showTags">Return</a>
+            <a class="tag-nav" href="javascript:;" @click="showTags=true,selectedTag=''" v-show="!showTags">重选</a>
           </nav>
         </header>
         <div class="tags-body" v-for="tag in tags" v-show="showTags">
@@ -31,7 +28,6 @@
 </template>
 
 <script>
-import database from './../../database'
 export default {
   data () {
     return {
@@ -50,13 +46,13 @@ export default {
   },
   methods: {
     getTags () {
-      this.posts = database.posts
-      for (var i = 0; i < this.posts.length; i++) {
-        for (var t = 0; t < this.posts[i].tags.length; t++) {
-          this.tags.push(this.posts[i].tags[t])
-        }
-      }
-      this.formatTags()
+      this.$http.get('/api/article/getTags')
+      .then((res) => {
+        this.tags = res.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     },
     formatTags () {
       this.tagStyle = {
@@ -64,16 +60,7 @@ export default {
       }
     },
     selectTag (tag) {
-      this.cards = []
-      this.selectedTag = ': ' + tag
-      for (var i = 0; i < this.posts.length; i++) {
-        for (var t = 0; t < this.posts[i].tags.length; t++) {
-          if (tag === this.posts[i].tags[t]) {
-            this.cards.push(this.posts[i])
-          }
-        }
-      }
-      this.showTags = false
+      this.$http.get('/api/article/getTags/' + tag)
     }
   },
   components: {}
@@ -102,13 +89,6 @@ export default {
 .tags-layout header{
   text-align: center;
 }
-.tags-header {
-  font-size: 70px;
-  padding: 50px 0;
-  margin: 0 auto;
-  display: inline-block;
-  position: relative;
-}
 .tags-body {
   width: 700px;
   position: relative;
@@ -119,7 +99,6 @@ export default {
   top: 0;
   display:block;
   width: auto;
-  font-family: cursive;
   font-weight: 100;
 }
 .tags-body a:hover {
