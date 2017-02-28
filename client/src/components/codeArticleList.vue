@@ -66,7 +66,7 @@ export default {
   },
   watch: {
     '$root.scrollY': function (val) {
-      if ((this.$root.innerHeight + this.$root.scrollY) - this.$root.offsetHeight > -50) {
+      if (this.$root.innerHeight - this.$root.offsetHeight - this.$root.scrollY < -120) {
         this.showBottomFire = true
       } else {
         this.showBottomFire = false
