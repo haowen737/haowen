@@ -3,7 +3,7 @@
     <div id="pageCode">
       <div class="cards">
         <transition-group name="card">
-          <div class="card" v-for="card in cards" @click="showBottomFire=false" :key="card">
+          <article class="card" v-for="card in cards" @click="showBottomFire=false" :key="card">
             <div class="card-img-container"
             v-if="card.thumbnail"
             :style="{backgroundImage:'url(' + card.thumbnail + '?imageView2/0/w/1000)'}"></div>
@@ -14,7 +14,7 @@
               <span class="card-bottom-right">感谢{{card.likes}}</span>
               <span class="card-bottom-right">阅读{{card.view_count}}</span>
             </p>
-          </div>
+          </article>
         </transition-group>
       </div>
     </div>
