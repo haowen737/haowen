@@ -9,7 +9,7 @@
         </header>
         <div class="tags-body" v-for="tag in tags" v-show="showTags">
           <a href="javascript:;"
-          :style="'left:' + Math.random() * 700 + 'px;top:' + Math.random() * 300 + 'px;font-size:' + (Math.random() * 30 + 9) + 'px'"
+          :style="'left:' + Math.random() * 700 + 'px;top:' + Math.random() * 300 + 'px;font-size:' + (Math.random() * 10 + 14) + 'px'"
           @click="selectTag(tag)">{{tag}}</a>
         </div>
       </div>

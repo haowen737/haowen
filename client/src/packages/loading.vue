@@ -23,7 +23,7 @@ export default {
     },
     top: {
       type: String,
-      default: 0
+      default: '0%'
     },
     bgColor: {
       type: String,

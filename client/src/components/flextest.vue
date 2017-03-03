@@ -1,19 +1,24 @@
 <template lang="html">
   <div class="content-wrap">
     <div class="flex-test-container c1">
+      <header>flex: 0 1 auto;</header>
       <div class="items i1" v-for="i in 15"></div>
     </div>
     <div class="flex-test-container c2">
+      <header>flex: 0 0 auto;</header>
       <div class="items i2" v-for="i in 15"></div>
     </div>
     <div class="flex-test-container c2">
+      <header>flex: 1 1 auto;</header>
       <div class="items i3" v-for="i in 15"></div>
     </div>
     <div class="flex-test-container c4">
+      <header>flex-shrink: 0;</header>
       <div class="items i4" v-for="i in 15"></div>
     </div>
-    <div class="flex-test-container c4">
-      <div class="items i4" v-for="i in 15"></div>
+    <div class="flex-test-container">
+      <header>flex: 1;</header>
+      <div class="items i5" v-for="i in 15"></div>
     </div>
   </div>
 </template>
@@ -24,7 +29,12 @@ export default {
 </script>
 
 <style lang="css">
+.flex-test-container header {
+  position: absolute;
+  background-color: #fff;
+}
 .flex-test-container {
+  position: relative;
   width: 500px;
   height: 100px;
   border: 1px solid #ddd;
@@ -51,5 +61,8 @@ export default {
 }
 .i4 {
   flex-shrink: 0;
+}
+.i5 {
+  flex: 1;
 }
 </style>

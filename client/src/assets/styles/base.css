@@ -149,3 +149,14 @@ scrollbar-3dlight-color {
   text-align: center;
   line-height: 10;
 }
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  content: '.';
+  display: block;
+  clear: both;
+  width: 0px;
+  height: 0px;
+  visibility: hidden;
+}

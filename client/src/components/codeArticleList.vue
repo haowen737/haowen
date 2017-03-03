@@ -18,7 +18,6 @@
         </transition-group>
       </div>
     </div>
-    <bottom-fire :show.sync="showBottomFire"></bottom-fire>
     <loading :show="showLoading" top="50%" bg-color="#000"></loading>
     <!-- <login-entrance></login-entrance> -->
   </div>
@@ -28,7 +27,6 @@
 import DashboardTopbar from './dashboardTopbar'
 import LoginEntrance from './loginEntrance'
 import loading from './../packages/loading'
-import BottomFire from './../packages/bottomFire'
 export default {
   data  () {
     return {
@@ -64,19 +62,9 @@ export default {
   beforeDestroy () {
     this.$root.removeScrollWatcher()
   },
-  watch: {
-    '$root.scrollY': function (val) {
-      if (this.$root.innerHeight - this.$root.offsetHeight - this.$root.scrollY < -120) {
-        this.showBottomFire = true
-      } else {
-        this.showBottomFire = false
-      }
-    }
-  },
   components: {
     DashboardTopbar,
     LoginEntrance,
-    BottomFire,
     loading
   }
 }
@@ -133,16 +121,19 @@ export default {
   text-align: left;
   cursor: default;
 }
-.card a{
-  font-size: 16px;
-  line-height: 3;
+.card a {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 400;
+  color: #111;
+  margin: 10px 0;
+  line-height: 1;
   border-bottom-color: rgba(0,0,0,0);
   border-bottom-style: solid;
-  border-bottom-width: 0;
+  border-bottom-width: 1px;
   transition: all .5s;
 }
 .card a:hover{
-  border-bottom-width: 1px;
   border-bottom-color: #c9c9c9;
 }
 .card-bottom-right {

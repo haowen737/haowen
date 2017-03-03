@@ -16,9 +16,9 @@ exports.getTags = async (ctx, next) => {
 }
 
 exports.getArticlesByTag = async (ctx, next) => {
-  let tag = ctx.params.tag
+  let tag = '%' + ctx.params.tag + '%'
   let articles = await ctx.knex.select('*').from('articles').where('tags', 'like', tag)
-  console.log(articles)
+  ctx.body = articles
 }
 
 exports.likeArticles = async (ctx, next) => {

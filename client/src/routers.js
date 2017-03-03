@@ -1,27 +1,27 @@
-import SettingProfile from './components/settingProfile'
-import MoodsLogin from './components/moodsLogin'
-import Playground from './components/playground'
-import DemoHouse from './components/demoHouse'
-import Flextest from './components/flextest'
-import Comment from './components/comment'
-import Contact from './components/contact'
-import Mailbox from './components/mailbox'
-import Mirror from './components/mirror'
-import Black from './components/black'
-import Moods from './components/moods'
-import Tags from './components/tags'
-import Code from './components/code'
-import Theatre from './components/theatre'
-import Topic from './components/topic'
-import CodeArticleList from './components/codeArticleList'
-import CodeArticle from './components/codeArticle'
+const SettingProfile = (resolve) => require(['./components/settingProfile'], resolve)
+const MoodsLogin = (resolve) => require(['./components/moodsLogin'], resolve)
+const Playground = (resolve) => require(['./components/playground'], resolve)
+const DemoHouse = (resolve) => require(['./components/demoHouse'], resolve)
+const Flextest = (resolve) => require(['./components/flextest'], resolve)
+const Comment = (resolve) => require(['./components/comment'], resolve)
+const Contact = (resolve) => require(['./components/contact'], resolve)
+const Mailbox = (resolve) => require(['./components/mailbox'], resolve)
+const Mirror = (resolve) => require(['./components/mirror'], resolve)
+const Black = (resolve) => require(['./components/black'], resolve)
+const Moods = (resolve) => require(['./components/moods'], resolve)
+const Tags = (resolve) => require(['./components/tags'], resolve)
+const Code = (resolve) => require(['./components/code'], resolve)
+const Theatre = (resolve) => require(['./components/theatre'], resolve)
+const Topic = (resolve) => require(['./components/topic'], resolve)
+const CodeArticleList = (resolve) => require(['./components/codeArticleList'], resolve)
+const CodeArticle = (resolve) => require(['./components/codeArticle'], resolve)
 
-import Clock from './demo/clock'
-import Cellular from './demo/cellular'
-import ZoomSlider from './demo/zoomSlider'
-import MusicPlayer from './demo/musicPlayer'
+const Clock = (resolve) => require(['./demo/clock'], resolve)
+const Cellular = (resolve) => require(['./demo/cellular'], resolve)
+const ZoomSlider = (resolve) => require(['./demo/zoomSlider'], resolve)
+const MusicPlayer = (resolve) => require(['./demo/musicPlayer'], resolve)
 
-import Loading from './packages/loading'
+const Loading = (resolve) => require(['./packages/loading'], resolve)
 
 export default [
   {
@@ -50,6 +50,9 @@ export default [
         path: '/theatre',
         component: Theatre
       }, {
+        path: '/contact',
+        component: Contact
+      }, {
         path: '/topic',
         component: Topic
       }
@@ -57,9 +60,6 @@ export default [
   }, {
     path: '/demo-house',
     component: DemoHouse
-  }, {
-    path: '/contact',
-    component: Contact
   }, {
     path: '/moods',
     component: Moods

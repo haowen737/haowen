@@ -8,6 +8,7 @@ import './assets/styles/base.css'
 import 'github-markdown-css/github-markdown.css'
 
 import Warning from './packages/warning'
+import App from './App'
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
@@ -58,5 +59,5 @@ new Vue({
     }
   },
   router: router,
-  render: h => h('router-view')
+  render: h => h(App)
 }).$mount('#app')

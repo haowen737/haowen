@@ -2,7 +2,7 @@
   <div class="black-layout">
     <video class="vid-container"
     :style="{top:videoTop + 'px'}"
-    src="/static/vid/black_bg.mp4"
+    src="http://function.withyoufriends.com/vid/black_bg.mp4"
     preload="auto"
     loop="loop"
     id="video">
@@ -60,7 +60,7 @@ export default {
       this.video = document.getElementById('video')
       setTimeout(() => {
         this.video.play()
-      }, 2000)
+      }, 0)
     },
     judgeDemolist () {
       this.showDemolist ? this.closeDemoList() : this.openDemoList()

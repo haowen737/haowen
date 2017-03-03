@@ -1,30 +1,42 @@
 <template lang="html">
-  <div class="topbar">
-    <div class="topbar-logo">
-      <router-link :to="{path:'/'}" class="topbar-logo-name"><img src="./../assets/images/haowen.png" alt=""></router-link>
-      <div class="topbar-logo-login">
-        <span v-show="!user.user_name">登入</span>
-        <span v-show="user.user_name">{{user.user_name}}</span>
+  <div class="page">
+    <div class="topbar">
+      <div class="topbar-header-container">
+        <div class="topbar-header">
+          <router-link :to="{path:'/'}" class="topbar-header-name"><img src="./../assets/images/haowen.png" alt=""></router-link>
+          <div class="topbar-header-login">
+            <span v-show="!user.user_name">登入</span>
+            <span v-show="user.user_name">{{user.user_name}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="topbar-nav">
+        <nav>
+          <router-link :to="{path:'/'}">文章</router-link>
+          <router-link :to="{path:'/topic'}">话题</router-link>
+          <router-link :to="{path:'/theatre'}">剧场</router-link>
+          <router-link :to="{path:'/theatre'}">剪藏</router-link>
+          <router-link :to="{path:'/tags'}">标签</router-link>
+          <router-link :to="{path:'/comment'}">留言</router-link>
+          <router-link :to="{path:'/contact'}">关于我</router-link>
+        </nav>
+      </div>
+      <div class="page-status">
+        <span>{{cur_tab}}</span>
       </div>
     </div>
-    <div class="topbar-nav">
-      <nav>
-        <router-link :to="{path:'/'}">首页</router-link>
-        <router-link :to="{path:'/tags'}">标签</router-link>
-        <router-link :to="{path:'/topic'}">专题</router-link>
-        <router-link :to="{path:'/theatre'}">专题</router-link>
-        <router-link :to="{path:'/comment'}">留言</router-link>
-        <router-link :to="{path:'/contact'}">关于我</router-link>
-      </nav>
-    </div>
+    <bottom-fire :show.sync="showBottomFire"></bottom-fire>
   </div>
 </template>
 
 <script>
+import BottomFire from './../packages/bottomFire'
 import LoginEntrance from './loginEntrance'
 export default {
   data () {
     return {
+      showBottomFire: false,
+      cur_tab: '',
       user: {
         user_name: ''
       }
@@ -39,15 +51,41 @@ export default {
       this.user.user_name = userName || ''
     }
   },
+  watch: {
+    '$root.scrollY': function (val) {
+      this.showBottomFire = (this.$root.offsetHeight - this.$root.innerHeight - this.$root.scrollY < -120) || false
+    },
+    '$route.name': function (val) {
+      console.log(val)
+    }
+  },
   components: {
-    LoginEntrance
+    LoginEntrance,
+    BottomFire
   }
 }
 </script>
 
 <style lang="css" scoped>
+.page-status span {
+  filter: blur(3px);
+}
+.page-status {
+  position: absolute;
+  top: 150px;
+  left: 10%;
+  font-size: 120px;
+  font-weight: 600;
+  color: rgba(180,180,180,.1);
+}
+.topbar-header {
+  max-width: 1235px;
+  margin: auto;
+  padding: 0 40px;
+}
 .topbar-nav nav {
-  width: 830px;
+  padding: 0 40px;
+  max-width: 1235px;
   margin: auto;
   text-align: left;
   line-height: 70px;
@@ -59,29 +97,27 @@ export default {
 .topbar-nav a {
   position: relative;
   color: #ababad;
-  padding: 10px 20px;
+  padding: 10px 24px;
   font-weight: lighter;
   transition: all .5s;
   margin: -3px;
 }
-.topbar-logo-login {
+.topbar-header-login {
   display: inline-block;
   float: right;
   line-height: 52px;
 }
-.topbar-logo-name img {
+.topbar-header-name img {
   width: 100%;
   padding: 10px 20px;
 }
-.topbar-logo-name {
+.topbar-header-name {
   width: 150px;
   display: inline-block;
 }
-.topbar-logo {
+.topbar-header-container {
   text-align: left;
   background-color: #fff;
-  width: 830px;
-  margin: auto;
 }
 .topbar-nav:after {
   content: '';
