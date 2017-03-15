@@ -18,7 +18,7 @@
           <router-link :to="{path:'/theatre'}">剪藏</router-link>
           <router-link :to="{path:'/tags'}">标签</router-link>
           <router-link :to="{path:'/comment'}">留言</router-link>
-          <router-link :to="{path:'/contact'}">关于我</router-link>
+          <router-link :to="{path:'/contact'}" target="_blank">关于我</router-link>
         </nav>
       </div>
       <div class="page-status">
@@ -95,12 +95,12 @@ export default {
   font-weight: 400;
 }
 .topbar-nav a {
+  font-size: .8rem;
   position: relative;
   color: #ababad;
-  padding: 10px 24px;
+  padding: 0 1rem;
   font-weight: lighter;
   transition: all .5s;
-  margin: -3px;
 }
 .topbar-header-login {
   display: inline-block;
@@ -123,7 +123,6 @@ export default {
   content: '';
   position: absolute;
   border-top: 1px solid #414347;
-  top: 70px;
   left: 0;
   background-color: #2b2d32;
   width: 100%;
@@ -135,5 +134,17 @@ export default {
 }
 .topbar {
   margin-bottom: 80px;
+}
+@media screen and (max-width: 375px ) {
+  .topbar-nav nav {
+    padding: 0;
+    line-height: 40px;
+    text-align: center;
+  }
+  .topbar-nav a {
+    font-size: 1.2rem;
+    font-weight: normal;
+    padding: 0 .4rem;
+  }
 }
 </style>

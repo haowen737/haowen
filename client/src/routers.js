@@ -15,6 +15,9 @@ const Theatre = (resolve) => require(['./components/theatre'], resolve)
 const Topic = (resolve) => require(['./components/topic'], resolve)
 const CodeArticleList = (resolve) => require(['./components/codeArticleList'], resolve)
 const CodeArticle = (resolve) => require(['./components/codeArticle'], resolve)
+const About = (resolve) => require(['./components/about'], resolve)
+
+const MHello = (resolve) => require(['./webapp/mHello'], resolve)
 
 const Clock = (resolve) => require(['./demo/clock'], resolve)
 const Cellular = (resolve) => require(['./demo/cellular'], resolve)
@@ -30,6 +33,9 @@ export default [
   }, {
     path: '/mirror',
     component: Mirror
+  }, {
+    path: '/about',
+    component: About
   }, {
     path: '/',
     component: Code,
@@ -50,16 +56,22 @@ export default [
         path: '/theatre',
         component: Theatre
       }, {
-        path: '/contact',
-        component: Contact
-      }, {
         path: '/topic',
         component: Topic
       }
     ]
   }, {
+    path: '/m',
+    component: MHello
+  }, {
+    path: '/contact',
+    component: Contact
+  }, {
     path: '/demo-house',
     component: DemoHouse
+  }, {
+    path: '/mailbox',
+    component: Mailbox
   }, {
     path: '/moods',
     component: Moods
@@ -90,8 +102,5 @@ export default [
   }, {
     path: '/setting/profile',
     component: SettingProfile
-  }, {
-    path: '/mailbox',
-    component: Mailbox
   }
 ]

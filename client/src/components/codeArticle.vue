@@ -287,4 +287,9 @@ export default {
   background-color: #000;
   color: #fff;
 }
+@media screen and (max-width: 375px ) {
+  .markdown-body {
+    padding: 10px;
+  }
+}
 </style>

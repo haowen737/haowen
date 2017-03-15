@@ -1,9 +1,5 @@
 <template lang="html">
   <div class="content-wrap">
-    <div class="input-container">
-      <textarea rows="7" cols="20" v-model="where.content"></textarea>
-    </div>
-    <a class="send-container" href="javascript:;" @click="onConfirm">写好了</a>
     <div class="comments-container">
       <div class="comments-welcome">Friend {{where.userName}}</div>
       <transition-group name="commentCard">
@@ -39,6 +35,10 @@
             </div>
           <!-- </transition> -->
         </div>
+        <div class="input-container">
+          <textarea rows="7" cols="20" v-model="where.content"></textarea>
+        </div>
+        <a class="send-container" href="javascript:;" @click="onConfirm">写好了</a>
       </transition-group>
     </div>
     <messangerr

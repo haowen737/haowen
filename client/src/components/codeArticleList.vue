@@ -123,11 +123,10 @@ export default {
 }
 .card a {
   display: inline-block;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 400;
   color: #111;
   margin: 10px 0;
-  line-height: 1;
   border-bottom-color: rgba(0,0,0,0);
   border-bottom-style: solid;
   border-bottom-width: 1px;
@@ -140,7 +139,7 @@ export default {
   float: right;
   margin-left: 10px;
   color: #c5c5c5;
-  font-size: 11px;
+  font-size: .7rem;
   font-weight: lighter;
   margin-top: 5px;
 }
@@ -166,5 +165,10 @@ export default {
 .card-enter, .card-leave-active {
   opacity: 0;
   margin: 0;
+}
+@media screen and (max-width: 375px ) {
+  .card {
+    width: auto;
+  }
 }
 </style>

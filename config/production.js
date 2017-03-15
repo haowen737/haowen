@@ -4,7 +4,7 @@
 
 module.exports = {
     env: 'production', //环境名称
-    port: 80,         //服务端口号
+    port: 8088,         //服务端口号
     mysql: {
       client: 'mysql',
       connection: {

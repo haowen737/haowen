@@ -1,7 +1,8 @@
 <template>
   <div id="app">
+    <div class="top-scrollbar" :style="topScrollbarWidth"></div>
+    <loading :show="showLoading" top="50%" bg-color="#000"></loading>
     <router-view></router-view>
-    <loading v-show="showLoading"></loading>
   </div>
 </template>
 
