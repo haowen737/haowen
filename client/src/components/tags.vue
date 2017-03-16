@@ -1,30 +1,28 @@
 <template lang="html">
-  <transition name="fade">
-    <div class="tags-layout">
-      <div class="tags" id="container">
-        <header>
-          <nav>
-            <a class="tag-nav" href="javascript:;" @click="showTags=true,selectedTag=''" v-show="!showTags">重选</a>
-          </nav>
-        </header>
-        <div class="tags-body" v-for="tag in tags" v-show="showTags">
-          <a href="javascript:;"
-          :style="'left:' + Math.random() * 700 + 'px;top:' + Math.random() * 300 + 'px;font-size:' + (Math.random() * 10 + 14) + 'px'"
-          @click="selectTag(tag)">{{tag}}</a>
-        </div>
-      </div>
-      <div class="articleList" v-show="!showTags">
-        <header class="articleList-header">
-        </header>
-        <transition name="card">
-          <div class="card" v-for="card in cards" v-link="{path:'code/article/' + card.keywords}" v-show="!showTags" track-by="index">
-            <h1>{{ card.title }}</h1>
-            <span>{{ card.date }}</span>
-          </div>
-        </transition>
+  <div class="tags-layout">
+    <div class="tags" id="container">
+      <header>
+        <nav>
+          <a class="tag-nav" href="javascript:;" @click="showTags=true,selectedTag=''" v-show="!showTags">重选</a>
+        </nav>
+      </header>
+      <div class="tags-body" v-for="tag in tags" v-show="showTags">
+        <a href="javascript:;"
+        :style="'left:' + Math.random() * 700 + 'px;top:' + Math.random() * 300 + 'px;font-size:' + (Math.random() * 10 + 14) + 'px'"
+        @click="selectTag(tag)">{{tag}}</a>
       </div>
     </div>
-  </transition>
+    <div class="articleList" v-show="!showTags">
+      <header class="articleList-header">
+      </header>
+      <transition name="card">
+        <router-link class="card" v-for="card in cards" :to="{path:'article/' + card.file_id}" v-show="!showTags" track-by="index">
+          <h1>{{ card.title }}</h1>
+          <span>{{ card.date }}</span>
+        </router-link>
+      </transition>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -61,6 +59,14 @@ export default {
     },
     selectTag (tag) {
       this.$http.get('/api/article/getTags/' + tag)
+      .then((res) => {
+        this.showTags = false
+        this.cards = res.data
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     }
   },
   components: {}
@@ -114,6 +120,7 @@ export default {
   position: absolute;
 }
 .card {
+  display: block;
   position: relative;
   width: 500px;
   box-shadow: 1px 1px 4px rgba(0,0,0,0.1);

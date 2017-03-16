@@ -88,11 +88,6 @@ export default {
   position: relative;
   padding: 100px 0 70px;
 }
-.site-subtitle {
-  margin-top: 10px;
-  font-size: 13px;
-  color: #999;
-}
 .site-nav li{
   display: inline-block;
   margin-top: 20px;
@@ -126,7 +121,7 @@ export default {
   font-size: 1rem;
   font-weight: 400;
   color: #111;
-  margin: 10px 0;
+  margin: .7rem 0;
   border-bottom-color: rgba(0,0,0,0);
   border-bottom-style: solid;
   border-bottom-width: 1px;
@@ -145,12 +140,12 @@ export default {
 }
 .card-summary {
   margin-top: 0px;
-  font-size: 14px;
+  font-size: .7rem;
   color: #666;
   font-weight: 200;
 }
 .card-date {
-  font-size: 14px;
+  font-size: .7rem;
   font-weight: 300;
   font-style: italic;
   color: #333;
