@@ -18,7 +18,7 @@
       <div class="logo-btn"><router-link :to="{path:'/code/article'}">Pen</router-link></div>
       <div class="logo-btn"><router-link :to="{path:'/black'}">Blvck</router-link></div>
       <div class="logo-btn"><router-link :to="{path:'/mirror'}">Mirror</router-link></div>
-      <div class="logo-btn"><router-link :to="{path:'/contact'}">Me</router-link></div>
+      <div class="logo-btn"><router-link :to="{path:'/me'}">Me</router-link></div>
     </div>
   </div>
 </template>

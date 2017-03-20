@@ -8,6 +8,7 @@ exports.getArticles = async (ctx, next) => {
     'author',
     'thumbnail',
     'likes',
+    'created_at',
     'view_count').from('articles').orderBy('file_id', 'desc');
   ctx.body = articles;
 }

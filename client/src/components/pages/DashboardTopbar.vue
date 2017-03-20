@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="page">
+  <div class="">
     <div class="topbar">
       <div class="topbar-header-container">
         <div class="topbar-header">
@@ -18,7 +18,7 @@
           <router-link :to="{path:'/theatre'}">剪藏</router-link>
           <router-link :to="{path:'/tags'}">标签</router-link>
           <router-link :to="{path:'/comment'}">留言</router-link>
-          <router-link :to="{path:'/contact'}" target="_blank">关于我</router-link>
+          <router-link :to="{path:'/me'}" target="_blank">关于我</router-link>
         </nav>
       </div>
       <div class="page-status">
