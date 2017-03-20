@@ -1,14 +1,15 @@
-import Vue from 'vue'
-import Utils from './utils'
-import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import VueRouter from 'vue-router'
+import Vue from 'vue'
+
+import Warning from 'packages/warning'
 import routers from './routers'
-
-import './assets/styles/base.css'
-import 'github-markdown-css/github-markdown.css'
-
-import Warning from './packages/warning'
+import Utils from './utils'
+import Store from './store'
 import App from './App'
+
+import 'assets/styles/base.css'
+import 'github-markdown-css/github-markdown.css'
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
@@ -20,44 +21,7 @@ const router = new VueRouter({
 })
 
 new Vue({
-  data  () {
-    return {
-      offsetHeight: 0,
-      innerHeight: 0,
-      scrollY: 0,
-      user: {},
-      topScrollbarWidth: {
-        'width': '0%'
-      }
-    }
-  },
-  beforeMount () {
-    this.getUser()
-  },
-  methods: {
-    getUser () {
-      let user = JSON.parse(window.localStorage.getItem('withyoufriendsuseraccount'))
-      if (user) {
-        this.user = Object.assign({}, user)
-      }
-    },
-    activeScrollWatcher () {
-      this.$nextTick(() => {
-        window.onscroll = () => {
-          this.offsetHeight = document.getElementById('container').offsetHeight
-          this.innerHeight = window.innerHeight
-          this.scrollY = window.scrollY
-          this.topScrollbarWidth.width = (this.scrollY / (this.offsetHeight - this.innerHeight)) * 100 + '%'
-          // console.log(this.offsetHeight, this.innerHeight, this.scrollY)
-        }
-      })
-    },
-    removeScrollWatcher () {
-      window.onscroll = () => {
-        return
-      }
-    }
-  },
   router: router,
+  store: Store,
   render: h => h(App)
 }).$mount('#app')

@@ -172,3 +172,6 @@ scrollbar-3dlight-color {
   height: 0px;
   visibility: hidden;
 }
+.page {
+  min-height: 100%;
+}

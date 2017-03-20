@@ -1,30 +1,28 @@
-const SettingProfile = (resolve) => require(['./components/settingProfile'], resolve)
-const MoodsLogin = (resolve) => require(['./components/moodsLogin'], resolve)
-const Playground = (resolve) => require(['./components/playground'], resolve)
-const DemoHouse = (resolve) => require(['./components/demoHouse'], resolve)
-const Flextest = (resolve) => require(['./components/flextest'], resolve)
-const Comment = (resolve) => require(['./components/comment'], resolve)
-const Contact = (resolve) => require(['./components/contact'], resolve)
-const Mailbox = (resolve) => require(['./components/mailbox'], resolve)
-const Mirror = (resolve) => require(['./components/mirror'], resolve)
-const Black = (resolve) => require(['./components/black'], resolve)
-const Moods = (resolve) => require(['./components/moods'], resolve)
-const Tags = (resolve) => require(['./components/tags'], resolve)
-const Code = (resolve) => require(['./components/code'], resolve)
-const Theatre = (resolve) => require(['./components/theatre'], resolve)
-const Topic = (resolve) => require(['./components/topic'], resolve)
-const CodeArticleList = (resolve) => require(['./components/codeArticleList'], resolve)
-const CodeArticle = (resolve) => require(['./components/codeArticle'], resolve)
-const About = (resolve) => require(['./components/about'], resolve)
+const SettingProfile = (resolve) => require(['./components/pages/settingProfile'], resolve)
+const MoodsLogin = (resolve) => require(['./components/pages/moodsLogin'], resolve)
+const Playground = (resolve) => require(['./components/pages/playground'], resolve)
+const DemoHouse = (resolve) => require(['./components/pages/demoHouse'], resolve)
+const Flextest = (resolve) => require(['./components/pages/flextest'], resolve)
+const Comment = (resolve) => require(['./components/pages/comment'], resolve)
+const Contact = (resolve) => require(['./components/pages/contact'], resolve)
+const Mailbox = (resolve) => require(['./components/pages/mailbox'], resolve)
+const Mirror = (resolve) => require(['./components/pages/mirror'], resolve)
+const Black = (resolve) => require(['./components/pages/black'], resolve)
+const Moods = (resolve) => require(['./components/pages/moods'], resolve)
+const Tags = (resolve) => require(['./components/pages/tags'], resolve)
+const Dashboard = (resolve) => require(['./components/pages/Dashboard'], resolve)
+const Theatre = (resolve) => require(['./components/pages/theatre'], resolve)
+const Topic = (resolve) => require(['./components/pages/topic'], resolve)
+const CodeArticleList = (resolve) => require(['./components/pages/codeArticleList'], resolve)
+const CodeArticle = (resolve) => require(['./components/pages/codeArticle'], resolve)
+const About = (resolve) => require(['./components/pages/about'], resolve)
 
-const MHello = (resolve) => require(['./webapp/mHello'], resolve)
+const Clock = (resolve) => require(['demos/clock'], resolve)
+const Cellular = (resolve) => require(['demos/cellular'], resolve)
+const ZoomSlider = (resolve) => require(['demos/zoomSlider'], resolve)
+const MusicPlayer = (resolve) => require(['demos/musicPlayer'], resolve)
 
-const Clock = (resolve) => require(['./demo/clock'], resolve)
-const Cellular = (resolve) => require(['./demo/cellular'], resolve)
-const ZoomSlider = (resolve) => require(['./demo/zoomSlider'], resolve)
-const MusicPlayer = (resolve) => require(['./demo/musicPlayer'], resolve)
-
-const Loading = (resolve) => require(['./packages/loading'], resolve)
+const Loading = (resolve) => require(['packages/loading'], resolve)
 
 export default [
   {
@@ -38,7 +36,7 @@ export default [
     component: About
   }, {
     path: '/',
-    component: Code,
+    component: Dashboard,
     children: [
       {
         path: '/',
@@ -60,9 +58,6 @@ export default [
         component: Topic
       }
     ]
-  }, {
-    path: '/m',
-    component: MHello
   }, {
     path: '/contact',
     component: Contact

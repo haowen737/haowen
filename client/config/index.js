@@ -31,10 +31,11 @@ module.exports = {
     proxyTable: {
       '/api': {
         target: 'http://localhost:3333/',
-        changeOrigin: true,
-        pathRewrite: {
-
-        }
+        changeOrigin: true
+      },
+      'doc': {
+        target: 'http://localhost:3333/doc',
+        changeOrigin: true
       }
     }
   }
