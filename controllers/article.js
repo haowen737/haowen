@@ -1,7 +1,14 @@
 const ApiError = require('../error/ApiError');
 
 exports.getArticles = async (ctx, next) => {
-  let articles = await ctx.knex.select('*').from('articles').orderBy('file_id', 'desc');
+  let articles = await ctx.knex.select('file_id',
+    'title',
+    'summary',
+    'tags',
+    'author',
+    'thumbnail',
+    'likes',
+    'view_count').from('articles').orderBy('file_id', 'desc');
   ctx.body = articles;
 }
 
@@ -35,12 +42,23 @@ exports.likeArticles = async (ctx, next) => {
 
 exports.getArticle = async (ctx, next) => {
   let id = ctx.params.id
-  let paper
+  let paper = {}
+  let fs = require('fs')
+  let path = require('path')
+  let filePath = path.join(__dirname, '../doc/' + id + '.md')
   if (id) {
     paper = await ctx.knex.select('*').from('articles').where('file_id', id)
     paper = paper[0]
+    fs.readFile(filePath, 'utf-8', (err, data) => {
+      if (err){
+        throw new ApiError({code: 10002, message: '文件不存在'});
+      }else{
+        console.log(data);
+        paper.content = data
+      }
+    })
     let cur_count = paper.view_count + 1
     await ctx.knex('articles').where('file_id', id).update('view_count', cur_count)
-}
+  }
   ctx.body = paper
 }
