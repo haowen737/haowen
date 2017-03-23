@@ -19,24 +19,8 @@ exports.getUser = async (ctx, next) => {
 exports.registerUser = async (ctx, next) => {
     let userName = ctx.request.body.user_name
     let password = ctx.request.body.user_password
-    if (!userName) {
-      throw new ApiError({code: 10002, message: '请输入用户名'});
-      return
-    }
-    if (userName && !password) {
-      let cur_user = await ctx.knex.select('*').from('users').where('user_name', userName)
-      cur_user = cur_user[0]
-      if (cur_user) {
-        ctx.body = cur_user
-        return
-      }
-      if (!cur_user) {
-        ctx.body = {
-          code: 40001,
-          msg: '用户未注册'
-        }
-        return
-      }
+    if (!userName || !password) {
+      throw new ApiError({code: 100001, message: '缺少必填项'})
     }
     if (userName && password) {
       await ctx.knex('users').insert({
@@ -57,22 +41,8 @@ exports.login = async (ctx, next) => {
   let password = ctx.request.body.user_password
   let cur_user = await ctx.knex.select('*').from('users').where('user_name', userName)
   cur_user = cur_user[0]
-  if (userName && !password) {
-    console.log('userName && !password')
-    if (cur_user) {
-      ctx.body = {
-        code: 10001,
-        msg: '用户存在，输入密码'
-      }
-      return
-    }
-    if (!cur_user) {
-      ctx.body = {
-        code: 40001,
-        msg: '用户未注册'
-      }
-      return
-    }
+  if (!userName || !password) {
+    throw new ApiError({code: 100001, message: '缺少必填项'})
   }
   if (userName && password) {
     console.log(cur_user.userName, '===', userName, '===', cur_user.password, '===', password);
@@ -82,13 +52,8 @@ exports.login = async (ctx, next) => {
         msg: '登陆成功',
         account: cur_user
       }
-      return
     } else {
-      ctx.body = {
-        code: 40002,
-        msg: '密码错误'
-      }
-      return
+      throw new ApiError({code: 100002, message: '密码错误'})
     }
   }
 }

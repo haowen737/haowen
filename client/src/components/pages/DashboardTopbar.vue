@@ -5,7 +5,7 @@
         <div class="topbar-header">
           <router-link :to="{path:'/'}" class="topbar-header-name"><img :src="require('assets/images/haowen.png')" alt=""></router-link>
           <div class="topbar-header-login">
-            <span v-show="!user.user_name">登入</span>
+            <span v-show="!user.user_name" @click="showLoginForm=true">登入</span>
             <span v-show="user.user_name">{{user.user_name}}</span>
           </div>
         </div>
@@ -14,7 +14,6 @@
         <nav>
           <router-link :to="{path:'/'}">文章</router-link>
           <router-link :to="{path:'/topic'}">话题</router-link>
-          <router-link :to="{path:'/theatre'}">剧场</router-link>
           <router-link :to="{path:'/theatre'}">剪藏</router-link>
           <router-link :to="{path:'/tags'}">标签</router-link>
           <router-link :to="{path:'/comment'}">留言</router-link>
@@ -25,14 +24,16 @@
         <span>{{cur_tab}}</span>
       </div>
     </div>
+    <user-log-in :show="showLoginForm" @clickMask="showLoginForm=false"></user-log-in>
   </div>
 </template>
 
 <script>
-import LoginEntrance from './loginEntrance'
+import UserLogIn from './UserLogIn'
 export default {
   data () {
     return {
+      showLoginForm: false,
       cur_tab: '',
       user: {
         user_name: ''
@@ -40,21 +41,16 @@ export default {
     }
   },
   mounted () {
-    this.checkLogin()
+    this.checkUser()
   },
   methods: {
-    checkLogin () {
-      // let userName = this.$root.user.user_name
-      // this.user.user_name = userName || ''
+    checkUser () {
+      this.user = this.$store.state.user
+      console.log(this.user)
     }
   },
-  watch: {
-    // '$root.scrollY': function (val) {
-    //   this.showBottomFire = (this.$root.offsetHeight - this.$root.innerHeight - this.$root.scrollY < -120) || false
-    // }
-  },
   components: {
-    LoginEntrance
+    UserLogIn
   }
 }
 </script>
@@ -88,7 +84,7 @@ export default {
   font-weight: 400;
 }
 .topbar-nav a {
-  font-size: .8rem;
+  font-size: 1.2rem;
   position: relative;
   color: #ababad;
   padding: 0 1rem;

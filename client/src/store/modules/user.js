@@ -5,6 +5,13 @@ const state = {
   user_phone: ''
 }
 
+const mutations = {
+  getUser () {
+    return state.user
+  }
+}
+
 export default {
-  state
+  state,
+  mutations
 }

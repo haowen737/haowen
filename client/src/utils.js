@@ -1,4 +1,4 @@
-function formatTime (date, mode) {
+function formatDate (date, mode) {
   date = new Date(date)
   if (date.toString() === 'Invalid Date') {
     return
@@ -21,9 +21,30 @@ function formatTime (date, mode) {
     .replace('ss', second)
 }
 
+function addScrollWatcher () {
+  this.$nextTick(() => {
+    window.onscroll = () => {
+      this.offsetHeight = document.getElementById('container').offsetHeight
+      this.innerHeight = window.innerHeight
+      this.scrollY = window.scrollY
+      this.topScrollbarWidth.width = (this.scrollY / (this.offsetHeight - this.innerHeight)) * 100 + '%'
+      console.log(this.offsetHeight, this.innerHeight, this.scrollY)
+    }
+  })
+}
+
+function removeScrollWatcher () {
+  window.onscroll = () => {
+    return
+  }
+}
+
 export default {
   install (vue) {
-    vue.filter('formatDate', formatTime)
-    vue.prototype.formatTime = formatTime
+    vue.filter('formatDate', formatDate)
+    vue.prototype.$ScrollWatcher = {
+      add: addScrollWatcher,
+      remove: removeScrollWatcher
+    }
   }
 }

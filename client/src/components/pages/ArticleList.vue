@@ -39,13 +39,9 @@ export default {
   },
   computed: {},
   mounted  () {
-    this.testCo()
     this.query()
   },
   methods: {
-    testCo () {
-      this.$warning()
-    },
     query () {
       this.showLoading = true
       this.$http.get('/api/article/getArticles')
@@ -113,9 +109,9 @@ export default {
 }
 .card a {
   display: inline-block;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 400;
-  color: #111;
+  color: #2b2d32;
   margin: .7rem 0;
   border-bottom-color: rgba(0,0,0,0);
   border-bottom-style: solid;
