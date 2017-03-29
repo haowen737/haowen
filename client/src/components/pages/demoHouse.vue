@@ -1,141 +1,127 @@
 <template lang="html">
-  <div class="demoHouse-layout" id="container">
-    <header>
-      <canvas id="canvas"
-      ref="canvas"
-      width="500"
-      height="300"></canvas>
-    </header>
-    <transition name="content-latout">
-      <div class="content-latout" v-show="showContent">
-        <div class="content">
-          <div class="inner-box">
-            <router-link :to="{path:'/demo/zoom-slider'}">1. 一个轮播</router-link>
-            <router-link :to="{path:'/demo/clock'}">2. 一只时钟</router-link>
-          </div>
-        </div>
-      </div>
-    </transition>
-    <spinning-spread @on-spread="spreadContent"></spinning-spread>
-    <transition name="fade">
-      <div class="loading-bg" v-show="showLoading">
-        <loading top="50%"></loading>
-      </div>
-    </transition>
+  <div class="page">
+    <ul class="cards">
+      <transition-group name="card">
+        <li class="card clearfix" v-for="(card, index) in cards" :key="card" @mouseenter="onMouseenter(index)" @mouseout="onMouseout">
+          <transition name="fade">
+            <div class="like-btn" v-show="showBtn === index"></div>
+          </transition>
+          <div class="card-img-container"
+          :style="{backgroundImage:'url(' + card.thumbnail + '?imageView2/0/w/1000)'}"></div>
+          <router-link :to="{path: 'demo/' + card.route}" target="_blank">{{card.title}}</router-link>
+          <p class="card-summary">{{card.summary}}</p>
+          <p class="card-count">
+            <span>{{card.created_at | formatDate('YYYY-MM-DD')}}</span>
+            <span class="card-count-view">view {{card.view_count}}&nbsp;&nbsp;like {{card.likes}}</span>
+          </p>
+        </li>
+      </transition-group>
+    </ul>
   </div>
 </template>
 
 <script>
-import loading from 'packages/loading'
-import spinningSpread from 'demos/spinningSpread'
 export default {
-  data  () {
+  data () {
     return {
-      showLoading: false,
-      showContent: false
+      cards: [],
+      showBtn: -1
     }
   },
-  computed: {},
-  mounted  () {
-    this.initPage()
-    // this.queryDemos()
+  mounted () {
+    this.query()
   },
   methods: {
-    queryDemos () {
-      this.showLoading = true
-      window.setTimeout(() => {
-        this.showLoading = false
-      }, 2000)
+    onMouseenter (index) {
+      this.showBtn = index
     },
-    initPage () {
-      this.getPen()
+    onMouseout () {
+      // this.showBtn = -1
+      console.log('mouseout')
     },
-    getPen () {
-      if (this.$refs.canvas.getContext) {
-        this.ctx = this.$refs.canvas.getContext('2d')
-        this.getImg()
-      } else {
-        return
-      }
-    },
-    getImg () {
-      let image = new window.Image()
-      image.src = require('assets/images/demo-house.png')
-      image.onload = () => {
-        console.log(image.width)
-        let w = image.width
-        let h = image.height
-        this.ctx.drawImage(image, (500 - w) / 2, (300 - h) / 2)
-      }
-    },
-    spreadContent () {
-      this.showContent ? this.showContent = false : this.showContent = true
+    query () {
+      this.$http.get('/api/demo/getDemos')
+      .then((res) => {
+        this.cards = res.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     }
-  },
-  watch: {},
-  components: {
-    loading, spinningSpread
   }
 }
 </script>
 
 <style lang="css" scoped>
-.inner-box a {
-  color: #fff;
-  font-size: 20px;
+.card-count-view {
+  position: absolute;
+  right: 0;
+}
+.like-btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: 2rem;
+  margin-left: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: blue;
+  margin-right: 20px;
+}
+.card-summary {
+  font-size: 1rem;
+  font-weight: 300;
+}
+.card-img-container {
+  width: 160px;
+  height: 90px;
+  float: left;
+  margin-right: 1.5rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.card-count {
+  color: #ababad;
+  font-weight: 100;
+  font-size: 1rem;
+  top: .2rem;
+}
+.card {
   display: block;
-}
-.content {
-  padding: 80px;
-}
-.content-latout {
-  background-color: #000;
-  width: 100%;
-  height: 100%;
-  color: #fff;
-  line-height: 2.5;
-  font-weight: lighter;
-  position: absolute;
-  top: 0;
-  z-index: 1;
-}
-.demoHouse-layout header>img {
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  margin: 30px auto;
+  padding: 0 1rem;
+  max-width: 500px;
+  /*box-shadow: 1px 1px 2px rgba(0,0,0,0.2);*/
+  /*transition: box-shadow .5s ease-out;*/
+  border-bottom: 1px solid #c9c9c9;
+  text-align: left;
+  cursor: default;
 }
-.demoHouse-layout header {
-  width: 100%;
-  height: 100%;
-  text-align: center;
+.card a {
+  display: inline-block;
+  color: #2b2d32;
+  border-bottom-color: rgba(0,0,0,0);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  transition: all .5s;
 }
-.demoHouse-layout {
-  width: 100%;
-  height: 100%;
+.card {
+  padding: 2rem;
   background-color: #fff;
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 400;
+  /*list-style-type: none;*/
 }
-.loading-bg {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-}
-/*过渡*/
-.content-latout-enter-active, .content-latout-leave-active {
-  transition: all .7s ease;
-  /*height: calc(100%);*/
-  position: absolute;
-  top: 0;
+.card-enter-active, .card-leave-active {
+  transition: all .5s;
+  margin: 30px auto 30px;
   opacity: 1;
-  /*opacity: 1;*/
 }
-.content-latout-enter, .content-latout-leave-active {
-  background-color: rgba(0,0,0,0);
-  /*height: calc(-10%);*/
-  position: absolute;
-  top: 60px;
+.card-enter, .card-leave-active {
   opacity: 0;
-  /*opacity: 0;*/
+  margin: 0;
 }
 </style>

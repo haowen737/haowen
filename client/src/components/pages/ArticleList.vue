@@ -1,22 +1,20 @@
 <template lang="html">
   <div class="page" id="container">
-    <div id="pageCode">
-      <div class="cards">
-        <transition-group name="card">
-          <article class="card" v-for="card in cards" @click="showBottomFire=false" :key="card">
-            <div class="card-img-container"
-            v-if="card.thumbnail"
-            :style="{backgroundImage:'url(' + card.thumbnail + '?imageView2/0/w/1000)'}"></div>
-            <router-link :to="{path:'article/' + card.file_id}">{{ card.title }}</router-link>
-            <p class="card-summary">{{card.summary}}</p>
-            <p>
-              <span class="card-date">{{card.author}} in {{ card.created_at | formatDate('YYYY/MM/DD HH:mm')}}</span>
-              <span class="card-bottom-right">感谢{{card.likes}}</span>
-              <span class="card-bottom-right">阅读{{card.view_count}}</span>
-            </p>
-          </article>
-        </transition-group>
-      </div>
+    <div class="cards">
+      <transition-group name="card">
+        <article class="card" v-for="card in cards" @click="showBottomFire=false" :key="card">
+          <div class="card-img-container"
+          v-if="card.thumbnail"
+          :style="{backgroundImage:'url(' + card.thumbnail + '?imageView2/0/w/1000)'}"></div>
+          <router-link :to="{path:'article/' + card.file_id}">{{ card.title }}</router-link>
+          <p class="card-summary">{{card.summary}}</p>
+          <p>
+            <span class="card-date">{{card.author}} in {{ card.created_at | formatDate('YYYY/MM/DD HH:mm')}}</span>
+            <span class="card-bottom-right">感谢{{card.likes}}</span>
+            <span class="card-bottom-right">阅读{{card.view_count}}</span>
+          </p>
+        </article>
+      </transition-group>
     </div>
     <loading :show="showLoading" top="50%" bg-color="#000"></loading>
     <confirm content="content" title="title"></confirm>
@@ -131,7 +129,7 @@ export default {
 }
 .card-summary {
   margin-top: 0px;
-  font-size: .7rem;
+  font-size: 1rem;
   color: #666;
   font-weight: 200;
 }
@@ -156,5 +154,8 @@ export default {
   .card {
     width: auto;
   }
+}
+.page {
+  background-color:
 }
 </style>

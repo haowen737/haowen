@@ -2,7 +2,7 @@ const SettingProfile = (resolve) => require(['./components/pages/settingProfile'
 const ArticleList = (resolve) => require(['./components/pages/ArticleList'], resolve)
 const MoodsLogin = (resolve) => require(['./components/pages/moodsLogin'], resolve)
 const Playground = (resolve) => require(['./components/pages/playground'], resolve)
-const DemoHouse = (resolve) => require(['./components/pages/demoHouse'], resolve)
+const DemoHouse = (resolve) => require(['./components/pages/DemoHouse'], resolve)
 const Dashboard = (resolve) => require(['./components/pages/Dashboard'], resolve)
 const Flextest = (resolve) => require(['./components/pages/flextest'], resolve)
 const Comment = (resolve) => require(['./components/pages/comment'], resolve)
@@ -53,14 +53,14 @@ export default [
       }, {
         path: '/topic',
         component: Topic
+      }, {
+        path: '/demo-house',
+        component: DemoHouse
       }
     ]
   }, {
     path: '/me',
     component: Me
-  }, {
-    path: '/demo-house',
-    component: DemoHouse
   }, {
     path: '/moods',
     component: Moods

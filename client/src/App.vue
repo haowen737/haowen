@@ -15,14 +15,6 @@ export default {
       showLoading: false
     }
   },
-  beforeMount () {
-    this.checkLogin()
-  },
-  methods: {
-    checkLogin () {
-      console.log(this.$store)
-    }
-  },
   components: {
     Loading,
     Box

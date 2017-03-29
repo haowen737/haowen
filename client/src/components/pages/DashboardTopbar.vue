@@ -13,14 +13,14 @@
       <div class="topbar-nav">
         <nav>
           <router-link :to="{path:'/'}">文章</router-link>
-          <router-link :to="{path:'/topic'}">话题</router-link>
-          <router-link :to="{path:'/theatre'}">剪藏</router-link>
+          <router-link :to="{path:'/black'}">剪藏</router-link>
+          <router-link :to="{path:'/demo-house'}">唱片</router-link>
           <router-link :to="{path:'/tags'}">标签</router-link>
           <router-link :to="{path:'/comment'}">留言</router-link>
           <router-link :to="{path:'/me'}" target="_blank">关于我</router-link>
         </nav>
       </div>
-      <div class="page-status">
+      <div class="nav-statement">
         <span>{{cur_tab}}</span>
       </div>
     </div>
@@ -35,18 +35,28 @@ export default {
     return {
       showLoginForm: false,
       cur_tab: '',
-      user: {
-        user_name: ''
-      }
+      user: {}
     }
   },
   mounted () {
-    this.checkUser()
+    this.checkLogin()
+    this.watchScroll()
   },
   methods: {
-    checkUser () {
-      this.user = this.$store.state.user
-      console.log(this.user)
+    checkLogin () {
+      let user = window.localStorage.getItem('withyoufriendsuseraccount')
+      if (user) {
+        this.user = JSON.parse(user)
+      }
+    },
+    watchScroll () {
+      window.onscroll = () => {
+        let scrollY = window.scrollY
+        scrollY > 0 && this.fitNav()
+      }
+    },
+    fitNav () {
+
     }
   },
   components: {
@@ -56,16 +66,15 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.page-status span {
-  filter: blur(3px);
-}
-.page-status {
-  position: absolute;
-  top: 150px;
-  left: 10%;
-  font-size: 120px;
-  font-weight: 600;
-  color: rgba(180,180,180,.1);
+.nav-statement {
+  content: '';
+  border-top: 1px solid #414347;
+  left: 0;
+  background-color: #2b2d32;
+  min-height: 10px;
+  color: #ababad;
+  font-weight: lighter;
+  padding: 10px 4rem;
 }
 .topbar-header {
   max-width: 1235px;
@@ -108,7 +117,7 @@ export default {
   text-align: left;
   background-color: #fff;
 }
-.topbar-nav:after {
+/*.topbar-nav:after {
   content: '';
   position: absolute;
   border-top: 1px solid #414347;
@@ -116,10 +125,11 @@ export default {
   background-color: #2b2d32;
   width: 100%;
   height: 30px;
-}
+}*/
 .topbar-nav {
   position: relative;
   background-color: #2b2d32;
+  /*background-color: #fff;*/
 }
 .topbar {
   margin-bottom: 80px;
