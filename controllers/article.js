@@ -52,14 +52,16 @@ exports.getArticle = async (ctx, next) => {
     paper = paper[0]
     fs.readFile(filePath, 'utf-8', (err, data) => {
       if (err){
-        throw new ApiError({code: 10002, message: '文件不存在'});
+        throw new ApiError({code: 10002, message: '文件不存在'})
       }else{
-        console.log(data);
+        console.log('data========================================', data)
         paper.content = data
       }
     })
+    console.log('paper--------------------------------------', paper.content)
     let cur_count = paper.view_count + 1
     await ctx.knex('articles').where('file_id', id).update('view_count', cur_count)
   }
+  console.log('paper========================================', paper.content)
   ctx.body = paper
 }
