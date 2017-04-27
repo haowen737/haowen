@@ -50,7 +50,7 @@ exports.getArticle = async (ctx, next) => {
   if (id) {
     paper = await ctx.knex.select('*').from('articles').where('file_id', id)
     paper = paper[0]
-    fs.readFile(filePath, 'utf-8', (err, data) => {
+    await fs.readFile(filePath, 'utf-8', (err, data) => {
       if (err){
         throw new ApiError({code: 10002, message: '文件不存在'})
       }else{
