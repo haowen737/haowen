@@ -61,7 +61,7 @@ exports.getArticle = async (ctx, next) => {
   //   throw new ApiError('文件读取失败')
   // })
   paper.content = fs.readFileSync(filePath, 'utf-8')
+  let cur_count = paper.view_count + 1
+  await ctx.knex('articles').where('file_id', id).update('view_count', cur_count)
   ctx.body = paper
-    // let cur_count = paper.view_count + 1
-    // await ctx.knex('articles').where('file_id', id).update('view_count', cur_count)
 }
