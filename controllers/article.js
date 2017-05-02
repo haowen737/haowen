@@ -47,21 +47,21 @@ exports.getArticle = async (ctx, next) => {
   let fs = require('fs')
   let path = require('path')
   let filePath = path.join(__dirname, '../doc/' + id + '.md')
-  if (id) {
-    paper = await ctx.knex.select('*').from('articles').where('file_id', id)
-    paper = paper[0]
-    await fs.readFile(filePath, 'utf-8', (err, data) => {
-      if (err){
-        throw new ApiError({code: 10002, message: '文件不存在'})
-      }else{
-        console.log('data========================================', data)
-        paper.content = data
-      }
-    })
-    console.log('paper--------------------------------------', paper.content)
-    let cur_count = paper.view_count + 1
-    await ctx.knex('articles').where('file_id', id).update('view_count', cur_count)
-  }
-  console.log('paper========================================', paper.content)
+  paper = await ctx.knex.select('*').from('articles').where('file_id', id)
+  paper = paper[0]
+  // console.log('===========================')
+  // paper.content = await fs.readFile(filePath, 'utf-8', (err, data) => {
+  //   console.log(err, data)
+  //   return data
+  // })
+  // ctx.body = paper
+  // read.then((val) => {
+  //   ctx.body = paper
+  // }).catch((err) => {
+  //   throw new ApiError('文件读取失败')
+  // })
+  paper.content = fs.readFileSync(filePath, 'utf-8')
   ctx.body = paper
+    // let cur_count = paper.view_count + 1
+    // await ctx.knex('articles').where('file_id', id).update('view_count', cur_count)
 }
