@@ -49,17 +49,6 @@ exports.getArticle = async (ctx, next) => {
   let filePath = path.join(__dirname, '../doc/' + id + '.md')
   paper = await ctx.knex.select('*').from('articles').where('file_id', id)
   paper = paper[0]
-  // console.log('===========================')
-  // paper.content = await fs.readFile(filePath, 'utf-8', (err, data) => {
-  //   console.log(err, data)
-  //   return data
-  // })
-  // ctx.body = paper
-  // read.then((val) => {
-  //   ctx.body = paper
-  // }).catch((err) => {
-  //   throw new ApiError('文件读取失败')
-  // })
   paper.content = fs.readFileSync(filePath, 'utf-8')
   let cur_count = paper.view_count + 1
   await ctx.knex('articles').where('file_id', id).update('view_count', cur_count)
