@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import HighLight from 'highlight.js'
 import Markdown from 'markdown/lib/markdown.js'
 import loading from 'packages/loading'
 export default {
@@ -53,6 +54,7 @@ export default {
   },
   computed: {},
   mounted () {
+    console.log(HighLight)
     this.showLoading = true
     this.initPage()
   },
@@ -93,6 +95,12 @@ export default {
     },
     formatMarkdown (content) {
       this.content = Markdown.toHTML(content)
+      HighLight.configure({
+        languages: ['javascript']
+      })
+      this.$nextTick(() => {
+        HighLight.highlightIniting()
+      })
     },
     formatTags (tags) {
       tags = tags.split(',')
@@ -110,6 +118,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+@import '/static/lib/github-markdown.css';
+@import "/static/lib/highlight/styles/atom-one-light.css";
 .bottom-bar-likes-img img {
   width: 100%;
 }

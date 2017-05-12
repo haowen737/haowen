@@ -11,7 +11,7 @@ import App from './App'
 
 import 'assets/styles/base.css'
 import 'assets/styles/theme.css'
-import 'github-markdown-css/github-markdown.css'
+// import 'highlight.js/styles/github.css'
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
