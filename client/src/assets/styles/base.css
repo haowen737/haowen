@@ -11,7 +11,7 @@
 @media only screen and (min-width: 608px) and (max-width: 640px){html{font-size: 19px;} }
 @media only screen and (min-width: 640px){html{font-size: 20px;} }*/
 html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
-html, body, #app{
+html, body, #app, .page{
   height: 100%;
   /*background-color: #f3f3f3;*/
   font-family: "Microsoft YaHei", 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;

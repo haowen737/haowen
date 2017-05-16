@@ -1,5 +1,6 @@
 <template lang="html">
   <div class="bottom-fire" v-show="show">
+    <!-- <span>浙ICP备15044314号-1</span> -->
     <span>withyoufriends 由 </span>
     <a href="https://vuejs.org/" target="_Blank">Vue</a>
     <span>｜ </span>

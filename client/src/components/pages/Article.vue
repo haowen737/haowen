@@ -54,7 +54,7 @@ export default {
   },
   computed: {},
   mounted () {
-    console.log(HighLight)
+    console.log(this.$axios)
     this.showLoading = true
     this.initPage()
   },
@@ -99,7 +99,7 @@ export default {
         languages: ['javascript']
       })
       this.$nextTick(() => {
-        HighLight.highlightIniting()
+        HighLight.initHighlighting()
       })
     },
     formatTags (tags) {
@@ -118,7 +118,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-@import '/static/lib/github-markdown.css';
+@import "/static/lib/github-markdown.css";
 @import "/static/lib/highlight/styles/atom-one-light.css";
 .bottom-bar-likes-img img {
   width: 100%;
@@ -245,6 +245,11 @@ export default {
 }
 .article p {
   font-size: 15px;
+}
+.article-layout {
+  margin: 0 auto;
+  max-width: 700px;
+  min-height: 100%;
 }
 @media screen and (max-width: 375px ) {
   .markdown-body {

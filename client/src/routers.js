@@ -56,20 +56,20 @@ export default [
       }, {
         path: '/demo-house',
         component: DemoHouse
+      }, {
+        path: '/me',
+        component: Me
+      }, {
+        path: '/black',
+        component: Black
       }
     ]
-  }, {
-    path: '/me',
-    component: Me
   }, {
     path: '/moods',
     component: Moods
   }, {
     path: '/moods/login',
     component: MoodsLogin
-  }, {
-    path: '/black',
-    component: Black
   }, {
     path: '/demo/zoom-slider',
     component: ZoomSlider

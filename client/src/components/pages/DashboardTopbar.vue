@@ -10,19 +10,6 @@
           </div>
         </div>
       </div>
-      <div class="topbar-nav">
-        <nav>
-          <router-link :to="{path:'/'}">文章</router-link>
-          <router-link :to="{path:'/black'}">剪藏</router-link>
-          <router-link :to="{path:'/demo-house'}">唱片</router-link>
-          <router-link :to="{path:'/tags'}">标签</router-link>
-          <router-link :to="{path:'/comment'}">留言</router-link>
-          <router-link :to="{path:'/me'}" target="_blank">关于我</router-link>
-        </nav>
-      </div>
-      <div class="nav-statement">
-        <span>{{cur_tab}}</span>
-      </div>
     </div>
     <user-log-in :show="showLoginForm" @clickMask="showLoginForm=false"></user-log-in>
   </div>
@@ -66,39 +53,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.nav-statement {
-  content: '';
-  border-top: 1px solid #414347;
-  left: 0;
-  background-color: #2b2d32;
-  min-height: 10px;
-  color: #ababad;
-  font-weight: lighter;
-  padding: 10px 4rem;
-}
 .topbar-header {
   max-width: 1235px;
   margin: auto;
   padding: 0 40px;
-}
-.topbar-nav nav {
-  padding: 0 40px;
-  max-width: 1235px;
-  margin: auto;
-  text-align: left;
-  line-height: 70px;
-}
-.topbar-nav a:hover {
-  color: #fff;
-  font-weight: 400;
-}
-.topbar-nav a {
-  font-size: 1.2rem;
-  position: relative;
-  color: #ababad;
-  padding: 0 1rem;
-  font-weight: lighter;
-  transition: all .5s;
 }
 .topbar-header-login {
   display: inline-block;
@@ -107,7 +65,7 @@ export default {
 }
 .topbar-header-name img {
   width: 100%;
-  padding: 10px 20px;
+  padding: 10px 10rem;
 }
 .topbar-header-name {
   width: 150px;
@@ -115,35 +73,14 @@ export default {
 }
 .topbar-header-container {
   text-align: left;
-  background-color: #fff;
-}
-/*.topbar-nav:after {
-  content: '';
-  position: absolute;
-  border-top: 1px solid #414347;
-  left: 0;
-  background-color: #2b2d32;
+  background-color: rgba(255, 255, 255, .9);
+  box-shadow: 0 2px 2px rgba(0,0,0,.2);
+  position: fixed;
+  top: 0;
   width: 100%;
-  height: 30px;
-}*/
-.topbar-nav {
-  position: relative;
-  background-color: #2b2d32;
-  /*background-color: #fff;*/
+  z-index: 100;
 }
 .topbar {
   margin-bottom: 80px;
-}
-@media screen and (max-width: 375px ) {
-  .topbar-nav nav {
-    padding: 0;
-    line-height: 40px;
-    text-align: center;
-  }
-  .topbar-nav a {
-    font-size: 1.2rem;
-    font-weight: normal;
-    padding: 0 .4rem;
-  }
 }
 </style>
