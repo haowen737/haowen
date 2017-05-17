@@ -2,7 +2,7 @@
   <div class="page">
     <dashboard-topbar></dashboard-topbar>
     <div class="content">
-      <side-nav></side-nav>
+      <side-nav v-if="loadSideNav"></side-nav>
       <router-view class="main"></router-view>
     </div>
     <bottom-fire :show="!showLoading"></bottom-fire>
@@ -14,6 +14,14 @@ import SideNav from './SideNav'
 import BottomFire from './BottomFire'
 import DashboardTopbar from './DashboardTopbar'
 export default {
+  data () {
+    return {
+      loadSideNav: false
+    }
+  },
+  created () {
+    this.loadSideNav = window.innerWidth > 500 || false
+  },
   components: {
     DashboardTopbar,
     BottomFire,
@@ -26,7 +34,7 @@ export default {
 .content {
   max-width: 900px;
   min-height: 100%;
-  margin: 0 auto;
+  margin: 80px auto 0;
 }
 .main {}
 </style>

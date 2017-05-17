@@ -54,7 +54,6 @@ export default {
   },
   computed: {},
   mounted () {
-    console.log(this.$axios)
     this.showLoading = true
     this.initPage()
   },
@@ -71,10 +70,33 @@ export default {
         this.article = res.data
         this.formatMarkdown(this.article.content)
         this.formatTags(this.article.tags)
+        this.watchScroll()
       })
       .catch((err) => {
         console.log(err)
       })
+    },
+    watchScroll () {
+      window.onscroll = () => {
+        if (window.scrollY > 180) {
+          this.checkCurrentMode('article') && (
+            this.$store.commit('setMode', {
+              mode: 'article',
+              articleTitle: this.article.title
+            })
+          )
+        } else {
+          this.checkCurrentMode('default') && (
+            this.$store.commit('setMode', {
+              mode: 'default',
+              articleTitle: ''
+            })
+          )
+        }
+      }
+    },
+    checkCurrentMode (mode) {
+      return this.$store.state.topbar.mode !== mode
     },
     likeThisArticle () {
       let param = {}
@@ -108,6 +130,11 @@ export default {
     },
     back () {
       this.$router.go(-1)
+    }
+  },
+  beforeDestroy () {
+    window.onscroll = () => {
+      return false
     }
   },
   components: {

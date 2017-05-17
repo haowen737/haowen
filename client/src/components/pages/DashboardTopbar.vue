@@ -1,18 +1,21 @@
 <template lang="html">
-  <div class="">
-    <div class="topbar">
-      <div class="topbar-header-container">
-        <div class="topbar-header">
-          <router-link :to="{path:'/'}" class="topbar-header-name"><img :src="require('assets/images/haowen.png')" alt=""></router-link>
-          <div class="topbar-header-login">
-            <span v-show="!user.user_name" @click="showLoginForm=true">登入</span>
-            <span v-show="user.user_name">{{user.user_name}}</span>
-          </div>
-        </div>
-      </div>
+  <div class="topbar">
+    <div class="topbar-header-container">
+      <transition name="topbar-img">
+        <router-link
+        class="topbar-header-name"
+        v-show="showTopbarImg"
+        :to="{path:'/'}"
+        key="img">
+          <img :src="require('assets/images/haowen.png')" alt="haowen">
+        </router-link>
+      </transition>
+      <transition name="article-title">
+        <div class="article-title" v-show="!showTopbarImg">{{articleTitle}}</div>
+      </transition>
     </div>
-    <user-log-in :show="showLoginForm" @clickMask="showLoginForm=false"></user-log-in>
   </div>
+    <!-- <user-log-in :show="showLoginForm" @clickMask="showLoginForm=false"></user-log-in> -->
 </template>
 
 <script>
@@ -21,19 +24,33 @@ export default {
   data () {
     return {
       showLoginForm: false,
-      cur_tab: '',
+      showTopbarImg: true,
+      mode: '',
+      articleTitle: '',
       user: {}
     }
   },
   mounted () {
+    console.log()
     this.checkLogin()
-    this.watchScroll()
+    // this.watchScroll()
   },
   methods: {
     checkLogin () {
       let user = window.localStorage.getItem('withyoufriendsuseraccount')
       if (user) {
         this.user = JSON.parse(user)
+      }
+    },
+    setMode (mode) {
+      switch (mode) {
+        case 'article':
+          this.showTopbarImg = false
+          this.articleTitle = this.$store.state.topbar.articleTitle
+          break
+        case 'default':
+          this.showTopbarImg = true
+          break
       }
     },
     watchScroll () {
@@ -46,6 +63,11 @@ export default {
 
     }
   },
+  watch: {
+    '$store.state.topbar.mode' (val) {
+      this.setMode(val)
+    }
+  },
   components: {
     UserLogIn
   }
@@ -53,6 +75,21 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.article-title {
+  font-size: 2rem;
+  width: 100%;
+  text-align: center;
+  line-height: 52px;
+}
+.article-title-enter-active, .article-title-leave-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all .7s cubic-bezier(0.76, 0.28, 0, 0.74);
+}
+.article-title-enter, .article-title-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}
 .topbar-header {
   max-width: 1235px;
   margin: auto;
@@ -65,22 +102,45 @@ export default {
 }
 .topbar-header-name img {
   width: 100%;
-  padding: 10px 10rem;
+  padding: 10px 0;
 }
 .topbar-header-name {
+  position: absolute;
+  left: 10%;
   width: 150px;
-  display: inline-block;
+  display: block;
+  will-change: transform;
+  transition: all .7s cubic-bezier(0.76, 0.28, 0, 0.74);
+}
+.topbar-img-enter-active, .topbar-img-leave-active {
+  transform: translateY(0);
+  left: 10%;
+  opacity: 1;
+  transition: all .7s cubic-bezier(0.76, 0.28, 0, 0.74);
+}
+.topbar-img-enter, .topbar-img-leave-to {
+  transform: translateY(-100%);
+  left: 10%;
+  opacity: 0;
 }
 .topbar-header-container {
-  text-align: left;
+  padding: 0 10rem;
+  height: 52px;
+  position: relative;
+}
+.topbar {
   background-color: rgba(255, 255, 255, .9);
   box-shadow: 0 2px 2px rgba(0,0,0,.2);
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 100;
+  height: 52px;
+  overflow: hidden;
 }
-.topbar {
-  margin-bottom: 80px;
+@media (max-width: 1000px) {
+  .topbar-header-container {
+    padding: 0;
+  }
 }
 </style>
