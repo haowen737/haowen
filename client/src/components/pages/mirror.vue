@@ -60,12 +60,18 @@ export default {
       userInput: '',
       user: {},
       myScroll: {},
-      logs: []
+      logs: [],
+      where: {
+        userInfo: {
+          apiKey: 'http://openapi.tuling123.com/openapi/api/v2'
+        }
+      }
     }
   },
   computed: {},
   mounted  () {
     this.initPage()
+    this.post()
   },
   methods: {
     initPage () {
@@ -139,10 +145,21 @@ export default {
       dialogue.text = text
       dialogue.user = rule
       return dialogue
+    },
+    post () {
+      let where = {
+        inputText: {
+          text: '附近的酒店'
+        },
+        userInfo: {
+          apiKey: '0487ff97dfd64656871c3c0b008967bd'
+        }
+      }
+      this.$http.post('http://openapi.tuling123.com/openapi/api/v2', where)
+          .then((res) => {
+            console.log(res.data)
+          })
     }
-  },
-  beforeDestory: function () {
-    console.log(123)
   },
   watch: {
     'show.isTyping': function (val) {
