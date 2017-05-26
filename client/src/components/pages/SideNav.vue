@@ -38,18 +38,18 @@ export default {
 .side-nav-container {
   will-change: transform;
   transition: all .7s;
-  top: 0;
+  top: 20px;
   position: absolute;
-  margin-left: 20px;
+  margin-left: 0px;
   animation: nav .7s ease;
 }
 @keyframes nav {
   0% {
-    margin-left: -20px;
+    margin-left: -30px;
     opacity: 0;
   }
   100% {
-    margin-left: 20px;
+    margin-left: 0px;
     opacity: 1;
   }
 }

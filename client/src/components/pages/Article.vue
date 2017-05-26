@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="article-layout" id="container">
-    <div v-html="content" class="markdown-body"></div>
+    <div v-html="content" class="markdown-body" id="mdContainer"></div>
     <div class="bottom-bar" v-show="!showLoading">
       <div class="bottom-bar-tags">
         <div class="bottom-bar-tags-icon">
@@ -46,6 +46,7 @@ export default {
       content: '',
       showLoading: false,
       user: {},
+      worker: {},
       where: {
         content: '',
         articleId: ''
@@ -117,11 +118,17 @@ export default {
     },
     formatMarkdown (content) {
       this.content = Markdown.toHTML(content)
-      HighLight.configure({
-        languages: ['javascript']
-      })
       this.$nextTick(() => {
-        HighLight.initHighlighting()
+        HighLight.configure({
+          languages: ['html', 'javascript']
+        })
+        this.HighLightMarkdown()
+      })
+    },
+    HighLightMarkdown () {
+      let dom = document.querySelectorAll('pre')
+      Array.from(dom).map((i) => {
+        HighLight.highlightBlock(i)
       })
     },
     formatTags (tags) {
@@ -130,12 +137,25 @@ export default {
     },
     back () {
       this.$router.go(-1)
+    },
+    getAllChildren (all, dom) {
+      Array.from(dom).map((i) => {
+        if (i.children.length) {
+          all.concat(this.getChildren(all, i.children))
+        }
+        all.push(i)
+      })
+      return all
     }
   },
   beforeDestroy () {
     window.onscroll = () => {
       return false
     }
+    this.$store.commit('setMode', {
+      mode: 'default',
+      articleTitle: ''
+    })
   },
   components: {
     Markdown,
@@ -146,7 +166,7 @@ export default {
 
 <style lang="css" scoped>
 @import "/static/lib/github-markdown.css";
-@import "/static/lib/highlight/styles/atom-one-light.css";
+@import "/static/lib/highlight/styles/ocean.css";
 .bottom-bar-likes-img img {
   width: 100%;
 }
@@ -275,7 +295,7 @@ export default {
 }
 .article-layout {
   margin: 0 auto;
-  max-width: 700px;
+  max-width: 800px;
   min-height: 100%;
 }
 @media screen and (max-width: 375px ) {
