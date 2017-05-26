@@ -1,5 +1,5 @@
 <template lang="html">
-  <nav class="side-nav-container" :style="{transform: 'translateY(' + navTop + 'px)'}">
+  <nav class="side-nav-container" id="nav" :style="{transform: 'translateY(' + navTop + 'px)'}">
     <router-link :to="{path:'/'}">文章</router-link>
     <router-link :to="{path:'/black'}">剪藏</router-link>
     <router-link :to="{path:'/demo-house'}">唱片</router-link>
@@ -21,10 +21,21 @@ export default {
   },
   methods: {
     watchScroll () {
-      window.onscroll = () => {
-        this.navTop = 170 - parseInt(window.scrollY / 5)
-      }
+      window.addEventListener('scroll', this.handleScroll)
+      // window.onscroll = () => {
+      //   this.navTop = 170 - parseInt(window.scrollY / 5)
+      // }
+      // let nav = document.querySelector('#nav')
+      // nav.addEventListener('scroll', () => {
+      //   console.log('nav scroll')
+      // })
+    },
+    handleScroll () {
+      this.navTop = 170 - parseInt(window.scrollY / 5)
     }
+  },
+  beforeDestory () {
+    window.removeEventListener('scroll', this.handleScroll)
   },
   watch: {
     '$route.name' (val) {

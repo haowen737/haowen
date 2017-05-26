@@ -78,22 +78,23 @@ export default {
       })
     },
     watchScroll () {
-      window.onscroll = () => {
-        if (window.scrollY > 180) {
-          this.checkCurrentMode('article') && (
-            this.$store.commit('setMode', {
-              mode: 'article',
-              articleTitle: this.article.title
-            })
-          )
-        } else {
-          this.checkCurrentMode('default') && (
-            this.$store.commit('setMode', {
-              mode: 'default',
-              articleTitle: ''
-            })
-          )
-        }
+      window.addEventListener('scroll', this.handleTitleMode)
+    },
+    handleTitleMode () {
+      if (window.scrollY > 180) {
+        this.checkCurrentMode('article') && (
+          this.$store.commit('setMode', {
+            mode: 'article',
+            articleTitle: this.article.title
+          })
+        )
+      } else {
+        this.checkCurrentMode('default') && (
+          this.$store.commit('setMode', {
+            mode: 'default',
+            articleTitle: ''
+          })
+        )
       }
     },
     checkCurrentMode (mode) {
@@ -149,9 +150,7 @@ export default {
     }
   },
   beforeDestroy () {
-    window.onscroll = () => {
-      return false
-    }
+    window.removeEventListener('scroll', this.handleTitleMode)
     this.$store.commit('setMode', {
       mode: 'default',
       articleTitle: ''
