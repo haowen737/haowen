@@ -22,16 +22,9 @@ export default {
   methods: {
     watchScroll () {
       window.addEventListener('scroll', this.handleScroll)
-      // window.onscroll = () => {
-      //   this.navTop = 170 - parseInt(window.scrollY / 5)
-      // }
-      // let nav = document.querySelector('#nav')
-      // nav.addEventListener('scroll', () => {
-      //   console.log('nav scroll')
-      // })
     },
     handleScroll () {
-      this.navTop = 170 - parseInt(window.scrollY / 5)
+      this.navTop = 170 - parseInt(window.scrollY / 6)
     }
   },
   beforeDestory () {
@@ -49,7 +42,8 @@ export default {
 .side-nav-container {
   will-change: transform;
   transition: all .7s;
-  top: 20px;
+  top: 0px;
+  right: 0;
   position: absolute;
   margin-left: 0px;
   animation: nav .7s ease;
