@@ -24,9 +24,9 @@ module.exports = {
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components'),
       'articles': path.resolve(__dirname, '../src/articles'),
-      'demos': path.resolve(__dirname, '../src/components/demos'),
-      'packages': path.resolve(__dirname, '../src/components/packages'),
-      'widgets': path.resolve(__dirname, '../src/components/widgets')
+      'demos': path.resolve(__dirname, '../src/demos'),
+      'packages': path.resolve(__dirname, '../src/packages'),
+      'widgets': path.resolve(__dirname, '../src/widgets')
     }
   },
   resolveLoader: {

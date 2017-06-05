@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Vue from 'vue'
 
 import Warning from './plugins/warning'
-import Box from 'packages/Box'
+import Box from './packages/Box'
 import routers from './routers'
 import Utils from './utils'
 import store from './store'
