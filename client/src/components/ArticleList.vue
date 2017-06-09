@@ -133,7 +133,7 @@ export default {
 .card-bottom-right {
   float: right;
   margin-left: 15px;
-  color: #c5c5c5;
+  color: #999;
   font-size: .7rem;
   font-weight: lighter;
   margin-top: 5px;

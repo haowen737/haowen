@@ -34,7 +34,6 @@ export default {
   background-color: #fff;
 }
 .top-bar a {
-  font-family: fantasy,sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
   padding: 0 1rem;

@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="page">
-    <dashboard-topbar></dashboard-topbar>
+    <blog-topbar></blog-topbar>
     <div class="content">
       <router-view class="main"></router-view>
     </div>
@@ -10,7 +10,7 @@
 
 <script>
 import BottomFire from './BottomFire'
-import DashboardTopbar from './DashboardTopbar'
+import BlogTopbar from './BlogTopbar'
 export default {
   data () {
     return {
@@ -19,7 +19,7 @@ export default {
   created () {
   },
   components: {
-    DashboardTopbar,
+    BlogTopbar,
     BottomFire
   }
 }

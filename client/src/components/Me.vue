@@ -79,7 +79,9 @@ const ProgressList = [{
 <style lang="css" scoped>
 @import url("./../assets/styles/animation.css");
 .content {
-  min-height: 500px;
+  max-width: 50rem;
+  margin: 10rem auto;
+  text-align: center;
 }
 .hero-tree {
   position: absolute;

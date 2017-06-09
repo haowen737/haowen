@@ -3,7 +3,7 @@ const ArticleList = (resolve) => require(['./components/ArticleList'], resolve)
 const MoodsLogin = (resolve) => require(['./components/moodsLogin'], resolve)
 const Playground = (resolve) => require(['./components/playground'], resolve)
 const DemoHouse = (resolve) => require(['./components/DemoHouse'], resolve)
-const Dashboard = (resolve) => require(['./components/Dashboard'], resolve)
+const Blog = (resolve) => require(['./components/Blog'], resolve)
 const Flextest = (resolve) => require(['./components/flextest'], resolve)
 const Comment = (resolve) => require(['./components/comment'], resolve)
 const Article = (resolve) => require(['./components/Article'], resolve)
@@ -36,7 +36,7 @@ export default [
     component: About
   }, {
     path: '/blog',
-    component: Dashboard,
+    component: Blog,
     children: [
       {
         path: '/',
