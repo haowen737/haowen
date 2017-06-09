@@ -13,8 +13,11 @@ const Black = (resolve) => require(['./components/black'], resolve)
 const Moods = (resolve) => require(['./components/moods'], resolve)
 const Topic = (resolve) => require(['./components/topic'], resolve)
 const About = (resolve) => require(['./components/about'], resolve)
+const Entrance = (resolve) => require(['./components/Entrance'], resolve)
+const Contact = (resolve) => require(['./components/Contact'], resolve)
 const Tags = (resolve) => require(['./components/tags'], resolve)
 const Me = (resolve) => require(['./components/Me'], resolve)
+const Test = (resolve) => require(['./components/Test'], resolve)
 
 const Clock = (resolve) => require(['./demos/clock'], resolve)
 const Cellular = (resolve) => require(['./demos/cellular'], resolve)
@@ -32,36 +35,45 @@ export default [
     path: '/about',
     component: About
   }, {
-    path: '/',
+    path: '/blog',
     component: Dashboard,
     children: [
       {
         path: '/',
         component: ArticleList
       }, {
-        path: '/tags',
+        path: 'tags',
         component: Tags
       }, {
-        path: '/article/:id',
+        path: 'article/:id',
         component: Article
       }, {
-        path: '/comment',
+        path: 'comment',
         component: Comment
       }, {
-        path: '/theatre',
+        path: 'theatre',
         component: Theatre
       }, {
-        path: '/topic',
+        path: 'topic',
         component: Topic
       }, {
-        path: '/demo-house',
+        path: 'demo-house',
         component: DemoHouse
       }, {
-        path: '/me',
+        path: 'black',
+        component: Black
+      }
+    ]
+  }, {
+    path: '/',
+    component: Entrance,
+    children: [
+      {
+        path: '/',
         component: Me
       }, {
-        path: '/black',
-        component: Black
+        path: 'contact',
+        component: Contact
       }
     ]
   }, {
@@ -88,5 +100,8 @@ export default [
   }, {
     path: '/setting/profile',
     component: SettingProfile
+  }, {
+    path: '/test',
+    component: Test
   }
 ]

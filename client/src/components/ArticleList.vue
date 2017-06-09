@@ -6,7 +6,7 @@
           <div class="card-img-container" v-if="card.thumbnail">
             <img :src="card.thumbnail + '?imageView2/0/w/1000'" alt="" :style="{top: setImgTop(el)}">
           </div>
-          <router-link :to="{path:'article/' + card.file_id}">{{ card.title }}</router-link>
+          <router-link :to="{path:'blog/article/' + card.file_id}">{{ card.title }}</router-link>
           <p class="card-summary">{{card.summary}}</p>
           <p>
             <span class="card-date">{{card.author}} in {{ card.created_at | formatDate('YYYY/MM/DD HH:mm')}}</span>
@@ -68,10 +68,10 @@ export default {
 
 <style lang="css" scoped>
 .card-img-container img:hover {
-  transform: rotate(3deg) scale(1.1);
+  transform: scale(1.1);
 }
 .card-img-container img {
-  transform: rotate(0deg) scale(1);
+  transform: scale(1);
   transition: all .7s;
   position: absolute;
   width: 100%;

@@ -44,8 +44,11 @@ p {
   border-left: 1px solid #e7e7e7;
 }
 * {
-   -webkit-tap-highlight-color:rgba(0,0,0,0);
-   -webkit-appearance: none;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  -webkit-appearance: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .logo {
   display: inline-block;
