@@ -4,25 +4,43 @@
       <router-link class="router-about" :to="{path: '/'}">About</router-link>
       <router-link class="router-contact" :to="{path: '/contact'}">Contact</router-link>
       <router-link class="router-blog" :to="{path: '/blog'}" target="_blank">Blog</router-link>
+      <a href="javascript:;" class="language-switcher">EN/CH</a>
     </div>
     <router-view></router-view>
+    <div class="bottom-bar">"很高兴认识你"，"我也为你感到高兴！"</div>  
   </div>
 </template>
 
 <script>
 export default {
-
   name: 'Entrance',
-
   data () {
     return {
-
+      lang: 'en'
+    }
+  },
+  methods: {
+    langSwitch () {
+      this.lang = 'en' || 'ch'
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
+.bottom-bar {
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 5;
+  color: #333;
+  background-color: #b6d7ff;
+}
+.language-switcher {
+  position: absolute;
+  right: 0;
+  color: #999;
+  font-weight: 100 !important;
+}
 .top-bar {
   position: fixed;
   top: 0;

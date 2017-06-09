@@ -6,11 +6,11 @@
           <div class="hero-name">
             <h1 class="Animated_slidedown" :style="{transform: 'translate3d(' + tx + 'px,' + 0 + 'px,' + tz + 'px)'}">Haowen<br>Zheng</h1>
             <h2 class="Animated_slideleft" :style="{transform: 'translate3d(' + tx / 2 + 'px,' + 0 + 'px,' + tz + 'px)'}">郑皓文</h2>
-            <h2 class="Animated_slideleft" :style="{transform: 'translate3d(' + tx / 3 + 'px,' + 0 + 'px,' + tz + 'px)'}">中国计量大学 💝 中国, 杭州</h2>
+            <h2 class="Animated_slideleft" :style="{transform: 'translate3d(' + tx / 3 + 'px,' + 0 + 'px,' + tz + 'px)'}">中国 💝 杭州</h2>
           </div>
           <div class="hero-avatar Animated_slideright">
             <div class="hero-avatar-img"></div> 
-            <div class="hero-flower" :style="{transform: 'translate3d(0px,' + ty + 'px,' + tz + 'px)'}"></div>
+            <div class="hero-flower" :style="{transform: 'translate3d('+ -tx / 2 + 'px,' + ty + 'px,' + tz + 'px)'}"></div>
             <div class="hero-tree" :style="{transform: 'translate3d(' + tx + 'px,' + ty + 'px,' + tz + 'px)'}"></div>
           </div>
         </div>
@@ -18,9 +18,9 @@
       <div class="content">
         this is content
       </div>
-      <div class="progressBar-container">
+      <!-- <div class="progressBar-container">
         <progress-bar :progressClass="progressClass" :progressList="progressList"></progress-bar>
-      </div>
+      </div> -->
     </div>
   </transition>
 </template>
@@ -55,6 +55,9 @@ export default {
       this.tz = -window.scrollY / 4
     }
   },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.setAnimation)
+  },
   components: {
     progressBar
   }
@@ -85,21 +88,21 @@ const ProgressList = [{
 }
 .hero-tree {
   position: absolute;
-  top: -30px;
-  left: -30px;
-  width: 100px;
-  height: 100px;
-  background-color: #c9ffed;
+  top: -50px;
+  left: -50px;
+  width: 80px;
+  height: 80px;
+  border: 30px solid #c9ffed;
   z-index: -1;
 }
 .hero-flower {
   position: absolute;
-  bottom: -40px;
-  right: -40px;
-  width: 100px;
-  height: 100px;
+  bottom: -50px;
+  right: -50px;
+  width: 50px;
+  height: 50px;
   border-radius: 100px;
-  background-color: #9ec6ff;
+  border: 30px solid #9ec6ff;
 }
 .hero {
   margin-top: 70px;

@@ -4,30 +4,26 @@
       <div class="hero">
         <div class="hero-container">
           <div class="hero-name">
-            <h1 class="Animated_slidedown" :style="{transform: 'translate3d(' + tx + 'px,' + 0 + 'px,' + tz + 'px)'}">Get<br>Contact</h1>
+            <h1 class="Animated_slidedown" :style="{transform: 'translate3d(' + tx / 2 + 'px,' + ty + 'px,' + tz + 'px)'}">🤔&nbsp;Get IN<br>Contact</h1>
           </div>
           <div class="hero-avatar Animated_slideright">
             <div class="hero-avatar-img"></div> 
             <div class="hero-flower" :style="{transform: 'translate3d(0px,' + ty + 'px,' + tz + 'px)'}"></div>
-            <div class="hero-tree" :style="{transform: 'translate3d(' + tx + 'px,' + ty + 'px,' + tz + 'px)'}"></div>
+            <div class="hero-tree" :style="{transform: 'translate3d(' + -tx + 'px,' + ty + 'px,' + tz + 'px)'}"></div>
           </div>
         </div>
       </div>
+      <div class="content">
+        So, you have an exciting project and looking for a motivated and creative developer?<br>Simply write me an e-mail: haowen737@gmail.com and I get in touch with you as soon as possible! 🚀
+      </div>
       <div class="content-list" v-show="!showContentList">
         <div class="contact-item" v-for="(item, index) in contactList">
-          <a href="javascript:;" @mouseover="show=index" @mouseout="show=-1" @click="jumpTo(1)">
+          <a :href="item.to" target="_blank">
             <img :src="item.icon" alt="" />
-            <transition name="fade-item">
-              <div class="contact-item-text" v-show="show===index">{{item.label}}</div>
-            </transition>
+            <div class="contact-item-text" v-show="false">{{item.label}}</div>
           </a>
         </div>
       </div>
-      <messangerr
-      :display='showMessanger'
-      :messangerrBody="messangerrBody"
-      @on-confirm="onConfirm"
-      @clickMask="onClickMask"></messangerr>
     </div>
   </transition>
 </template>
@@ -40,76 +36,53 @@ export default {
 
   data () {
     return {
-      contactList: ContactList,
-      link: '',
-      messangerrBody: '',
-      showMessanger: false
+      contactList: [],
+      tx: 0,
+      ty: 0,
+      tz: 0
     }
   },
+  created () {
+    this.contactList = [{
+      label: 'Github',
+      icon: require('assets/images/github.png'),
+      to: 'https://github.com/popitin'
+    }, {
+      label: 'Zhihu',
+      icon: require('assets/images/zhihu.png'),
+      to: 'https://zhuanlan.zhihu.com/fe-sketch'
+    }, {
+    //   label: 'Mail',
+    //   icon: require('assets/images/mail.png'),
+    //   to: 'mailto:haowen737@gmail.com'
+    // }, {
+      label: '500PX',
+      icon: require('assets/images/500px.png'),
+      to: 'https://500px.com/haowen'
+    }]
+  },
+  mounted () {
+    window.addEventListener('scroll', this.setAnimation)
+  },
   methods: {
-    showText (index) {
-      this.show = index
-    },
-    onConfirm () {
-      this.show = false
-      let index = this.link
-      MessangerBox[index].action()
-    },
-    jumpTo (index) {
-      this.messangerrBody = MessangerBox[index].content
-      this.link = index
-      this.showMessanger = true
-    },
-    onClickMask () {
-      this.showMessanger = false
-      this.messangerrBody = ''
+    setAnimation () {
+      this.tx = -window.scrollY / 4
+      this.ty = -window.scrollY / 4
+      this.tz = -window.scrollY / 4
     }
   },
   components: {
     messangerr
   }
 }
-const ContactList = [{
-  label: 'Github',
-  icon: require('assets/images/github.png')
-}, {
-  label: 'Zhihu',
-  icon: require('assets/images/zhihu.png')
-}, {
-  label: 'Mail',
-  icon: require('assets/images/mail.png')
-}, {
-  label: '500PX',
-  icon: require('assets/images/500px.png')
-}]
-const MessangerBox = [{
-  content: '打开郑皓文的github?',
-  action: () => {
-    window.open('https://github.com/popitin')
-  }
-}, {
-  content: '打开郑皓文的知乎?',
-  action: () => {
-    window.open('https://www.zhihu.com/people/chuck-25')
-  }
-}, {
-  content: '给郑皓文写邮件?',
-  action: () => {
-    window.location.href = 'mailto: zt452268020@live.com'
-  }
-}, {
-  content: '打开郑皓文的500PX?',
-  action: () => {
-    window.open('https://500px.com/haowen')
-  }
-}]
 </script>
 
 <style lang="css" scoped>
+@import url("./../assets/styles/animation.css");
 .hero-tree {
   position: absolute;
   top: -30px;
-  left: -30px;
+  right: -30px;
   width: 100px;
   height: 100px;
   background-color: #c9ffed;
@@ -117,12 +90,12 @@ const MessangerBox = [{
 }
 .hero-flower {
   position: absolute;
-  bottom: -40px;
-  right: -40px;
-  width: 100px;
-  height: 100px;
+  bottom: -65px;
+  left: -65px;
+  width: 70px;
+  height: 70px;
   border-radius: 100px;
-  background-color: #9ec6ff;
+  border: 30px solid #9ec6ff;
 }
 .hero {
   margin-top: 70px;
@@ -188,5 +161,11 @@ const MessangerBox = [{
 .contact-item {
   flex: 1 1 auto;
   text-align: center;
+}
+.content {
+  margin: 10rem auto;
+  max-width: 50rem;
+  text-align: center;
+  font-size: 1.2rem;
 }
 </style>
