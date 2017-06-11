@@ -7,14 +7,19 @@
             <h1 class="Animated_slidedown" :style="{transform: 'translate3d(' + tx / 2 + 'px,' + ty + 'px,' + tz + 'px)'}">🤔&nbsp;Get IN<br>Contact</h1>
           </div>
           <div class="hero-avatar Animated_slideright">
-            <div class="hero-avatar-img"></div> 
+            <div class="hero-avatar-img"></div>
             <div class="hero-flower" :style="{transform: 'translate3d(0px,' + ty + 'px,' + tz + 'px)'}"></div>
             <div class="hero-tree" :style="{transform: 'translate3d(' + -tx + 'px,' + ty + 'px,' + tz + 'px)'}"></div>
           </div>
         </div>
       </div>
       <div class="content">
-        So, you have an exciting project and looking for a motivated and creative developer?<br>Simply write me an e-mail: haowen737@gmail.com and I get in touch with you as soon as possible! 🚀
+        <p>下面有我的GitHub和知乎专栏</p>
+        <p>...</p>
+        <p>兴趣使然</p>
+        <p>所以下面有我的500px网站和我的YouTube频道</p>
+        <p>&nbsp;</p>
+        <p>如果我们能做个朋友，这是我的邮箱<a href="mailto:haowen737@gmail.com">haowen737@gmail.com</a></p>
       </div>
       <div class="content-list" v-show="!showContentList">
         <div class="contact-item" v-for="(item, index) in contactList">
@@ -52,10 +57,14 @@ export default {
       icon: require('assets/images/zhihu.png'),
       to: 'https://zhuanlan.zhihu.com/fe-sketch'
     }, {
-    //   label: 'Mail',
-    //   icon: require('assets/images/mail.png'),
-    //   to: 'mailto:haowen737@gmail.com'
-    // }, {
+      label: 'Weibo',
+      icon: require('assets/images/weibo.png'),
+      to: 'http://weibo.com/311170900/'
+    }, {
+      label: 'youTube',
+      icon: require('assets/images/youTube.png'),
+      to: 'https://www.youtube.com/channel/UC3cB_GBiRHeRSNLVL19Bz7g'
+    }, {
       label: '500PX',
       icon: require('assets/images/500px.png'),
       to: 'https://500px.com/haowen'
@@ -79,6 +88,12 @@ export default {
 
 <style lang="css" scoped>
 @import url("./../assets/styles/animation.css");
+.content a {
+  padding: 0 3px;
+  font-style: italic;
+  color: #005bff;
+  font-weight: 500;
+}
 .hero-tree {
   position: absolute;
   top: -30px;

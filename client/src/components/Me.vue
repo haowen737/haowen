@@ -9,15 +9,18 @@
             <h2 class="Animated_slideleft" :style="{transform: 'translate3d(' + tx / 3 + 'px,' + 0 + 'px,' + tz + 'px)'}">中国 💝 杭州</h2>
           </div>
           <div class="hero-avatar Animated_slideright">
-            <div class="hero-avatar-img"></div> 
+            <div class="hero-avatar-img"></div>
             <div class="hero-flower" :style="{transform: 'translate3d('+ -tx / 2 + 'px,' + ty + 'px,' + tz + 'px)'}"></div>
             <div class="hero-tree" :style="{transform: 'translate3d(' + tx + 'px,' + ty + 'px,' + tz + 'px)'}"></div>
           </div>
         </div>
       </div>
       <div class="content">
-        this is content
+        <h2>很高兴认识你</h2>
+        <p>我叫郑皓文, 我是一名前端开发工程师, 我蛮喜欢新的技术, 设计并且搭建酷炫的项目。</p>
+        <p>做出一个改变世界的产品是我的目标。</p>
       </div>
+      <!-- <div class="content" v-html="content" id="mdContainer"></div> -->
       <!-- <div class="progressBar-container">
         <progress-bar :progressClass="progressClass" :progressList="progressList"></progress-bar>
       </div> -->
@@ -28,6 +31,7 @@
 <script>
 // import particles from 'particles.js'
 // import particlesConfig from './../lib/particlesConfig.js'
+import Markdown from 'markdown/lib/markdown.js'
 import progressBar from 'packages/progressBar'
 export default {
   data () {
@@ -42,10 +46,22 @@ export default {
   },
   computed: {},
   mounted () {
-    // window.particlesJS('particlesJs', particlesConfig)
+    this.query()
     this.watchScroll()
   },
   methods: {
+    query () {
+      this.$http.get('/static/md/me.md')
+          .then((res) => {
+            this.praseMd(res.data)
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+    },
+    praseMd (data) {
+      this.content = Markdown.toHTML(data)
+    },
     watchScroll () {
       window.addEventListener('scroll', this.setAnimation)
     },
@@ -59,7 +75,8 @@ export default {
     window.removeEventListener('scroll', this.setAnimation)
   },
   components: {
-    progressBar
+    progressBar,
+    Markdown
   }
 }
 const ProgressClass = {
@@ -81,9 +98,12 @@ const ProgressList = [{
 
 <style lang="css" scoped>
 @import url("./../assets/styles/animation.css");
+.content p {
+  margin: 20px 0;
+}
 .content {
   max-width: 50rem;
-  margin: 10rem auto;
+  margin: 5rem auto;
   text-align: center;
 }
 .hero-tree {
@@ -107,7 +127,7 @@ const ProgressList = [{
 .hero {
   margin-top: 70px;
   padding: 130px 0;
-  background-color: #fdfff7;
+  background-color: #ebf6ff;
 }
 .hero-container {
   position: relative;
