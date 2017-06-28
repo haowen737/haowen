@@ -16,20 +16,6 @@
           <a href="javascript:;" @click="likeThisArticle">{{article.likes}}次感谢</a>
         </div>
       </div>
-      <div class="bottom-bar-comment-header">
-        <div class="login-container">
-          <a href="javascript:;" class="login-btn" @click="join" v-show="!user.user_name">Join</a>
-          <a href="javascript:;" @click="profile" v-show="user.user_name">{{user.user_name}} @</a>
-          <span>withyoufriends</span>
-        </div>
-      </div>
-      <div class="input-container">
-        <textarea rows="2" cols="20" v-model="where.content" :disabled="!user.user_name" placeholder="写下你的评论"></textarea>
-        <div class="button-wrap">
-          <a href="javascript:;">发送</a>
-        </div>
-      </div>
-      <div class="bottom-bar-comme-body"></div>
     </div>
     <side-nav v-if="loadSideNav" position="right"></side-nav>
     <loading :show="showLoading" top="50%" bg-color="#000"></loading>
@@ -114,12 +100,6 @@ export default {
         console.log(err)
       })
     },
-    join () {
-      this.$router.push('/moods/login')
-    },
-    profile () {
-      this.$router.push('/setting/profile')
-    },
     formatMarkdown (content) {
       this.content = Markdown.toHTML(content)
       this.$nextTick(() => {
@@ -141,15 +121,6 @@ export default {
     },
     back () {
       this.$router.go(-1)
-    },
-    getAllChildren (all, dom) {
-      Array.from(dom).map((i) => {
-        if (i.children.length) {
-          all.concat(this.getChildren(all, i.children))
-        }
-        all.push(i)
-      })
-      return all
     }
   },
   beforeDestroy () {
@@ -267,7 +238,7 @@ export default {
   margin: 0 auto 100px;
   padding: 45px;
 }
-.article {
+/*.article {
   width: 700px;
   margin: 50px auto;
   text-align: left;
@@ -300,7 +271,7 @@ export default {
   margin: 0 auto;
   max-width: 800px;
   min-height: 100%;
-}
+}*/
 @media screen and (max-width: 375px ) {
   .markdown-body {
     padding: 10px;

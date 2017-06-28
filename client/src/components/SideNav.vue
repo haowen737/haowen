@@ -5,11 +5,11 @@
   :style="{transform: 'translateY(' + navTop + 'px)'}"
   :class="[position === 'left' ? 'navLeft' : 'navRight']">
     <router-link :to="{path:'/blog'}">文章</router-link>
-    <router-link :to="{path:'/black'}">剪藏</router-link>
-    <router-link :to="{path:'/demo-house'}">唱片</router-link>
-    <router-link :to="{path:'/tags'}">标签</router-link>
-    <router-link :to="{path:'/comment'}">留言</router-link>
-    <router-link :to="{path:'/me'}" target="_blank">关于我</router-link>
+    <router-link :to="{path:'/blog/black'}">剪藏</router-link>
+    <router-link :to="{path:'/blog/demo-house'}">唱片</router-link>
+    <router-link :to="{path:'/blog/tags'}">标签</router-link>
+    <router-link :to="{path:'/blog/comment'}">留言</router-link>
+    <router-link :to="{path:'/'}" target="_blank">关于我</router-link>
   </nav>
 </template>
 

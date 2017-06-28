@@ -32,7 +32,7 @@ export default {
   font-size: 1.2rem;
   line-height: 5;
   color: #333;
-  background-color: #ffebeb;
+  background-color: #f9f9f9;
 }
 .top-bar {
   position: fixed;
@@ -51,12 +51,12 @@ export default {
   line-height: 70px;
 }
 .router-about {
-  color: #ffa4e0;
+  color: #d2ccff;
 }
 .router-contact {
-  color: #29c4ff;
+  color: #8abfff;
 }
 .router-blog {
-  color: #b385ff;
+  color: #8fcedd;
 }
 </style>

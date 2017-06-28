@@ -131,7 +131,7 @@ export default {
 }
 .topbar {
   background-color: rgba(255, 255, 255, .9);
-  box-shadow: 0 2px 2px rgba(0,0,0,.2);
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
   position: fixed;
   top: 0;
   width: 100%;

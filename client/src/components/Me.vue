@@ -18,7 +18,7 @@
       <div class="content">
         <h2>很高兴认识你</h2>
         <p>我叫郑皓文, 我是一名前端开发工程师, 我蛮喜欢新的技术, 设计并且搭建酷炫的项目。</p>
-        <p>做出一个改变世界的产品是我的目标。</p>
+        <p>做出一个改变世界的产品是我的人生理想。</p>
       </div>
       <!-- <div class="content" v-html="content" id="mdContainer"></div> -->
       <!-- <div class="progressBar-container">
@@ -112,7 +112,7 @@ const ProgressList = [{
   left: -50px;
   width: 80px;
   height: 80px;
-  border: 30px solid #c9ffed;
+  border: 30px solid #ddf6ff;
   z-index: -1;
 }
 .hero-flower {
@@ -122,12 +122,12 @@ const ProgressList = [{
   width: 50px;
   height: 50px;
   border-radius: 100px;
-  border: 30px solid #9ec6ff;
+  border: 30px solid #d3e0f3;
 }
 .hero {
   margin-top: 70px;
   padding: 130px 0;
-  background-color: #ebf6ff;
+  background-color: #f9f9f9;
 }
 .hero-container {
   position: relative;
@@ -138,9 +138,9 @@ const ProgressList = [{
 }
 .hero-name h1 {
   font-size: 5rem;
-  color: #ffa4e0;
+  color: #b4e3f4;
   line-height: .9;
-  font-weight: 300;
+  font-weight: 400;
   text-transform: uppercase;
 }
 .hero-name h2 {
