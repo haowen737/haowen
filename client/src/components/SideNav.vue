@@ -1,26 +1,22 @@
 <template lang="html">
   <nav 
-  id="nav" 
   class="side-nav-container" 
   :style="{transform: 'translateY(' + navTop + 'px)'}"
   :class="[position === 'left' ? 'navLeft' : 'navRight']">
-    <router-link :to="{path:'/blog'}">文章</router-link>
-    <router-link :to="{path:'/blog/black'}">剪藏</router-link>
-    <router-link :to="{path:'/blog/demo-house'}">唱片</router-link>
-    <router-link :to="{path:'/blog/tags'}">标签</router-link>
-    <router-link :to="{path:'/blog/comment'}">留言</router-link>
-    <router-link :to="{path:'/'}" target="_blank">关于我</router-link>
+    <router-link :to="{path: n.route}" v-for="n in nav" :target="n.target">{{n.title}}</router-link>
   </nav>
 </template>
 
 <script>
+import Nav from 'assets/scripts/blogNav'
 export default {
   props: {
     position: String
   },
   data () {
     return {
-      navTop: 170
+      navTop: 170,
+      nav: Nav
     }
   },
   mounted () {

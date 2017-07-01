@@ -71,23 +71,27 @@ export default {
     },
     handleTitleMode () {
       if (window.scrollY > 180) {
-        this.checkCurrentMode('article') && (
+        this.checkCurrentMode('article').then(() => {
           this.$store.commit('setMode', {
             mode: 'article',
             articleTitle: this.article.title
           })
-        )
+        })
       } else {
-        this.checkCurrentMode('default') && (
+        this.checkCurrentMode('default').then(() => {
           this.$store.commit('setMode', {
             mode: 'default',
             articleTitle: ''
           })
-        )
+        })
       }
     },
     checkCurrentMode (mode) {
-      return this.$store.state.topbar.mode !== mode
+      return new Promise((resolve, reject) => {
+        if (this.$store.state.topbar.mode !== mode) {
+          resolve()
+        }
+      })
     },
     likeThisArticle () {
       let param = {}

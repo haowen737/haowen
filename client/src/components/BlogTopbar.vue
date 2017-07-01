@@ -4,37 +4,45 @@
       <transition name="topbar-img">
         <router-link
         class="topbar-header-name"
-        v-show="showTopbarImg"
+        v-show="mode === 'default' && show === 'logo'"
         :to="{path:'/'}"
         key="img">
           <img :src="require('assets/images/haowen.png')" alt="haowen">
         </router-link>
       </transition>
       <transition name="article-title">
-        <div class="article-title" v-show="!showTopbarImg">{{articleTitle}}</div>
+        <div class="article-title" v-show="mode === 'article'">{{articleTitle}}</div>
       </transition>
-      <div></div>
+      <transition name="article-title">
+        <nav 
+        class="nav-container" 
+        :style="{transform: 'translateY(' + navTop + 'px)'}"
+        :class="[position === 'left' ? 'navLeft' : 'navRight']"
+        v-show="mode === 'default' && show === 'nav'">
+          <router-link :to="{path: n.route}" v-for="n in nav" :target="n.target">{{n.title}}</router-link>
+        </nav>
+      </transition>
     </div>
   </div>
     <!-- <user-log-in :show="showLoginForm" @clickMask="showLoginForm=false"></user-log-in> -->
 </template>
 
 <script>
+import Nav from 'assets/scripts/blogNav'
 import UserLogIn from './UserLogIn'
 export default {
   data () {
     return {
-      showLoginForm: false,
-      showTopbarImg: true,
-      mode: '',
+      mode: 'default',
+      show: 'logo',
       articleTitle: '',
-      user: {}
+      user: {},
+      nav: Nav
     }
   },
   mounted () {
-    console.log()
     this.checkLogin()
-    // this.watchScroll()
+    this.watchScroll()
   },
   methods: {
     checkLogin () {
@@ -44,24 +52,24 @@ export default {
       }
     },
     setMode (mode) {
-      switch (mode) {
-        case 'article':
-          this.showTopbarImg = false
-          this.articleTitle = this.$store.state.topbar.articleTitle
-          break
-        case 'default':
-          this.showTopbarImg = true
-          break
-      }
+      this.mode = mode
+      this.articleTitle = this.$store.state.topbar.articleTitle || ''
     },
     watchScroll () {
-      window.onscroll = () => {
-        let scrollY = window.scrollY
-        scrollY > 0 && this.fitNav()
-      }
+      window.addEventListener('scroll', this.handleScroll)
     },
-    fitNav () {
-
+    handleScroll () {
+      // topbar对自身的控制不通过vuex
+      // 其他组件tabbar的控制通过vuex
+      if (this.mode === 'article') {
+        return
+      } else {
+        if (window.scrollY > 250) {
+          this.show = 'nav'
+        } else {
+          this.show = 'logo'
+        }
+      }
     }
   },
   watch: {
@@ -76,6 +84,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.nav-container {
+  float: left;
+}
+.nav-container a {
+  line-height: 52px;
+  padding: 0 10px;
+}
 .article-title {
   font-size: 2rem;
   width: 100%;
@@ -103,12 +118,13 @@ export default {
 }
 .topbar-header-name img {
   width: 100%;
-  padding: 10px 0;
+  margin-top: 10px;
 }
 .topbar-header-name {
   position: absolute;
   left: 10%;
   width: 150px;
+  height: 100%;
   display: block;
   will-change: transform;
   transition: all .7s cubic-bezier(0.76, 0.28, 0, 0.74);

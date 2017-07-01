@@ -1,12 +1,8 @@
 const SettingProfile = (resolve) => require(['./components/settingProfile'], resolve)
-const ArticleList = (resolve) => require(['./components/ArticleList'], resolve)
 const MoodsLogin = (resolve) => require(['./components/moodsLogin'], resolve)
 const Playground = (resolve) => require(['./components/playground'], resolve)
 const DemoHouse = (resolve) => require(['./components/DemoHouse'], resolve)
-const Blog = (resolve) => require(['./components/Blog'], resolve)
 const Flextest = (resolve) => require(['./components/flextest'], resolve)
-const Comment = (resolve) => require(['./components/comment'], resolve)
-const Article = (resolve) => require(['./components/Article'], resolve)
 const Theatre = (resolve) => require(['./components/theatre'], resolve)
 const Mirror = (resolve) => require(['./components/mirror'], resolve)
 const Black = (resolve) => require(['./components/black'], resolve)
@@ -15,9 +11,14 @@ const Topic = (resolve) => require(['./components/topic'], resolve)
 const About = (resolve) => require(['./components/about'], resolve)
 const Entrance = (resolve) => require(['./components/Entrance'], resolve)
 const Contact = (resolve) => require(['./components/Contact'], resolve)
-const Tags = (resolve) => require(['./components/tags'], resolve)
 const Me = (resolve) => require(['./components/Me'], resolve)
 const Test = (resolve) => require(['./components/Test'], resolve)
+
+const BlogArticleList = (resolve) => require(['./components/BlogArticleList'], resolve)
+const BlogComment = (resolve) => require(['./components/BlogComment'], resolve)
+const BlogArticle = (resolve) => require(['./components/BlogArticle'], resolve)
+const BlogTags = (resolve) => require(['./components/BlogTags'], resolve)
+const Blog = (resolve) => require(['./components/Blog'], resolve)
 
 const Clock = (resolve) => require(['./demos/clock'], resolve)
 const Cellular = (resolve) => require(['./demos/cellular'], resolve)
@@ -40,16 +41,16 @@ export default [
     children: [
       {
         path: '/',
-        component: ArticleList
+        component: BlogArticleList
       }, {
         path: 'tags',
-        component: Tags
+        component: BlogTags
       }, {
         path: 'article/:id',
-        component: Article
+        component: BlogArticle
       }, {
         path: 'comment',
-        component: Comment
+        component: BlogComment
       }, {
         path: 'theatre',
         component: Theatre
