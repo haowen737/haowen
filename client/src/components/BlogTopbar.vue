@@ -42,9 +42,12 @@ export default {
   },
   mounted () {
     this.checkLogin()
-    this.watchScroll()
+    this.calWidth()
   },
   methods: {
+    calWidth () {
+      window.innerWidth > 1200 ? this.watchScroll() : (this.show = 'nav')
+    },
     checkLogin () {
       let user = window.localStorage.getItem('withyoufriendsuseraccount')
       if (user) {
@@ -64,7 +67,7 @@ export default {
       if (this.mode === 'article') {
         return
       } else {
-        if (window.scrollY > 250) {
+        if (window.scrollY > 330) {
           this.show = 'nav'
         } else {
           this.show = 'logo'

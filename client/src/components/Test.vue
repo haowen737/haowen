@@ -1,7 +1,9 @@
 <template>
-<iframe id="iframe" src="http://www.baidu.com"></iframe>
+<div>
+  <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIyODUxNzQ0MQ==&scene=110#wechat_redirect">点击关注haowen的公众号</a>
+  <a href="http://weixin.qq.com/r/DERwaGHE8TyOrSUL9xEe/MDAyOTgxMzQw">点击关注临城展画的公众号</a>
 </template>
-
+</div>
 <script>
 export default {
 
@@ -24,8 +26,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
-#iframe {
-  width: 900px;
-  height: 800px;
+a {
+  display: block;
+  padding: 20px;
+  margin: 50px;
+  background-color: green;
 }
 </style>

@@ -2,6 +2,7 @@
   <div class="page">
     <blog-topbar></blog-topbar>
     <div class="content">
+      <side-nav v-if="loadSideNav" position="left"></side-nav>
       <router-view class="main"></router-view>
     </div>
     <bottom-fire :show="!showLoading"></bottom-fire>
@@ -9,18 +10,21 @@
 </template>
 
 <script>
+import SideNav from './SideNav'
 import BottomFire from './BottomFire'
 import BlogTopbar from './BlogTopbar'
 export default {
   data () {
     return {
+      loadSideNav: window.innerWidth > 1200 || false
     }
   },
   created () {
   },
   components: {
     BlogTopbar,
-    BottomFire
+    BottomFire,
+    SideNav
   }
 }
 </script>

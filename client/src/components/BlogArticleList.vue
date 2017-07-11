@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="article-list-container">
+  <div class="blog-main">
     <div class="cards">
       <transition-group name="card">
         <article class="card" v-for="card in cards" @click="showBottomFire=false" :key="card">
@@ -16,21 +16,18 @@
         </article>
       </transition-group>
     </div>
-    <side-nav v-if="loadSideNav" position="left"></side-nav>
     <loading :show="showLoading" top="50%" bg-color="#000"></loading>
     <confirm content="content" title="title"></confirm>
   </div>
 </template>
 
 <script>
-import SideNav from './SideNav'
 import Confirm from 'packages/Confirm'
 import loading from 'packages/loading'
 import LoginEntrance from './loginEntrance'
 export default {
   data  () {
     return {
-      loadSideNav: window.innerWidth > 500 || false,
       showBottomFire: false,
       showLoading: false,
       cards: []
@@ -60,8 +57,7 @@ export default {
   components: {
     LoginEntrance,
     loading,
-    Confirm,
-    SideNav
+    Confirm
   }
 }
 </script>
@@ -168,11 +164,5 @@ export default {
   .card {
     width: auto;
   }
-}
-.article-list-container {
-  margin: 0 auto;
-  padding-top: 0px;
-  max-width: 500px;
-  min-height: 100%;
 }
 </style>

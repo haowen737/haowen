@@ -2,10 +2,7 @@
   <div class="page">
     <ul class="cards">
       <transition-group name="card">
-        <li class="card clearfix" v-for="(card, index) in cards" :key="card" @mouseenter="onMouseenter(index)" @mouseout="onMouseout">
-          <transition name="fade">
-            <div class="like-btn" v-show="showBtn === index"></div>
-          </transition>
+        <li class="card clearfix" v-for="(card, index) in cards" :key="card">
           <div class="card-img-container"
           :style="{backgroundImage:'url(' + card.thumbnail + '?imageView2/0/w/1000)'}"></div>
           <router-link :to="{path: 'demo/' + card.route}" target="_blank">{{card.title}}</router-link>
@@ -32,13 +29,6 @@ export default {
     this.query()
   },
   methods: {
-    onMouseenter (index) {
-      this.showBtn = index
-    },
-    onMouseout () {
-      // this.showBtn = -1
-      console.log('mouseout')
-    },
     query () {
       this.$http.get('/api/demo/getDemos')
       .then((res) => {
@@ -56,17 +46,6 @@ export default {
 .card-count-view {
   position: absolute;
   right: 0;
-}
-.like-btn {
-  position: absolute;
-  left: 0;
-  top: 0;
-  margin-top: 2rem;
-  margin-left: -50px;
-  width: 50px;
-  height: 50px;
-  background-color: blue;
-  margin-right: 20px;
 }
 .card-summary {
   font-size: 1rem;

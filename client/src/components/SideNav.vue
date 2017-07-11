@@ -58,6 +58,7 @@ export default {
   transition: all .7s;
   top: 0px;
   position: absolute;
+  z-index: 100;
 }
 @keyframes navright {
   0% {

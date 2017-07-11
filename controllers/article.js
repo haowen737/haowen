@@ -15,6 +15,7 @@ exports.getArticles = async (ctx, next) => {
 
 exports.getTags = async (ctx, next) => {
   let tagsLike = await ctx.knex.select('tags').from('articles')
+  console.log('------>getTags<-------', tagsLike)
   let tags = []
   tagsLike.map((el) => {
     let e = el.tags.split(',')
