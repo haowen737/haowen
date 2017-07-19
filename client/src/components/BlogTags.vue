@@ -6,8 +6,8 @@
       </a>
     </div>
     <transition name="article">
-      <div class="article-list" v-show="articles.length">
-        <div class="articel" v-for="art in articles">
+      <div class="article-list" v-if="articles.length">
+        <div class="articel" v-for="art in articles" :key="art">
           <h2>{{art.title}}</h2>
           <p>{{art.summary}}</p>
         </div>
@@ -22,7 +22,8 @@ export default {
     return {
       tags: [],
       articles: [],
-      showArticle: false
+      showArticle: false,
+      items: [1, 2, 3, 4, 5, 6, 7, 8, 9]
     }
   },
   mounted () {
@@ -42,8 +43,9 @@ export default {
       this.articles = []
       this.$http.get('/api/article/getTags/' + tag)
       .then((res) => {
-        this.articles = res.data
-        console.log(this.articles)
+        setTimeout(() => {
+          this.articles = res.data
+        }, 0)
       })
       .catch((err) => {
         console.log(err)
@@ -55,6 +57,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.flip-list-move {
+  transition: transform 1s;
+}
 .articel p {
   font-size: 12px;
 }
@@ -72,7 +77,7 @@ export default {
   top: 0;
   width: 300px;
   height: 100%;
-  padding: 200px 0;
+  padding: 10% 0;
 }
 .tag-family {
   display: block;
@@ -95,14 +100,21 @@ export default {
   margin-top: 10rem;
 }
 /*動畫*/
-.article-enter-active, .article-leave-active {
-  transition: all .7s ease;
-  right: 0;
-  /*transform: translateX(0);*/
+@keyframes slide {
+  from {
+    right: -200;
+  }
+  to {
+    right: 0;
+  }
 }
-.article-enter, .article-leave-to /* .fade-leave-active 在 <2.1.8 中 */ {
+.article-enter-active, .article-leave-active {
+  transition: all .6s ease;
+  opacity: 1;
+  transform: translateX(0);
+}
+.article-enter, .article-leave-to{
   opacity: 0;
-  /*transform: translateX(100%);*/
-  right: -200px;
+  transform: translateX(100%);
 }
 </style>

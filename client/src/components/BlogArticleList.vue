@@ -4,7 +4,7 @@
       <transition-group name="card">
         <article class="card" v-for="card in cards" @click="showBottomFire=false" :key="card">
           <div class="card-img-container" v-if="card.thumbnail">
-            <img :src="card.thumbnail + '?imageView2/0/w/1000'" alt="" :style="{top: setImgTop(el)}">
+            <img :src="card.thumbnail + '?imageView2/0/w/1000'" alt="">
           </div>
           <router-link :to="{path:'blog/article/' + card.file_id}">{{ card.title }}</router-link>
           <p class="card-summary">{{card.summary}}</p>
@@ -49,9 +49,6 @@ export default {
         this.showLoading = false
         console.log(err)
       })
-    },
-    setImgTop (el) {
-      console.log(el)
     }
   },
   components: {

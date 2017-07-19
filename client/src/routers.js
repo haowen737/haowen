@@ -9,10 +9,11 @@ const Black = (resolve) => require(['./components/black'], resolve)
 const Moods = (resolve) => require(['./components/moods'], resolve)
 const Topic = (resolve) => require(['./components/topic'], resolve)
 const About = (resolve) => require(['./components/about'], resolve)
-const Entrance = (resolve) => require(['./components/Entrance'], resolve)
-const Contact = (resolve) => require(['./components/Contact'], resolve)
-const Me = (resolve) => require(['./components/Me'], resolve)
+// const Entrance = (resolve) => require(['./components/Entrance'], resolve)
+// const Contact = (resolve) => require(['./components/Contact'], resolve)
+// const Me = (resolve) => require(['./components/Me'], resolve)
 const Test = (resolve) => require(['./components/Test'], resolve)
+const Dashboard = (resolve) => require(['./components/Dashboard'], resolve)
 
 const BlogArticleList = (resolve) => require(['./components/BlogArticleList'], resolve)
 const BlogComment = (resolve) => require(['./components/BlogComment'], resolve)
@@ -36,48 +37,64 @@ export default [
     path: '/about',
     component: About
   }, {
+    path: '/dashboard',
+    component: Dashboard
+  }, {
     path: '/blog',
     component: Blog,
     children: [
       {
         path: '/',
-        component: BlogArticleList
+        component: BlogArticleList,
+        name: '博客主页'
       }, {
         path: 'tags',
-        component: BlogTags
+        component: BlogTags,
+        name: '标签'
       }, {
         path: 'article/:id',
-        component: BlogArticle
+        component: BlogArticle,
+        name: '文章'
       }, {
         path: 'comment',
-        component: BlogComment
+        component: BlogComment,
+        name: '评论'
       }, {
         path: 'theatre',
-        component: Theatre
+        component: Theatre,
+        name: '剧院'
       }, {
         path: 'topic',
-        component: Topic
+        component: Topic,
+        name: '话题'
       }, {
         path: 'demo-house',
-        component: DemoHouse
+        component: DemoHouse,
+        name: 'demo'
       }, {
         path: 'black',
-        component: Black
+        component: Black,
+        name: '黑'
       }
     ]
   }, {
     path: '/',
-    component: Entrance,
-    children: [
-      {
-        path: '/',
-        component: Me
-      }, {
-        path: 'contact',
-        component: Contact
-      }
-    ]
+    component: Dashboard
   }, {
+  //   path: '/',
+  //   component: Entrance,
+  //   children: [
+  //     {
+  //       path: '/',
+  //       component: Me,
+  //       name: '我'
+  //     }, {
+  //       path: 'contact',
+  //       component: Contact,
+  //       name: '联系方式'
+  //     }
+  //   ]
+  // }, {
     path: '/moods',
     component: Moods
   }, {

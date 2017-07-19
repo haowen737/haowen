@@ -34,9 +34,6 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
   watch: {
-    '$route.name' (val) {
-      console.log(val)
-    },
     'position' (val) {
       console.log(val)
     }

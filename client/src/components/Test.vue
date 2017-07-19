@@ -2,6 +2,7 @@
 <div>
   <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIyODUxNzQ0MQ==&scene=110#wechat_redirect">点击关注haowen的公众号</a>
   <a href="http://weixin.qq.com/r/DERwaGHE8TyOrSUL9xEe/MDAyOTgxMzQw">点击关注临城展画的公众号</a>
+  <img src="./../assets/images/1499845156.png">
 </template>
 </div>
 <script>

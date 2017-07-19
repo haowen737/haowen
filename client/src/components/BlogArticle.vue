@@ -17,13 +17,11 @@
         </div>
       </div>
     </div>
-    <side-nav v-if="loadSideNav" position="right"></side-nav>
     <loading :show="showLoading" top="50%" bg-color="#000"></loading>
   </div>
 </template>
 
 <script>
-import SideNav from './SideNav'
 import HighLight from 'highlight.js'
 import Markdown from 'markdown/lib/markdown.js'
 import loading from 'packages/loading'
@@ -108,7 +106,7 @@ export default {
       this.content = Markdown.toHTML(content)
       this.$nextTick(() => {
         HighLight.configure({
-          languages: ['html', 'javascript']
+          languages: ['html', 'javascript', 'Nginx', 'Bash', 'CSS', 'HTTP', 'JSON', 'Objective-C', 'SQL']
         })
         this.HighLightMarkdown()
       })
@@ -136,8 +134,7 @@ export default {
   },
   components: {
     Markdown,
-    loading,
-    SideNav
+    loading
   }
 }
 </script>

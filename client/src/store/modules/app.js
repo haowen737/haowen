@@ -1,10 +1,10 @@
 const state = {
-  lang: ''
+  sideBarPosition: ''
 }
 
 const mutations = {
-  setLang (state, lang) {
-    state.lang = lang
+  setSideBarPosition (state, sideBarPosition) {
+    state.sideBarPosition = sideBarPosition
   }
 }
 

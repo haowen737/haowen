@@ -2,7 +2,7 @@
   <div class="page">
     <blog-topbar></blog-topbar>
     <div class="content">
-      <side-nav v-if="loadSideNav" position="left"></side-nav>
+      <blog-side-nav v-if="loadSideNav" :position="position"></blog-side-nav>
       <router-view class="main"></router-view>
     </div>
     <bottom-fire :show="!showLoading"></bottom-fire>
@@ -10,21 +10,37 @@
 </template>
 
 <script>
-import SideNav from './SideNav'
+import BlogSideNav from './BlogSideNav'
 import BottomFire from './BottomFire'
 import BlogTopbar from './BlogTopbar'
 export default {
   data () {
     return {
-      loadSideNav: window.innerWidth > 1200 || false
+      loadSideNav: window.innerWidth > 1200 || false,
+      position: 'left'
     }
   },
   created () {
+    this.setSideNavPosition()
+  },
+  methods: {
+    setSideNavPosition (name = this.$route.name) {
+      if (name === '文章') {
+        this.position = 'right'
+        return
+      }
+      this.position = 'left'
+    }
+  },
+  watch: {
+    '$route.name' (name) {
+      this.setSideNavPosition(name)
+    }
   },
   components: {
     BlogTopbar,
     BottomFire,
-    SideNav
+    BlogSideNav
   }
 }
 </script>

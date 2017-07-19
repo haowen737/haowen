@@ -14,12 +14,15 @@ html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,tab
 html, body, #app, .page{
   height: 100%;
   /*background-color: #f3f3f3;*/
-  font-family: "Microsoft YaHei", 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Open Sans', 'Helvetica Neue', 'Hiragino Sans GB', 'LiHei Pro', Arial, sans-serif;
   -moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	-khtml-user-select: none;
 	user-select: none;
+}
+h1 {
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
 }
 a {
   text-decoration: none;
@@ -140,7 +143,7 @@ scrollbar-3dlight-color {
 }
 /*修改github-markdown-css*/
 .markdown-body {
-  font-family: "Microsoft YaHei" !important;
+  font-family: 'Open Sans', 'Helvetica Neue', 'Hiragino Sans GB', 'LiHei Pro', Arial, sans-serif !important;
   cursor: default;
 }
 /*haowen css sheets*/

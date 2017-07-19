@@ -14,14 +14,13 @@ exports.getArticles = async (ctx, next) => {
 }
 
 exports.getTags = async (ctx, next) => {
-  let tagsLike = await ctx.knex.select('tags').from('articles')
-  console.log('------>getTags<-------', tagsLike)
+  let articles = await ctx.knex.select('*').from('articles')
   let tags = []
-  tagsLike.map((el) => {
-    let e = el.tags.split(',')
-    tags = tags.concat(e)
+  articles.map((art) => {
+    let tag = art.tags.split(',')
+    tags = tags.concat(tag)
   })
-  ctx.body = tags
+  ctx.body = [...new Set(tags)]
 }
 
 exports.getArticlesByTag = async (ctx, next) => {
