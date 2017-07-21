@@ -9,13 +9,8 @@ class ApiError extends Error{
     constructor(err){
         super();
 
-        // var error_info = ApiErrorNames.getErrorInfo(error_name);
-
-        // this.name = error_name;
-        // this.code = error_info.code;
         this.code = err.code;
-        // this.message = error_info.message;
-        this.message = err.message;
+        this.message = err.msg;
     }
 }
 

@@ -3,7 +3,10 @@
     <header>Haowen</header>
     <summary>Code · Design · Create · Capture · Inspire</summary>
     <nav>
-      <router-link :to="{path: n.url}" v-for="n in nav" :target="n.target">{{n.title}}</router-link>
+      <span v-for="n in nav">
+        <router-link :to="{path: n.url}" v-if="!n.target">{{n.title}}</router-link>
+        <a :href="n.url" :target="n.target" v-else>{{n.title}}</a>
+      </span>
     </nav>
     <!-- <canvas id="canvas"></canvas> -->
   </div>
@@ -18,16 +21,20 @@ export default {
     return {
       nav: [{
         title: 'Blog',
-        url: '/blog'
+        url: '/blog',
+        target: ''
       }, {
         title: 'Github',
-        url: 'https://github.com/popitin'
+        url: 'https://github.com/popitin',
+        target: '_blank'
       }, {
         title: '微博',
-        url: 'http://weibo.com/311170900/'
+        url: 'http://weibo.com/311170900/',
+        target: '_blank'
       }, {
         title: '知乎',
-        url: 'https://zhuanlan.zhihu.com/fe-sketch'
+        url: 'https://zhuanlan.zhihu.com/fe-sketch',
+        target: '_blank'
       }]
     }
   },
@@ -51,7 +58,7 @@ header {
 nav {
   margin: 2rem 0;
 }
-nav>a {
+nav>span {
   padding: 0 10px;
 }
 .page {
