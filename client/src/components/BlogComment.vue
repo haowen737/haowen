@@ -44,7 +44,7 @@ export default {
   data () {
     return {
       senderData: {},
-      showSender: false,
+      showSender: true,
       comments: [],
       replyList: [],
       showMessanger: false,
@@ -73,14 +73,6 @@ export default {
     },
     handleSenderBtn () {
 
-    },
-    sendComment (where) {
-      this.askName()
-      //     .then(() => {
-      //       this.send(where)
-      //     })
-    },
-    askName () {
     },
     send (where) {
       this.$http.post('/api/comment/addComment', where)

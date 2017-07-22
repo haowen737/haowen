@@ -1,20 +1,24 @@
 <!-- 这是一个不可复用的组件，parent是comment -->
 <template>
   <div class="sender-wrap">
-    <h3 class="sender-title">{{title}}</h3>
-    <div class="sender border-b">
-      <input v-model="where.content" :placeholder="placeholder" v-if="status===0"></input>
-      <input v-model="where.name" :placeholder="placeholder" v-if="status===1"></input>
-      <input v-model="where.email" :placeholder="placeholder" v-if="status===2"></input>
-    </div>
-    <a href="javascript:;" @click="next">{{btnText}}</a>
+    <transition name="slide" mode="out-in">
+      <h3 class="sender-title" :key="status">{{title}}</h3>
+    </transition>
+    <transition name="slide" mode="out-in">
+      <div class="sender border-b" :key="inputs">
+        <input v-model="inputs.value" :placeholder="inputs.placeholder"></input>
+      </div>
+    </transition>
+    <transition name="slide" mode="out-in">
+      <a href="javascript:;" :key="status" @click="next">{{btnText}}</a>
+    </transition>
   </div>
 </template>
 
 <script>
-const titles = ['title1', 'title2', 'title3']
-const placeholders = ['placeholder1', 'placeholder2', 'placeholder3']
-const btnTexts = ['btnText1', 'btnText2', 'btnText3']
+const titles = ['在这里留言', '你的名字']
+const placeholders = ['在这里写你的留言', '在这里写你的名字']
+const btnTexts = ['然后', '写好了']
 
 export default {
 
@@ -23,14 +27,36 @@ export default {
   data () {
     return {
       where: {
-        content: '',
-        name: '',
-        email: ''
+        content: {
+          value: '',
+          placeholder: placeholders[0]
+        },
+        email: {
+          value: '',
+          placeholder: placeholders[1]
+        }
       },
-      status: 0,
-      title: '',
-      placeholder: '',
-      btnText: ''
+      status: 0
+    }
+  },
+  computed: {
+    title: function () {
+      switch (this.status) {
+        case 0: return titles[0]
+        case 1: return titles[1]
+      }
+    },
+    inputs: function () {
+      switch (this.status) {
+        case 0: return this.where.content
+        case 1: return this.where.email
+      }
+    },
+    btnText: function () {
+      switch (this.status) {
+        case 0: return btnTexts[0]
+        case 1: return btnTexts[1]
+      }
     }
   },
   created () {
@@ -38,6 +64,14 @@ export default {
   },
   methods: {
     next () {
+      this.status === 0 ? this.setData(1) : this.setData(0)
+      // this.formChecker()
+      //     .then(() => {
+      //       this.setData(2)
+      //     })
+      //     .catch((err) => {
+      //       console.log(err)
+      //     })
     },
     formChecker () {
       let { content, email } = this.where
@@ -50,10 +84,12 @@ export default {
       })
     },
     setData (index) {
-      this.status = index
-      this.title = titles[index]
-      this.placeholder = placeholders[index]
-      this.btnText = btnTexts[index]
+      setTimeout(() => {
+        this.status = index
+      }, 0)
+    },
+    setDataEmpty () {
+      this.status = ''
     }
   }
 }
@@ -68,11 +104,9 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
+  overflow: hidden;
 }
 .sender-wrap a {
-  position: absolute;
-  bottom: 0;
-  right: 0;
   margin: 0 10px;
   line-height: 3;
   display: block;
@@ -88,14 +122,27 @@ export default {
   position: relative;
   margin: 0 10px;
   text-align: center;
+  height: 100%;
 }
 .sender input {
-  margin: 10px 0 40px;
   width: 100%;
   line-height: 2;
   display: block;
   font-size: 17px;
   outline: none;
   border: none;
+  height: 2.4rem;
+}
+.slide-enter-active, .slide-leave-active {
+  transition: all .6s ease;
+  opacity: 1;
+}
+.slide-enter{
+  opacity: 0;
+  transform: translateX(10%);
+}
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-10%);
 }
 </style>

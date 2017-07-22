@@ -43,9 +43,7 @@ export default {
       this.articles = []
       this.$http.get('/api/article/getTags/' + tag)
       .then((res) => {
-        setTimeout(() => {
-          this.articles = res.data
-        }, 0)
+        this.articles = res.data
       })
       .catch((err) => {
         console.log(err)
