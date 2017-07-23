@@ -33,7 +33,7 @@
       </transition-group>
     </div>
     <div class="ball" @click="showSender=!showSender"></div>
-    <sender @clickBtn="handleSenderBtn" v-show="showSender"></sender>
+    <sender @dataReady="send" v-show="showSender"></sender>
   </div>
 </template>
 
@@ -44,7 +44,7 @@ export default {
   data () {
     return {
       senderData: {},
-      showSender: true,
+      showSender: false,
       comments: [],
       replyList: [],
       showMessanger: false,
@@ -77,7 +77,7 @@ export default {
     send (where) {
       this.$http.post('/api/comment/addComment', where)
       .then((res) => {
-        this.where.content = ''
+        this.showSender = false
         this.query()
       })
       .catch((err) => {
@@ -158,8 +158,13 @@ export default {
 
 <style lang="css" scoped>
 .ball {
-  position: fixed;bottom: 0;right: 100px;
-  width: 100px;height: 100px;border-radius: 100px;background-color: #ddd;
+  position: fixed;
+  bottom: 100px;
+  right: 100px;
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
+  background-color: #ddd;
 }
 .reply-input {
   position: relative;

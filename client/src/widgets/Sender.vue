@@ -10,7 +10,7 @@
       </div>
     </transition>
     <transition name="slide" mode="out-in">
-      <a href="javascript:;" :key="status" @click="next">{{btnText}}</a>
+      <a href="javascript:;" :key="status" @click="btnOnclick">{{btnText}}</a>
     </transition>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
           value: '',
           placeholder: placeholders[0]
         },
-        email: {
+        username: {
           value: '',
           placeholder: placeholders[1]
         }
@@ -49,7 +49,7 @@ export default {
     inputs: function () {
       switch (this.status) {
         case 0: return this.where.content
-        case 1: return this.where.email
+        case 1: return this.where.username
       }
     },
     btnText: function () {
@@ -57,29 +57,67 @@ export default {
         case 0: return btnTexts[0]
         case 1: return btnTexts[1]
       }
+    // },
+    // btnOnclick: function () {
+    //   switch (this.status) {
+    //     case 0: return this.formChecker(this.where.content)
+    //     case 1: return this.formChecker(this.where.email)
+    //   }
     }
   },
   created () {
     this.setData(0)
   },
   methods: {
-    next () {
-      this.status === 0 ? this.setData(1) : this.setData(0)
-      // this.formChecker()
-      //     .then(() => {
-      //       this.setData(2)
-      //     })
-      //     .catch((err) => {
-      //       console.log(err)
-      //     })
+    btnOnclick () {
+      return this.status === 0
+      ? this.formChecker({
+        val: this.where.content.value,
+        rejectContent: '缺少内容'
+      }).then(() => {
+        this.setData(1)
+      }).catch((err) => {
+        console.log(err)
+      })
+      : this.formChecker({
+        val: this.where.username.value,
+        rejectContent: '你的名字也是必须的'
+      }).then(() => {
+        this.send()
+      }).catch((err) => {
+        console.log(err)
+      })
     },
-    formChecker () {
-      let { content, email } = this.where
+    send () {
+      this.$emit('dataReady', {
+        userName: this.where.username.value,
+        content: this.where.content.value
+      })
+      this.clearForm()
+      // let data = {
+      //   userName: this.where.username.value,
+      //   comment: this.where.content.value
+      // }
+      // this.$http.post('/api/comment/addComment', data)
+      // .then((res) => {
+      //   this.query()
+      // })
+      // .catch((err) => {
+      //   console.log(err)
+      // })
+    },
+    clearForm () {
+      this.where.content.value = ''
+      this.where.username.value = ''
+    },
+    formChecker (data) {
+      let { val, rejectContent } = data
+      console.log(val, rejectContent)
       return new Promise((resolve, reject) => {
-        if (content && email) {
+        if (val) {
           resolve()
         } else {
-          reject()
+          reject(rejectContent || 'empty err msg')
         }
       })
     },
