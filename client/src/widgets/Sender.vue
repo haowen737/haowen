@@ -1,18 +1,20 @@
 <!-- 这是一个不可复用的组件，parent是comment -->
 <template>
-  <div class="sender-wrap">
-    <transition name="slide" mode="out-in">
-      <h3 class="sender-title" :key="status">{{title}}</h3>
-    </transition>
-    <transition name="slide" mode="out-in">
-      <div class="sender border-b" :key="inputs">
-        <input v-model="inputs.value" :placeholder="inputs.placeholder"></input>
-      </div>
-    </transition>
-    <transition name="slide" mode="out-in">
-      <a href="javascript:;" :key="status" @click="btnOnclick">{{btnText}}</a>
-    </transition>
-  </div>
+  <transition name="slide">
+    <div class="sender-wrap">
+      <transition name="slide" mode="out-in">
+        <h3 class="sender-title" :key="status">{{title}}</h3>
+      </transition>
+      <transition name="slide" mode="out-in">
+        <div class="sender border-b" :key="inputs">
+          <input v-model="inputs.value" :placeholder="inputs.placeholder"></input>
+        </div>
+      </transition>
+      <transition name="slide" mode="out-in">
+        <a href="javascript:;" :key="status" @click="btnOnclick">{{btnText}}</a>
+      </transition>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -24,19 +26,12 @@ export default {
 
   name: 'Sender',
 
-  data () {
-    return {
-      where: {
-        content: {
-          value: '',
-          placeholder: placeholders[0]
-        },
-        username: {
-          value: '',
-          placeholder: placeholders[1]
-        }
-      },
-      status: 0
+  props: {
+    show: Boolean
+  },
+  watch: {
+    'show': function (val) {
+      console.log(val)
     }
   },
   computed: {
@@ -57,12 +52,6 @@ export default {
         case 0: return btnTexts[0]
         case 1: return btnTexts[1]
       }
-    // },
-    // btnOnclick: function () {
-    //   switch (this.status) {
-    //     case 0: return this.formChecker(this.where.content)
-    //     case 1: return this.formChecker(this.where.email)
-    //   }
     }
   },
   created () {
@@ -94,17 +83,6 @@ export default {
         content: this.where.content.value
       })
       this.clearForm()
-      // let data = {
-      //   userName: this.where.username.value,
-      //   comment: this.where.content.value
-      // }
-      // this.$http.post('/api/comment/addComment', data)
-      // .then((res) => {
-      //   this.query()
-      // })
-      // .catch((err) => {
-      //   console.log(err)
-      // })
     },
     clearForm () {
       this.where.content.value = ''
@@ -129,19 +107,39 @@ export default {
     setDataEmpty () {
       this.status = ''
     }
+  },
+  data () {
+    return {
+      where: {
+        content: {
+          value: '',
+          placeholder: placeholders[0]
+        },
+        username: {
+          value: '',
+          placeholder: placeholders[1]
+        }
+      },
+      status: 0
+    }
   }
 }
 </script>
 
 <style lang="css" scoped>
 .sender-wrap {
-  position: fixed;top: 0px;left: 0px;width: 400px;
-  border: 1px solid #efefef;
+/*  position: fixed;
+  top: 0px;
+  left: 0px;*/
+  /*width: 400px;*/
+  /*border: 1px solid #efefef;*/
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
   background-color: #fff;
   z-index: 1000;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  animation: slide 1s ease;
+  /*transform: translate(-50%,-50%);*/
   overflow: hidden;
 }
 .sender-wrap a {
@@ -182,5 +180,15 @@ export default {
 .slide-leave-to {
   opacity: 0;
   transform: translateX(-10%);
+}
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

@@ -1,8 +1,9 @@
 <template lang="html">
   <div class="blog-main">
-    <div class="comments-container">
+    <sender @dataReady="send" :show="showSender"></sender>
+    <ul class="comments-container">
       <transition-group name="commentCard">
-        <div class="comment" v-for="comment in comments" :key="comment">
+        <li class="comment" v-for="comment in comments" :key="comment">
           <div class="comment-inner">
             <p class="comment-author">#{{index}}&nbsp;{{comment.user_name}}
               <span class="comment-date">发表于&nbsp;{{comment.created_at | formatDate('YYYY-MM-DD HH:mm')}}<span>
@@ -12,28 +13,23 @@
               <a href="javascript:;" @click="getReply(comment)">回复</a>
             </p>
           </div>
-          <!-- <div class="reply-container" v-show="showReply==comment.id" key="input">
-            <div class="reply-input">
-              <input placeholder="回复(按下回车键发送)" v-model="reply.content"></input>
-              <a href="javascript:;" @click="sendReply">发送</a>
-            </div>
+          <div class="reply-container" key="input">
             <div class="reply-list-container">
-                <div class="reply-list" v-for="reply in replyList" v-show="replyList.length" :key="reply">
-                  <a class="reply-item-name">{{reply.user_name}}</a>
-                  <span class="reply-parent-name" v-show="reply.parent_name">
+                <div class="reply-list" v-for="child in comment.child" :key="reply">
+                  <a class="reply-item-name">{{child.user_name}}</a>
+                  <span class="reply-parent-name" v-show="child.parent_name">
                     回复了
-                    <a class="reply-item-name">{{reply.parent_name}}</a>
+                    <a class="reply-item-name">{{child.parent_name}}</a>
                   </span>
-                  <span class="reply-item-content">: {{reply.content}}</span>
+                  <span class="reply-item-content">: {{child.content}}</span>
                   <a class="reply-item-reply" @click="boforeSendReply(reply)">回复</a>
                 </div>
             </div>
-          </div> -->
-        </div>
+          </div>
+        </li>
       </transition-group>
-    </div>
-    <div class="ball" @click="showSender=!showSender"></div>
-    <sender @dataReady="send" v-show="showSender"></sender>
+    </ul>
+    <!-- <div class="ball" @click="showSender=!showSender"></div> -->
   </div>
 </template>
 
@@ -44,7 +40,7 @@ export default {
   data () {
     return {
       senderData: {},
-      showSender: false,
+      showSender: true,
       comments: [],
       replyList: [],
       showMessanger: false,
@@ -71,9 +67,6 @@ export default {
       }
       this.showMessanger = true
     },
-    handleSenderBtn () {
-
-    },
     send (where) {
       this.$http.post('/api/comment/addComment', where)
       .then((res) => {
@@ -88,7 +81,7 @@ export default {
       this.$http.get('/api/comment/getComments')
       .then((res) => {
         this.comments = res.data.reverse()
-        console.log(this.comments)
+        // this.getReplys(this.comments)
       })
       .catch((err) => {
         console.log(err)
@@ -125,19 +118,18 @@ export default {
     //     console.log(err)
     //   })
     // },
-    getReply (comment) {
-      if (this.showReply !== -1) {
-        this.showReply = -1
-        return
-      }
-      this.replyList = []
-      let id = comment.id
-      this.reply.parentId = id
+    getReplys (data) {
+      data.map((i) => {
+        console.log(i)
+        this.getReply(i.id)
+      })
+    },
+    getReply (id) {
       this.$http.get('/api/comment/getReply/' + id)
       .then((res) => {
-        this.replyList = res.data
-        this.showReply = id
-        console.log(this.replyList)
+        setTimeout(() => {
+          this.replyList = this.replyList.concat(res.data)
+        }, 2000)
       })
       .catch((err) => {
         console.log(err)
@@ -157,6 +149,21 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.comments-container::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  transform: scaleX(1.1);
+  animation: scaleX 1s ease;
+}
+.comments-container {
+  position: relative;
+  margin-top: 60px;
+}
 .ball {
   position: fixed;
   bottom: 100px;
@@ -165,6 +172,7 @@ export default {
   height: 70px;
   border-radius: 100px;
   background-color: #ddd;
+  z-index: 2000;
 }
 .reply-input {
   position: relative;
@@ -202,7 +210,6 @@ export default {
   padding: 7px 10px 7px;
 }
 .reply-list-container {
-  border-top: 1px dashed rgba(0,0,0,0.2);
 }
 .reply-container input {
   padding: 10px 0;
@@ -215,14 +222,25 @@ export default {
 }
 .reply-container {
   position: relative;
+  margin-left: 20px; 
   z-index: 1;
   display: block;
   font-size: 10px;
   color: #ef2f11;
   background-color: #fff;
-  border-top: 1px dashed rgba(0,0,0,0.2);
+}
+.reply-container::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0px;
+  width: 1px;
+  animation: scaleY 1s ease;
+  background-color: #ddd;
 }
 .comment-foot a {
+  font-size: 11px;
   color: #aaa;
   font-size: 11px;
 }
@@ -238,7 +256,27 @@ export default {
   z-index: 2;
   padding: 10px 20px;
   background-color: #fff;
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  /*box-shadow: 1px 1px 2px rgba(0,0,0,0.2);*/
+}
+.comment-inner::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0px;
+  width: 1px;
+  animation: scaleY 1s ease;
+  background-color: #ddd;
+}
+.comments-container li:first-child::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: -40px;
+  width: 1px;
+  animation: scaleY 1s ease;
+  background-color: #ddd;
 }
 .comment-date {
   float: right;
@@ -259,10 +297,8 @@ export default {
 }
 .comment {
   position: relative;
-  margin: 30px;
-}
-.comment-inner:hover {
-  box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+  margin: 40px 0;
+  list-style-type: none;
 }
 .name-input {
   border: 1px solid rgba(0,0,0,0.2);
@@ -314,6 +350,26 @@ export default {
 @media screen and (max-width: 500px) {
   .comments-container {
     padding: 0 0 30px 0!important;
+  }
+}
+@keyframes scaleX {
+  0% {
+    opacity: 0;
+    transform: scaleX(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1.1);
+  }
+}
+@keyframes scaleY {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
   }
 }
 </style>

@@ -20,6 +20,10 @@ const nav = [
     route: '/blog/comment',
     target: '_self'
   }, {
+    title: '聊天室',
+    route: 'https://discord.gg/HcvpmuK',
+    target: '_blank'
+  }, {
     title: '关于我',
     route: '/',
     target: '_blank'
