@@ -5,7 +5,7 @@
   :class="[position === 'left' ? 'navLeft' : 'navRight']">
     <span v-for="n in nav" >
       <router-link :to="{path: n.route}" :target="n.target" v-if="n.route">{{n.title}}</router-link>
-      <a :href="n.href" :target="n.target" v-if="n.href">{{n.title}}{{n.href}}</a>
+      <a :href="n.href" :target="n.target" v-if="n.href">{{n.title}}</a>
     </span>
   </nav>
 </template>
