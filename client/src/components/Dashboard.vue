@@ -35,6 +35,10 @@ export default {
         title: '知乎',
         url: 'https://zhuanlan.zhihu.com/fe-sketch',
         target: '_blank'
+      }, {
+        title: '聊天室',
+        url: 'https://discord.gg/HcvpmuK',
+        target: '_blank'
       }]
     }
   },

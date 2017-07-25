@@ -29,11 +29,6 @@ export default {
   props: {
     show: Boolean
   },
-  watch: {
-    'show': function (val) {
-      console.log(val)
-    }
-  },
   computed: {
     title: function () {
       switch (this.status) {
@@ -58,6 +53,9 @@ export default {
     this.setData(0)
   },
   methods: {
+    // btnOnclick () {
+    //   this.$Warning('this is test')
+    // },
     btnOnclick () {
       return this.status === 0
       ? this.formChecker({
@@ -66,7 +64,7 @@ export default {
       }).then(() => {
         this.setData(1)
       }).catch((err) => {
-        console.log(err)
+        this.$Warning(err)
       })
       : this.formChecker({
         val: this.where.username.value,
@@ -74,13 +72,16 @@ export default {
       }).then(() => {
         this.send()
       }).catch((err) => {
-        console.log(err)
+        this.$Warning(err)
       })
     },
     send () {
       this.$emit('dataReady', {
         userName: this.where.username.value,
-        content: this.where.content.value
+        content: this.where.content.value,
+        cb: () => {
+          this.setData(0)
+        }
       })
       this.clearForm()
     },
@@ -90,7 +91,6 @@ export default {
     },
     formChecker (data) {
       let { val, rejectContent } = data
-      console.log(val, rejectContent)
       return new Promise((resolve, reject) => {
         if (val) {
           resolve()
@@ -100,12 +100,7 @@ export default {
       })
     },
     setData (index) {
-      setTimeout(() => {
-        this.status = index
-      }, 0)
-    },
-    setDataEmpty () {
-      this.status = ''
+      this.status = index
     }
   },
   data () {

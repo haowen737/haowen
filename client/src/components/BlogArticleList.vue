@@ -41,13 +41,13 @@ export default {
     query () {
       this.showLoading = true
       this.$http.get('/api/article/getArticles')
-      .then(function (res) {
-        this.cards = res.data
+      .then(function ({data}) {
+        this.cards = data
         this.showLoading = false
       })
-      .catch(function (err) {
+      .catch(function ({data}) {
         this.showLoading = false
-        console.log(err)
+        this.$Warning(data.msg)
       })
     }
   },

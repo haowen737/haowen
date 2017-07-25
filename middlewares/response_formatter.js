@@ -21,7 +21,7 @@ var url_filter = (pattern) => {
                 ctx.status = 400;
                 ctx.body = {
                   code: error.code,
-                  message: error.message
+                  msg: error.message
                 }
                 return
             }

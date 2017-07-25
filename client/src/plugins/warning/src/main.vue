@@ -1,6 +1,8 @@
 <template>
 	<transition name="warning">
-		<div class='warning-container' v-show="showWarning" v-html="warningText"></div>
+		<div class='warning-container' v-show="show">
+      <p>{{content || '看起来服务器抛出了一个未知错误'}}</p>
+    </div>
 	</transition>
 </template>
 
@@ -11,16 +13,16 @@ export default {
 
   data () {
     return {
-      showWarning: false,
-      warningText: ''
+      show: false,
+      content: ''
     }
   },
   watch: {
-    'showWarning' (val) {
+    'show' (val) {
       console.log(val)
       if (val) {
         setTimeout(() => {
-          this.showWarning = false
+          this.show = false
         }, 2000)
       }
     }
@@ -31,25 +33,30 @@ export default {
 <style lang="css" scoped>
 .warning-container {
 	position: fixed;
-	bottom: 10%;
-	width: 20%;
-	background-color: #222;
+	top: 0;
+  left: 0;
+	width: 100%;
+	background-color: #ffc3d2;
 	z-index: 200;
   text-align: center;
-  font-size: 1.5rem;
-  color: #fff;
-  line-height: 1.5;
   transform-origin: left;
+  z-index: 3000;
+}
+.warning-container p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 44px;
 }
 .warning-enter-active, .warning-leave-active {
   transition: all  .7s ease;
 }
-.warning-enter {
-  transform: translateX(-200%) scaleX(0);
-  opacity: 0;
+.warning-enter, .warning-leave-active {
+  transform: translateY(-100%);
+  background-color: #ff5f87;
+  /*opacity: 0;*/
 }
-.warning-leave-active {
-  transform: translateX(-200%) scaleX(0);
+/*.warning-leave-active {
+  transform: translateY(100%) scaleX(0);
   opacity: 0;
-}
+}*/
 </style>

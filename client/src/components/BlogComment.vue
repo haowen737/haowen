@@ -35,6 +35,7 @@
 <script>
 import Sender from 'widgets/Sender'
 export default {
+  name: 'comment',
   components: { Sender },
   data () {
     return {
@@ -46,21 +47,26 @@ export default {
   },
   methods: {
     send (data) {
-      this.$http.post('/api/comment/addComment', data)
+      this.$http.post('/api/comment/addComment', {
+        userName: data.userName,
+        content: data.content
+      })
       .then((res) => {
         this.query()
+        data.cb && data.cb()
       })
       .catch((err) => {
-        console.log(err)
+        this.$Warning(err.msg)
+        data.cb && data.cb()
       })
     },
     query () {
       this.$http.get('/api/comment/getComments')
-      .then((res) => {
-        this.comments = res.data.reverse()
+      .then(({data}) => {
+        this.comments = data.reverse()
       })
-      .catch((err) => {
-        console.log(err)
+      .catch(({data}) => {
+        this.$Warning(data.msg)
       })
     },
     reply () {

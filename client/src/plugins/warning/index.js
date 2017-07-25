@@ -12,9 +12,9 @@ export default {
       document.body.appendChild($vm.$el)
     }
 
-    function warning (options) {
-      $vm.showWarning = true
-      $vm.warningText = options.text
+    function warning (opt) {
+      $vm.show = true
+      $vm.content = opt instanceof Object ? opt.text : opt
     }
 
     Vue.prototype.$Warning = warning
