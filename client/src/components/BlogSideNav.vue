@@ -3,7 +3,10 @@
   class="side-nav-container" 
   :style="{transform: 'translateY(' + navTop + 'px)'}"
   :class="[position === 'left' ? 'navLeft' : 'navRight']">
-    <router-link :to="{path: n.route}" v-for="n in nav" :target="n.target">{{n.title}}</router-link>
+    <span v-for="n in nav" >
+      <router-link :to="{path: n.route}" :target="n.target" v-if="n.route">{{n.title}}</router-link>
+      <a :href="n.href" :target="n.target" v-if="n.href">{{n.title}}{{n.href}}</a>
+    </span>
   </nav>
 </template>
 

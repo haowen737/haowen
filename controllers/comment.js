@@ -23,7 +23,7 @@ exports.getComments = async (ctx, next) => {
     'u.user_name'
   )
 
-  console.log('reply======', reply)
+  console.log('------>get reply<------', reply)
 
   comments.map((comment) => {
     let child = findReply(comment.id, reply) || []
@@ -49,18 +49,26 @@ exports.getReply = async (ctx, next) => {
 }
 
 exports.addComment = async (ctx, next) => {
-  console.log('------>addComment====', ctx.request.body)
   let userName = ctx.request.body.userName;
   let comment = ctx.request.body.content;
   let date = new Date();
-  let user = await ctx.knex('users').select('*').where({user_name: userName})[0] || {}
+  let userQuery = await ctx.knex('users as u')
+    .select('u.id')
+    .where({user_name: userName})
 
-  if (!user.id) {
+  console.log('--------', userQuery)
+  let user = userQuery.length ? userQuery[0] : {}
+
+  if (!user.id) {// 未查询到的新用户插入users表
+    console.log('------>新用户<------', user)
     let id = await ctx.knex('users').insert({user_name: userName}).returning('id')
     user.id = id[0]
   }
 
+  console.log('------>老用户<------', user)
+
   await ctx.knex('comments').insert({content: comment, created_at: date, user_id: user.id})
+
   ctx.body = {
     code: 200,
     message: '评论成功'

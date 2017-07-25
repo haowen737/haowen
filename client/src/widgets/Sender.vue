@@ -164,7 +164,7 @@ export default {
   width: 100%;
   line-height: 2;
   display: block;
-  font-size: 17px;
+  font-size: 14px;
   outline: none;
   border: none;
   height: 2.4rem;

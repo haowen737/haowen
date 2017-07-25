@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="blog-main">
-    <sender @dataReady="send" :show="showSender"></sender>
+    <sender @dataReady="send" :show="true"></sender>
     <ul class="comments-container">
       <transition-group name="commentCard">
         <li class="comment" v-for="comment in comments" :key="comment">
@@ -10,26 +10,25 @@
             </p>
             <p class="comment-content">{{comment.content}}</p>
             <p class="comment-foot">
-              <a href="javascript:;" @click="getReply(comment)">回复</a>
+              <a href="javascript:;" @click="reply">回复</a>
             </p>
           </div>
           <div class="reply-container" key="input">
             <div class="reply-list-container">
-                <div class="reply-list" v-for="child in comment.child" :key="reply">
+                <div class="reply-list" v-for="child in comment.child" :key="child">
                   <a class="reply-item-name">{{child.user_name}}</a>
                   <span class="reply-parent-name" v-show="child.parent_name">
                     回复了
                     <a class="reply-item-name">{{child.parent_name}}</a>
                   </span>
                   <span class="reply-item-content">: {{child.content}}</span>
-                  <a class="reply-item-reply" @click="boforeSendReply(reply)">回复</a>
+                  <a class="reply-item-reply" @click="reply">回复</a>
                 </div>
             </div>
           </div>
         </li>
       </transition-group>
     </ul>
-    <!-- <div class="ball" @click="showSender=!showSender"></div> -->
   </div>
 </template>
 
@@ -39,38 +38,16 @@ export default {
   components: { Sender },
   data () {
     return {
-      senderData: {},
-      showSender: true,
-      comments: [],
-      replyList: [],
-      showMessanger: false,
-      showReply: -1,
-      where: {
-        content: '',
-        userName: ''
-      },
-      reply: {
-        content: '',
-        parentId: 0,
-        userName: '',
-        parentName: ''
-      }
+      comments: []
     }
   },
   mounted () {
     this.query()
   },
   methods: {
-    prePost () {
-      if (!this.where.content) {
-        return
-      }
-      this.showMessanger = true
-    },
-    send (where) {
-      this.$http.post('/api/comment/addComment', where)
+    send (data) {
+      this.$http.post('/api/comment/addComment', data)
       .then((res) => {
-        this.showSender = false
         this.query()
       })
       .catch((err) => {
@@ -81,69 +58,13 @@ export default {
       this.$http.get('/api/comment/getComments')
       .then((res) => {
         this.comments = res.data.reverse()
-        // this.getReplys(this.comments)
       })
       .catch((err) => {
         console.log(err)
       })
     },
-    boforeSendReply (reply) {
-      console.log(reply.user_name)
-      if (reply.user_name) {
-        this.reply.parentId = reply.parent_id
-        this.reply.parentName = reply.user_name
-        this.reply.content = '@' + reply.user_name + ': '
-      } else {
-        this.reply.parentName = null
-      }
-    },
-    // sendReply () {
-    //   let reply = {}
-    //   reply.content = this.formatReply(this.reply.content)
-    //   if (!reply.content) {
-    //     return
-    //   }
-    //   if (!this.reply.userName) {
-    //     this.reply.userName = this.where.userName
-    //   }
-    //   console.log(reply.parent_name)
-    //   reply.parent_id = this.reply.parentId
-    //   reply.parent_name = this.reply.parentName
-    //   reply.user_name = this.reply.userName
-    //   this.$http.post('/api/comment/reply', reply)
-    //   .then((res) => {
-    //     this.replyList.push(reply)
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
-    // },
-    getReplys (data) {
-      data.map((i) => {
-        console.log(i)
-        this.getReply(i.id)
-      })
-    },
-    getReply (id) {
-      this.$http.get('/api/comment/getReply/' + id)
-      .then((res) => {
-        setTimeout(() => {
-          this.replyList = this.replyList.concat(res.data)
-        }, 2000)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    },
-    formatReply (text) {
-      if (text.indexOf('@') !== -1) {
-        let pattern = /(?:\s+)\S+/
-        text = text.match(pattern)[0]
-        console.log(text)
-      }
-      return text
-    },
-    post () {}
+    reply () {
+    }
   }
 }
 </script>

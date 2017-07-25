@@ -21,7 +21,7 @@ const nav = [
     target: '_self'
   }, {
     title: '聊天室',
-    route: 'https://discord.gg/HcvpmuK',
+    href: 'https://discord.gg/HcvpmuK',
     target: '_blank'
   }, {
     title: '关于我',
