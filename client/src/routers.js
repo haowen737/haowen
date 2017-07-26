@@ -9,9 +9,9 @@ const Black = (resolve) => require(['./components/black'], resolve)
 const Moods = (resolve) => require(['./components/moods'], resolve)
 const Topic = (resolve) => require(['./components/topic'], resolve)
 const About = (resolve) => require(['./components/about'], resolve)
-// const Entrance = (resolve) => require(['./components/Entrance'], resolve)
-// const Contact = (resolve) => require(['./components/Contact'], resolve)
-// const Me = (resolve) => require(['./components/Me'], resolve)
+const Entrance = (resolve) => require(['./components/Entrance'], resolve)
+const Contact = (resolve) => require(['./components/Contact'], resolve)
+const Me = (resolve) => require(['./components/Me'], resolve)
 const Test = (resolve) => require(['./components/Test'], resolve)
 const Dashboard = (resolve) => require(['./components/Dashboard'], resolve)
 
@@ -81,20 +81,20 @@ export default [
     path: '/',
     component: Dashboard
   }, {
-  //   path: '/',
-  //   component: Entrance,
-  //   children: [
-  //     {
-  //       path: '/',
-  //       component: Me,
-  //       name: '我'
-  //     }, {
-  //       path: 'contact',
-  //       component: Contact,
-  //       name: '联系方式'
-  //     }
-  //   ]
-  // }, {
+    path: '/aboutme',
+    component: Entrance,
+    children: [
+      {
+        path: '/',
+        component: Me,
+        name: '我'
+      }, {
+        path: 'contact',
+        component: Contact,
+        name: '联系方式'
+      }
+    ]
+  }, {
     path: '/moods',
     component: Moods
   }, {

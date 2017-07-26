@@ -25,7 +25,7 @@ const nav = [
     target: '_blank'
   }, {
     title: '关于我',
-    route: '/',
+    route: '/aboutme',
     target: '_blank'
   }
 ]
