@@ -2,17 +2,13 @@ const SettingProfile = (resolve) => require(['./components/settingProfile'], res
 const MoodsLogin = (resolve) => require(['./components/moodsLogin'], resolve)
 const Playground = (resolve) => require(['./components/playground'], resolve)
 const DemoHouse = (resolve) => require(['./components/DemoHouse'], resolve)
-const Flextest = (resolve) => require(['./components/flextest'], resolve)
-const Theatre = (resolve) => require(['./components/theatre'], resolve)
 const Mirror = (resolve) => require(['./components/mirror'], resolve)
 const Black = (resolve) => require(['./components/black'], resolve)
 const Moods = (resolve) => require(['./components/moods'], resolve)
-const Topic = (resolve) => require(['./components/topic'], resolve)
 const About = (resolve) => require(['./components/about'], resolve)
 const Entrance = (resolve) => require(['./components/Entrance'], resolve)
 const Contact = (resolve) => require(['./components/Contact'], resolve)
 const Me = (resolve) => require(['./components/Me'], resolve)
-const Test = (resolve) => require(['./components/Test'], resolve)
 const Dashboard = (resolve) => require(['./components/Dashboard'], resolve)
 
 const BlogArticleList = (resolve) => require(['./components/BlogArticleList'], resolve)
@@ -60,14 +56,6 @@ export default [
         component: BlogComment,
         name: '评论'
       }, {
-        path: 'theatre',
-        component: Theatre,
-        name: '剧院'
-      }, {
-        path: 'topic',
-        component: Topic,
-        name: '话题'
-      }, {
         path: 'demo-house',
         component: DemoHouse,
         name: 'demo'
@@ -104,9 +92,6 @@ export default [
     path: '/demo/zoom-slider',
     component: ZoomSlider
   }, {
-    path: '/demo/flextest',
-    component: Flextest
-  }, {
     path: '/demo/cellular',
     component: Cellular
   }, {
@@ -118,8 +103,5 @@ export default [
   }, {
     path: '/setting/profile',
     component: SettingProfile
-  }, {
-    path: '/test',
-    component: Test
   }
 ]

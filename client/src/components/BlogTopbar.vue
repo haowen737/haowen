@@ -27,12 +27,10 @@
       </transition>
     </div>
   </div>
-    <!-- <user-log-in :show="showLoginForm" @clickMask="showLoginForm=false"></user-log-in> -->
 </template>
 
 <script>
 import Nav from 'assets/scripts/blogNav'
-import UserLogIn from './UserLogIn'
 export default {
   data () {
     return {
@@ -82,9 +80,6 @@ export default {
     '$store.state.topbar.mode' (val) {
       this.setMode(val)
     }
-  },
-  components: {
-    UserLogIn
   }
 }
 </script>

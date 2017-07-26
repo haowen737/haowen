@@ -16,20 +16,17 @@
         </article>
       </transition-group>
     </div>
-    <loading :show="showLoading" top="50%" bg-color="#000"></loading>
     <confirm content="content" title="title"></confirm>
   </div>
 </template>
 
 <script>
 import Confirm from 'packages/Confirm'
-import loading from 'packages/loading'
 import LoginEntrance from './loginEntrance'
 export default {
   data  () {
     return {
       showBottomFire: false,
-      showLoading: false,
       cards: []
     }
   },
@@ -53,7 +50,6 @@ export default {
   },
   components: {
     LoginEntrance,
-    loading,
     Confirm
   }
 }
