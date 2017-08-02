@@ -5,7 +5,7 @@
         <li class="card clearfix" v-for="(card, index) in cards" :key="card">
           <div class="card-img-container"
           :style="{backgroundImage:'url(' + card.thumbnail + '?imageView2/0/w/1000)'}"></div>
-          <router-link :to="{path: 'demo/' + card.route}" target="_blank">{{card.title}}</router-link>
+          <router-link :to="{path: '/demo/' + card.route}" target="_blank">{{card.title}}</router-link>
           <p class="card-summary">{{card.summary}}</p>
           <p class="card-count">
             <span>{{card.created_at | formatDate('YYYY-MM-DD')}}</span>

@@ -27,9 +27,6 @@ export default [
     path: '/playground',
     component: Playground
   }, {
-    path: '/mirror',
-    component: Mirror
-  }, {
     path: '/about',
     component: About
   }, {
@@ -100,6 +97,9 @@ export default [
   }, {
     path: '/demo/music-player',
     component: MusicPlayer
+  }, {
+    path: '/demo/mirror',
+    component: Mirror
   }, {
     path: '/setting/profile',
     component: SettingProfile
