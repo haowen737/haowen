@@ -1,8 +1,10 @@
 <template lang="html">
-  <div class="bottom-btn" @click="clickList()" :class="btnTransition">
-    <div class="line" :class="line1"></div>
-    <div class="line" :class="line2"></div>
-    <div class="line" :class="line3"></div>
+  <div class="page">
+    <div class="bottom-btn" @click="clickList()" :class="btnTransition">
+      <div class="line" :class="line1"></div>
+      <div class="line" :class="line2"></div>
+      <div class="line" :class="line3"></div>
+    </div>
   </div>
 </template>
 
@@ -86,17 +88,17 @@ export default {
   animation: line-arrow-1 .2s linear;
   width: 15px;
   transform: rotate(-45deg) translateX(-3px);
-  background-color: #fff;
+  background-color: #000;
 }
 .line-arrow-2 {
   animation: line-arrow-2 .2s linear;
-  background-color: #fff;
+  background-color: #000;
 }
 .line-arrow-3 {
   animation: line-arrow-3 .2s linear;
   width: 15px;
   transform: rotate(45deg) translateX(-3px);
-  background-color: #fff;
+  background-color: #000;
 }
 @keyframes line-arrow-1 {
   0% {
@@ -106,7 +108,7 @@ export default {
   }
   100% {
     transform: rotate(-45deg) translateX(-3px);
-    background-color: #fff;
+    background-color: #000;
     width: 15px;
   }
 }
@@ -120,7 +122,7 @@ export default {
   }
   100% {
     transform: rotate(0deg);
-    background-color: #fff;
+    background-color: #000;
   }
 }
 @keyframes line-arrow-3 {
@@ -131,7 +133,7 @@ export default {
   }
   100% {
     transform: rotate(45deg) translateX(-3px);
-    background-color: #fff;
+    background-color: #000;
     width: 15px;
   }
 }
@@ -155,7 +157,7 @@ export default {
   0% {
     transform: rotate(-45deg) translateX(-3px);
     width: 20px;
-    background-color: #fff;
+    background-color: #000;
   }
   100% {
     transform: rotate(0deg) translateX(0px);
@@ -166,7 +168,7 @@ export default {
 @keyframes line-normal-2 {
   0% {
     transform: rotate(0deg);
-    background-color: #fff;
+    background-color: #000;
   }
   50% {
     transform: rotate(0deg);
@@ -179,7 +181,7 @@ export default {
 @keyframes line-normal-3 {
   0% {
     transform: rotate(45deg) translateX(-3px);
-    background-color: #fff;
+    background-color: #000;
     width: 20px;
   }
   100% {

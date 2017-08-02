@@ -1,10 +1,5 @@
-const SettingProfile = (resolve) => require(['./components/settingProfile'], resolve)
-const MoodsLogin = (resolve) => require(['./components/moodsLogin'], resolve)
-const Playground = (resolve) => require(['./components/playground'], resolve)
 const DemoHouse = (resolve) => require(['./components/DemoHouse'], resolve)
-const Mirror = (resolve) => require(['./components/mirror'], resolve)
 const Black = (resolve) => require(['./components/black'], resolve)
-const Moods = (resolve) => require(['./components/moods'], resolve)
 const About = (resolve) => require(['./components/about'], resolve)
 const Entrance = (resolve) => require(['./components/Entrance'], resolve)
 const Contact = (resolve) => require(['./components/Contact'], resolve)
@@ -21,12 +16,12 @@ const Clock = (resolve) => require(['./demos/clock'], resolve)
 const Cellular = (resolve) => require(['./demos/cellular'], resolve)
 const ZoomSlider = (resolve) => require(['./demos/zoomSlider'], resolve)
 const MusicPlayer = (resolve) => require(['./demos/musicPlayer'], resolve)
+const Mirror = (resolve) => require(['./demos/mirror'], resolve)
+const MoodsLogin = (resolve) => require(['./demos/moodsLogin'], resolve)
+const spinningSpread = (resolve) => require(['./demos/spinningSpread'], resolve)
 
 export default [
   {
-    path: '/playground',
-    component: Playground
-  }, {
     path: '/about',
     component: About
   }, {
@@ -80,10 +75,7 @@ export default [
       }
     ]
   }, {
-    path: '/moods',
-    component: Moods
-  }, {
-    path: '/moods/login',
+    path: '/demo/moods-login',
     component: MoodsLogin
   }, {
     path: '/demo/zoom-slider',
@@ -101,7 +93,7 @@ export default [
     path: '/demo/mirror',
     component: Mirror
   }, {
-    path: '/setting/profile',
-    component: SettingProfile
+    path: '/demo/spinning-spread',
+    component: spinningSpread
   }
 ]

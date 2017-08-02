@@ -129,37 +129,40 @@ export default {
       })
     },
     login () {
-      let param = this.where
-      this.$http.post('/api/users/login', param)
-      .then((res) => {
-        res = res.data
-        this.showLoading = false
-        this.showDeny = true
-        if (res.code === 40001) {
-          this.showCreateAccount = true
-          return
-        }
-        if (res.code === 40002) {
-          window.alert('密码错误')
-          this.tryAgain()
-        }
-        if (res.code === 10001) {
-          this.showCreateAccount = false
-          return
-        }
-        if (res.code === 10000) {
-          window.alert('登录成功')
-          this.tryAgain()
-          let account = JSON.stringify(res.account)
-          window.localStorage.setItem('withyoufriendsuseraccount', account)
-          this.$root.user.user_name = this.where.user_name
-          this.reDirect()
-          return
-        }
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      setTimeout(() => {
+        this.tryAgain()
+      }, 2000)
+      // let param = this.where
+      // this.$http.post('/api/users/login', param)
+      // .then((res) => {
+      //   res = res.data
+      //   this.showLoading = false
+      //   this.showDeny = true
+      //   if (res.code === 40001) {
+      //     this.showCreateAccount = true
+      //     return
+      //   }
+      //   if (res.code === 40002) {
+      //     window.alert('密码错误')
+      //     this.tryAgain()
+      //   }
+      //   if (res.code === 10001) {
+      //     this.showCreateAccount = false
+      //     return
+      //   }
+      //   if (res.code === 10000) {
+      //     window.alert('登录成功')
+      //     this.tryAgain()
+      //     let account = JSON.stringify(res.account)
+      //     window.localStorage.setItem('withyoufriendsuseraccount', account)
+      //     this.$root.user.user_name = this.where.user_name
+      //     this.reDirect()
+      //     return
+      //   }
+      // })
+      // .catch((err) => {
+      //   console.log(err)
+      // })
     },
     tryAgain () {
       this.showDeny = false
