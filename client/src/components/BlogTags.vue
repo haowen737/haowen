@@ -74,7 +74,6 @@ export default {
   right: 0;
   top: 0;
   width: 300px;
-  height: 100%;
   padding: 10% 0;
 }
 .tag-family {
@@ -109,10 +108,8 @@ export default {
 .article-enter-active, .article-leave-active {
   transition: all .6s ease;
   opacity: 1;
-  transform: translateX(0);
 }
 .article-enter, .article-leave-to{
   opacity: 0;
-  transform: translateX(100%);
 }
 </style>
