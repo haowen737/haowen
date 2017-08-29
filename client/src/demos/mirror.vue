@@ -75,19 +75,19 @@ export default {
   },
   methods: {
     initPage () {
-      let user
-      try {
-        user = JSON.parse(window.localStorage.getItem('withyoufriendsuseraccount'))
-        this.userName = user.nick_name ? user.nick_name : user.user_name
-      } catch (e) {
-        window.alert('请先登录')
-        this.$router.push({
-          path: '/moods/login',
-          query: {
-            redirect: '/mirror'
-          }
-        })
-      }
+      // let user
+      // try {
+      //   user = JSON.parse(window.localStorage.getItem('withyoufriendsuseraccount'))
+      //   this.userName = user.nick_name ? user.nick_name : user.user_name
+      // } catch (e) {
+      //   window.alert('请先登录')
+      //   this.$router.push({
+      //     path: '/moods/login',
+      //     query: {
+      //       redirect: '/mirror'
+      //     }
+      //   })
+      // }
       this.greet()
       this.initScroll()
     },
@@ -104,7 +104,7 @@ export default {
       this.pushLog(log)
     },
     send () {
-      if (this.userInput && this.userName) {
+      if (this.userInput) {
         this.show.isTyping = true
         let log = {}
         log.time = new Date()

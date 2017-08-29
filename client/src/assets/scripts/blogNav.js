@@ -4,10 +4,10 @@ const nav = [
     route: '/blog',
     target: '_self'
   }, {
-    title: '剪藏',
-    route: '/blog/black',
-    target: '_self'
-  }, {
+  //   title: '剪藏',
+  //   route: '/blog/black',
+  //   target: '_self'
+  // }, {
     title: '唱片',
     route: '/blog/demo-house',
     target: '_self'

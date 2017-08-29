@@ -58,9 +58,14 @@ export default {
 header {
   font-size: 2rem;
   margin: 2rem;
+  animation: slide-down .7s ease;
+}
+summary {
+  animation: slide-down .7s ease;
 }
 nav {
   margin: 2rem 0;
+  animation: slide-down .7s ease;
 }
 nav>span {
   padding: 0 10px;
@@ -70,5 +75,17 @@ nav>span {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+@keyframes slide-down {
+  0% {
+    display: none;
+    opacity: 0;
+    transform: translateY(-30%);
+  }
+  100% {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
