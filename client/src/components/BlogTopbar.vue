@@ -60,7 +60,7 @@ export default {
       this.articleTitle = this.$store.state.topbar.articleTitle || ''
     },
     watchScroll () {
-      window.addEventListener('scroll', this.handleScroll)
+      window.addEventListener('scroll', this.throttle(this.handleScroll, 200, 5000))
     },
     handleScroll () {
       // topbar对自身的控制不通过vuex
@@ -69,9 +69,33 @@ export default {
         return
       } else {
         if (window.scrollY > 330) {
+          console.log(window.scrollY)
           this.show = 'nav'
         } else {
           this.show = 'logo'
+        }
+      }
+    },
+    debounce (fn, wait, immediate) {
+      let timeout = null
+      return function () {
+        clearTimeout(timeout)
+        timeout = setTimeout(fn, wait)
+      }
+    },
+    throttle (func, wait, mustRun) {
+      let timeout = null
+      let startTime = new Date()
+      return function () {
+        let _this = this
+        let args = arguments
+        let curTime = new Date()
+        clearTimeout(timeout)
+        if (curTime - startTime >= mustRun) {
+          func.apply(_this, args)
+          startTime = curTime
+        } else {
+          timeout = setTimeout(func, wait)
         }
       }
     }
