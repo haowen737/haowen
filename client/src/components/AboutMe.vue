@@ -3,7 +3,7 @@
     <div class="top-bar">
       <router-link class="router-about" :to="{path: '/me'}">About</router-link>
       <router-link class="router-contact" :to="{path: '/me/contact'}">Contact</router-link>
-      <router-link class="router-blog" :to="{path: '/blog'}" target="_blank">Blog</router-link>
+      <router-link class="router-blog" :to="{path: '/'}" target="_blank">Blog</router-link>
     </div>
     <router-view></router-view>
     <div class="bottom-bar">"很高兴认识你(⁎⁍̴̛ᴗ⁍̴̛⁎)"&nbsp;&nbsp;&nbsp;&nbsp;"我也为你感到高兴！"</div>
