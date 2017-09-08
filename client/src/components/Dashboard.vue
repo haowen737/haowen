@@ -25,7 +25,7 @@ export default {
         target: ''
       }, {
         title: 'Github',
-        url: 'https://github.com/popitin',
+        url: 'https://github.com/haowen737',
         target: '_blank'
       }, {
         title: '微博',
