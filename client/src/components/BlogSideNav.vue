@@ -1,12 +1,11 @@
 <template lang="html">
   <nav 
   class="side-nav-container" 
-  :style="{transform: 'translateY(' + navTop + 'px)'}"
   :class="[position === 'left' ? 'navLeft' : 'navRight']">
-    <span v-for="n in nav" >
+    <div v-for="n in nav" :key="n">
       <router-link :to="{path: n.route}" :target="n.target" v-if="n.route">{{n.title}}</router-link>
       <a :href="n.href" :target="n.target" v-if="n.href">{{n.title}}</a>
-    </span>
+    </div>
   </nav>
 </template>
 
@@ -23,7 +22,7 @@ export default {
     }
   },
   mounted () {
-    this.watchScroll()
+    // this.watchScroll()
   },
   methods: {
     watchScroll () {
@@ -50,33 +49,35 @@ export default {
   animation: navright .7s ease;
 }
 .navLeft {
-  left: 17%;
+  transform: translate3d(0, 0, 0);
   animation: navleft .7s ease;
 }
 .side-nav-container {
   will-change: transform;
   transition: all .7s;
-  top: 0px;
+  /* top: 0px; */
   position: absolute;
   z-index: 100;
 }
 @keyframes navright {
   0% {
-    right: 10%;
+    /* right: 10%; */
+    transform: translate3d(30%, 0, 0);
     opacity: 0;
   }
   100% {
-    right: 3%;
+    /* right: 3%; */
+    transform: translate3d(0, 0, 0);
     opacity: 1;
   }
 }
 @keyframes navleft {
   0% {
-    left: 13%;
+    transform: translate3d(-30%, 0, 0);
     opacity: 0;
   }
   100% {
-    left: 17%;
+    transform: translate3d(0, 0, 0);
     opacity: 1;
   }
 }
