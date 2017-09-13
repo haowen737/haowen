@@ -22,7 +22,7 @@
         <p>如果我们能做个朋友，这是我的邮箱<a href="mailto:haowen737@gmail.com">haowen737@gmail.com</a></p>
       </div>
       <div class="content-list" v-show="!showContentList">
-        <div class="contact-item" v-for="(item, index) in contactList">
+        <div class="contact-item" v-for="(item, index) in contactList" :key="item">
           <a :href="item.to" target="_blank">
             <img :src="item.icon" alt="" />
             <div class="contact-item-text" v-show="false">{{item.label}}</div>
@@ -51,7 +51,7 @@ export default {
     this.contactList = [{
       label: 'Github',
       icon: require('assets/images/github.png'),
-      to: 'https://github.com/popitin'
+      to: 'https://github.com/haowen737'
     }, {
       label: 'Zhihu',
       icon: require('assets/images/zhihu.png'),
@@ -59,7 +59,7 @@ export default {
     }, {
       label: 'Weibo',
       icon: require('assets/images/weibo.png'),
-      to: 'http://weibo.com/311170900/'
+      to: 'https://weibo.com/311170900/'
     }, {
       label: 'youTube',
       icon: require('assets/images/youTube.png'),
