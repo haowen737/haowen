@@ -78,8 +78,7 @@ export default {
       } else {
         this.checkCurrentMode('default').then(() => {
           this.$store.commit('setMode', {
-            mode: 'default',
-            articleTitle: ''
+            mode: 'default'
           })
         })
       }

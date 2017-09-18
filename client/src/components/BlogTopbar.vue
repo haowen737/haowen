@@ -130,6 +130,7 @@ export default {
 .article-title-enter, .article-title-leave-to {
   transform: translateY(100%);
   opacity: 0;
+  transition: all .7s cubic-bezier(0.76, 0.28, 0, 0.74);
 }
 .topbar-header {
   max-width: 1235px;

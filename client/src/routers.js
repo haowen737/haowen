@@ -21,6 +21,8 @@ const Mirror = (resolve) => require(['./demos/mirror'], resolve)
 const MoodsLogin = (resolve) => require(['./demos/moodsLogin'], resolve)
 const spinningSpread = (resolve) => require(['./demos/spinningSpread'], resolve)
 
+const DebuggerMapMarker = (resolve) => require(['./demos/debugger-map-marker'], resolve)
+
 export default [
   {
     path: '/about',
@@ -96,5 +98,8 @@ export default [
   }, {
     path: '/demo/spinning-spread',
     component: spinningSpread
+  }, {
+    path: '/demo/debugger-map-marker',
+    component: DebuggerMapMarker
   }
 ]
