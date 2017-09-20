@@ -76,13 +76,6 @@ export default {
         }
       }
     },
-    debounce (fn, wait, immediate) {
-      let timeout = null
-      return function () {
-        clearTimeout(timeout)
-        timeout = setTimeout(fn, wait)
-      }
-    },
     throttle (func, wait, mustRun) {
       let timeout = null
       let startTime = new Date()

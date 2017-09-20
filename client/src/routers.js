@@ -1,6 +1,5 @@
 const DemoHouse = (resolve) => require(['./components/DemoHouse'], resolve)
 const Black = (resolve) => require(['./components/black'], resolve)
-const About = (resolve) => require(['./components/about'], resolve)
 // const Entrance = (resolve) => require(['./components/Entrance'], resolve)
 const AboutMe = (resolve) => require(['./components/AboutMe'], resolve)
 const Contact = (resolve) => require(['./components/Contact'], resolve)
@@ -25,9 +24,6 @@ const DebuggerMapMarker = (resolve) => require(['./demos/debugger-map-marker'], 
 
 export default [
   {
-    path: '/about',
-    component: About
-  }, {
     path: '/dashboard',
     component: Dashboard
   }, {

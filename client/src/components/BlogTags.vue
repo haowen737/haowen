@@ -11,6 +11,7 @@
           <h2>{{art.title}}</h2>
           <p>{{art.summary}}</p>
         </div>
+        <a class="article-close" href="javascript:;" @click="clickArticleClose">x</a>
       </div>
     </transition>
   </div>
@@ -48,6 +49,9 @@ export default {
       .catch((err) => {
         console.log(err)
       })
+    },
+    clickArticleClose () {
+      this.articles = []
     }
   },
   components: {}
@@ -63,18 +67,6 @@ export default {
 }
 .articel h2 {
   font-size: 14px;
-}
-.articel {
-  margin: 20px 0;
-  padding: 20px;
-  box-shadow: -1px 1px 2px 1px rgba(0,0,0,0.1);
-}
-.article-list {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 300px;
-  padding: 10% 0;
 }
 .tag-family {
   display: block;
@@ -93,9 +85,6 @@ export default {
   background-color: #f7f7f7;
   text-align: right;
 }
-.tags-wrap {
-  margin-top: 10rem;
-}
 /*動畫*/
 @keyframes slide {
   from {
@@ -105,11 +94,94 @@ export default {
     right: 0;
   }
 }
-.article-enter-active, .article-leave-active {
-  transition: all .6s ease;
-  opacity: 1;
+@media screen and (min-width: 500px) {
+  
+  .article-list {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 300px;
+    padding-top: 80px;
+  }
+  
+  .articel {
+    margin: 20px 0;
+    padding: 20px;
+    box-shadow: -1px 1px 2px 1px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .article-close {
+    display: none;
+  }
+
+  .article-leave-active {
+    transition: all .4s ease;
+  }
+
+  .article-enter-active {
+    transition: all .7s ease;
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .article-enter {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+
+  .article-leave-to {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+
 }
-.article-enter, .article-leave-to{
-  opacity: 0;
+@media screen and (max-width: 500px) {
+  
+  .article-list {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+
+  
+  .article-close {
+    display: block;
+    text-align: center;
+  }
+
+  
+  .articel {
+    padding: 20px;
+    background-color: #fff;
+  }
+
+
+  .article-leave-active {
+    transition: all .4s ease;
+  }
+
+  .article-enter-active {
+    transition: all .7s ease;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .article-enter {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+
+  .article-leave-to {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+
 }
+
+
 </style>
