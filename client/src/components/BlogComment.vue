@@ -13,17 +13,17 @@
               <a href="javascript:;" @click="reply">回复</a>
             </p>
           </div>
-          <div class="reply-container" key="input">
+          <div class="reply-container">
             <div class="reply-list-container">
-                <div class="reply-list" v-for="child in comment.child" :key="child">
-                  <a class="reply-item-name">{{child.user_name}}</a>
-                  <span class="reply-parent-name" v-show="child.parent_name">
-                    回复了
-                    <a class="reply-item-name">{{child.parent_name}}</a>
-                  </span>
-                  <span class="reply-item-content">: {{child.content}}</span>
-                  <a class="reply-item-reply" @click="reply">回复</a>
-                </div>
+              <div class="reply-list" v-for="child in comment.child" :key="child">
+                <a class="reply-item-name">{{child.user_name}}</a>
+                <span class="reply-parent-name" v-show="child.parent_name">
+                  回复了
+                  <a class="reply-item-name">{{child.parent_name}}</a>
+                </span>
+                <span class="reply-item-content">: {{child.content}}</span>
+                <a class="reply-item-reply" @click="reply">回复</a>
+              </div>
             </div>
           </div>
         </li>

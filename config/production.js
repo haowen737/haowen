@@ -20,7 +20,7 @@ module.exports = {
         supportBigNumbers: true,
         connectionLimit: 1
       },
-      debug: true
+      debug: false
     },
     mongodb_url: '',    //数据库地址
     redis_url:'',       //redis地址
