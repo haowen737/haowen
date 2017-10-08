@@ -8,7 +8,7 @@ module.exports = {
     mysql: {
       client: 'mysql',
       connection: {
-        host: '45.32.64.136',
+        host: '45.32.105.50',
         port: 3306,
         user: 'haowen',
         password: 'haowen2017',
