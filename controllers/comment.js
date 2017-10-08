@@ -1,6 +1,9 @@
 const ApiError = require('../error/ApiError');
+const MailSender = require('./../deps/mailSender');
 
 exports.getComments = async (ctx, next) => {
+  console.log('ctx====', ctx)
+  
   let comments = await ctx.knex('comments as c')
   .whereNull('parent_id')
   .leftJoin('users as u', 'c.user_id', 'u.id')
@@ -56,18 +59,19 @@ exports.addComment = async (ctx, next) => {
     .select('u.id')
     .where({user_name: userName})
 
-  console.log('--------', userQuery)
   let user = userQuery.length ? userQuery[0] : {}
 
   if (!user.id) {// 未查询到的新用户插入users表
-    console.log('------>新用户<------', user)
     let id = await ctx.knex('users').insert({user_name: userName}).returning('id')
     user.id = id[0]
   }
 
-  console.log('------>老用户<------', user)
-
   await ctx.knex('comments').insert({content: comment, created_at: date, user_id: user.id})
+
+  MailSender({
+    subject: '收到新回复', // Subject line
+    text: `用户名：${userName}，回复内容：${comment}，userAgent: ${ctx.header['user-agent']}` // plain text body
+  })
 
   ctx.body = {
     code: 200,
@@ -75,15 +79,19 @@ exports.addComment = async (ctx, next) => {
   }
  }
 
- exports.addReply = async (ctx, next) => {
-   let userName = ctx.request.body.user_name
-   let content = ctx.request.body.content
-   let parentName = ctx.request.body.parent_name || null
-   let parent_id = ctx.request.body.parent_id
-   let date = new Date()
-   await ctx.knex('comments').insert({user_name: userName, content: content, created_at: date, parent_name: parentName, parent_id: parent_id})
-   ctx.body = {
-     code: 200,
-     message: '回复成功'
-   }
- }
+exports.addReply = async (ctx, next) => {
+  let userName = ctx.request.body.user_name
+  let content = ctx.request.body.content
+  let parentName = ctx.request.body.parent_name || null
+  let parent_id = ctx.request.body.parent_id
+  let date = new Date()
+  MailSender({
+    subject: '收到新回复', // Subject line
+    text: `用户名：${userName}，回复内容：${content}` // plain text body
+  })
+  await ctx.knex('comments').insert({user_name: userName, content: content, created_at: date, parent_name: parentName, parent_id: parent_id})
+  ctx.body = {
+    code: 200,
+    message: '回复成功'
+  }
+}
