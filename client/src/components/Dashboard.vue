@@ -59,9 +59,12 @@ header {
   font-size: 2rem;
   margin: 2rem;
   animation: slide-down .7s ease;
+  font-family:'HelveticaNeueda58208fb1a95c';
 }
 summary {
   animation: slide-down .7s ease;
+  font-family:'HelveticaNeueda58208fb1a95c';
+  word-spacing: 5px;
 }
 nav {
   margin: 2rem 0;
@@ -70,6 +73,11 @@ nav {
 nav>span {
   padding: 0 10px;
 }
+
+a {
+  color: #3b3b3b;
+}
+
 .page {
   display: flex;
   justify-content: center;
