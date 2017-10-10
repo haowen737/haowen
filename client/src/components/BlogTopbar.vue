@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     calWidth () {
-      window.innerWidth > 1200 ? this.watchScroll() : (this.show = 'nav')
+      window.innerWidth > 780 ? this.watchScroll() : (this.show = 'nav')
     },
     checkLogin () {
       let user = window.localStorage.getItem('withyoufriendsuseraccount')

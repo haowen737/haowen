@@ -18,7 +18,6 @@ export default {
   mounted () {
     this.$router.beforeEach((to, from, next) => {
       this.$pageLoading.show()
-      console.log('cool')
       next()
     })
   },

@@ -1,12 +1,15 @@
 <template lang="html">
-  <transition name="fade">
-    <div class="loading-layout" :style="{top: top}" v-show="show">
-      <div class="ball ball-1" :style="{backgroundColor: bgColor}"></div>
-      <div class="ball ball-2" :style="{backgroundColor: bgColor}"></div>
-      <div class="ball ball-3" :style="{backgroundColor: bgColor}"></div>
-      <div class="ball ball-4" :style="{backgroundColor: bgColor}"></div>
-    </div>
-  </transition>
+  <div class="page-loading">
+    <transition-group name="loading-fade">
+      <div class="loading-layout" :style="{top: top}" v-show="show" key="layout">
+        <div class="ball ball-1" :style="{backgroundColor: bgColor}"></div>
+        <div class="ball ball-2" :style="{backgroundColor: bgColor}"></div>
+        <div class="ball ball-3" :style="{backgroundColor: bgColor}"></div>
+        <div class="ball ball-4" :style="{backgroundColor: bgColor}"></div>
+      </div>
+    </transition-group>
+    <div class="loading-bg" key="bg" v-show="show"></div>
+  </div>
 </template>
 
 <script>
@@ -25,7 +28,7 @@ export default {
     },
     bgColor: {
       type: String,
-      default: '#000'
+      default: '#444'
     }
   },
   computed: {},
@@ -36,6 +39,25 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.loading-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  opacity: .7;
+  transition: all .7s;
+  animation: bg .7s ease;
+}
+@keyframes bg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: .7;
+  }
+}
 .loading-layout {
   position: absolute;
   height: 10px;
@@ -43,6 +65,7 @@ export default {
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
+  z-index: 100;
 }
 
 .ball {
@@ -192,4 +215,16 @@ export default {
     left: 100px;
   }
 }
+
+.loading-fade-enter-active,
+.loading-fade-leave-active {
+  transition: all .6s ease-out;
+  opacity: 1;
+}
+
+.loading-fade-enter,
+.loading-fade-leave-active {
+  opacity: 0;
+}
+
 </style>

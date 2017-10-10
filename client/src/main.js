@@ -25,7 +25,6 @@ Vue.use(Utils)
 Vue.component('box', Box)
 Vue.mixin({
   mounted () {
-    console.log('hihi')
     this.$pageLoading.hide()
   }
 })

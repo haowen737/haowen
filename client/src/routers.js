@@ -1,9 +1,9 @@
 const DemoHouse = (resolve) => require(['./components/DemoHouse'], resolve)
 const Black = (resolve) => require(['./components/black'], resolve)
 // const Entrance = (resolve) => require(['./components/Entrance'], resolve)
-const AboutMe = (resolve) => require(['./components/AboutMe'], resolve)
-const Contact = (resolve) => require(['./components/Contact'], resolve)
 const Me = (resolve) => require(['./components/Me'], resolve)
+const MeContact = (resolve) => require(['./components/MeContact'], resolve)
+const MeAbout = (resolve) => require(['./components/MeAbout'], resolve)
 const Dashboard = (resolve) => require(['./components/Dashboard'], resolve)
 
 const BlogArticleList = (resolve) => require(['./components/BlogArticleList'], resolve)
@@ -61,15 +61,15 @@ export default [
     component: Dashboard
   }, {
     path: '/me',
-    component: AboutMe,
+    component: Me,
     children: [
       {
         path: '/',
-        component: Me,
+        component: MeAbout,
         name: '我'
       }, {
         path: 'contact',
-        component: Contact,
+        component: MeContact,
         name: '联系方式'
       }
     ]
