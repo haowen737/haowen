@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="page">
     <loading :show="showLoading" top="50%" bg-color="#000"></loading>
     <router-view></router-view>
   </div>
@@ -14,6 +14,13 @@ export default {
     return {
       showLoading: false
     }
+  },
+  mounted () {
+    this.$router.beforeEach((to, from, next) => {
+      this.$pageLoading.show()
+      console.log('cool')
+      next()
+    })
   },
   components: {
     Loading,

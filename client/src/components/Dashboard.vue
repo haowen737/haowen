@@ -42,6 +42,8 @@ export default {
       }]
     }
   },
+  mounted () {
+  },
   methods: {
     draw () {
       // let cvs = document.getElementById('#canvas')

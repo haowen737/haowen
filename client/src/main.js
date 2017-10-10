@@ -2,10 +2,12 @@ import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
-import Warning from './plugins/warning'
+import PageLoading from './plugins/pageLoading'
 import Messenger from './plugins/messenger'
+import Warning from './plugins/warning'
 import Box from './packages/Box'
-import routers from './routers'
+
+import routes from './routers'
 import Utils from './utils'
 import store from './store'
 import App from './App'
@@ -18,12 +20,17 @@ Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.use(Warning)
 Vue.use(Messenger)
+Vue.use(PageLoading)
 Vue.use(Utils)
 Vue.component('box', Box)
-
-const router = new VueRouter({
-  routes: routers
+Vue.mixin({
+  mounted () {
+    console.log('hihi')
+    this.$pageLoading.hide()
+  }
 })
+
+const router = new VueRouter({ routes })
 
 new Vue({
   router,
