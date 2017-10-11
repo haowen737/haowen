@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     // btnOnclick () {
-    //   this.$Warning('this is test')
+    //   this.$warning('this is test')
     // },
     btnOnclick () {
       return this.status === 0
@@ -64,7 +64,7 @@ export default {
       }).then(() => {
         this.setData(1)
       }).catch((err) => {
-        this.$Warning(err)
+        this.$warning(err)
       })
       : this.formChecker({
         val: this.where.username.value,
@@ -72,7 +72,7 @@ export default {
       }).then(() => {
         this.send()
       }).catch((err) => {
-        this.$Warning(err)
+        this.$warning(err)
       })
     },
     send () {

@@ -2,6 +2,7 @@
   <div id="page">
     <div class="top-bar">
       <router-link class="router-about" :to="{path: '/me'}">About</router-link>
+      <!-- <router-link class="router-experience" :to="{path: '/me/project'}">Project</router-link> -->
       <router-link class="router-contact" :to="{path: '/me/contact'}">Contact</router-link>
       <router-link class="router-blog" :to="{path: '/'}" target="_blank">Blog</router-link>
     </div>

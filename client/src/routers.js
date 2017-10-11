@@ -4,6 +4,7 @@ const Black = (resolve) => require(['./components/black'], resolve)
 const Me = (resolve) => require(['./components/Me'], resolve)
 const MeContact = (resolve) => require(['./components/MeContact'], resolve)
 const MeAbout = (resolve) => require(['./components/MeAbout'], resolve)
+const MeProject = (resolve) => require(['./components/MeProject'], resolve)
 const Dashboard = (resolve) => require(['./components/Dashboard'], resolve)
 
 const BlogArticleList = (resolve) => require(['./components/BlogArticleList'], resolve)
@@ -71,6 +72,10 @@ export default [
         path: 'contact',
         component: MeContact,
         name: '联系方式'
+      }, {
+        path: 'project',
+        component: MeProject,
+        name: '我的项目'
       }
     ]
   }, {

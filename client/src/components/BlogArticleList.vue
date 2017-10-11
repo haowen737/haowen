@@ -36,16 +36,14 @@ export default {
   },
   methods: {
     query () {
-      this.showLoading = true
-      this.$http.get('/api/article/getArticles')
-      .then(function ({data}) {
-        this.cards = data
-        this.showLoading = false
-      })
-      .catch(function ({data}) {
-        this.showLoading = false
-        this.$Warning(data.msg)
-      })
+      this
+        .$http.get('/api/article/getArticles')
+        .then(({data}) => {
+          this.cards = data
+        })
+        .catch(({data}) => {
+          this.$warning(data.msg)
+        })
     }
   },
   components: {

@@ -17,6 +17,6 @@ export default {
       $vm.content = opt instanceof Object ? opt.text : opt
     }
 
-    Vue.prototype.$Warning = warning
+    Vue.prototype.$warning = warning
   }
 }

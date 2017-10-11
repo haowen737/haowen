@@ -56,7 +56,7 @@ export default {
         data.cb && data.cb()
       })
       .catch((err) => {
-        this.$Warning(err.msg)
+        this.$warning(err.msg)
         data.cb && data.cb()
       })
     },
@@ -66,7 +66,7 @@ export default {
         this.comments = data.reverse()
       })
       .catch(({data}) => {
-        this.$Warning(data.msg)
+        this.$warning(data.msg)
       })
     },
     reply () {

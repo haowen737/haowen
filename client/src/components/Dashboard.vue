@@ -24,19 +24,23 @@ export default {
         url: '/blog',
         target: ''
       }, {
+        title: 'Resume',
+        url: '/me',
+        target: ''
+      }, {
         title: 'Github',
         url: 'https://github.com/haowen737',
         target: '_blank'
       }, {
-        title: '微博',
+        title: 'Weibo',
         url: 'http://weibo.com/311170900/',
         target: '_blank'
       }, {
-        title: '知乎',
+        title: 'Zhihu',
         url: 'https://zhuanlan.zhihu.com/fe-sketch',
         target: '_blank'
       }, {
-        title: '聊天室',
+        title: 'Chat',
         url: 'https://discord.gg/HcvpmuK',
         target: '_blank'
       }]

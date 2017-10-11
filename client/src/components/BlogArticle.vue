@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="article-layout" id="container">
     <div v-html="content" class="markdown-body" id="mdContainer"></div>
-    <div class="bottom-bar" v-show="!showLoading">
+    <div class="bottom-bar" v-show="content">
       <div class="bottom-bar-tags">
         <div class="bottom-bar-tags-icon">
           <img src="./../assets/images/i-tag.png" alt="">
@@ -17,51 +17,47 @@
         </div>
       </div>
     </div>
-    <loading :show="showLoading" top="50%" bg-color="#000"></loading>
   </div>
 </template>
 
 <script>
 import HighLight from 'highlight.js'
 import Markdown from 'markdown/lib/markdown.js'
-import loading from 'packages/loading'
 export default {
   data () {
     return {
       article: {},
       content: '',
-      showLoading: false,
       loadSideNav: window.innerWidth > 500 || false,
       user: {},
       worker: {},
       where: {
-        content: '',
         articleId: ''
       }
     }
   },
   computed: {},
   mounted () {
-    this.showLoading = true
+    this.$pageLoading.show()
     this.initPage()
   },
   methods: {
     initPage () {
-      let title = parseInt(this.$route.params.id)
+      const title = parseInt(this.$route.params.id)
       this.where.articleId = title
       this.getArticle(title)
     },
     getArticle (title) {
       this.$http.get('/api/article/getArticle/' + title)
-      .then((res) => {
-        this.showLoading = false
-        this.article = res.data
-        this.formatMarkdown(this.article.content)
-        this.formatTags(this.article.tags)
+      .then(({ data }) => {
+        this.$pageLoading.hide()
+        this.article = data
+        this.formatMarkdown(data.content)
+        this.formatTags(data.tags)
         this.watchScroll()
       })
-      .catch((err) => {
-        console.log(err)
+      .catch(({ data }) => {
+        this.$warning(data.msg)
       })
     },
     watchScroll () {
@@ -132,8 +128,7 @@ export default {
     })
   },
   components: {
-    Markdown,
-    loading
+    Markdown
   }
 }
 </script>
@@ -238,40 +233,6 @@ export default {
   margin: 0 auto 100px;
   padding: 45px;
 }
-/*.article {
-  width: 700px;
-  margin: 50px auto;
-  text-align: left;
-}
-.article h1 {
-  font-size: 40px;
-  text-align: center;
-}
-.article blockquote {
-  color: #999999;
-  font-size: 20px;
-  margin: 15px 0;
-}
-.article blockquote:before {
-  content: '';
-  border: 2px solid #999;
-  color: #999999;
-  font-size: 20px;
-}
-.article blockquote>p {
-  color: #999999;
-  display: inline-block;
-  text-indent: 10px;
-  font-size: 20px;
-}
-.article p {
-  font-size: 15px;
-}
-.article-layout {
-  margin: 0 auto;
-  max-width: 800px;
-  min-height: 100%;
-}*/
 @media screen and (max-width: 375px ) {
   .markdown-body {
     padding: 10px;
