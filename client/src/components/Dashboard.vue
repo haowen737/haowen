@@ -20,11 +20,11 @@ export default {
   data () {
     return {
       nav: [{
-        title: 'Blog',
+        title: '博客',
         url: '/blog',
         target: ''
       }, {
-        title: 'Resume',
+        title: '关于我',
         url: '/me',
         target: ''
       }, {
@@ -32,15 +32,15 @@ export default {
         url: 'https://github.com/haowen737',
         target: '_blank'
       }, {
-        title: 'Weibo',
+        title: '微博',
         url: 'http://weibo.com/311170900/',
         target: '_blank'
       }, {
-        title: 'Zhihu',
+        title: '知乎',
         url: 'https://zhuanlan.zhihu.com/fe-sketch',
         target: '_blank'
       }, {
-        title: 'Chat',
+        title: '聊天室',
         url: 'https://discord.gg/HcvpmuK',
         target: '_blank'
       }]

@@ -20,6 +20,7 @@
         <p>所以下面有我的500px网站和我的YouTube频道</p>
         <p>&nbsp;</p>
         <p>如果我们能做个朋友，这是我的邮箱<a href="mailto:haowen737@gmail.com">haowen737@gmail.com</a></p>
+        <p>如果我们能一起做一些酷的事情，这是我的<a href="/static/resume.pdf" download="郑皓文-前端开发">简历</a></p>
       </div>
       <div class="content-list" v-show="!showContentList">
         <div class="contact-item" v-for="(item, index) in contactList" :key="item">

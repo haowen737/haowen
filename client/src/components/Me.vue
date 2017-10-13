@@ -49,7 +49,7 @@ export default {
 
 .top-bar a {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 300;
   padding: 0 1rem;
   line-height: 70px;
 }
