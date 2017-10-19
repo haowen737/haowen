@@ -103,6 +103,7 @@ export default {
   height: 100px;
   background-color: #c9ffed;
   z-index: -1;
+  box-shadow: 10px -5px 30px rgba(0,0,0,0.2);
 }
 .hero-flower {
   position: absolute;
@@ -112,11 +113,12 @@ export default {
   height: 70px;
   border-radius: 100px;
   border: 30px solid #9ec6ff;
+  box-shadow: -10px 10px 30px rgba(0,0,0,0.2);
 }
 .hero {
   margin-top: 70px;
   padding: 130px 0;
-  background-color: #fdfff7;
+  background-color: #f4faff;
 }
 .hero-container {
   position: relative;
