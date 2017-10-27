@@ -91,5 +91,6 @@ export default {
   padding: 10px 30px;
   display: block;
   color: #000;
+  font-size: 1.7rem;
 }
 </style>

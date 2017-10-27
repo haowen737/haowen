@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="app">
     <loading :show="showLoading" top="50%" bg-color="#000"></loading>
     <router-view></router-view>
   </div>

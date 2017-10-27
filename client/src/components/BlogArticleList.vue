@@ -105,7 +105,7 @@ export default {
 }
 .card a {
   display: inline-block;
-  font-size: 1.3rem;
+  font-size: 2rem;
   font-weight: 400;
   color: #2b2d32;
   margin: .7rem 0;
@@ -127,12 +127,12 @@ export default {
 }
 .card-summary {
   margin-top: 0px;
-  font-size: 1rem;
+  font-size: 1.6rem;
   color: #666;
   font-weight: 200;
 }
 .card-date {
-  font-size: .7rem;
+  font-size: 1.5rem;
   font-weight: 300;
   font-style: italic;
   color: #333;

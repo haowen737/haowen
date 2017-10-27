@@ -10,12 +10,9 @@
   <body>
     <div id="app"></div>
   </body>
+  <script>
+  var clientWidth = document.documentElement.clientWidth;
+  clientWidth = clientWidth < 780 ? clientWidth : 780;
+  document.documentElement.style.fontSize = clientWidth / 100 + 'px';
+  </script>
 </html>
-<style media="screen">
-.top-scrollbar {
-  position: fixed;
-  background-color: #000;
-  top: 0;
-  height: 2px;
-}
-</style>

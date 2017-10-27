@@ -49,6 +49,7 @@ export default {
   opacity: .7;
   transition: all .7s;
   animation: bg .7s ease;
+  z-index: 1000;
 }
 @keyframes bg {
   from {

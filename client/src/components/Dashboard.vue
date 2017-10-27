@@ -62,7 +62,7 @@ export default {
   position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: 0;
 }
 header {
-  font-size: 2rem;
+  font-size: 4rem;
   margin: 2rem;
   animation: slide-down .7s ease;
   font-family:'HelveticaNeueda58208fb1a95c';
@@ -71,6 +71,7 @@ summary {
   animation: slide-down .7s ease;
   font-family:'HelveticaNeueda58208fb1a95c';
   word-spacing: 5px;
+  font-size: 1.7rem;
 }
 nav {
   margin: 2rem 0;
@@ -82,6 +83,7 @@ nav>span {
 
 a {
   color: #3b3b3b;
+  font-size: 1.7rem;
 }
 
 .page {

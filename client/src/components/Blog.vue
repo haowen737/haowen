@@ -1,11 +1,13 @@
 <template lang="html">
-  <div class="page">
+  <div>
     <blog-topbar></blog-topbar>
-    <div class="content">
-      <blog-side-nav v-if="loadSideNav" :position="position"></blog-side-nav>
-      <router-view class="main"></router-view>
+    <div class="page">
+      <div class="content">
+        <blog-side-nav v-if="loadSideNav" :position="position"></blog-side-nav>
+        <router-view class="main"></router-view>
+      </div>
+      <bottom-fire :show="!showLoading"></bottom-fire>
     </div>
-    <bottom-fire :show="!showLoading"></bottom-fire>
   </div>
 </template>
 
