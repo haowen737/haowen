@@ -96,7 +96,7 @@ export default {
   display: block;
   position: relative;
   margin: 30px auto;
-  padding: 0 1rem;
+  padding: 0 1em;
   /*box-shadow: 1px 1px 2px rgba(0,0,0,0.2);*/
   /*transition: box-shadow .5s ease-out;*/
   border-bottom: 1px solid rgba(0,0,0,.1);
@@ -105,10 +105,10 @@ export default {
 }
 .card a {
   display: inline-block;
-  font-size: 2rem;
+  font-size: 1.2em;
   font-weight: 400;
   color: #2b2d32;
-  margin: .7rem 0;
+  margin: .7em 0;
   border-bottom-color: rgba(0,0,0,0);
   border-bottom-style: solid;
   border-bottom-width: 1px;
@@ -121,18 +121,18 @@ export default {
   float: right;
   margin-left: 15px;
   color: #999;
-  font-size: .7rem;
+  font-size: .7em;
   font-weight: lighter;
   margin-top: 5px;
 }
 .card-summary {
   margin-top: 0px;
-  font-size: 1.6rem;
+  font-size: 1em;
   color: #666;
   font-weight: 200;
 }
 .card-date {
-  font-size: 1.5rem;
+  font-size: .7em;
   font-weight: 300;
   font-style: italic;
   color: #333;

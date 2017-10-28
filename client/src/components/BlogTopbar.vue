@@ -106,14 +106,22 @@ export default {
   float: left;
 }
 .nav-container a {
-  line-height: 52px;
+  line-height: 10rem;
   padding: 0 10px;
+  font-size: 1em;
 }
 .article-title {
-  font-size: 2rem;
+  font-size: 1.7em;
   width: 100%;
   text-align: center;
-  line-height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .article-title-enter-active, .article-title-leave-active {
   transform: translateY(0);
@@ -131,7 +139,6 @@ export default {
   padding: 0 40px;
 }
 .topbar-header-login {
-  display: inline-block;
   float: right;
   line-height: 52px;
 }
@@ -160,9 +167,9 @@ export default {
   opacity: 0;
 }
 .topbar-header-container {
-  padding: 0 10rem;
-  height: 52px;
+  padding: 0 10em;
   position: relative;
+  height: 100%;
 }
 .topbar {
   background-color: rgba(255, 255, 255, .9);
@@ -171,7 +178,8 @@ export default {
   top: 0;
   width: 100%;
   z-index: 1000;
-  height: 52px;
+  height: 10rem;
+  max-height: 52px;
   overflow: hidden;
 }
 @media (max-width: 1000px) {
