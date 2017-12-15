@@ -1,45 +1,37 @@
 <template lang="html">
-  <div class="page-loading">
+  <div>
     <transition-group name="loading-fade">
-      <div class="loading-layout" :style="{top: top}" v-show="show" key="layout">
-        <div class="ball ball-1" :style="{backgroundColor: bgColor}"></div>
-        <div class="ball ball-2" :style="{backgroundColor: bgColor}"></div>
-        <div class="ball ball-3" :style="{backgroundColor: bgColor}"></div>
-        <div class="ball ball-4" :style="{backgroundColor: bgColor}"></div>
+      <div class="neo-loading-bg" :style="{backgroundColor: backgroundColor}" key="bg" v-show="show"></div>
+      <div class="neo-loading-layout" :style="{top: top}" v-show="show" key="layout">
+        <div class="ball ball-1" :style="{backgroundColor: color}"></div>
+        <div class="ball ball-2" :style="{backgroundColor: color}"></div>
+        <div class="ball ball-3" :style="{backgroundColor: color}"></div>
+        <div class="ball ball-4" :style="{backgroundColor: color}"></div>
       </div>
     </transition-group>
-    <div class="loading-bg" key="bg" v-show="show"></div>
   </div>
 </template>
 
 <script>
 export default {
   data () {
-    return {}
+    return {
+      backgroundColor: null,
+      color: null,
+      show: false
+    }
   },
   props: {
-    show: {
-      type: Boolean,
-      default: false
-    },
     top: {
       type: String,
       default: '50%'
-    },
-    bgColor: {
-      type: String,
-      default: '#444'
     }
-  },
-  computed: {},
-  mounted () { },
-  methods: {},
-  components: {}
+  }
 }
 </script>
 
 <style lang="css" scoped>
-.loading-bg {
+.neo-loading-bg {
   position: fixed;
   top: 0;
   left: 0;
@@ -59,14 +51,14 @@ export default {
     opacity: .7;
   }
 }
-.loading-layout {
+.neo-loading-layout {
   position: absolute;
   height: 10px;
   width: 100px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  z-index: 100;
+  z-index: 1001;
 }
 
 .ball {
@@ -99,121 +91,121 @@ export default {
 
 @-webkit-keyframes ball-1 {
   0% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
   50% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
   100% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
 }
 
 @-webkit-keyframes ball-2 {
   0% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
   50% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
   100% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
 }
 
 @-webkit-keyframes ball-3 {
   0% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
   25% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
   50% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
   75% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
   100% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
 }
 
 @-webkit-keyframes ball-4 {
   0% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
   25% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
   50% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
   75% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
   100% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
 }
 
 @keyframes ball-1 {
   0% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
   50% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
   100% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
 }
 
 @keyframes ball-2 {
   0% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
   50% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
   100% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
 }
 
 @keyframes ball-3 {
   0% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
   25% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
   50% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
   75% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
   100% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
 }
 
 @keyframes ball-4 {
   0% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
   25% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
   50% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
   75% {
-    left: 0px;
+    transform: translate3d(0px, 0, 0);
   }
   100% {
-    left: 100px;
+    transform: translate3d(100px, 0, 0);
   }
 }
 

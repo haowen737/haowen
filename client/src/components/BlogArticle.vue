@@ -38,7 +38,7 @@ export default {
   },
   computed: {},
   mounted () {
-    this.$pageLoading.show()
+    this.$neoLoading.show()
     this.initPage()
   },
   methods: {
@@ -50,7 +50,7 @@ export default {
     getArticle (title) {
       this.$http.get('/api/article/getArticle/' + title)
       .then(({ data }) => {
-        this.$pageLoading.hide()
+        this.$neoLoading.hide()
         this.article = data
         this.formatMarkdown(data.content)
         this.formatTags(data.tags)

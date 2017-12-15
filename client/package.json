@@ -19,6 +19,7 @@
     "highlight.js": "^9.11.0",
     "iscroll": "^5.2.0",
     "markdown": "^0.5.0",
+    "neo-loading": "^1.0.1",
     "particles.js": "^2.0.0",
     "vue": "^2.0.1",
     "vue-resource": "^1.0.2",

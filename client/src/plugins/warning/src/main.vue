@@ -43,7 +43,7 @@ export default {
   z-index: 3000;
 }
 .warning-container p {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #333;
   line-height: 44px;
 }

@@ -6,7 +6,7 @@
         <li class="comment" v-for="comment in comments" :key="comment">
           <div class="comment-inner">
             <p class="comment-author">#{{index}}&nbsp;{{comment.user_name}}
-              <span class="comment-date">发表于&nbsp;{{comment.created_at | formatDate('YYYY-MM-DD HH:mm')}}<span>
+              <span class="comment-date">发表于&nbsp;{{comment.created_at | formatDate('YYYY-MM-DD HH:mm')}}</span>
             </p>
             <p class="comment-content">{{comment.content}}</p>
             <p class="comment-foot">

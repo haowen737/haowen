@@ -1,22 +1,27 @@
-import pageLoadingTemplate from './main.vue'
+import neoLoadingTemplate from './main.vue'
 let $vm
 export default {
-  install (Vue) {
+  install (Vue, options = {}) {
     if (!$vm) {
-      let PageLoadingTemplate = Vue.extend(pageLoadingTemplate)
+      let NeoLoadingTemplate = Vue.extend(neoLoadingTemplate)
 
-      let $vm = new PageLoadingTemplate({
+      let $vm = new NeoLoadingTemplate({
         el: document.createElement('div')
       })
 
+      let { backgroundColor, color, backgroundOpacity } = options
+      $vm.backgroundColor = backgroundColor || '#FFFFFF'
+      $vm.backgroundOpacity = backgroundOpacity || '0.5'
+      $vm.color = color || '#000'
+
       document.body.appendChild($vm.$el)
 
-      let pageLoading = function () {}
+      let neoLoading = function () {}
 
-      pageLoading.show = () => { $vm.show = true }
-      pageLoading.hide = () => { $vm.show = false }
+      neoLoading.show = () => { $vm.show = true }
+      neoLoading.hide = () => { $vm.show = false }
 
-      Vue.prototype.$pageLoading = pageLoading
+      Vue.prototype.$neoLoading = neoLoading
     }
   }
 }

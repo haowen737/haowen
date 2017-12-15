@@ -29,8 +29,8 @@ exports.getComments = async (ctx, next) => {
   console.log('------>get reply<------', reply)
 
   comments.map((comment) => {
-    let child = findReply(comment.id, reply) || []
-    comment.child = child
+    let children = findReply(comment.id, reply) || []
+    comment.children = children
   })
 
   function findReply (target, arr) {
@@ -80,16 +80,30 @@ exports.addComment = async (ctx, next) => {
  }
 
 exports.addReply = async (ctx, next) => {
-  let userName = ctx.request.body.user_name
+  let userName = ctx.request.body.userName
   let content = ctx.request.body.content
   let parentName = ctx.request.body.parent_name || null
   let parent_id = ctx.request.body.parent_id
   let date = new Date()
+
+  let userQuery = await ctx.knex('users as u')
+    .select('u.id')
+    .where({user_name: userName})
+
+  let user = userQuery.length ? userQuery[0] : {}
+
+  if (!user.id) {// 未查询到的新用户插入users表
+    let id = await ctx.knex('users').insert({user_name: userName}).returning('id')
+    user.id = id[0]
+  }
+
+  await ctx.knex('comments').insert({user_id: user.id, content: content, created_at: date, parent_name: parentName, parent_id: parent_id})
+
   MailSender({
     subject: '收到新回复', // Subject line
     text: `用户名：${userName}，回复内容：${content}` // plain text body
   })
-  await ctx.knex('comments').insert({user_name: userName, content: content, created_at: date, parent_name: parentName, parent_id: parent_id})
+
   ctx.body = {
     code: 200,
     message: '回复成功'
