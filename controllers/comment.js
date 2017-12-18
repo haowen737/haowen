@@ -12,18 +12,21 @@ exports.getComments = async (ctx, next) => {
     'c.content',
     'c.reply_count',
     'c.created_at',
-    'u.user_name'
+    'u.nick_name'
   )
 
-  let reply = await ctx.knex('comments as c')
+  let reply = await ctx.knex('replys as r')
   .whereNotNull('parent_id')
-  .leftJoin('users as u', 'c.user_id', 'u.id')
+  .leftJoin('users as u', 'r.user_id', 'u.id')
+  .leftJoin('users as replyto', 'r.reply_to', 'replyto.id')
   .select(
-    'c.parent_id',
-    'c.content',
-    'c.reply_count',
-    'c.created_at',
-    'u.user_name'
+    'r.parent_id',
+    'r.content',
+    'r.created_at',
+    'u.nick_name',
+    'u.id as user_id',
+    'replyto.id as reply_to',
+    'replyto.nick_name as reply_to_name'
   )
 
   console.log('------>get reply<------', reply)
@@ -52,25 +55,27 @@ exports.getReply = async (ctx, next) => {
 }
 
 exports.addComment = async (ctx, next) => {
-  let userName = ctx.request.body.userName;
+  let user = ctx.request.body.user;
   let comment = ctx.request.body.content;
   let date = new Date();
-  let userQuery = await ctx.knex('users as u')
-    .select('u.id')
-    .where({user_name: userName})
+  // let userQuery = await ctx.knex('users as u')
+  //   .select('u.id')
+  //   .where({id: user.id})
+  //   .first()
 
-  let user = userQuery.length ? userQuery[0] : {}
-
-  if (!user.id) {// 未查询到的新用户插入users表
-    let id = await ctx.knex('users').insert({user_name: userName}).returning('id')
-    user.id = id[0]
+  if (!user) {
+    throw new ApiError({code: 10004, msg: '缺少用户资料'})
   }
 
-  await ctx.knex('comments').insert({content: comment, created_at: date, user_id: user.id})
+  await ctx.knex('comments').insert({
+    content: comment,
+    created_at: date,
+    user_id: user.id
+  })
 
   MailSender({
-    subject: '收到新回复', // Subject line
-    text: `用户名：${userName}，回复内容：${comment}，userAgent: ${ctx.header['user-agent']}` // plain text body
+    subject: '收到新评论', // Subject line
+    text: `用户名：${user.nick_name}，邮箱：${user.email}，回复内容：${comment}，userAgent: ${ctx.header['user-agent']}` // plain text body
   })
 
   ctx.body = {
@@ -80,28 +85,33 @@ exports.addComment = async (ctx, next) => {
  }
 
 exports.addReply = async (ctx, next) => {
-  let userName = ctx.request.body.userName
+  let userId = ctx.request.body.userId
   let content = ctx.request.body.content
-  let parentName = ctx.request.body.parent_name || null
-  let parent_id = ctx.request.body.parent_id
+  let parentId = ctx.request.body.parentId || null
+  let replyToUser = ctx.request.body.replyToUser || null
   let date = new Date()
 
-  let userQuery = await ctx.knex('users as u')
+  let user = await ctx.knex('users as u')
     .select('u.id')
-    .where({user_name: userName})
+    .where('id', userId)
+    .first()
 
-  let user = userQuery.length ? userQuery[0] : {}
 
   if (!user.id) {// 未查询到的新用户插入users表
-    let id = await ctx.knex('users').insert({user_name: userName}).returning('id')
-    user.id = id[0]
+    throw new ApiError({code: 10004, msg: '缺少用户资料'})
   }
 
-  await ctx.knex('comments').insert({user_id: user.id, content: content, created_at: date, parent_name: parentName, parent_id: parent_id})
+  await ctx.knex('replys').insert({
+    user_id: userId,
+    content: content,
+    created_at: date,
+    parent_id: parentId,
+    reply_to: replyToUser
+  })
 
   MailSender({
     subject: '收到新回复', // Subject line
-    text: `用户名：${userName}，回复内容：${content}` // plain text body
+    text: `用户名：${user.nick_name}对${replyToUser}回复说：${content}` // plain text body
   })
 
   ctx.body = {
