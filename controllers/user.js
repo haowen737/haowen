@@ -90,5 +90,6 @@ exports.update = async (ctx, next) => {
       motto: motto || null,
       updated_at: new Date()
     })
-  ctx.body = { msg: '用户信息成功' }
+  let user = await ctx.knex('users').where('id', id).first()
+  ctx.body = user
 }
