@@ -13,10 +13,6 @@ export default {
     }
   },
   mounted () {
-    this.$router.beforeEach((to, from, next) => {
-      this.$neoLoading.show()
-      next()
-    })
   },
   components: {
     Box
